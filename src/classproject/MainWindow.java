@@ -2,8 +2,6 @@
  *
  * @author Emanuel
  */
-
-
 package classproject;
 public class MainWindow extends javax.swing.JFrame {
     
@@ -25,12 +23,12 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginPanel_1 = new javax.swing.JPanel();
+        loginPanel = new javax.swing.JPanel();
         loginTitle = new javax.swing.JLabel();
         loginSubmitButton = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        loginLogo = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         loginSubmitButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,9 +36,9 @@ public class MainWindow extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(580, 237));
         setResizable(false);
 
-        loginPanel_1.setBackground(new java.awt.Color(214, 196, 172));
-        loginPanel_1.setMaximumSize(null);
-        loginPanel_1.setPreferredSize(new java.awt.Dimension(400, 350));
+        loginPanel.setBackground(new java.awt.Color(214, 196, 172));
+        loginPanel.setMaximumSize(null);
+        loginPanel.setPreferredSize(new java.awt.Dimension(400, 350));
 
         loginTitle.setBackground(new java.awt.Color(204, 204, 204));
         loginTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -56,19 +54,24 @@ public class MainWindow extends javax.swing.JFrame {
         loginSubmitButton.setText("Submit");
         loginSubmitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loginSubmitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginSubmitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                loginSubmitButtonMousePressed(evt);
+            }
+        });
 
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPasswordField1.setPreferredSize(new java.awt.Dimension(64, 25));
 
+        loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/gameLogo.png"))); // NOI18N
+        loginLogo.setText("loginSideLogo");
+        loginLogo.setToolTipText("");
+        loginLogo.setAlignmentY(0.0F);
+        loginLogo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setToolTipText("");
         jTextField1.setPreferredSize(new java.awt.Dimension(73, 25));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/gameLogo.png"))); // NOI18N
-        jLabel2.setText("loginSideLogo");
-        jLabel2.setToolTipText("");
-        jLabel2.setAlignmentY(0.0F);
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         loginSubmitButton1.setBackground(new java.awt.Color(102, 153, 255));
         loginSubmitButton1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -83,14 +86,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout loginPanel_1Layout = new javax.swing.GroupLayout(loginPanel_1);
-        loginPanel_1.setLayout(loginPanel_1Layout);
-        loginPanel_1Layout.setHorizontalGroup(
-            loginPanel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanel_1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
+        loginPanel.setLayout(loginPanelLayout);
+        loginPanelLayout.setHorizontalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
+                .addComponent(loginLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(loginPanel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(loginTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(loginSubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -98,12 +101,12 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(loginSubmitButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
-        loginPanel_1Layout.setVerticalGroup(
-            loginPanel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanel_1Layout.createSequentialGroup()
-                .addGroup(loginPanel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(loginPanel_1Layout.createSequentialGroup()
+        loginPanelLayout.setVerticalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginLogo)
+                    .addGroup(loginPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(loginTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -122,20 +125,53 @@ public class MainWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(loginPanel_1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginPanel_1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginSubmitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginSubmitButton1ActionPerformed
-        // TODO add your handling code here:
+      // ----------- I G N O R E ___ T H I S -------------------------------
     }//GEN-LAST:event_loginSubmitButton1ActionPerformed
+
+    
+    // SWITCH FRAME ===========================================================================
+    private void switchFrame(javax.swing.JPanel target){
+        // Hiding all panels
+        
+        
+        // Check if the target panel is the loging panel and resize
+        if(target == loginPanel){
+            this.setSize(580, 237); // Panel IS the login panel, make small
+        }
+        else{
+            this.setSize(580, 600); // Panel is NOT the login panel, make big
+        }
+        
+        // Resetting target panel if needed
+        
+        
+        // Showing target panel
+        target.setVisible(true);
+    }
+    // ========================================================================================
+    
+    
+    
+    
+    
+    // LOGIN FUNCTIONS ========================================================================
+    private void loginSubmitButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginSubmitButtonMousePressed
+        // TODO add your handling code here:
+        System.out.println("Login Submit Button Clicked"); 
+        
+    }//GEN-LAST:event_loginSubmitButtonMousePressed
 
     /**
      * @param args the command line arguments
@@ -160,13 +196,17 @@ public class MainWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MainWindow().setVisible(true));
+        
+        
+        // Change to the frame of log in to control log out options as well 
+        //switchFrame(loginPanel);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel loginPanel_1;
+    private javax.swing.JLabel loginLogo;
+    private javax.swing.JPanel loginPanel;
     private javax.swing.JButton loginSubmitButton;
     private javax.swing.JButton loginSubmitButton1;
     private javax.swing.JLabel loginTitle;
