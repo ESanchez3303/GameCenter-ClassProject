@@ -3,14 +3,14 @@
  * @author Emanuel
  */
 package classproject;
-public class MainWindow extends javax.swing.JFrame {
+public class GUI_window extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainWindow.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI_window.class.getName());
 
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    public GUI_window() {
         initComponents();
     }
 
@@ -195,7 +195,7 @@ public class MainWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MainWindow().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new GUI_window().setVisible(true));
         
         
         // Change to the frame of log in to control log out options as well 

@@ -8,10 +8,10 @@ package classproject;
  *
  * @author Emanuel
  */
-public class ClassProject {
+public class StartingClass {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            new MainWindow().setVisible(true);
+            new GUI_window().setVisible(true);
         });
     }
     
