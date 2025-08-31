@@ -64,9 +64,10 @@ public class UsersManager {
         User temp = new User(newUser, newPass);                                  // Not encrypting saved password since it wont be accessed from anywhere
         Users.add(temp);
         
-        // Adding the user to the FILE
-        String encoded_password = encrypt(newPass);                              // Encrypting password before saving
+        // Saving the to the file
+        saveToFile();
         
+       
         return true;        // Returns true if the person was added
     }
     
@@ -158,7 +159,7 @@ public class UsersManager {
     }
 
     
-    private void saveToFile(){
+    private void saveToFile(){ 
         try {
             if (Users == null) return; // If users list was not init, then return (shouldn't ever happen since we init)
 

@@ -3,6 +3,8 @@
  * @author Emanuel
  */
 package classproject;
+import javax.swing.JOptionPane;
+
 public class GUI_window extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI_window.class.getName());
@@ -12,6 +14,7 @@ public class GUI_window extends javax.swing.JFrame {
      */
     public GUI_window() {
         initComponents();
+        switchFrame(loginFrame);
     }
 
     /**
@@ -23,22 +26,58 @@ public class GUI_window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginPanel = new javax.swing.JPanel();
+        loginFrame = new javax.swing.JPanel();
+        loginButtonsFrame = new javax.swing.JPanel();
+        loginButton = new javax.swing.JButton();
+        createAccountButton = new javax.swing.JButton();
         loginTitle = new javax.swing.JLabel();
-        loginSubmitButton = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordConfirmInput = new javax.swing.JPasswordField();
         loginLogo = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        loginSubmitButton1 = new javax.swing.JButton();
+        usernameInput = new javax.swing.JTextField();
+        passwordInput = new javax.swing.JPasswordField();
+        createAccountButtonConfirm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GamesAndStuff");
         setPreferredSize(new java.awt.Dimension(580, 237));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginPanel.setBackground(new java.awt.Color(214, 196, 172));
-        loginPanel.setMaximumSize(null);
-        loginPanel.setPreferredSize(new java.awt.Dimension(400, 350));
+        loginFrame.setBackground(new java.awt.Color(214, 196, 172));
+        loginFrame.setPreferredSize(new java.awt.Dimension(400, 350));
+        loginFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loginButtonsFrame.setBackground(new java.awt.Color(214, 196, 172));
+        loginButtonsFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loginButton.setBackground(new java.awt.Color(126, 195, 111));
+        loginButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        loginButton.setForeground(java.awt.Color.white);
+        loginButton.setText("Log In");
+        loginButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                loginButtonMousePressed(evt);
+            }
+        });
+        loginButtonsFrame.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 348, 35));
+
+        createAccountButton.setBackground(new java.awt.Color(102, 153, 255));
+        createAccountButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        createAccountButton.setForeground(java.awt.Color.white);
+        createAccountButton.setText("Create New Account");
+        createAccountButton.setToolTipText("");
+        createAccountButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createAccountButtonMousePressed(evt);
+            }
+        });
+        loginButtonsFrame.add(createAccountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 348, 35));
+
+        loginFrame.add(loginButtonsFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 100, 360, 100));
 
         loginTitle.setBackground(new java.awt.Color(204, 204, 204));
         loginTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -47,107 +86,64 @@ public class GUI_window extends javax.swing.JFrame {
         loginTitle.setText("Welcome! Please Log In");
         loginTitle.setToolTipText("");
         loginTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        loginFrame.add(loginTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 6, 348, -1));
 
-        loginSubmitButton.setBackground(new java.awt.Color(126, 195, 111));
-        loginSubmitButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        loginSubmitButton.setForeground(java.awt.Color.white);
-        loginSubmitButton.setText("Submit");
-        loginSubmitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        loginSubmitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginSubmitButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                loginSubmitButtonMousePressed(evt);
-            }
-        });
-
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(64, 25));
+        passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passwordConfirmInput.setPreferredSize(new java.awt.Dimension(64, 25));
+        loginFrame.add(passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 110, 348, 30));
 
         loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/gameLogo.png"))); // NOI18N
         loginLogo.setText("loginSideLogo");
         loginLogo.setToolTipText("");
         loginLogo.setAlignmentY(0.0F);
         loginLogo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginFrame.add(loginLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 198, -1));
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setToolTipText("");
-        jTextField1.setPreferredSize(new java.awt.Dimension(73, 25));
+        usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        usernameInput.setToolTipText("");
+        usernameInput.setPreferredSize(new java.awt.Dimension(73, 25));
+        loginFrame.add(usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 37, 348, 30));
 
-        loginSubmitButton1.setBackground(new java.awt.Color(102, 153, 255));
-        loginSubmitButton1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        loginSubmitButton1.setForeground(java.awt.Color.white);
-        loginSubmitButton1.setText("Create New Account");
-        loginSubmitButton1.setToolTipText("");
-        loginSubmitButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        loginSubmitButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginSubmitButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginSubmitButton1ActionPerformed(evt);
+        passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passwordInput.setPreferredSize(new java.awt.Dimension(64, 25));
+        loginFrame.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 73, 348, 30));
+
+        createAccountButtonConfirm.setBackground(new java.awt.Color(102, 153, 255));
+        createAccountButtonConfirm.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        createAccountButtonConfirm.setForeground(java.awt.Color.white);
+        createAccountButtonConfirm.setToolTipText("");
+        createAccountButtonConfirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountButtonConfirm.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountButtonConfirm.setLabel("Make Account");
+        createAccountButtonConfirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createAccountButtonConfirmClicked(evt);
             }
         });
+        loginFrame.add(createAccountButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 150, 348, 35));
 
-        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
-        loginPanel.setLayout(loginPanelLayout);
-        loginPanelLayout.setHorizontalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
-                .addComponent(loginLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(loginTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loginSubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginSubmitButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        loginPanelLayout.setVerticalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanelLayout.createSequentialGroup()
-                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginLogo)
-                    .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(loginTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loginSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loginSubmitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(loginFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 581, 201));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginSubmitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginSubmitButton1ActionPerformed
-      // ----------- I G N O R E ___ T H I S -------------------------------
-    }//GEN-LAST:event_loginSubmitButton1ActionPerformed
-
+    
+    // =======================================================================================
+    // ============================ USERS VARIABLES ==========================================
+    private String currentUser = "";                                                      //||
+    private UsersManager allUsers = new UsersManager();                                   //||
+    // =======================================================================================
+    // =======================================================================================
+    
+    
     
     // SWITCH FRAME ===========================================================================
     private void switchFrame(javax.swing.JPanel target){
         // Hiding all panels
-        
+        loginFrame.setVisible(false);
         
         // Check if the target panel is the loging panel and resize
-        if(target == loginPanel){
+        if(target == loginFrame){
             this.setSize(580, 237); // Panel IS the login panel, make small
         }
         else{
@@ -155,6 +151,15 @@ public class GUI_window extends javax.swing.JFrame {
         }
         
         // Resetting target panel if needed
+        if(target == loginFrame){
+            loginButtonsFrame.setVisible(true); // Showing the login frame
+            usernameInput.setText("");          // Resetting username 
+            passwordInput.setText("");          // Resetting password
+            passwordConfirmInput.setText("");   // Resetting confirm password
+            
+            passwordConfirmInput.setVisible(false); // Fixing a z-issue, making inivis instead
+        }
+        
         
         
         // Showing target panel
@@ -163,15 +168,76 @@ public class GUI_window extends javax.swing.JFrame {
     // ========================================================================================
     
     
-    
-    
-    
     // LOGIN FUNCTIONS ========================================================================
-    private void loginSubmitButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginSubmitButtonMousePressed
+    private void loginButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMousePressed
         // TODO add your handling code here:
         System.out.println("Login Submit Button Clicked"); 
         
-    }//GEN-LAST:event_loginSubmitButtonMousePressed
+    }//GEN-LAST:event_loginButtonMousePressed
+
+    private void createAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountButtonMousePressed
+        loginButtonsFrame.setVisible(false);                    // Hide the login buttons to show confirm buttons
+        passwordConfirmInput.setVisible(true);                  // Fixing z-problem and making visible again
+        System.out.println("Create Account Button Clicked");    // Temp message
+    }//GEN-LAST:event_createAccountButtonMousePressed
+
+    private void createAccountButtonConfirmClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountButtonConfirmClicked
+        // Grabbing all the inputs
+        String tempUsername = usernameInput.getText();
+        String tempPassword = passwordInput.getText();
+        String tempPasswordConfirm = passwordConfirmInput.getText();
+        
+        // Check if all inputs have something
+        if(tempUsername == null || tempUsername.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Username cannot be empty.");
+            return;
+        }
+        if(tempPassword == null || tempPassword.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Password cannot be empty.");
+            return;
+        }
+        if(tempPasswordConfirm == null || tempPassword.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Password Confirm cannot be empty.");
+            return;
+        }
+        
+        // Check that username and password DO NOT have [,] (comma)
+        if(tempUsername.contains(",") || tempPassword.contains(",") || tempPasswordConfirm.contains(",")){
+            JOptionPane.showMessageDialog(null, "Inputs cannot have the comma character.");
+            return;
+        }
+        
+        // Check if username has spaces
+        if(tempUsername.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Usernames cannot have spaces.");
+            usernameInput.setText("");
+            return;
+        }
+        
+        // Check if username is valid
+        if(!allUsers.validUsername(tempUsername)){
+            JOptionPane.showMessageDialog(null, "This username is already taken.");
+            usernameInput.setText("");
+            return;
+        }
+        
+        // Check if passwords match
+        if(!tempPassword.equals(tempPasswordConfirm)){
+            JOptionPane.showMessageDialog(null, "Password do not match.");
+            passwordInput.setText("");
+            passwordConfirmInput.setText("");
+            return;
+        }
+        
+        // Create new user -> this method saves to file too
+        allUsers.addUser(tempUsername, tempPassword);
+        
+        // Save the current username
+        currentUser = tempUsername;
+        
+        // Switch to mainMenu Frame
+        //switchFrame(mainMenuFrame);
+    }//GEN-LAST:event_createAccountButtonConfirmClicked
 
     /**
      * @param args the command line arguments
@@ -196,19 +262,19 @@ public class GUI_window extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new GUI_window().setVisible(true));
-        
-        
-        // Change to the frame of log in to control log out options as well 
-        //switchFrame(loginPanel);
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton createAccountButton;
+    private javax.swing.JButton createAccountButtonConfirm;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JPanel loginButtonsFrame;
+    private javax.swing.JPanel loginFrame;
     private javax.swing.JLabel loginLogo;
-    private javax.swing.JPanel loginPanel;
-    private javax.swing.JButton loginSubmitButton;
-    private javax.swing.JButton loginSubmitButton1;
     private javax.swing.JLabel loginTitle;
+    private javax.swing.JPasswordField passwordConfirmInput;
+    private javax.swing.JPasswordField passwordInput;
+    private javax.swing.JTextField usernameInput;
     // End of variables declaration//GEN-END:variables
 }
