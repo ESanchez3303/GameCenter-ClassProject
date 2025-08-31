@@ -3,6 +3,7 @@
  * @author Emanuel
  */
 package classproject;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class GUI_window extends javax.swing.JFrame {
@@ -26,6 +27,22 @@ public class GUI_window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainMenuFrame = new javax.swing.JPanel();
+        MM_topBar = new javax.swing.JPanel();
+        MM_username = new javax.swing.JLabel();
+        MM_userSettingsButton = new javax.swing.JButton();
+        MM_logOutButton = new javax.swing.JButton();
+        MM_userSettingsPanel = new javax.swing.JPanel();
+        MM_userSettingsCancelButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        MM_userSettingsPanelTitle = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        MM_usernameInput = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        MM_passwordInput = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        MM_passwordConfirmInput = new javax.swing.JTextField();
+        MM_saveSettingsButton = new javax.swing.JButton();
         loginFrame = new javax.swing.JPanel();
         loginButtonsFrame = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -35,13 +52,126 @@ public class GUI_window extends javax.swing.JFrame {
         loginLogo = new javax.swing.JLabel();
         usernameInput = new javax.swing.JTextField();
         passwordInput = new javax.swing.JPasswordField();
-        createAccountButtonConfirm = new javax.swing.JButton();
+        createAccountCancelButton = new javax.swing.JButton();
+        createAccountConfirmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GamesAndStuff");
         setPreferredSize(new java.awt.Dimension(580, 237));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
+        mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_topBar.setBackground(new java.awt.Color(153, 135, 108));
+        MM_topBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_username.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MM_username.setForeground(java.awt.Color.white);
+        MM_username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MM_username.setText("<Username>");
+        MM_username.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        MM_topBar.add(MM_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 550, 30));
+
+        MM_userSettingsButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_userSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_userSettingsButton.setForeground(java.awt.Color.white);
+        MM_userSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_userSettingsButton.setLabel("User Settings");
+        MM_userSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_userSettingsButtonMousePressed(evt);
+            }
+        });
+        MM_topBar.add(MM_userSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 5, -1, 40));
+
+        MM_logOutButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_logOutButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_logOutButton.setForeground(java.awt.Color.white);
+        MM_logOutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_logOutButton.setLabel("Log Out");
+        MM_logOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_logOutButtonMousePressed(evt);
+            }
+        });
+        MM_topBar.add(MM_logOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 5, -1, 40));
+
+        mainMenuFrame.add(MM_topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 50));
+
+        MM_userSettingsPanel.setBackground(new java.awt.Color(153, 135, 108));
+        MM_userSettingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_userSettingsCancelButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_userSettingsCancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_userSettingsCancelButton.setForeground(java.awt.Color.white);
+        MM_userSettingsCancelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        MM_userSettingsCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_userSettingsCancelButton.setLabel("X");
+        MM_userSettingsCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_userSettingsCancelButtonMousePressed(evt);
+            }
+        });
+        MM_userSettingsPanel.add(MM_userSettingsCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 30));
+
+        jPanel2.setBackground(new java.awt.Color(98, 82, 62));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_userSettingsPanelTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MM_userSettingsPanelTitle.setForeground(java.awt.Color.white);
+        MM_userSettingsPanelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MM_userSettingsPanelTitle.setText("User Settings");
+        jPanel2.add(MM_userSettingsPanelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 380, 20));
+
+        MM_userSettingsPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.white);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Username:");
+        MM_userSettingsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 30));
+
+        MM_usernameInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 280, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.white);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Password:");
+        MM_userSettingsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 30));
+
+        MM_passwordInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 280, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel5.setForeground(java.awt.Color.white);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Confirm Password:");
+        MM_userSettingsPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, 30));
+
+        MM_passwordConfirmInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 280, 30));
+
+        MM_saveSettingsButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_saveSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_saveSettingsButton.setForeground(java.awt.Color.white);
+        MM_saveSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_saveSettingsButton.setLabel("Save Settings");
+        MM_saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_saveSettingsButtonMousePressed(evt);
+            }
+        });
+        MM_userSettingsPanel.add(MM_saveSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, 40));
+
+        mainMenuFrame.add(MM_userSettingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 450, 220));
+
+        getContentPane().add(mainMenuFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         loginFrame.setBackground(new java.awt.Color(214, 196, 172));
         loginFrame.setPreferredSize(new java.awt.Dimension(400, 350));
@@ -108,21 +238,35 @@ public class GUI_window extends javax.swing.JFrame {
         passwordInput.setPreferredSize(new java.awt.Dimension(64, 25));
         loginFrame.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 73, 348, 30));
 
-        createAccountButtonConfirm.setBackground(new java.awt.Color(102, 153, 255));
-        createAccountButtonConfirm.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        createAccountButtonConfirm.setForeground(java.awt.Color.white);
-        createAccountButtonConfirm.setToolTipText("");
-        createAccountButtonConfirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createAccountButtonConfirm.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccountButtonConfirm.setLabel("Make Account");
-        createAccountButtonConfirm.addMouseListener(new java.awt.event.MouseAdapter() {
+        createAccountCancelButton.setBackground(new java.awt.Color(255, 153, 153));
+        createAccountCancelButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        createAccountCancelButton.setForeground(java.awt.Color.white);
+        createAccountCancelButton.setToolTipText("");
+        createAccountCancelButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountCancelButton.setLabel("X");
+        createAccountCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                createAccountButtonConfirmClicked(evt);
+                createAccountCancelButtonClicked(evt);
             }
         });
-        loginFrame.add(createAccountButtonConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 150, 348, 35));
+        loginFrame.add(createAccountCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 150, 50, 35));
 
-        getContentPane().add(loginFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 581, 201));
+        createAccountConfirmButton.setBackground(new java.awt.Color(102, 153, 255));
+        createAccountConfirmButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        createAccountConfirmButton.setForeground(java.awt.Color.white);
+        createAccountConfirmButton.setToolTipText("");
+        createAccountConfirmButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountConfirmButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountConfirmButton.setLabel("Register Account");
+        createAccountConfirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createAccountConfirmButtonClicked(evt);
+            }
+        });
+        loginFrame.add(createAccountConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 150, 294, 35));
+
+        getContentPane().add(loginFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -141,13 +285,14 @@ public class GUI_window extends javax.swing.JFrame {
     private void switchFrame(javax.swing.JPanel target){
         // Hiding all panels
         loginFrame.setVisible(false);
+        mainMenuFrame.setVisible(false);
         
         // Check if the target panel is the loging panel and resize
         if(target == loginFrame){
             this.setSize(580, 237); // Panel IS the login panel, make small
         }
         else{
-            this.setSize(580, 600); // Panel is NOT the login panel, make big
+            this.setSize(800, 700); // Panel is NOT the login panel, make big
         }
         
         // Resetting target panel if needed
@@ -157,7 +302,13 @@ public class GUI_window extends javax.swing.JFrame {
             passwordInput.setText("");          // Resetting password
             passwordConfirmInput.setText("");   // Resetting confirm password
             
-            passwordConfirmInput.setVisible(false); // Fixing a z-issue, making inivis instead
+            passwordConfirmInput.setVisible(false);       // Making password confirm input and section invis
+            createAccountCancelButton.setVisible(false);  
+            createAccountConfirmButton.setVisible(false); 
+        }
+        else if(target == mainMenuFrame){
+            MM_username.setText("Welcome, " + currentUser + "!"); // Changing username on top bar
+            MM_userSettingsPanel.setVisible(false);               // Hiding the user settings panel in case it was left open
         }
         
         
@@ -170,18 +321,33 @@ public class GUI_window extends javax.swing.JFrame {
     
     // LOGIN FUNCTIONS ========================================================================
     private void loginButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMousePressed
-        // TODO add your handling code here:
-        System.out.println("Login Submit Button Clicked"); 
+        // Getting inputs 
+        String tempUsername = usernameInput.getText();
+        String tempPassword = passwordInput.getText();
+
+        // Checking credentials
+        if(!allUsers.checkCredentials(tempUsername, tempPassword)){     
+            JOptionPane.showMessageDialog(null, "Credentials are not valid.");
+            passwordInput.setText("");
+            return;
+        }
         
+        // Saving the username for later use
+        currentUser = tempUsername;
+        
+        // Taking to the login screen
+        switchFrame(mainMenuFrame);
     }//GEN-LAST:event_loginButtonMousePressed
 
     private void createAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountButtonMousePressed
         loginButtonsFrame.setVisible(false);                    // Hide the login buttons to show confirm buttons
-        passwordConfirmInput.setVisible(true);                  // Fixing z-problem and making visible again
-        System.out.println("Create Account Button Clicked");    // Temp message
+        
+        passwordConfirmInput.setVisible(true);                 // Making password confirm input and section visible 
+        createAccountCancelButton.setVisible(true);            
+        createAccountConfirmButton.setVisible(true);           
     }//GEN-LAST:event_createAccountButtonMousePressed
 
-    private void createAccountButtonConfirmClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountButtonConfirmClicked
+    private void createAccountConfirmButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountConfirmButtonClicked
         // Grabbing all the inputs
         String tempUsername = usernameInput.getText();
         String tempPassword = passwordInput.getText();
@@ -236,9 +402,170 @@ public class GUI_window extends javax.swing.JFrame {
         currentUser = tempUsername;
         
         // Switch to mainMenu Frame
-        //switchFrame(mainMenuFrame);
-    }//GEN-LAST:event_createAccountButtonConfirmClicked
+        switchFrame(mainMenuFrame);
+    }//GEN-LAST:event_createAccountConfirmButtonClicked
 
+    private void createAccountCancelButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountCancelButtonClicked
+        switchFrame(loginFrame);
+    }//GEN-LAST:event_createAccountCancelButtonClicked
+    
+// ========================================================================================
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+// MAIN MENU FUNCTIONS ====================================================================
+    
+    private void MM_logOutButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_logOutButtonMousePressed
+        currentUser = "";
+        switchFrame(loginFrame);
+    }//GEN-LAST:event_MM_logOutButtonMousePressed
+
+    private void MM_userSettingsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_userSettingsButtonMousePressed
+        // Show the user settings panel
+        MM_userSettingsPanel.setVisible(true);
+        
+        // Erase previous data
+        MM_usernameInput.setText("");
+        MM_passwordInput.setText("");
+        MM_passwordConfirmInput.setText("");
+    }//GEN-LAST:event_MM_userSettingsButtonMousePressed
+
+    private void MM_userSettingsCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_userSettingsCancelButtonMousePressed
+        // Hide the user settings panel
+        MM_userSettingsPanel.setVisible(false);
+    }//GEN-LAST:event_MM_userSettingsCancelButtonMousePressed
+
+    private void MM_saveSettingsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_saveSettingsButtonMousePressed
+        // Check instance:
+        // -> no change wanted
+        // ----> C: everythig is empty 
+        // ----> R: hide panel
+        // -> usename change
+        // ----> C: username are not empty
+        // ----> R: verify username is unique, have no commas, change in files 
+        // -> password change
+        // ----> C: password are not empty
+        // ----> R: verify passwords match, have no commas, change in files 
+        
+        // Grab inputs
+        String tempUsername = MM_usernameInput.getText();
+        String tempPassword = MM_passwordInput.getText();
+        String tempConfirmPassword = MM_passwordConfirmInput.getText();
+        
+        // No change is needed
+        if(tempUsername.trim().isEmpty() && tempPassword.trim().isEmpty() && tempConfirmPassword.trim().isEmpty()){
+            MM_userSettingsPanel.setVisible(false);
+            return;
+        }
+        
+        // Username is changed
+        boolean userChanged = false;
+        if(!tempUsername.trim().isEmpty()){
+            if(!allUsers.validUsername(tempUsername)){ // Username is not unique
+                JOptionPane.showMessageDialog(null, "This username is already taken.");
+                MM_usernameInput.setText("");
+                return;
+            }
+            if(tempUsername.contains(",")){            // Username contains comma
+                JOptionPane.showMessageDialog(null, "Username cannot contain commas");
+                MM_usernameInput.setText("");
+                return;
+            }
+              
+            // ------ Username is valid -------
+            
+            // Change username object (this method also saves in file)
+            allUsers.setUsername(currentUser, tempUsername);
+            
+            // Change temp memory after using it above
+            currentUser = tempUsername;             
+            userChanged = true;
+        }
+        
+        // Password is changed (use the currentUser since its the most up to date info)
+        boolean passChanged = false;
+        if(!tempPassword.trim().isEmpty() || !tempConfirmPassword.trim().isEmpty()){
+            if(tempPassword.contains(",") || tempConfirmPassword.contains(",")){       // Passwords contains comma
+                JOptionPane.showMessageDialog(null, "Passwords cannot contain commas");
+                MM_passwordInput.setText("");
+                MM_passwordConfirmInput.setText("");
+                return;
+            }
+            
+            if(!tempPassword.equals(tempConfirmPassword)){                             // Passowrds do not match
+                JOptionPane.showMessageDialog(null, "Passwords do not match.");
+                MM_passwordInput.setText("");
+                MM_passwordConfirmInput.setText("");
+                return;
+            }
+            
+            // ------ Password is valid -------
+            
+            // Change usesr passwords
+            allUsers.setPassword(tempUsername, tempPassword);
+            passChanged = true;
+        }
+        
+        // Showing user their new username and password
+        if(userChanged || passChanged){
+            String message = "Changes Made:\n";
+            if(userChanged)
+                message = message + "New Username: " + tempUsername + "\n";
+            if(passChanged)
+                message = message + "New Password: " + tempPassword + "\n";
+            
+            
+            JOptionPane.showMessageDialog(null, message); // Show the message built above
+            switchFrame(mainMenuFrame);  // Send back to main menu frame to reset the username on top
+        }
+        else{
+            // If nothing was changed, show message that nothing was changed
+            JOptionPane.showMessageDialog(null, "No changes made.");
+        }
+        
+    }//GEN-LAST:event_MM_saveSettingsButtonMousePressed
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+// ========================================================================================
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -265,14 +592,41 @@ public class GUI_window extends javax.swing.JFrame {
       
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton MM_logOutButton;
+    private javax.swing.JTextField MM_passwordConfirmInput;
+    private javax.swing.JTextField MM_passwordInput;
+    private javax.swing.JButton MM_saveSettingsButton;
+    private javax.swing.JPanel MM_topBar;
+    private javax.swing.JButton MM_userSettingsButton;
+    private javax.swing.JButton MM_userSettingsCancelButton;
+    private javax.swing.JPanel MM_userSettingsPanel;
+    private javax.swing.JLabel MM_userSettingsPanelTitle;
+    private javax.swing.JLabel MM_username;
+    private javax.swing.JTextField MM_usernameInput;
     private javax.swing.JButton createAccountButton;
-    private javax.swing.JButton createAccountButtonConfirm;
+    private javax.swing.JButton createAccountCancelButton;
+    private javax.swing.JButton createAccountConfirmButton;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginButtonsFrame;
     private javax.swing.JPanel loginFrame;
     private javax.swing.JLabel loginLogo;
     private javax.swing.JLabel loginTitle;
+    private javax.swing.JPanel mainMenuFrame;
     private javax.swing.JPasswordField passwordConfirmInput;
     private javax.swing.JPasswordField passwordInput;
     private javax.swing.JTextField usernameInput;

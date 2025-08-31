@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
 
 // ________________________________________________________________________________________________________________________________________________
 // ********************************************************* SINGLE USER OBJECT *******************************************************************
@@ -69,6 +70,26 @@ public class UsersManager {
         
        
         return true;        // Returns true if the person was added
+    }
+    
+    public void setUsername(String target, String newUsername){
+        for(User person: Users){
+            if(person.getUsername().equals(target)){
+                person.setName(newUsername);
+                saveToFile();
+                return;
+            }
+        }
+    }
+    
+    public void setPassword(String target, String newPassword){
+        for(User person: Users){
+            if(person.getUsername().equals(target)){
+                person.setPassword(newPassword);
+                saveToFile();
+                return;
+            }
+        }
     }
     
     // Get Functions ===================================================================================================================================================
