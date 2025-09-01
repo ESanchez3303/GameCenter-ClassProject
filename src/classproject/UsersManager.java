@@ -133,9 +133,9 @@ public class UsersManager {
         StringBuilder coded_string = new StringBuilder();
         for(char curr : targetInput.toCharArray()){
             if(Character.isLowerCase(curr)) 
-                coded_string.append((char) ( 'a' + ( ((curr - 'a') + shift + 26) % 26 ) )); 
+                coded_string.append((char) ( 'a' + ( ((curr - 'a') + (shift + 26)) % 26 ) )); 
             else if(Character.isUpperCase(curr))
-                coded_string.append((char) ( 'A' + ( ((curr - 'A') + shift + 26) % 26 ) ));
+                coded_string.append((char) ( 'A' + ( ((curr - 'A') + (shift + 26)) % 26 ) ));
             else 
                 coded_string.append(curr);
         }
