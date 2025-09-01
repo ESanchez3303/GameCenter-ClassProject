@@ -28,6 +28,7 @@ public class GUI_window extends javax.swing.JFrame {
     private void initComponents() {
 
         mainMenuFrame = new javax.swing.JPanel();
+        gamesPanel = new javax.swing.JScrollPane();
         MM_topBar = new javax.swing.JPanel();
         MM_username = new javax.swing.JLabel();
         MM_userSettingsButton = new javax.swing.JButton();
@@ -57,12 +58,14 @@ public class GUI_window extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GamesAndStuff");
-        setPreferredSize(new java.awt.Dimension(580, 237));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
         mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        gamesPanel.setBackground(new java.awt.Color(214, 196, 172));
+        mainMenuFrame.add(gamesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 765, 600));
 
         MM_topBar.setBackground(new java.awt.Color(153, 135, 108));
         MM_topBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -309,6 +312,7 @@ public class GUI_window extends javax.swing.JFrame {
         else if(target == mainMenuFrame){
             MM_username.setText("Welcome, " + currentUser + "!"); // Changing username on top bar
             MM_userSettingsPanel.setVisible(false);               // Hiding the user settings panel in case it was left open
+            gamesPanel.setVisible(true);                          // Showing the games panel
         }
         
         
@@ -432,7 +436,8 @@ public class GUI_window extends javax.swing.JFrame {
     }//GEN-LAST:event_MM_logOutButtonMousePressed
 
     private void MM_userSettingsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_userSettingsButtonMousePressed
-        // Show the user settings panel
+        // Show the user settings panel and hide games panel
+        gamesPanel.setVisible(false);
         MM_userSettingsPanel.setVisible(true);
         
         // Erase previous data
@@ -442,8 +447,9 @@ public class GUI_window extends javax.swing.JFrame {
     }//GEN-LAST:event_MM_userSettingsButtonMousePressed
 
     private void MM_userSettingsCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_userSettingsCancelButtonMousePressed
-        // Hide the user settings panel
+        // Hide the user settings panel and showing games panel
         MM_userSettingsPanel.setVisible(false);
+        gamesPanel.setVisible(true);
     }//GEN-LAST:event_MM_userSettingsCancelButtonMousePressed
 
     private void MM_saveSettingsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_saveSettingsButtonMousePressed
@@ -617,6 +623,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JButton createAccountButton;
     private javax.swing.JButton createAccountCancelButton;
     private javax.swing.JButton createAccountConfirmButton;
+    private javax.swing.JScrollPane gamesPanel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
