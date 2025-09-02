@@ -11,14 +11,14 @@ import javax.swing.Timer;
 import java.util.Collections;
 
         
-public class matchingGame {
+public class MatchingGame {
     // CUSTOM VARIABLES
     private int matchScoreIncrease;
     private int timeLeftScoreIncrease;
     private int previewTime;
    
-    // ONE TIME USE! Sets the List below
-    public void setCards(List<JLabel> newValues, List<JLabel> newImages, JLabel sb, int matchSI, int timeLeftSI, int pT){
+    // ONE TIME USE! Sets the List below! (LIKE A CONSTRUCTOR BUT A FUNCTION INSTEAD)
+    public void setUp(List<JLabel> newValues, List<JLabel> newImages, JLabel sb, int matchSI, int timeLeftSI, int pT){
         values = newValues; // Adding the values to the values list
         images = newImages; // Adding the images to the images list
         scoreBoard = sb;    // Setting the scoreboard
