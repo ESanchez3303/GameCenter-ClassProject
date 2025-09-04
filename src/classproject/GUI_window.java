@@ -493,10 +493,10 @@ public class GUI_window extends javax.swing.JFrame {
         G3_gameArea.add(G3_computer, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 225, 10, 50));
 
         G2_playerEdge.setBackground(java.awt.Color.white);
-        G3_gameArea.add(G2_playerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 20, 500));
+        G3_gameArea.add(G2_playerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 500));
 
         G3_computerEdge.setBackground(java.awt.Color.white);
-        G3_gameArea.add(G3_computerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 20, 500));
+        G3_gameArea.add(G3_computerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 30, 500));
 
         G3_player.setBackground(java.awt.Color.white);
         G3_gameArea.add(G3_player, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 10, 50));

@@ -6,6 +6,10 @@ package classproject;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+       
 
 
 
@@ -13,7 +17,9 @@ public class PingPong {
     // SET AND FORGET CUSTOM VARIABLES:
     int PLAYER_STEP = 5;
     int BALL_STEP = 5;
-    
+    List<Integer> deltaEdges = new ArrayList<>(Arrays.asList(18,36,54,72,90,108,126,144,162,180,198,216,234,252,270,288,306,324,342,360));
+    List<Integer> ballMovesX_list = new ArrayList<>(Arrays.asList(0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4,-4,-3,-2,-1,0));
+    List<Integer> ballMovesY_list = new ArrayList<>(Arrays.asList(-4,-3,-2,-1,0,0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4));
     
     // SET UP FUNCTION (CONSTRUCTOR):
     public void setUp(JPanel p, JPanel c, JPanel b, int tR){
@@ -38,7 +44,9 @@ public class PingPong {
     // Movement Variables:
     boolean upPressed = false;
     boolean downPressed = false;
-    boolean busy = false;
+    boolean playerBusy = false;
+    int ballMoveX;
+    int ballMoveY;
     
     
     
@@ -56,17 +64,19 @@ public class PingPong {
     
     public void startGame(){
         reset();                                              // Just in case, move everything again
-        delta = (int)(Math.random() * ((300-240) + 1)) + 240; // Chooses a delta between 240 and 300
+        int minStartingDegree = 200;
+        int maxStartingDegree = 340;
+        delta = (int)(Math.random() * ((maxStartingDegree-minStartingDegree) + 1)) + minStartingDegree; // Chooses a delta between 240 and 300
         System.out.println("Starting delta: " + Integer.toString(delta));
         startTimer();                                         // Starts the clock
     }
     
     
     
-    public void upPressed(){if(!busy){upPressed = true; busy = true;}}  
-    public void downPressed(){if(!busy){downPressed = true; busy = true;}}
-    public void upReleased(){upPressed = false; busy = false;}
-    public void downReleased(){downPressed = false; busy = false;}
+    public void upPressed(){if(!playerBusy){upPressed = true; playerBusy = true;}}  
+    public void downPressed(){if(!playerBusy){downPressed = true; playerBusy = true;}}
+    public void upReleased(){upPressed = false; playerBusy = false;}
+    public void downReleased(){downPressed = false; playerBusy = false;}
     
     
     // CLOCK TICK;
@@ -103,30 +113,38 @@ public class PingPong {
             //    o if in 306-323 ----> 2 left, 2 up
             //    o if in 324-359 ----> 4 up
             
-            int quad = getQuad();
-                switch(quad){
-                    case 1:
-                        
-                        break;
-                    case 2:
-                        
-                        break;
-                    case 3:
-                        System.out.println("wrong quad lol");                        
-                        break;
-                    case 4:
-                        
-                        break;
-                    case 0:
-                        System.out.println("GAME 3 CRASHED"); // ofc this could be handled better using a joptionpane if needed 
-                        stopGame();
-                        break;
-                }
+            getBallMoveUsingDelta();
+            if(ballMoveX == -9 || ballMoveY == -9){   // Check if the delta was in bounds
+                System.out.println("GAME 3 CRASHED"); // This could be handled better using a joptionpane
+                stopGame();
+                return;
+            }
+            
+            // Check if ball will put ball out of bounds, then move ball
+            int newBallLocationX = ball.getLocation().x + ballMoveX;
+            int newBallLocationY = ball.getLocation().y + ballMoveY;
+            
+            // Clamp ball in: (0,30) to (670,480)
+            if(newBallLocationX < 30)
+                newBallLocationX = 30;
+            if(newBallLocationX > 670)
+                newBallLocationX = 670;
+            if(newBallLocationY < 0)
+                newBallLocationY = 0;
+            if(newBallLocationY > 480)
+                newBallLocationY = 480;
+            
+            // Moving the ball to this location, now that it is safe
+            ball.setLocation(newBallLocationX, newBallLocationY);
             
             
             
              
-            // Check if ball touched a wall
+            // Check if ball touched a wall, change the delta to "reflect" off it 
+            //if(newBallLocationY == 0)  // If ball touched top wall
+                
+            //if(newBallLocationY == 480)// If ball touched the bottom wall
+                
             // Check if ball touched player/computer
             // Check if ball touched goal
         });
@@ -137,16 +155,32 @@ public class PingPong {
     
     
     // HELPER FUNCTIONS:
-    private int getQuad(){
-        if(delta >= 0 && delta <= 89)
-            return 1;
-        if(delta >= 90 && delta <= 179)
-            return 2;
-        if(delta >= 180 && delta <= 269) 
-            return 3;
-        if(delta >= 270 && delta <= 359)
-            return 4;
-        return 0; // If returned zero then something went wrong in calculating quad
+    private void getBallMoveUsingDelta(){
+        if(delta < 0){
+            ballMoveX = -9;
+            ballMoveY = -9;
+            return;
+        }
+        
+        int insideOfEdge = 0;
+        for(int  edge : deltaEdges){
+            if(delta < edge)
+                break;
+            insideOfEdge++; 
+        }
+        
+        // If insideOfEdge is out of bounds then we know that delta is out of bounds
+        if(insideOfEdge >= deltaEdges.size()){
+            System.out.println("here");
+            ballMoveX = -9;
+            ballMoveY = -9;
+            return;
+        }
+        
+        
+        // Setting the ball moves accordingly
+        ballMoveX = ballMovesX_list.get(insideOfEdge);
+        ballMoveY = ballMovesY_list.get(insideOfEdge);
     }
     
     
