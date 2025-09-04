@@ -89,7 +89,7 @@ public class GUI_window extends javax.swing.JFrame {
         // -------------------------------------------------------------------------------------------
         // Setting up Game 3: ------------------------------------------------------------------------
         
-        PP.setUp(G3_player, G3_computer, G3_ball, GAME3_TICK);
+        PP.setUp(G3_player, G3_computer, G3_ball, GAME3_TICK, G3_playerScore, G3_computerScore);
         
         // -------------------------------------------------------------------------------------------
         
@@ -128,6 +128,10 @@ public class GUI_window extends javax.swing.JFrame {
         G3_computerEdge = new javax.swing.JPanel();
         G3_player = new javax.swing.JPanel();
         G3_ball = new javax.swing.JPanel();
+        jLabel61 = new javax.swing.JLabel();
+        G3_playerScore = new javax.swing.JLabel();
+        G3_computerScore = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
         game2Frame = new javax.swing.JPanel();
         G2_resetBar = new javax.swing.JPanel();
         G2_resetButton = new javax.swing.JButton();
@@ -505,6 +509,32 @@ public class GUI_window extends javax.swing.JFrame {
         G3_gameArea.add(G3_ball, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 20, 20));
 
         game3Frame.add(G3_gameArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 500));
+
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel61.setForeground(java.awt.Color.black);
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("Computer");
+        jLabel61.setToolTipText("");
+        game3Frame.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 120, 40));
+
+        G3_playerScore.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        G3_playerScore.setForeground(java.awt.Color.black);
+        G3_playerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        G3_playerScore.setText("99");
+        game3Frame.add(G3_playerScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 60, 40));
+
+        G3_computerScore.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        G3_computerScore.setForeground(java.awt.Color.black);
+        G3_computerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        G3_computerScore.setText("99");
+        game3Frame.add(G3_computerScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 60, 40));
+
+        jLabel64.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel64.setForeground(java.awt.Color.black);
+        jLabel64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel64.setText("Player");
+        jLabel64.setToolTipText("");
+        game3Frame.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 110, 40));
 
         getContentPane().add(game3Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
@@ -2931,9 +2961,11 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JPanel G3_ball;
     private javax.swing.JPanel G3_computer;
     private javax.swing.JPanel G3_computerEdge;
+    private javax.swing.JLabel G3_computerScore;
     private javax.swing.JPanel G3_cover;
     private javax.swing.JPanel G3_gameArea;
     private javax.swing.JPanel G3_player;
+    private javax.swing.JLabel G3_playerScore;
     private javax.swing.JButton G3_startButton;
     private javax.swing.JButton MM_backToMenuButton;
     private javax.swing.JButton MM_game1StartButton;
@@ -3033,6 +3065,8 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel8;

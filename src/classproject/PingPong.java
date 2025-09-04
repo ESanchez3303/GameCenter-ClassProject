@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import javax.swing.JLabel;
        
 
 
@@ -22,12 +23,14 @@ public class PingPong {
     List<Integer> ballMovesY_list = new ArrayList<>(Arrays.asList(-4,-3,-2,-1,0,0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4));
     
     // SET UP FUNCTION (CONSTRUCTOR):
-    public void setUp(JPanel p, JPanel c, JPanel b, int tR){
+    public void setUp(JPanel p, JPanel c, JPanel b, int tR, JLabel pS, JLabel cS){
         // Setting up variables:
         player = p;
         computer = c;
         ball = b;
         tick = tR;  
+        playerScore = pS;
+        computerScore = cS;
     }
     
     
@@ -37,6 +40,8 @@ public class PingPong {
     JPanel player;   // Panel that is the player
     JPanel computer; // Panel that is the computer
     JPanel ball;     // Panel that is the ball
+    JLabel playerScore;   // Players score keeper
+    JLabel computerScore; // Computer score keeper
     int tick;        // Tick that the game speed wil be set at (milliseconds)
     int beta;        // The extra that is added when a player and ball are going the same direction
     int delta;       // The current angle of the ball (0-360)
@@ -47,6 +52,7 @@ public class PingPong {
     boolean playerBusy = false;
     int ballMoveX;
     int ballMoveY;
+    boolean ballMovingLeft = true;
     
     
     
@@ -55,6 +61,10 @@ public class PingPong {
         player.setLocation(50,225);
         computer.setLocation(660,225);
         ball.setLocation(350,240);
+        upPressed = false;
+        downPressed = false;
+        playerBusy = false;
+        ballMovingLeft = true;
     }
     
     public void stopGame(){
@@ -63,6 +73,8 @@ public class PingPong {
     }
     
     public void startGame(){
+        playerScore.setText("0");
+        computerScore.setText("0");
         reset();                                              // Just in case, move everything again
         int minStartingDegree = 200;
         int maxStartingDegree = 340;
@@ -141,12 +153,32 @@ public class PingPong {
             
              
             // Check if ball touched a wall, change the delta to "reflect" off it 
-            //if(newBallLocationY == 0)  // If ball touched top wall
+            if(newBallLocationY == 0){      // If ball touched top wall
+                if(ballMovingLeft)
+                    addToDelta(-90); // Subtracts to reduce the total delta by this reflect amount
+                else
+                    addToDelta(90);  // Adds to incrase total delta by this reflect amount
+            }
+            if(newBallLocationY == 480){    // If ball touched the bottom wall
+                if(ballMovingLeft)
+                    addToDelta(90);  // Adds to incrase total delta by this reflect amount
+                else
+                    addToDelta(-90); // Subtracts to reduce the total delta by this reflect amount
+            }
+            
+            
+            // Check if ball touched player/computer (make sure to change ball direction)
+            
                 
-            //if(newBallLocationY == 480)// If ball touched the bottom wall
-                
-            // Check if ball touched player/computer
             // Check if ball touched goal
+            if(ball.getLocation().x == 30){ 
+                 goalMade(false);
+            }
+            if(ball.getLocation().x == 670){
+                goalMade(true);
+            }
+                
+                
         });
         clock.start();
     }
@@ -171,7 +203,6 @@ public class PingPong {
         
         // If insideOfEdge is out of bounds then we know that delta is out of bounds
         if(insideOfEdge >= deltaEdges.size()){
-            System.out.println("here");
             ballMoveX = -9;
             ballMoveY = -9;
             return;
@@ -183,8 +214,33 @@ public class PingPong {
         ballMoveY = ballMovesY_list.get(insideOfEdge);
     }
     
+    private void addToDelta(int amountToIncrease){
+        delta += amountToIncrease; // Increase/decrease delta by this amount 
+        if(delta < 0)              // If this made delta negative 
+            delta = 365 + delta;       // Do 365 + (-35) = 330 [example]: this keeps withing 0-365 
+        else if(delta == 365)      // If this made delta exactly 365, just change to 0 and leave alone for catch
+            delta = 0;
+        else if(delta > 365)       // If this made over 365
+            delta = delta - 365;       // Take the bigger number (delta) and take away the 365 to cycle back to 0
+    }
     
     
+    private void goalMade(boolean goalByPlayer){
+        if(goalByPlayer){
+            int currentScore = Integer.parseInt(playerScore.getText());
+            currentScore++;
+            playerScore.setText(Integer.toString(currentScore));
+        }
+        else{
+            int currentScore = Integer.parseInt(computerScore.getText());
+            currentScore++;
+            computerScore.setText(Integer.toString(currentScore));
+        }
+        reset();
+        //countDown();
+        stopGame(); // temp for now
+    }
+
     
 }
 
