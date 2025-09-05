@@ -3,7 +3,6 @@
  * @author Emanuel
  */
 package classproject;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.JPanel;
 import java.util.ArrayList;
@@ -16,35 +15,38 @@ import javax.swing.JLabel;
 
 public class PingPong {
     // SET AND FORGET CUSTOM VARIABLES:
-    int PLAYER_STEP = 5;
-    int BALL_STEP = 5;
+    int GAME_TICK = 10;
+    int PLAYER_STEP = 3;
+    int COMPUTER_STEP = 1;
+    int SCORE_FOR_GOOD_GOAL = 100;
+    int SCORE_FOR_BAD_GOAL = -50;
     List<Integer> deltaEdges = new ArrayList<>(Arrays.asList(18,36,54,72,90,108,126,144,162,180,198,216,234,252,270,288,306,324,342,360));
     List<Integer> ballMovesX_list = new ArrayList<>(Arrays.asList(0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4,-4,-3,-2,-1,0));
     List<Integer> ballMovesY_list = new ArrayList<>(Arrays.asList(-4,-3,-2,-1,0,0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4));
     
     // SET UP FUNCTION (CONSTRUCTOR):
-    public void setUp(JPanel p, JPanel c, JPanel b, int tR, JLabel pS, JLabel cS){
+    public void setUp(JPanel p, JPanel c, JPanel b, JLabel pS, JLabel cS, JLabel cT, JLabel pP){
         // Setting up variables:
         player = p;
         computer = c;
         ball = b;
-        tick = tR;  
         playerScore = pS;
         computerScore = cS;
+        countDownLabel = cT;
+        score = pP;
     }
     
     
     
     // Variables:
-    Timer clock;     // Clock that keeps everything in sync
     JPanel player;   // Panel that is the player
     JPanel computer; // Panel that is the computer
     JPanel ball;     // Panel that is the ball
     JLabel playerScore;   // Players score keeper
     JLabel computerScore; // Computer score keeper
-    int tick;        // Tick that the game speed wil be set at (milliseconds)
-    int beta;        // The extra that is added when a player and ball are going the same direction
-    int delta;       // The current angle of the ball (0-360)
+    JLabel countDownLabel;// Label that will be the countdown between goals
+    JLabel score;         // Panel that shows the score
+    int delta;            // The current angle of the ball (0-360)
     
     // Movement Variables:
     boolean upPressed = false;
@@ -52,37 +54,9 @@ public class PingPong {
     boolean playerBusy = false;
     int ballMoveX;
     int ballMoveY;
-    boolean ballMovingLeft = true;
-    
-    
-    
-    // PUBLIC FUNCTIONS: 
-    public void reset(){
-        player.setLocation(50,225);
-        computer.setLocation(660,225);
-        ball.setLocation(350,240);
-        upPressed = false;
-        downPressed = false;
-        playerBusy = false;
-        ballMovingLeft = true;
-    }
-    
-    public void stopGame(){
-        if(clock != null) 
-            clock.stop();
-    }
-    
-    public void startGame(){
-        playerScore.setText("0");
-        computerScore.setText("0");
-        reset();                                              // Just in case, move everything again
-        int minStartingDegree = 200;
-        int maxStartingDegree = 340;
-        delta = (int)(Math.random() * ((maxStartingDegree-minStartingDegree) + 1)) + minStartingDegree; // Chooses a delta between 240 and 300
-        System.out.println("Starting delta: " + Integer.toString(delta));
-        startTimer();                                         // Starts the clock
-    }
-    
+    int computerPlaysAtTick = 5; // Computer is allowed to move every x ticks of the game clock (this slows down the computer to be fair)
+    int computerTick = 0;        // Keeps track of which tick we are in, this will cycle between 0-x (x being computerPlaysAtTick)
+    boolean betweenRounds = false;
     
     
     public void upPressed(){if(!playerBusy){upPressed = true; playerBusy = true;}}  
@@ -91,10 +65,34 @@ public class PingPong {
     public void downReleased(){downPressed = false; playerBusy = false;}
     
     
-    // CLOCK TICK;
-    private void startTimer(){
-        clock = new Timer(tick,e->{
-            // Move Player (while validating): ----------------------------------------------------------------------------------------------------------
+    // PUBLIC FUNCTIONS: 
+    public void reset(){
+        player.setLocation(50,225);
+        computer.setLocation(660,225);
+        ball.setLocation(350,240);
+        upPressed = downPressed = playerBusy = false;
+        computerTick = 0;
+        delta = getLaunchDegree();
+    }
+    
+    public void stopGame(){
+        clock.stop();
+        countDownTimer.stop();
+    }
+    
+    public void startGame(){
+        countDownLabel.setText("3");
+        countDownLabel.setVisible(true);
+        betweenRounds = true;    
+        countDownTimer.start();  // Starts the countdown which also starts the game
+        
+    }
+    
+    
+    
+    // TIMERS:
+    Timer clock = new Timer(GAME_TICK, e->{
+        // Move Player (while validating): ----------------------------------------------------------------------------------------------------------
             if(upPressed){                                                                     // Player is pushing up --> move player up
                 if(player.getLocation().y > 0){                                                // Player is NOT at max upward position, player is allowed to move
                     if(player.getLocation().y - PLAYER_STEP < 0)                               // If this move will put player above max position
@@ -116,6 +114,25 @@ public class PingPong {
             
             
             // Move Computer (revalidate) --------------------------------------------------------------------------------------------------------------------
+            computerTick++; // Increasing to check if computer plays this tick
+            if(computerTick >= computerPlaysAtTick){
+                computerTick = 0; // Reseting the tick to restart cycle
+                if(ball.getLocation().y <= computer.getLocation().y){           // If ball y is higher than computer y, move up
+                    if(computer.getLocation().y - COMPUTER_STEP  < 0)           // If this move would put computer out of bounds
+                        computer.setLocation(computer.getLocation().x,0);       // Move to 0 position
+                    else
+                        computer.setLocation(computer.getLocation().x, computer.getLocation().y - COMPUTER_STEP); // Move to location by step
+                }
+                else{                                                            // If ball y is lower than computer y, move down
+                    if(computer.getLocation().y + COMPUTER_STEP > 450)           // If this move would put computer out of bounds
+                        computer.setLocation(computer.getLocation().x, 450);     // Move to 450 position
+                    else
+                        computer.setLocation(computer.getLocation().x, computer.getLocation().y + COMPUTER_STEP); // Move to location by step
+                }
+                    
+            }
+            
+            
             
             // Move Ball (while validating): -----------------------------------------------------------------------------------------------------------------
             // Logic: split quad into 5 pieces (leaving 360 be 0 at that instance)
@@ -154,34 +171,125 @@ public class PingPong {
              
             // Check if ball touched a wall, change the delta to "reflect" off it 
             if(newBallLocationY == 0){      // If ball touched top wall
-                if(ballMovingLeft)
-                    addToDelta(-90); // Subtracts to reduce the total delta by this reflect amount
-                else
-                    addToDelta(90);  // Adds to incrase total delta by this reflect amount
+                if(delta >= 342 || delta < 18) // If ball came at wall in striahgt line
+                    delta = 110;     // Changing delta to be 100 which is bottom right angle, slow rate
+                else{
+                    if(delta >= 180)     // If ball is moving left
+                        addToDelta(-90); // Subtracts to reduce the total delta by this reflect amount
+                    else
+                        addToDelta(90);  // Adds to incrase total delta by this reflect amount
+                }
             }
             if(newBallLocationY == 480){    // If ball touched the bottom wall
-                if(ballMovingLeft)
-                    addToDelta(90);  // Adds to incrase total delta by this reflect amount
-                else
-                    addToDelta(-90); // Subtracts to reduce the total delta by this reflect amount
+                if(delta >= 162 && delta < 198) // If ball came at wall in straight line
+                    delta = 290;     // Changing delta to be 290 which is up left angle, slow rate
+                else{
+                    if(delta >= 180)     // If ball is moving left
+                        addToDelta(90);  // Adds to incrase total delta by this reflect amount
+                    else
+                        addToDelta(-90); // Subtracts to reduce the total delta by this reflect amount
+                }
             }
             
+            int ballPlayAreaLeft = 45;
+            int ballPlayAreaRight = 665;
             
             // Check if ball touched player/computer (make sure to change ball direction)
+            if(ball.getLocation().x >= ballPlayAreaLeft && ball.getLocation().x <= ballPlayAreaRight){ // If ball is still inside the playable area
+                int ballGraceSize = ball.getWidth() - 3;                   // 20-3 = 18, grace size that is still considered a hit
+                if(delta >= 180){                                          // Ball is moving left (towards player)
+                    if(ball.getLocation().x <= (player.getLocation().x + player.getWidth())){ // If ball is in valid x value to check of touching paddle
+                        int playerTopY    = player.getLocation().y;                           // Save the top y of player 
+                        int playerBottomY = player.getLocation().y + player.getHeight();      // Save the bottom y of player
+
+                        if((ball.getLocation().y + ballGraceSize) >= playerTopY && ball.getLocation().y <= playerBottomY){
+                            if(delta >= 252 && delta < 288) // If ball came in a straight line
+                                addToDelta(161);             // 180 - 18 - 1, flipping ball aroudn and sub. one instead of just straight bacl
+                            else{
+                                if(delta >= 270){                    // If ball is moving upward
+                                    addToDelta(90);                  // Add regular 90 reflection
+                                    if(upPressed) addToDelta(20);    // If user is going up at the same time, then add extra 20 
+                                    if(downPressed) addToDelta(-20); // If user is going down at the same tiem, take away extra 20
+                                }
+                                else{                                // If ball is moving downward
+                                    addToDelta(-90);                 // Sub regular 90 reflection
+                                    if(upPressed) addToDelta(-20);    // If user is going up at the same time, then sub extra 20 
+                                    if(downPressed) addToDelta(20); // If user is going down at the same tiem, then add  extra 20
+                                }
+                            }
+                            
+                            // Double checking that delta does not go straight up into a wall
+                            if(delta >= 342 || delta < 18) // If delta is going straight up, change to going up right
+                                delta = 19;
+                            if(delta >= 162 && delta < 198) // If delta is going straight down, change to going down right
+                                delta = 197;
+                        }
+
+                    }
+                    
+                    
+                }
+                else{
+                    if((ball.getLocation().x + ball.getWidth()) >= (computer.getLocation().x)){
+                        int computerTopY = computer.getLocation().y;
+                        int computerBottomY = computer.getLocation().y + computer.getHeight();
+
+                        if((ball.getLocation().y + ballGraceSize) >= computerTopY && ball.getLocation().y <= computerBottomY ){
+                            if(delta >= 72 && delta < 108)
+                                addToDelta(199);    // 180 + 18 + 1, flipping ball around and adding one iter up instead of just straight back
+                            else{
+                                if(delta <= 90)
+                                    addToDelta(-90);    // If ball is moving upward, sub 90
+                                else
+                                    addToDelta(90);     // If ball is moving downward, add 90
+                            }
+                        }
+                        
+                        // Double checking that delta does not go straight into a wall
+                        if(delta >= 342 || delta < 18) // If delta is going straight up, change to going up right
+                                delta = 341;
+                        if(delta >= 162 && delta < 198)// If delta is going straight down, change to going down right
+                                delta = 199;
+                    }
+                }
+            }
+            
             
                 
             // Check if ball touched goal
-            if(ball.getLocation().x == 30){ 
+            if(ball.getLocation().x < ballPlayAreaLeft) // Goal made by computer
                  goalMade(false);
-            }
-            if(ball.getLocation().x == 670){
+            
+            if(ball.getLocation().x > ballPlayAreaRight) // Goal madde by player
                 goalMade(true);
-            }
+            
                 
-                
-        });
-        clock.start();
-    }
+    });
+    
+    
+    private void stopCountDown(){countDownTimer.stop();}
+    Timer countDownTimer = new Timer(1000, e->{
+        countDownLabel.setVisible(true);
+        int currentTime = Integer.parseInt(countDownLabel.getText());
+        currentTime--;
+        if(currentTime <= 0){
+            stopCountDown();
+            countDownLabel.setVisible(false);
+            delta = getLaunchDegree();
+            betweenRounds = false;
+            clock.start();
+        }
+        else{
+            countDownLabel.setText(Integer.toString(currentTime));
+        }
+    });
+    
+    
+    
+    
+    
+
+            
             
     
     
@@ -226,21 +334,50 @@ public class PingPong {
     
     
     private void goalMade(boolean goalByPlayer){
+        if(betweenRounds)
+            return;
+        clock.stop(); // Stop the game tick
+        
+        // Give the point to the person that made the goal
         if(goalByPlayer){
             int currentScore = Integer.parseInt(playerScore.getText());
             currentScore++;
             playerScore.setText(Integer.toString(currentScore));
+            
+            // Increase the difficulty of the computer as we go (first inscrease the computer play rate, then the speed of computer)
+            computerPlaysAtTick--;
+            if(computerPlaysAtTick <= 0){
+                computerPlaysAtTick = 0;
+                COMPUTER_STEP++;
+                if(COMPUTER_STEP >= 5)
+                    COMPUTER_STEP = 5;
+            }
+            
+            // Add to the score
+            score.setText(Integer.toString(Integer.parseInt(score.getText()) + SCORE_FOR_GOOD_GOAL));
         }
         else{
             int currentScore = Integer.parseInt(computerScore.getText());
             currentScore++;
             computerScore.setText(Integer.toString(currentScore));
+            
+            // Subtract from the score (its a negative so we technically add it)
+            score.setText(Integer.toString(Integer.parseInt(score.getText()) + SCORE_FOR_BAD_GOAL));
         }
-        reset();
-        //countDown();
-        stopGame(); // temp for now
+        
+        // Reset game and do a countdown before starting again
+        reset(); // Move everything to reset position
+        countDownLabel.setVisible(true);
+        countDownLabel.setText("3");
+        countDownTimer.start();
     }
 
+    
+    private int getLaunchDegree(){
+        int minStartingDegree = 200;
+        int maxStartingDegree = 340;
+        return (int)(Math.random() * ((maxStartingDegree-minStartingDegree) + 1)) + minStartingDegree; // Chooses a delta between 240 and 300
+    }
     
 }
 

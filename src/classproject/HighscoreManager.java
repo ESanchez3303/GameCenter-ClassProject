@@ -19,9 +19,11 @@ public class HighscoreManager {
     private List<String> usernames   = new ArrayList<>();
     private List<String> highscores  = new ArrayList<>();
     
-    // Cosntructor
+    // Cosntructor 
     HighscoreManager(){
+        // THESE ARE THE GAMES THAT WE ARE KEEPING TRACK OF -- ADD GAMES HERE AS WE GO!
         gameSymbols.add("MG");
+        gameSymbols.add("PP");
         
         for(int i = 0; i < gameSymbols.size(); i++){
             usernames.add("Not Set");
