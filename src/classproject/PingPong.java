@@ -366,20 +366,20 @@ public class PingPong {
     });
     
     
-    private void stopCountDown(){countDownTimer.stop();}
+
     Timer countDownTimer = new Timer(1000, e->{
-        countDownLabel.setVisible(true);
-        int currentTime = Integer.parseInt(countDownLabel.getText());
-        currentTime--;
-        if(currentTime <= 0){
-            stopCountDown();
-            countDownLabel.setVisible(false);
-            delta = getLaunchDegree();
-            betweenRounds = false;
-            clock.start();
+        countDownLabel.setVisible(true);                              // Show the countdown label
+        int currentTime = Integer.parseInt(countDownLabel.getText()); // Get the number that is in the countdown label
+        currentTime--;                                                // Decrease the countdown
+        if(currentTime <= 0){                                         // When countdown reaches 0
+            ((Timer)e.getSource()).stop();    // Stop timer
+            countDownLabel.setVisible(false); // Hide the countdown 
+            delta = getLaunchDegree();        // Set a new delta
+            betweenRounds = false;            // Remove the between rounds signal
+            clock.start();                    // Start game clock
         }
         else{
-            countDownLabel.setText(Integer.toString(currentTime));
+            countDownLabel.setText(Integer.toString(currentTime));    // Show the new decreased countdown
         }
     });
     
