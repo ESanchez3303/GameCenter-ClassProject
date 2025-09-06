@@ -149,10 +149,17 @@ public class PingPong {
     Timer clock = new Timer(GAME_TICK, e->{
         // Checking if we need to boost the ball -------------------------------------------------------------------------------------
         if(twoPlayerMode){
+            System.out.println("> " + boostedBallCountKeeper);
             if(boostedBallCountKeeper <= 0 ){
                 boostedBallCountKeeper = (int)(SECONDS_BEFORE_BOOSTING*1000)/GAME_TICK;
                 boostedBallMultiply++;
                 boostBall();
+            }
+            else if(boostedBallCountKeeper <= 100){
+                if(boostedBallCountKeeper % 10 == 0)
+                    ball.setBackground(new Color(255,255,255));
+                else
+                    ball.setBackground(new Color(255,0,0));
             }
             boostedBallCountKeeper--;
         }
@@ -501,7 +508,6 @@ public class PingPong {
     
     
     private void boostBall(){
-        
         boostedBallMovesX.clear();
         boostedBallMovesY.clear();
         for(int i = 0; i < ballMovesX_list.size(); i++){
