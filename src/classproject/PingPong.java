@@ -9,20 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import javax.swing.JLabel;
+import java.awt.Color;
        
 
 
 
 public class PingPong {
     // SET AND FORGET CUSTOM VARIABLES:
+    int SECONDS_BEFORE_BOOSTING = 5;
     int GAME_TICK = 10;
-    int PLAYER_STEP = 3;
+    int PLAYER_STEP = 4;
     int COMPUTER_STEP = 1;
     int SCORE_FOR_GOOD_GOAL = 100;
     int SCORE_FOR_BAD_GOAL = -50;
     List<Integer> deltaEdges = new ArrayList<>(Arrays.asList(18,36,54,72,90,108,126,144,162,180,198,216,234,252,270,288,306,324,342,360));
     List<Integer> ballMovesX_list = new ArrayList<>(Arrays.asList(0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4,-4,-3,-2,-1,0));
     List<Integer> ballMovesY_list = new ArrayList<>(Arrays.asList(-4,-3,-2,-1,0,0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4));
+    
+    // BOOSTED BALL MOVES:
+    int boostedBallMultiply = 1;
+    int boostedBallCountKeeper = 0;                       
+    List<Integer> boostedBallMovesX = new ArrayList<>();
+    List<Integer> boostedBallMovesY = new ArrayList<>();
+   
     
     // SET UP FUNCTION (CONSTRUCTOR):
     public void setUp(JPanel p, JPanel c, JPanel b, JLabel pS, JLabel cS, JLabel cT, JLabel pP){
@@ -34,6 +43,7 @@ public class PingPong {
         computerScore = cS;
         countDownLabel = cT;
         score = pP;
+        boostBall();
     }
     
     
@@ -61,6 +71,7 @@ public class PingPong {
     int computerPlaysAtTick = 5; // Computer is allowed to move every x ticks of the game clock (this slows down the computer to be fair)
     int computerTick = 0;        // Keeps track of which tick we are in, this will cycle between 0-x (x being computerPlaysAtTick)
     boolean betweenRounds = false;
+   
     
     
     
@@ -85,10 +96,13 @@ public class PingPong {
         computer.setLocation(660,225);
         ball.setLocation(350,240);
         upPressed = downPressed = playerBusy = false;
-        if(twoPlayerMode)
-            upPressed2 = downPressed2 = playerBusy2 = false;
+        upPressed2 = downPressed2 = playerBusy2 = false;
         computerTick = 0;
         delta = getLaunchDegree();
+        
+        boostedBallCountKeeper = (int)(SECONDS_BEFORE_BOOSTING*1000)/GAME_TICK;
+        boostedBallMultiply = 1;
+        ball.setBackground(new Color(255,255,255)); // Setting the ball color to white again (for when we change color)
     }
     
     public void stopGame(){
@@ -107,15 +121,15 @@ public class PingPong {
         countDownLabel.setText("3");
         countDownLabel.setVisible(true);
         Timer continueTimer = new Timer(1000, e->{
-            int currentTime = Integer.parseInt(countDownLabel.getText());
-            currentTime--;
-            if(currentTime <= 0){
+            int continueTime = Integer.parseInt(countDownLabel.getText());
+            continueTime--;
+            if(continueTime <= 0){
                 ((Timer)e.getSource()).stop();
                 countDownLabel.setVisible(false);
                 clock.start();
             }
             else{
-                countDownLabel.setText(Integer.toString(currentTime));
+                countDownLabel.setText(Integer.toString(continueTime));
             }
         });
         continueTimer.start();
@@ -133,6 +147,16 @@ public class PingPong {
     
     // TIMERS:
     Timer clock = new Timer(GAME_TICK, e->{
+        // Checking if we need to boost the ball -------------------------------------------------------------------------------------
+        if(twoPlayerMode){
+            if(boostedBallCountKeeper <= 0 ){
+                boostedBallCountKeeper = (int)(SECONDS_BEFORE_BOOSTING*1000)/GAME_TICK;
+                boostedBallMultiply++;
+                boostBall();
+            }
+            boostedBallCountKeeper--;
+        }
+        
         // Move Player (while validating): ----------------------------------------------------------------------------------------------------------
             if(upPressed){                                                                     // Player is pushing up --> move player up
                 if(player.getLocation().y > 0){                                                // Player is NOT at max upward position, player is allowed to move
@@ -156,17 +180,17 @@ public class PingPong {
             // Check if two players are playing if so do this, if not do the else:
             if(twoPlayerMode){
                 if(upPressed2){                                                                     // Player is pushing up --> move player up
-                    if(computer.getLocation().y > 0){                                                // Player is NOT at max upward position, player is allowed to move
-                        if(computer.getLocation().y - PLAYER_STEP < 0)                               // If this move will put player above max position
-                            computer.setLocation(computer.getLocation().x, 0);                         // Move to max position 
+                    if(computer.getLocation().y > 0){                                               // Player is NOT at max upward position, player is allowed to move
+                        if(computer.getLocation().y - PLAYER_STEP < 0)                              // If this move will put player above max position
+                            computer.setLocation(computer.getLocation().x, 0);                      // Move to max position 
                         else
                             computer.setLocation(computer.getLocation().x, computer.getLocation().y - PLAYER_STEP); // Move player UP by the STEP amount (2) if was a valid position
                     }
                 }
                 else if(downPressed2){                                                              // Player is pushinng down --> move player down
-                    if(computer.getLocation().y < 450){                                              // Player is NOT at the max downward position, player is allowed to move
-                        if(computer.getLocation().y + PLAYER_STEP > 450)                             // If this move will put player below min position 
-                            computer.setLocation(computer.getLocation().x, 450);                       // Move player to min position ONLY
+                    if(computer.getLocation().y < 450){                                             // Player is NOT at the max downward position, player is allowed to move
+                        if(computer.getLocation().y + PLAYER_STEP > 450)                            // If this move will put player below min position 
+                            computer.setLocation(computer.getLocation().x, 450);                    // Move player to min position ONLY
                         else
                             computer.setLocation(computer.getLocation().x, computer.getLocation().y + PLAYER_STEP); // Move player DOWN up the STEP amount (2) if was a vlid position
 
@@ -205,13 +229,13 @@ public class PingPong {
             //    o if in 324-359 ----> 4 up
             
             getBallMoveUsingDelta();
-            if(ballMoveX == -9 || ballMoveY == -9){   // Check if the delta was in bounds
+            if(ballMoveX == -999 || ballMoveY == -999){   // Check if the delta was in bounds
                 System.out.println("GAME 3 CRASHED"); // This could be handled better using a joptionpane
                 stopGame();
                 return;
             }
             
-            // Check if ball will put ball out of bounds, then move ball
+            // Check if ball will put ball out of bounds, then move ball ----------------------------------------------------------------
             int newBallLocationX = ball.getLocation().x + ballMoveX;
             int newBallLocationY = ball.getLocation().y + ballMoveY;
             
@@ -231,7 +255,7 @@ public class PingPong {
             
             
              
-            // Check if ball touched a wall, change the delta to "reflect" off it 
+            // Check if ball touched a wall, change the delta to "reflect" off it ----------------------------------------------
             if(newBallLocationY == 0){      // If ball touched top wall
                 if(delta >= 342 || delta < 18) // If ball came at wall in striahgt line
                     delta = 110;     // Changing delta to be 100 which is bottom right angle, slow rate
@@ -256,7 +280,7 @@ public class PingPong {
             int ballPlayAreaLeft = 45;
             int ballPlayAreaRight = 665;
             
-            // Check if ball touched player/computer (make sure to change ball direction)
+            // Check if ball touched player/computer (make sure to change ball direction) ----------------------------------------------
             if(ball.getLocation().x >= ballPlayAreaLeft && ball.getLocation().x <= ballPlayAreaRight){ // If ball is still inside the playable area
                 int ballGraceSize = ball.getWidth() - 3;                   // 20-3 = 18, grace size that is still considered a hit
                 if(delta >= 180){                                          // Ball is moving left (towards player)
@@ -300,10 +324,16 @@ public class PingPong {
                             if(delta >= 72 && delta < 108)
                                 addToDelta(199);    // 180 + 18 + 1, flipping ball around and adding one iter up instead of just straight back
                             else{
-                                if(delta <= 90)
-                                    addToDelta(-90);    // If ball is moving upward, sub 90
-                                else
-                                    addToDelta(90);     // If ball is moving downward, add 90
+                                if(delta <= 90){
+                                    addToDelta(-90);                 // If ball is moving upward, sub 90
+                                    if(upPressed2) addToDelta(-20);  // If up is pressed, add extra
+                                    if(downPressed2) addToDelta(20); // If dpwn is pressed, add extra
+                                }
+                                else{
+                                    addToDelta(90);                   // If ball is moving downward, add 90
+                                    if(upPressed2) addToDelta(20);    // If up is pressed, add extra
+                                    if(downPressed2) addToDelta(-20); // If dpwn is pressed, add extra
+                                }
                             }
                         }
                         
@@ -361,8 +391,8 @@ public class PingPong {
     // HELPER FUNCTIONS:
     private void getBallMoveUsingDelta(){
         if(delta < 0){
-            ballMoveX = -9;
-            ballMoveY = -9;
+            ballMoveX = -999;
+            ballMoveY = -999;
             return;
         }
         
@@ -375,15 +405,21 @@ public class PingPong {
         
         // If insideOfEdge is out of bounds then we know that delta is out of bounds
         if(insideOfEdge >= deltaEdges.size()){
-            ballMoveX = -9;
-            ballMoveY = -9;
+            ballMoveX = -999;
+            ballMoveY = -999;
             return;
         }
         
         
         // Setting the ball moves accordingly
-        ballMoveX = ballMovesX_list.get(insideOfEdge);
-        ballMoveY = ballMovesY_list.get(insideOfEdge);
+        if(boostedBallMultiply == 1){ // If we are in regular speed (we dont change boostBall if we are in regular)
+            ballMoveX = ballMovesX_list.get(insideOfEdge);
+            ballMoveY = ballMovesY_list.get(insideOfEdge);
+        }
+        else{                 // If we are in boosted ball mode - use the boosted ball list instead of regular
+            ballMoveX = boostedBallMovesX.get(insideOfEdge);
+            ballMoveY = boostedBallMovesY.get(insideOfEdge);
+        }
     }
     
     private void addToDelta(int amountToIncrease){
@@ -462,6 +498,24 @@ public class PingPong {
         
     }
     
+    
+    
+    private void boostBall(){
+        
+        boostedBallMovesX.clear();
+        boostedBallMovesY.clear();
+        for(int i = 0; i < ballMovesX_list.size(); i++){
+            boostedBallMovesX.add(ballMovesX_list.get(i) * boostedBallMultiply);
+            boostedBallMovesY.add(ballMovesY_list.get(i) * boostedBallMultiply);
+        }
+        
+        // Repainting ball
+        switch(boostedBallMultiply){
+            case 2: ball.setBackground(new Color(255,150,50)); break;
+            case 3: ball.setBackground(new Color(255,50,50)); break;
+            case 4: ball.setBackground(new Color(255,0,0)); break;
+        }
+    }
 }
 
 

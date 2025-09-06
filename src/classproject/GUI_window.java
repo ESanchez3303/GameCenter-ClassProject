@@ -554,7 +554,7 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel71.setText("P2 Move Down");
         G3_twoPlayerModeCover.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 140, 35));
 
-        G3_cover.add(G3_twoPlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 410, 140));
+        G3_cover.add(G3_twoPlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 40, 405, 140));
 
         G3_singlePlayerModeCover.setBackground(new java.awt.Color(153, 135, 108));
         G3_singlePlayerModeCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -601,7 +601,7 @@ public class GUI_window extends javax.swing.JFrame {
         G3_singlePlayerModeCover.add(G3_gameDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 380, 30));
         G3_singlePlayerModeCover.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 380, 10));
 
-        G3_cover.add(G3_singlePlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 410, 140));
+        G3_cover.add(G3_singlePlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 40, 405, 140));
 
         G3_gameArea.add(G3_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 410, 300));
 
@@ -2529,6 +2529,7 @@ public class GUI_window extends javax.swing.JFrame {
                 G3_singlePlayerModeCover.setVisible(true);
                 G3_computerLabel.setText("Computer");
                 G3_playerLabel.setText("Player");
+                G3_twoPlayerButton.setText("Two Player Mode");
                 G3_resetCover.setVisible(false);
                 G3_cover.setVisible(true);
             }
@@ -2543,7 +2544,7 @@ public class GUI_window extends javax.swing.JFrame {
     // ========================================================================================
     
     
-    // LOGIN FUNCTIONS ========================================================================
+// LOGIN FUNCTIONS ========================================================================
     private void loginButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMousePressed
         // Getting inputs 
         String tempUsername = usernameInput.getText();
@@ -2964,19 +2965,19 @@ public class GUI_window extends javax.swing.JFrame {
     
     private boolean gamePaused = false;
     private void G3_gameAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_G3_gameAreaKeyPressed
+        // If player is pushing the "P", they want to pause the game
+        if((evt.getKeyCode() == KeyEvent.VK_P)){
+            gamePaused = !gamePaused;  // Toggle the pause button
+            if(gamePaused)             // Pause the Game 
+                PP.pauseGame();
+            else                       // Continue the Game
+                PP.continueGame();
+            
+        }
+        
         if(G3_countDownTimer.isVisible()) // Ignoring moves when the countdown time is active
             return;
         
-        if((evt.getKeyCode() == KeyEvent.VK_P)){
-            if(!gamePaused){ // Pausing Game
-                PP.pauseGame();
-                gamePaused = true;
-            }
-            else{ // Continue Game
-                PP.continueGame();
-                gamePaused = false;
-            }
-        }
         
         if(!twoPlayerMode){ // If we are in single player
             if(evt.getKeyCode() == KeyEvent.VK_UP){ 
