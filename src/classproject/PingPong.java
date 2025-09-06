@@ -28,7 +28,7 @@ public class PingPong {
     public void setUp(JPanel p, JPanel c, JPanel b, JLabel pS, JLabel cS, JLabel cT, JLabel pP){
         // Setting up variables:
         player = p;
-        computer = c;
+        computer = c; // this will also be the player input instead of computer when we are in 2 player mode
         ball = b;
         playerScore = pS;
         computerScore = cS;
@@ -47,11 +47,15 @@ public class PingPong {
     JLabel countDownLabel;// Label that will be the countdown between goals
     JLabel score;         // Panel that shows the score
     int delta;            // The current angle of the ball (0-360)
+    boolean twoPlayerMode = false;
     
     // Movement Variables:
     boolean upPressed = false;
     boolean downPressed = false;
     boolean playerBusy = false;
+    boolean upPressed2 = false;
+    boolean downPressed2 = false;
+    boolean playerBusy2 = false;
     int ballMoveX;
     int ballMoveY;
     int computerPlaysAtTick = 5; // Computer is allowed to move every x ticks of the game clock (this slows down the computer to be fair)
@@ -59,18 +63,30 @@ public class PingPong {
     boolean betweenRounds = false;
     
     
+    
+    
+    
+    // PUBLIC FUNCTIONS: 
     public void upPressed(){if(!playerBusy){upPressed = true; playerBusy = true;}}  
     public void downPressed(){if(!playerBusy){downPressed = true; playerBusy = true;}}
     public void upReleased(){upPressed = false; playerBusy = false;}
     public void downReleased(){downPressed = false; playerBusy = false;}
     
+    public void setTwoPlayerMode(boolean input) {twoPlayerMode = input;}
+    public void upPressed2(){if(!playerBusy2){upPressed2 = true; playerBusy2 = true;}}  
+    public void downPressed2(){if(!playerBusy2){downPressed2 = true; playerBusy2 = true;}}
+    public void upReleased2(){upPressed2 = false; playerBusy2 = false;}
+    public void downReleased2(){downPressed2 = false; playerBusy2 = false;}
     
-    // PUBLIC FUNCTIONS: 
+    
+    
     public void reset(){
         player.setLocation(50,225);
         computer.setLocation(660,225);
         ball.setLocation(350,240);
         upPressed = downPressed = playerBusy = false;
+        if(twoPlayerMode)
+            upPressed2 = downPressed2 = playerBusy2 = false;
         computerTick = 0;
         delta = getLaunchDegree();
     }
@@ -78,6 +94,31 @@ public class PingPong {
     public void stopGame(){
         clock.stop();
         countDownTimer.stop();
+    }
+    
+    public void pauseGame(){
+        clock.stop();
+        countDownTimer.stop();
+        countDownLabel.setText("Game Paused");
+        countDownLabel.setVisible(true);
+    }
+    
+    public void continueGame(){
+        countDownLabel.setText("3");
+        countDownLabel.setVisible(true);
+        Timer continueTimer = new Timer(1000, e->{
+            int currentTime = Integer.parseInt(countDownLabel.getText());
+            currentTime--;
+            if(currentTime <= 0){
+                ((Timer)e.getSource()).stop();
+                countDownLabel.setVisible(false);
+                clock.start();
+            }
+            else{
+                countDownLabel.setText(Integer.toString(currentTime));
+            }
+        });
+        continueTimer.start();
     }
     
     public void startGame(){
@@ -112,24 +153,45 @@ public class PingPong {
             } 
             // ELSE() ---> If player is not pushing anything, leave player there for this tick
             
-            
-            // Move Computer (revalidate) --------------------------------------------------------------------------------------------------------------------
-            computerTick++; // Increasing to check if computer plays this tick
-            if(computerTick >= computerPlaysAtTick){
-                computerTick = 0; // Reseting the tick to restart cycle
-                if(ball.getLocation().y <= computer.getLocation().y){           // If ball y is higher than computer y, move up
-                    if(computer.getLocation().y - COMPUTER_STEP  < 0)           // If this move would put computer out of bounds
-                        computer.setLocation(computer.getLocation().x,0);       // Move to 0 position
-                    else
-                        computer.setLocation(computer.getLocation().x, computer.getLocation().y - COMPUTER_STEP); // Move to location by step
+            // Check if two players are playing if so do this, if not do the else:
+            if(twoPlayerMode){
+                if(upPressed2){                                                                     // Player is pushing up --> move player up
+                    if(computer.getLocation().y > 0){                                                // Player is NOT at max upward position, player is allowed to move
+                        if(computer.getLocation().y - PLAYER_STEP < 0)                               // If this move will put player above max position
+                            computer.setLocation(computer.getLocation().x, 0);                         // Move to max position 
+                        else
+                            computer.setLocation(computer.getLocation().x, computer.getLocation().y - PLAYER_STEP); // Move player UP by the STEP amount (2) if was a valid position
+                    }
                 }
-                else{                                                            // If ball y is lower than computer y, move down
-                    if(computer.getLocation().y + COMPUTER_STEP > 450)           // If this move would put computer out of bounds
-                        computer.setLocation(computer.getLocation().x, 450);     // Move to 450 position
-                    else
-                        computer.setLocation(computer.getLocation().x, computer.getLocation().y + COMPUTER_STEP); // Move to location by step
+                else if(downPressed2){                                                              // Player is pushinng down --> move player down
+                    if(computer.getLocation().y < 450){                                              // Player is NOT at the max downward position, player is allowed to move
+                        if(computer.getLocation().y + PLAYER_STEP > 450)                             // If this move will put player below min position 
+                            computer.setLocation(computer.getLocation().x, 450);                       // Move player to min position ONLY
+                        else
+                            computer.setLocation(computer.getLocation().x, computer.getLocation().y + PLAYER_STEP); // Move player DOWN up the STEP amount (2) if was a vlid position
+
+                    }
+                } 
+            }
+            else{
+                // Move Computer (revalidate) --------------------------------------------------------------------------------------------------------------------
+                computerTick++; // Increasing to check if computer plays this tick
+                if(computerTick >= computerPlaysAtTick){
+                    computerTick = 0; // Reseting the tick to restart cycle
+                    if(ball.getLocation().y <= computer.getLocation().y){           // If ball y is higher than computer y, move up
+                        if(computer.getLocation().y - COMPUTER_STEP  < 0)           // If this move would put computer out of bounds
+                            computer.setLocation(computer.getLocation().x,0);       // Move to 0 position
+                        else
+                            computer.setLocation(computer.getLocation().x, computer.getLocation().y - COMPUTER_STEP); // Move to location by step
+                    }
+                    else{                                                            // If ball y is lower than computer y, move down
+                        if(computer.getLocation().y + COMPUTER_STEP > 450)           // If this move would put computer out of bounds
+                            computer.setLocation(computer.getLocation().x, 450);     // Move to 450 position
+                        else
+                            computer.setLocation(computer.getLocation().x, computer.getLocation().y + COMPUTER_STEP); // Move to location by step
+                    }
+
                 }
-                    
             }
             
             
@@ -288,6 +350,8 @@ public class PingPong {
     
     
     
+    
+    
 
             
             
@@ -340,29 +404,35 @@ public class PingPong {
         
         // Give the point to the person that made the goal
         if(goalByPlayer){
+           
             int currentScore = Integer.parseInt(playerScore.getText());
             currentScore++;
             playerScore.setText(Integer.toString(currentScore));
-            
-            // Increase the difficulty of the computer as we go (first inscrease the computer play rate, then the speed of computer)
-            computerPlaysAtTick--;
-            if(computerPlaysAtTick <= 0){
-                computerPlaysAtTick = 0;
-                COMPUTER_STEP++;
-                if(COMPUTER_STEP >= 5)
-                    COMPUTER_STEP = 5;
+
+            if(!twoPlayerMode){ // If we are in single player mode, increase computer diff. and add score 
+                // Increase the difficulty of the computer as we go (first inscrease the computer play rate, then the speed of computer)
+                computerPlaysAtTick--;
+                if(computerPlaysAtTick <= 0){
+                    computerPlaysAtTick = 0;
+                    COMPUTER_STEP++;
+                    if(COMPUTER_STEP >= 5)
+                        COMPUTER_STEP = 5;
+                }
+                // Add to the score
+                score.setText(Integer.toString(Integer.parseInt(score.getText()) + SCORE_FOR_GOOD_GOAL));
             }
             
-            // Add to the score
-            score.setText(Integer.toString(Integer.parseInt(score.getText()) + SCORE_FOR_GOOD_GOAL));
+            
         }
         else{
             int currentScore = Integer.parseInt(computerScore.getText());
             currentScore++;
             computerScore.setText(Integer.toString(currentScore));
             
-            // Subtract from the score (its a negative so we technically add it)
-            score.setText(Integer.toString(Integer.parseInt(score.getText()) + SCORE_FOR_BAD_GOAL));
+            if(!twoPlayerMode){ // If in single player mode, incrase score
+                // Subtract from the score (its a negative so we technically add it)
+                score.setText(Integer.toString(Integer.parseInt(score.getText()) + SCORE_FOR_BAD_GOAL));
+            }
         }
         
         // Reset game and do a countdown before starting again
@@ -374,9 +444,22 @@ public class PingPong {
 
     
     private int getLaunchDegree(){
+        int side = (int)(Math.random() * ((2-1) + 1)) + 1; // Choose what side to throw to
         int minStartingDegree = 200;
         int maxStartingDegree = 340;
+        
+        // Choose a random delta on that side
+        if(side == 1){
+            minStartingDegree = 200;
+            maxStartingDegree = 340;
+        }else{
+            minStartingDegree = 20;
+            maxStartingDegree = 160;
+        }
+        
         return (int)(Math.random() * ((maxStartingDegree-minStartingDegree) + 1)) + minStartingDegree; // Chooses a delta between 240 and 300
+        
+        
     }
     
 }
