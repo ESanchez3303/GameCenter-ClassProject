@@ -89,6 +89,7 @@ public class PingPong {
     public void upReleased2(){upPressed2 = false; playerBusy2 = false;}
     public void downReleased2(){downPressed2 = false; playerBusy2 = false;}
     
+
     
     
     public void reset(){
@@ -149,7 +150,6 @@ public class PingPong {
     Timer clock = new Timer(GAME_TICK, e->{
         // Checking if we need to boost the ball -------------------------------------------------------------------------------------
         if(twoPlayerMode){
-            System.out.println("> " + boostedBallCountKeeper);
             if(boostedBallCountKeeper <= 0 ){
                 boostedBallCountKeeper = (int)(SECONDS_BEFORE_BOOSTING*1000)/GAME_TICK;
                 boostedBallMultiply++;
