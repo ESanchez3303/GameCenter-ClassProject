@@ -3000,6 +3000,9 @@ public class GUI_window extends javax.swing.JFrame {
     
     private boolean gamePaused = false;
     private void G3_gameAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_G3_gameAreaKeyPressed
+        if(!G3_countDownTimer.getText().equals("Game Paused")) // If the countdown are numbers! then we can just ignore this key
+            return;
+
         // If player is pushing the "P", they want to pause the game
         if(evt.getKeyCode() == KeyEvent.VK_P){
             gamePaused = !gamePaused;  // Toggle the pause button
@@ -3010,10 +3013,9 @@ public class GUI_window extends javax.swing.JFrame {
             
         }
         
-        if(G3_countDownTimer.isVisible()) // Ignoring moves when the countdown time is active
-            return;
         
         
+        // Player hits a key to move their character
         if(!twoPlayerMode){ // If we are in single player
             if(evt.getKeyCode() == KeyEvent.VK_UP){ 
                 PP.upPressed();
