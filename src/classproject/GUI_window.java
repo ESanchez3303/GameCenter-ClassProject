@@ -118,6 +118,15 @@ public class GUI_window extends javax.swing.JFrame {
         MM_userSettingsButton = new javax.swing.JButton();
         MM_logOutButton = new javax.swing.JButton();
         MM_backToMenuButton = new javax.swing.JButton();
+        game4Frame = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel61 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
         game3Frame = new javax.swing.JPanel();
         G3_gameArea = new javax.swing.JPanel();
         G3_cover = new javax.swing.JPanel();
@@ -161,17 +170,6 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel77 = new javax.swing.JLabel();
         JPanel991 = new javax.swing.JPanel();
         G3_timerBar = new javax.swing.JProgressBar();
-        loginFrame = new javax.swing.JPanel();
-        loginButtonsFrame = new javax.swing.JPanel();
-        loginButton = new javax.swing.JButton();
-        createAccountButton = new javax.swing.JButton();
-        loginTitle = new javax.swing.JLabel();
-        passwordConfirmInput = new javax.swing.JPasswordField();
-        loginLogo = new javax.swing.JLabel();
-        usernameInput = new javax.swing.JTextField();
-        passwordInput = new javax.swing.JPasswordField();
-        createAccountCancelButton = new javax.swing.JButton();
-        createAccountConfirmButton = new javax.swing.JButton();
         mainMenuFrame = new javax.swing.JPanel();
         gamesScrollFrame = new javax.swing.JScrollPane();
         gamesPanel = new javax.swing.JPanel();
@@ -234,6 +232,17 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         MM_passwordConfirmInput = new javax.swing.JTextField();
         MM_saveSettingsButton = new javax.swing.JButton();
+        loginFrame = new javax.swing.JPanel();
+        loginButtonsFrame = new javax.swing.JPanel();
+        loginButton = new javax.swing.JButton();
+        createAccountButton = new javax.swing.JButton();
+        loginTitle = new javax.swing.JLabel();
+        passwordConfirmInput = new javax.swing.JPasswordField();
+        loginLogo = new javax.swing.JLabel();
+        usernameInput = new javax.swing.JTextField();
+        passwordInput = new javax.swing.JPasswordField();
+        createAccountCancelButton = new javax.swing.JButton();
+        createAccountConfirmButton = new javax.swing.JButton();
         game2Frame = new javax.swing.JPanel();
         G2_resetBar = new javax.swing.JPanel();
         G2_resetButton = new javax.swing.JButton();
@@ -398,7 +407,6 @@ public class GUI_window extends javax.swing.JFrame {
         G1_scoreBoard = new javax.swing.JPanel();
         G1_score = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        game4Frame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GamesAndStuff");
@@ -452,6 +460,61 @@ public class GUI_window extends javax.swing.JFrame {
         MM_topBar.add(MM_backToMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 5, 200, 40));
 
         getContentPane().add(MM_topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 50));
+
+        game4Frame.setBackground(new java.awt.Color(214, 196, 172));
+        game4Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(186, 173, 155));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        game4Frame.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 765, 515));
+
+        jPanel5.setBackground(new java.awt.Color(153, 135, 108));
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(237, 28, 26));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel61.setBackground(java.awt.Color.white);
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel61.setForeground(java.awt.Color.white);
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("0");
+        jPanel3.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 30, 50));
+
+        jPanel5.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 5, 50, 60));
+
+        jPanel6.setBackground(new java.awt.Color(5, 180, 89));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel64.setBackground(java.awt.Color.white);
+        jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel64.setForeground(java.awt.Color.white);
+        jLabel64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel64.setText("0");
+        jPanel6.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 30, 50));
+
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 5, 50, 60));
+
+        jLabel73.setBackground(java.awt.Color.white);
+        jLabel73.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(225, 225, 225));
+        jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel73.setText("Player 2 ] -------");
+        jPanel5.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 5, 250, 60));
+
+        jLabel74.setBackground(java.awt.Color.white);
+        jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        jLabel74.setForeground(new java.awt.Color(225, 225, 225));
+        jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel74.setText("-------[ Player 1");
+        jPanel5.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 5, 250, 60));
+
+        game4Frame.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 70));
+
+        getContentPane().add(game4Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         game3Frame.setBackground(new java.awt.Color(214, 196, 172));
         game3Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -723,101 +786,6 @@ public class GUI_window extends javax.swing.JFrame {
 
         getContentPane().add(game3Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
-        loginFrame.setBackground(new java.awt.Color(214, 196, 172));
-        loginFrame.setPreferredSize(new java.awt.Dimension(400, 350));
-        loginFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        loginButtonsFrame.setBackground(new java.awt.Color(214, 196, 172));
-        loginButtonsFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        loginButton.setBackground(new java.awt.Color(126, 195, 111));
-        loginButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        loginButton.setForeground(java.awt.Color.white);
-        loginButton.setText("Log In");
-        loginButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                loginButtonMousePressed(evt);
-            }
-        });
-        loginButtonsFrame.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 348, 35));
-
-        createAccountButton.setBackground(new java.awt.Color(102, 153, 255));
-        createAccountButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        createAccountButton.setForeground(java.awt.Color.white);
-        createAccountButton.setText("Create New Account");
-        createAccountButton.setToolTipText("");
-        createAccountButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createAccountButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                createAccountButtonMousePressed(evt);
-            }
-        });
-        loginButtonsFrame.add(createAccountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 348, 35));
-
-        loginFrame.add(loginButtonsFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 100, 360, 100));
-
-        loginTitle.setBackground(new java.awt.Color(204, 204, 204));
-        loginTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        loginTitle.setForeground(java.awt.Color.black);
-        loginTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loginTitle.setText("Welcome! Please Log In");
-        loginTitle.setToolTipText("");
-        loginTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        loginFrame.add(loginTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 6, 348, -1));
-
-        passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordConfirmInput.setPreferredSize(new java.awt.Dimension(64, 25));
-        loginFrame.add(passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 110, 348, 30));
-
-        loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/gameLogo.png"))); // NOI18N
-        loginLogo.setText("loginSideLogo");
-        loginLogo.setToolTipText("");
-        loginLogo.setAlignmentY(0.0F);
-        loginLogo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        loginFrame.add(loginLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 198, -1));
-
-        usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        usernameInput.setToolTipText("");
-        usernameInput.setPreferredSize(new java.awt.Dimension(73, 25));
-        loginFrame.add(usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 37, 348, 30));
-
-        passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordInput.setPreferredSize(new java.awt.Dimension(64, 25));
-        loginFrame.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 73, 348, 30));
-
-        createAccountCancelButton.setBackground(new java.awt.Color(255, 153, 153));
-        createAccountCancelButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        createAccountCancelButton.setForeground(java.awt.Color.white);
-        createAccountCancelButton.setToolTipText("");
-        createAccountCancelButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createAccountCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccountCancelButton.setLabel("X");
-        createAccountCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                createAccountCancelButtonClicked(evt);
-            }
-        });
-        loginFrame.add(createAccountCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 150, 50, 35));
-
-        createAccountConfirmButton.setBackground(new java.awt.Color(102, 153, 255));
-        createAccountConfirmButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        createAccountConfirmButton.setForeground(java.awt.Color.white);
-        createAccountConfirmButton.setToolTipText("");
-        createAccountConfirmButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createAccountConfirmButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccountConfirmButton.setLabel("Register Account");
-        createAccountConfirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                createAccountConfirmButtonClicked(evt);
-            }
-        });
-        loginFrame.add(createAccountConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 150, 294, 35));
-
-        getContentPane().add(loginFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 660));
-
         mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
         mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1085,6 +1053,7 @@ public class GUI_window extends javax.swing.JFrame {
         game4.add(game4Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
 
         game4Image.setBackground(new java.awt.Color(153, 135, 108));
+        game4Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank.png"))); // NOI18N
         game4Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         game4.add(game4Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
 
@@ -1100,7 +1069,7 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         jLabel45.setForeground(java.awt.Color.white);
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel45.setText("<game name>");
+        jLabel45.setText("Tanks");
         game4.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1205,6 +1174,101 @@ public class GUI_window extends javax.swing.JFrame {
         mainMenuFrame.add(MM_userSettingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 450, 220));
 
         getContentPane().add(mainMenuFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
+
+        loginFrame.setBackground(new java.awt.Color(214, 196, 172));
+        loginFrame.setPreferredSize(new java.awt.Dimension(400, 350));
+        loginFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loginButtonsFrame.setBackground(new java.awt.Color(214, 196, 172));
+        loginButtonsFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loginButton.setBackground(new java.awt.Color(126, 195, 111));
+        loginButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        loginButton.setForeground(java.awt.Color.white);
+        loginButton.setText("Log In");
+        loginButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                loginButtonMousePressed(evt);
+            }
+        });
+        loginButtonsFrame.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 348, 35));
+
+        createAccountButton.setBackground(new java.awt.Color(102, 153, 255));
+        createAccountButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        createAccountButton.setForeground(java.awt.Color.white);
+        createAccountButton.setText("Create New Account");
+        createAccountButton.setToolTipText("");
+        createAccountButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createAccountButtonMousePressed(evt);
+            }
+        });
+        loginButtonsFrame.add(createAccountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 348, 35));
+
+        loginFrame.add(loginButtonsFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 100, 360, 100));
+
+        loginTitle.setBackground(new java.awt.Color(204, 204, 204));
+        loginTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        loginTitle.setForeground(java.awt.Color.black);
+        loginTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loginTitle.setText("Welcome! Please Log In");
+        loginTitle.setToolTipText("");
+        loginTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        loginFrame.add(loginTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 6, 348, -1));
+
+        passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passwordConfirmInput.setPreferredSize(new java.awt.Dimension(64, 25));
+        loginFrame.add(passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 110, 348, 30));
+
+        loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/gameLogo.png"))); // NOI18N
+        loginLogo.setText("loginSideLogo");
+        loginLogo.setToolTipText("");
+        loginLogo.setAlignmentY(0.0F);
+        loginLogo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginFrame.add(loginLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 198, -1));
+
+        usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        usernameInput.setToolTipText("");
+        usernameInput.setPreferredSize(new java.awt.Dimension(73, 25));
+        loginFrame.add(usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 37, 348, 30));
+
+        passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passwordInput.setPreferredSize(new java.awt.Dimension(64, 25));
+        loginFrame.add(passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 73, 348, 30));
+
+        createAccountCancelButton.setBackground(new java.awt.Color(255, 153, 153));
+        createAccountCancelButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        createAccountCancelButton.setForeground(java.awt.Color.white);
+        createAccountCancelButton.setToolTipText("");
+        createAccountCancelButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountCancelButton.setLabel("X");
+        createAccountCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createAccountCancelButtonClicked(evt);
+            }
+        });
+        loginFrame.add(createAccountCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 150, 50, 35));
+
+        createAccountConfirmButton.setBackground(new java.awt.Color(102, 153, 255));
+        createAccountConfirmButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        createAccountConfirmButton.setForeground(java.awt.Color.white);
+        createAccountConfirmButton.setToolTipText("");
+        createAccountConfirmButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountConfirmButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createAccountConfirmButton.setLabel("Register Account");
+        createAccountConfirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createAccountConfirmButtonClicked(evt);
+            }
+        });
+        loginFrame.add(createAccountConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 150, 294, 35));
+
+        getContentPane().add(loginFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 660));
 
         game2Frame.setBackground(new java.awt.Color(214, 196, 172));
         game2Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2425,10 +2489,6 @@ public class GUI_window extends javax.swing.JFrame {
 
         getContentPane().add(game1Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
-        game4Frame.setBackground(new java.awt.Color(214, 196, 172));
-        game4Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(game4Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2455,103 +2515,103 @@ public class GUI_window extends javax.swing.JFrame {
     
     
     
-    // SWITCH FRAME ===========================================================================
-    private void switchFrame(javax.swing.JPanel target){  
-        // Hiding all panels
-        mainMenuFrame.setVisible(false);
-        MM_topBar.setVisible(false);
-        loginFrame.setVisible(false);
-        game1Frame.setVisible(false);
-        game2Frame.setVisible(false);
-        game3Frame.setVisible(false);
-        game4Frame.setVisible(false);
-        
-        // Stop all timers
-        if(gameTimer != null) gameTimer.stop();
-        
-        PP.stopGame(); // Stops the timers inside the ping pong game
-        
-        
-        // Flipping between a login frame, main menu frame, or a game frame ----------------------------------
-        if(target == loginFrame){
-            this.setSize(580, 237);             // Make screen small for the log in section
-            
-            loginButtonsFrame.setVisible(true); // Showing the login frame
-            usernameInput.setText("");          // Resetting username 
-            passwordInput.setText("");          // Resetting password
-            passwordConfirmInput.setText("");   // Resetting confirm password
-            
-            passwordConfirmInput.setVisible(false);       // Making password confirm input and section invis
-            createAccountCancelButton.setVisible(false);  // Hiding the options for the register account
-            createAccountConfirmButton.setVisible(false); // Hiding the options for the register account
-        }
-        else if(target == mainMenuFrame){
-            this.setSize(800, 700);                               // Make screen big for anything other than the login screen
-            MM_topBar.setVisible(true);                           // Show the top bar in main menu
-            
-            MM_username.setText("Welcome, " + currentUser + "!"); // Changing username on top bar
-            MM_userSettingsPanel.setVisible(false);               // Hiding the user settings panel in case it was left open
-            gamesScrollFrame.setVisible(true);                    // Showing the games panel
-            MM_userSettingsButton.setVisible(true);               // Showing the user settings button
-            MM_logOutButton.setVisible(true);                     // Showing the log out button
-            MM_backToMenuButton.setVisible(false);                // Hiding the go back to menu since we are already there
-            
-            setHighscores();
-        }
-        
-        // Target frame is a game frame 
-        else{
-            this.setSize(800, 700);                  // Make screen big for anything other than the login screen
-            MM_topBar.setVisible(true);              // Show the top bar in game frames
-            
-            MM_userSettingsButton.setVisible(false); // Hiding user settings button
-            MM_logOutButton.setVisible(false);       // Hiding log out button
-            MM_backToMenuButton.setVisible(true);    // Showing the back to menu button
-            
-            // Setting the corresponding game reset and variables
-            if(target == game1Frame){
-                MM_username.setText("Matching Game"); // Changing the title to the game name
-                G1_disableCover.setVisible(true);     // Showign the disable cover so player knows to start game 
-                G1_timerBar.setValue(0);              // Set timer bar to zero 
-                G1_timerBar.setVisible(false);        // Hide Timer bar
-                G1_startButton.setVisible(true);      // Show the start button instead of timer bar
-                G1_startButton.setText("Start Game!"); // Change text to reset next press
-                G1_score.setText("0");                 // Sets the score back to 0
-                MG.shuffle();                          // Shuffles and resets the board
-            }
-            else if(target == game2Frame){
-                MM_username.setText("Dots and Boxes"); // Changing the title to the game name
-                DB.resetBoard();
-            }
-            else if(target == game3Frame){
-                MM_username.setText("Ping Pong");      // Changing game title
-                G3_playerScore.setText("0");           // Reseting player 1 score
-                G3_computerScore.setText("0");         // Resetting player 2 / computer score
-                G3_pointsPanel.setText("0");           // Resetting points label
-                G3_countDownTimer.setVisible(false);   // Hiding the countdown timer
-                PP.reset();                            // Resetting the game
-                
-                // Setting to single player mode
-                twoPlayerMode = false;          // Setting to single player mode
-                PP.setTwoPlayerMode(false);     // Setting game class to single player mode
-                G3_twoPlayerModeCover.setVisible(false);   // Hiding the two player mode display
-                G3_singlePlayerModeCover.setVisible(true); // Showing the single player mode display
-                G3_computerLabel.setText("Computer");      // Changing player 2 label to computer
-                G3_playerLabel.setText("Player");          // Changing the player 1 label to player
-                G3_twoPlayerButton.setBackground(new Color(214,196,172)); // Setting color to unclicked
-                G3_resetCover.setVisible(false);           // Hiding the reset button 
-                G3_cover.setVisible(true);                 // Showing the game start cover
-                G3_timerBar.setValue(0);                   // Resetting the time bar
-            }
-            else if(target == game4Frame){
-                MM_username.setText("<Game 4 Name>");
-            }
-        }
-        
-        // Showing target panel ONLY after everything finishes setting up
-        target.setVisible(true);
+// SWITCH FRAME ===========================================================================
+private void switchFrame(javax.swing.JPanel target){  
+    // Hiding all panels
+    mainMenuFrame.setVisible(false);
+    MM_topBar.setVisible(false);
+    loginFrame.setVisible(false);
+    game1Frame.setVisible(false);
+    game2Frame.setVisible(false);
+    game3Frame.setVisible(false);
+    game4Frame.setVisible(false);
+
+    // Stop all timers
+    if(gameTimer != null) gameTimer.stop();
+
+    PP.stopGame(); // Stops the timers inside the ping pong game
+
+
+    // Flipping between a login frame, main menu frame, or a game frame ----------------------------------
+    if(target == loginFrame){
+        this.setSize(580, 237);             // Make screen small for the log in section
+
+        loginButtonsFrame.setVisible(true); // Showing the login frame
+        usernameInput.setText("");          // Resetting username 
+        passwordInput.setText("");          // Resetting password
+        passwordConfirmInput.setText("");   // Resetting confirm password
+
+        passwordConfirmInput.setVisible(false);       // Making password confirm input and section invis
+        createAccountCancelButton.setVisible(false);  // Hiding the options for the register account
+        createAccountConfirmButton.setVisible(false); // Hiding the options for the register account
     }
-    // ========================================================================================
+    else if(target == mainMenuFrame){
+        this.setSize(800, 700);                               // Make screen big for anything other than the login screen
+        MM_topBar.setVisible(true);                           // Show the top bar in main menu
+
+        MM_username.setText("Welcome, " + currentUser + "!"); // Changing username on top bar
+        MM_userSettingsPanel.setVisible(false);               // Hiding the user settings panel in case it was left open
+        gamesScrollFrame.setVisible(true);                    // Showing the games panel
+        MM_userSettingsButton.setVisible(true);               // Showing the user settings button
+        MM_logOutButton.setVisible(true);                     // Showing the log out button
+        MM_backToMenuButton.setVisible(false);                // Hiding the go back to menu since we are already there
+
+        setHighscores();
+    }
+
+    // Target frame is a game frame 
+    else{
+        this.setSize(800, 700);                  // Make screen big for anything other than the login screen
+        MM_topBar.setVisible(true);              // Show the top bar in game frames
+
+        MM_userSettingsButton.setVisible(false); // Hiding user settings button
+        MM_logOutButton.setVisible(false);       // Hiding log out button
+        MM_backToMenuButton.setVisible(true);    // Showing the back to menu button
+
+        // Setting the corresponding game reset and variables
+        if(target == game1Frame){
+            MM_username.setText("Matching Game"); // Changing the title to the game name
+            G1_disableCover.setVisible(true);     // Showign the disable cover so player knows to start game 
+            G1_timerBar.setValue(0);              // Set timer bar to zero 
+            G1_timerBar.setVisible(false);        // Hide Timer bar
+            G1_startButton.setVisible(true);      // Show the start button instead of timer bar
+            G1_startButton.setText("Start Game!"); // Change text to reset next press
+            G1_score.setText("0");                 // Sets the score back to 0
+            MG.shuffle();                          // Shuffles and resets the board
+        }
+        else if(target == game2Frame){
+            MM_username.setText("Dots and Boxes"); // Changing the title to the game name
+            DB.resetBoard();
+        }
+        else if(target == game3Frame){
+            MM_username.setText("Ping Pong");      // Changing game title
+            G3_playerScore.setText("0");           // Reseting player 1 score
+            G3_computerScore.setText("0");         // Resetting player 2 / computer score
+            G3_pointsPanel.setText("0");           // Resetting points label
+            G3_countDownTimer.setVisible(false);   // Hiding the countdown timer
+            PP.reset();                            // Resetting the game
+
+            // Setting to single player mode
+            twoPlayerMode = false;          // Setting to single player mode
+            PP.setTwoPlayerMode(false);     // Setting game class to single player mode
+            G3_twoPlayerModeCover.setVisible(false);   // Hiding the two player mode display
+            G3_singlePlayerModeCover.setVisible(true); // Showing the single player mode display
+            G3_computerLabel.setText("Computer");      // Changing player 2 label to computer
+            G3_playerLabel.setText("Player");          // Changing the player 1 label to player
+            G3_twoPlayerButton.setBackground(new Color(214,196,172)); // Setting color to unclicked
+            G3_resetCover.setVisible(false);           // Hiding the reset button 
+            G3_cover.setVisible(true);                 // Showing the game start cover
+            G3_timerBar.setValue(0);                   // Resetting the time bar
+        }
+        else if(target == game4Frame){
+            MM_username.setText("Tanks");
+        }
+    }
+
+    // Showing target panel ONLY after everything finishes setting up
+    target.setVisible(true);
+}
+// ========================================================================================
     
     
 // LOGIN FUNCTIONS ========================================================================
@@ -3418,8 +3478,10 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
@@ -3429,6 +3491,8 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel8;
@@ -3438,6 +3502,10 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel92;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
