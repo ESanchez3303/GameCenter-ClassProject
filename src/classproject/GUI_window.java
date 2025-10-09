@@ -49,6 +49,7 @@ public class GUI_window extends javax.swing.JFrame {
         // Moving up frames
         game1Frame.setComponentZOrder(G1_disableCover, 0); 
         
+        
         // Color Frames:
         G1_disableCover.setBackground(new Color(175, 157, 136, 128)); // semi-transparent main color 
         
@@ -59,6 +60,10 @@ public class GUI_window extends javax.swing.JFrame {
         
         
         
+        
+        // ============================================================================================================
+        // ============================================ SETTING UP CLASSES ============================================
+        // ============================================================================================================
         // Setting up Game 1: -----------------------------------------------------------------------
         List<JLabel> MG_values = new ArrayList<>(Arrays.asList(
             G1_cardValue1, G1_cardValue2, G1_cardValue3, G1_cardValue4, G1_cardValue5, G1_cardValue6,
@@ -74,6 +79,8 @@ public class GUI_window extends javax.swing.JFrame {
 
         MG.setUp(MG_values, MG_images, G1_score, MG_matchScoreIncrease, MG_timerScoreIncrease, MG_showingTimeAfterAttempt);
         // -------------------------------------------------------------------------------------------
+        
+
         // Setting up Game 2: ------------------------------------------------------------------------
         DB_player1TopIcon.setText(DB_player1Icon); // Setting up the icons on the top for the players
         DB_player2TopIcon.setText(DB_player2Icon); // Setting up the icons on the top for the players
@@ -93,6 +100,8 @@ public class GUI_window extends javax.swing.JFrame {
         ));
         DB.setUp(DB_player1Icon, DB_player2Icon, G2_player1, G2_player2, DB_lines, DB_outsideHorz, DB_outsideVert, DB_boxes);
         // -------------------------------------------------------------------------------------------
+        
+
         // Setting up Game 3: ------------------------------------------------------------------------
         G3_gameDescription.setText(G3_gameDescription.getText() + Integer.toString(GAME3_TIME) + " Seconds");            // Sets up the description of the game 
         G3_gameDescription2.setText(G3_gameDescription2.getText() + Integer.toString(GAME3_TIME) + " Seconds");          // Sets up the description of the game
@@ -100,6 +109,9 @@ public class GUI_window extends javax.swing.JFrame {
         
         // -------------------------------------------------------------------------------------------
         
+        
+        // Setting up Game 4: ------------------------------------------------------------------------
+        T.setUp(T_mapItem1, T_mapItem2, T_mapItem3);
         
  
     }
@@ -119,12 +131,28 @@ public class GUI_window extends javax.swing.JFrame {
         MM_logOutButton = new javax.swing.JButton();
         MM_backToMenuButton = new javax.swing.JButton();
         game4Frame = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        T_gameBox = new javax.swing.JPanel();
+        T_mapItem1 = new javax.swing.JPanel();
+        T_mapItem2 = new javax.swing.JPanel();
+        T_floor = new javax.swing.JPanel();
+        T_mapItem3 = new javax.swing.JPanel();
+        T_cover = new javax.swing.JPanel();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
+        T_map3Button = new javax.swing.JLabel();
+        T_map1Button = new javax.swing.JLabel();
+        T_map2Button = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel79 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel82 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel61 = new javax.swing.JLabel();
+        T_player2Score = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel64 = new javax.swing.JLabel();
+        T_player1Score = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
         game3Frame = new javax.swing.JPanel();
@@ -464,9 +492,108 @@ public class GUI_window extends javax.swing.JFrame {
         game4Frame.setBackground(new java.awt.Color(214, 196, 172));
         game4Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(186, 173, 155));
-        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        game4Frame.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 765, 515));
+        T_gameBox.setBackground(new java.awt.Color(186, 173, 155));
+        T_gameBox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        T_gameBox.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        T_mapItem1.setForeground(new java.awt.Color(60, 63, 65));
+        T_gameBox.add(T_mapItem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 110, 160));
+
+        T_mapItem2.setForeground(new java.awt.Color(60, 63, 65));
+        T_gameBox.add(T_mapItem2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 130, 90));
+
+        T_floor.setForeground(new java.awt.Color(60, 63, 65));
+        T_gameBox.add(T_floor, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 465, 761, 48));
+
+        T_mapItem3.setForeground(new java.awt.Color(60, 63, 65));
+        T_gameBox.add(T_mapItem3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 130, 90));
+
+        game4Frame.add(T_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 765, 515));
+
+        T_cover.setBackground(new java.awt.Color(214, 196, 172));
+        T_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        T_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel78.setBackground(java.awt.Color.black);
+        jLabel78.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel78.setForeground(java.awt.Color.black);
+        jLabel78.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel78.setText("A/D - Move | W/S - Angle");
+        T_cover.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 410, 50));
+
+        jLabel80.setBackground(java.awt.Color.black);
+        jLabel80.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        jLabel80.setForeground(java.awt.Color.black);
+        jLabel80.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel80.setText("Player 1 :");
+        T_cover.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 270, 50));
+
+        jLabel81.setBackground(java.awt.Color.black);
+        jLabel81.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel81.setForeground(java.awt.Color.black);
+        jLabel81.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel81.setText("Left/Right - Move | Up/Down - Angle");
+        T_cover.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 410, 50));
+
+        jLabel83.setBackground(java.awt.Color.black);
+        jLabel83.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        jLabel83.setForeground(java.awt.Color.black);
+        jLabel83.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel83.setText("Player 2 :");
+        T_cover.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 270, 50));
+
+        T_map3Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tanks_map3.png"))); // NOI18N
+        T_map3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        T_map3Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                T_map1ButtonMouseClicked(evt);
+            }
+        });
+        T_cover.add(T_map3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 200, 200));
+
+        T_map1Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tanks_map1.png"))); // NOI18N
+        T_map1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        T_map1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                T_map1ButtonMouseClicked(evt);
+            }
+        });
+        T_cover.add(T_map1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 200, 200));
+
+        T_map2Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tanks_map2.png"))); // NOI18N
+        T_map2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        T_map2Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                T_map1ButtonMouseClicked(evt);
+            }
+        });
+        T_cover.add(T_map2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 200, 200));
+
+        jPanel7.setBackground(new java.awt.Color(151, 133, 108));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel79.setBackground(java.awt.Color.white);
+        jLabel79.setFont(new java.awt.Font("Segoe UI", 1, 34)); // NOI18N
+        jLabel79.setForeground(java.awt.Color.white);
+        jLabel79.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel79.setText("- Game Instructions -");
+        jPanel7.add(jLabel79);
+
+        T_cover.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 730, 60));
+
+        jPanel8.setBackground(new java.awt.Color(151, 133, 108));
+        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel82.setBackground(java.awt.Color.white);
+        jLabel82.setFont(new java.awt.Font("Segoe UI", 1, 34)); // NOI18N
+        jLabel82.setForeground(java.awt.Color.white);
+        jLabel82.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel82.setText("Choose A Map To Start :");
+        jPanel8.add(jLabel82);
+
+        T_cover.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 730, 60));
+
+        game4Frame.add(T_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 765, 515));
 
         jPanel5.setBackground(new java.awt.Color(153, 135, 108));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -476,12 +603,12 @@ public class GUI_window extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel61.setBackground(java.awt.Color.white);
-        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel61.setForeground(java.awt.Color.white);
-        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel61.setText("0");
-        jPanel3.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 30, 50));
+        T_player2Score.setBackground(java.awt.Color.white);
+        T_player2Score.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        T_player2Score.setForeground(java.awt.Color.white);
+        T_player2Score.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        T_player2Score.setText("0");
+        jPanel3.add(T_player2Score, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 30, 50));
 
         jPanel5.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 5, 50, 60));
 
@@ -489,12 +616,12 @@ public class GUI_window extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel64.setBackground(java.awt.Color.white);
-        jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel64.setForeground(java.awt.Color.white);
-        jLabel64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel64.setText("0");
-        jPanel6.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 30, 50));
+        T_player1Score.setBackground(java.awt.Color.white);
+        T_player1Score.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        T_player1Score.setForeground(java.awt.Color.white);
+        T_player1Score.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        T_player1Score.setText("0");
+        jPanel6.add(T_player1Score, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 30, 50));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 5, 50, 60));
 
@@ -2509,6 +2636,7 @@ public class GUI_window extends javax.swing.JFrame {
     private final MatchingGame MG = new MatchingGame();                                   //||
     private final DotsAndBoxesGame DB = new DotsAndBoxesGame();                           //||
     private final PingPong PP = new PingPong();                                           //||
+    private final TanksGame T = new TanksGame();                                          //||
     // =======================================================================================
     // =======================================================================================
     
@@ -2604,7 +2732,14 @@ private void switchFrame(javax.swing.JPanel target){
             G3_timerBar.setValue(0);                   // Resetting the time bar
         }
         else if(target == game4Frame){
-            MM_username.setText("Tanks");
+            MM_username.setText("Tanks"); // Changing the title
+            
+            T_cover.setVisible(true);     // Showing the cover
+            T_gameBox.setVisible(false);  // Hiding the game box
+            
+            T_player1Score.setText("0");  // Resetting scores
+            T_player2Score.setText("0");  // Resetting scores
+            
         }
     }
 
@@ -2998,7 +3133,7 @@ private void switchFrame(javax.swing.JPanel target){
         }
     }//GEN-LAST:event_DB_lineClicked
 
-    
+    // ========================================================================================
     
     
     
@@ -3163,11 +3298,43 @@ private void switchFrame(javax.swing.JPanel target){
             
         }
     }//GEN-LAST:event_G3_twoPlayerButtonMousePressed
+
+// ========================================================================================
+ 
+    
+    
+    
+    
+// GAME 4 FUNCTIONS ==================================================================== 
+    
+    int mapChosen = 0;
+    
+    private void T_map1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_map1ButtonMouseClicked
+        JLabel clickedMap = (JLabel) evt.getSource();
+        if(clickedMap == T_map1Button)
+            mapChosen = 1;
+        else if(clickedMap == T_map2Button)
+            mapChosen = 2;
+        else if(clickedMap == T_map3Button)
+            mapChosen = 3;
+        else
+            mapChosen = 0;
+        
+        // Double checking that we are choosing a map (no idea why not but just in case)
+        if(mapChosen != 0){
+            // Switch the frames that are being shown
+            T_cover.setVisible(false);
+            T_gameBox.setVisible(true);
+            
+            // Draw the map - this also sets the boundaries
+            T.drawMap(mapChosen);
+        }
+    }//GEN-LAST:event_T_map1ButtonMouseClicked
    
 
     
     
-// ========================================================================================
+   
     
     
     
@@ -3175,8 +3342,7 @@ private void switchFrame(javax.swing.JPanel target){
     
     
     
-    
-    
+    // ========================================================================================
     
     
     
@@ -3396,6 +3562,17 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel MM_userSettingsPanelTitle;
     private javax.swing.JLabel MM_username;
     private javax.swing.JTextField MM_usernameInput;
+    private javax.swing.JPanel T_cover;
+    private javax.swing.JPanel T_floor;
+    private javax.swing.JPanel T_gameBox;
+    private javax.swing.JLabel T_map1Button;
+    private javax.swing.JLabel T_map2Button;
+    private javax.swing.JLabel T_map3Button;
+    private javax.swing.JPanel T_mapItem1;
+    private javax.swing.JPanel T_mapItem2;
+    private javax.swing.JPanel T_mapItem3;
+    private javax.swing.JLabel T_player1Score;
+    private javax.swing.JLabel T_player2Score;
     private javax.swing.JButton createAccountButton;
     private javax.swing.JButton createAccountCancelButton;
     private javax.swing.JButton createAccountConfirmButton;
@@ -3478,10 +3655,8 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
@@ -3495,7 +3670,13 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel91;
@@ -3503,9 +3684,10 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
