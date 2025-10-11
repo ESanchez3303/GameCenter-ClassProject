@@ -112,7 +112,7 @@ public class GUI_window extends javax.swing.JFrame {
         
         // Setting up Game 4: ------------------------------------------------------------------------
         T.setUp(T_mapItem1, T_mapItem2, T_mapItem3, T_player1, T_player2, T_player1Lifes, T_player2Lifes,
-                T_gasBar, T_ball, T_gameBox);
+                T_gasBar, T_ball, T_gameBox, T_powerBar, T_floorLine);
         
  
     }
@@ -133,6 +133,7 @@ public class GUI_window extends javax.swing.JFrame {
         MM_backToMenuButton = new javax.swing.JButton();
         game4Frame = new javax.swing.JPanel();
         T_gameBox = new javax.swing.JPanel();
+        T_ball = new javax.swing.JLabel();
         T_mapItem1 = new javax.swing.JPanel();
         T_mapItem2 = new javax.swing.JPanel();
         T_floor = new javax.swing.JPanel();
@@ -143,12 +144,11 @@ public class GUI_window extends javax.swing.JFrame {
         T_player1Lifes = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         T_player2Lifes = new javax.swing.JLabel();
-        T_gasBar1 = new javax.swing.JProgressBar();
+        T_powerBar = new javax.swing.JProgressBar();
         T_mapItem3 = new javax.swing.JPanel();
         T_floorLine = new javax.swing.JSeparator();
         T_player1 = new javax.swing.JLabel();
         T_player2 = new javax.swing.JLabel();
-        T_ball = new javax.swing.JLabel();
         T_cover = new javax.swing.JPanel();
         jLabel78 = new javax.swing.JLabel();
         jLabel80 = new javax.swing.JLabel();
@@ -168,8 +168,8 @@ public class GUI_window extends javax.swing.JFrame {
         T_player2Score = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         T_player1Score = new javax.swing.JLabel();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
+        T_player2Indicator = new javax.swing.JLabel();
+        T_player1Indicator = new javax.swing.JLabel();
         mainMenuFrame = new javax.swing.JPanel();
         gamesScrollFrame = new javax.swing.JScrollPane();
         gamesPanel = new javax.swing.JPanel();
@@ -519,6 +519,12 @@ public class GUI_window extends javax.swing.JFrame {
         });
         T_gameBox.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        T_ball.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        T_ball.setForeground(new java.awt.Color(102, 102, 102));
+        T_ball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        T_ball.setText("●");
+        T_gameBox.add(T_ball, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 310, 15, 15));
+
         T_mapItem1.setBackground(new java.awt.Color(204, 204, 204));
         T_mapItem1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         T_mapItem1.setForeground(new java.awt.Color(60, 63, 65));
@@ -557,7 +563,7 @@ public class GUI_window extends javax.swing.JFrame {
         T_player1Lifes.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         T_player1Lifes.setForeground(java.awt.Color.red);
         T_player1Lifes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        T_player1Lifes.setText("♥   ♥   ♥");
+        T_player1Lifes.setText("     ♥     ");
         jPanel4.add(T_player1Lifes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 140, -1));
 
         T_floor.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 9, 140, 30));
@@ -571,15 +577,15 @@ public class GUI_window extends javax.swing.JFrame {
         T_player2Lifes.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         T_player2Lifes.setForeground(java.awt.Color.red);
         T_player2Lifes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        T_player2Lifes.setText("♥   ♥   ♥");
+        T_player2Lifes.setText("  ♥   ♥  ");
         jPanel9.add(T_player2Lifes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 140, -1));
 
         T_floor.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 9, 140, 30));
 
-        T_gasBar1.setForeground(new java.awt.Color(255, 51, 51));
-        T_gasBar1.setValue(50);
-        T_gasBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        T_floor.add(T_gasBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 11, 140, 25));
+        T_powerBar.setForeground(new java.awt.Color(255, 51, 51));
+        T_powerBar.setValue(50);
+        T_powerBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        T_floor.add(T_powerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 11, 140, 25));
 
         T_gameBox.add(T_floor, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 465, 761, 48));
 
@@ -596,12 +602,6 @@ public class GUI_window extends javax.swing.JFrame {
         T_player2.setBackground(java.awt.Color.white);
         T_player2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank_p2.png"))); // NOI18N
         T_gameBox.add(T_player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 402, 80, 80));
-
-        T_ball.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        T_ball.setForeground(new java.awt.Color(102, 102, 102));
-        T_ball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        T_ball.setText("●");
-        T_gameBox.add(T_ball, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 310, 15, 15));
 
         game4Frame.add(T_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 765, 515));
 
@@ -734,19 +734,19 @@ public class GUI_window extends javax.swing.JFrame {
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 5, 50, 60));
 
-        jLabel73.setBackground(java.awt.Color.white);
-        jLabel73.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
-        jLabel73.setForeground(new java.awt.Color(225, 225, 225));
-        jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel73.setText("Player 2 ] -------");
-        jPanel5.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 5, 250, 60));
+        T_player2Indicator.setBackground(java.awt.Color.white);
+        T_player2Indicator.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        T_player2Indicator.setForeground(new java.awt.Color(225, 225, 225));
+        T_player2Indicator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        T_player2Indicator.setText("Player 2 ] -------");
+        jPanel5.add(T_player2Indicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 5, 250, 60));
 
-        jLabel74.setBackground(java.awt.Color.white);
-        jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
-        jLabel74.setForeground(new java.awt.Color(225, 225, 225));
-        jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel74.setText("-------[ Player 1");
-        jPanel5.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 5, 250, 60));
+        T_player1Indicator.setBackground(java.awt.Color.white);
+        T_player1Indicator.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        T_player1Indicator.setForeground(new java.awt.Color(225, 225, 225));
+        T_player1Indicator.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        T_player1Indicator.setText("-------[ Player 1");
+        jPanel5.add(T_player1Indicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 5, 250, 60));
 
         game4Frame.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 70));
 
@@ -3441,7 +3441,7 @@ private void switchFrame(javax.swing.JPanel target){
         // Ignore inputs if the cover is visible 
         if(T_cover.isVisible())
             return;
-        System.out.println("pressed");
+        
         // Calling functions when keys are pressed down
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_LEFT  -> T.leftPressed();
@@ -3457,13 +3457,13 @@ private void switchFrame(javax.swing.JPanel target){
         if(T_cover.isVisible())
             return;
         
-        System.out.println("released");
         // Calling functions when keys are pressed down
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_LEFT  -> T.leftReleased();
             case KeyEvent.VK_RIGHT -> T.rightReleased();
             case KeyEvent.VK_UP    -> T.upReleased();
             case KeyEvent.VK_DOWN  -> T.downReleased();
+            case KeyEvent.VK_SPACE -> T.spaceReleased();
         }
         
         
@@ -3706,7 +3706,6 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JSeparator T_floorLine;
     private javax.swing.JPanel T_gameBox;
     private javax.swing.JProgressBar T_gasBar;
-    private javax.swing.JProgressBar T_gasBar1;
     private javax.swing.JLabel T_map1Button;
     private javax.swing.JLabel T_map2Button;
     private javax.swing.JLabel T_map3Button;
@@ -3714,11 +3713,14 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JPanel T_mapItem2;
     private javax.swing.JPanel T_mapItem3;
     private javax.swing.JLabel T_player1;
+    private javax.swing.JLabel T_player1Indicator;
     private javax.swing.JLabel T_player1Lifes;
     private javax.swing.JLabel T_player1Score;
     private javax.swing.JLabel T_player2;
+    private javax.swing.JLabel T_player2Indicator;
     private javax.swing.JLabel T_player2Lifes;
     private javax.swing.JLabel T_player2Score;
+    private javax.swing.JProgressBar T_powerBar;
     private javax.swing.JButton createAccountButton;
     private javax.swing.JButton createAccountCancelButton;
     private javax.swing.JButton createAccountConfirmButton;
@@ -3813,8 +3815,6 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
