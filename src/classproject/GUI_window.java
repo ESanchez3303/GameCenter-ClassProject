@@ -112,7 +112,8 @@ public class GUI_window extends javax.swing.JFrame {
         
         // Setting up Game 4: ------------------------------------------------------------------------
         T.setUp(T_mapItem1, T_mapItem2, T_mapItem3, T_player1, T_player2, T_player1Lifes, T_player2Lifes,
-                T_gasBar, T_ball, T_gameBox, T_powerBar, T_floorLine);
+                T_gasBar, T_ball, T_gameBox, T_powerBar, T_floorLine, T_matchCover, T_matchWinnerText,
+                T_player1Score, T_player2Score);
         
  
     }
@@ -133,6 +134,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_backToMenuButton = new javax.swing.JButton();
         game4Frame = new javax.swing.JPanel();
         T_gameBox = new javax.swing.JPanel();
+        T_matchCover = new javax.swing.JPanel();
+        T_matchCoverButton = new javax.swing.JButton();
+        T_matchWinnerText = new javax.swing.JLabel();
         T_ball = new javax.swing.JLabel();
         T_mapItem1 = new javax.swing.JPanel();
         T_mapItem2 = new javax.swing.JPanel();
@@ -150,13 +154,19 @@ public class GUI_window extends javax.swing.JFrame {
         T_player1 = new javax.swing.JLabel();
         T_player2 = new javax.swing.JLabel();
         T_cover = new javax.swing.JPanel();
+        T_gameOverCover = new javax.swing.JPanel();
+        T_gameOverText = new javax.swing.JLabel();
+        T_restartGameButton = new javax.swing.JButton();
         jLabel78 = new javax.swing.JLabel();
         jLabel80 = new javax.swing.JLabel();
         jLabel81 = new javax.swing.JLabel();
         jLabel83 = new javax.swing.JLabel();
-        T_map3Button = new javax.swing.JLabel();
+        T_map1Cover = new javax.swing.JPanel();
+        T_map2Cover = new javax.swing.JPanel();
+        T_map3Cover = new javax.swing.JPanel();
         T_map1Button = new javax.swing.JLabel();
         T_map2Button = new javax.swing.JLabel();
+        T_map3Button = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel79 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -519,6 +529,30 @@ public class GUI_window extends javax.swing.JFrame {
         });
         T_gameBox.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        T_matchCover.setBackground(new java.awt.Color(153, 135, 108));
+        T_matchCover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        T_matchCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        T_matchCoverButton.setBackground(new java.awt.Color(200, 151, 115));
+        T_matchCoverButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        T_matchCoverButton.setForeground(java.awt.Color.white);
+        T_matchCoverButton.setText("Continue");
+        T_matchCoverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        T_matchCoverButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                T_matchCoverButtonMouseClicked(evt);
+            }
+        });
+        T_matchCover.add(T_matchCoverButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 370, 40));
+
+        T_matchWinnerText.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        T_matchWinnerText.setForeground(java.awt.Color.white);
+        T_matchWinnerText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        T_matchWinnerText.setText("Player <1/2> Wins!");
+        T_matchCover.add(T_matchWinnerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, 370, 40));
+
+        T_gameBox.add(T_matchCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 390, 110));
+
         T_ball.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         T_ball.setForeground(new java.awt.Color(102, 102, 102));
         T_ball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -528,12 +562,12 @@ public class GUI_window extends javax.swing.JFrame {
         T_mapItem1.setBackground(new java.awt.Color(204, 204, 204));
         T_mapItem1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         T_mapItem1.setForeground(new java.awt.Color(60, 63, 65));
-        T_gameBox.add(T_mapItem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 700, 150));
+        T_gameBox.add(T_mapItem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 100, 100));
 
         T_mapItem2.setBackground(new java.awt.Color(204, 204, 204));
         T_mapItem2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         T_mapItem2.setForeground(new java.awt.Color(60, 63, 65));
-        T_gameBox.add(T_mapItem2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 150, 40));
+        T_gameBox.add(T_mapItem2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 100, 230));
 
         T_floor.setBackground(new java.awt.Color(186, 205, 146));
         T_floor.setForeground(new java.awt.Color(60, 63, 65));
@@ -592,22 +626,46 @@ public class GUI_window extends javax.swing.JFrame {
         T_mapItem3.setBackground(new java.awt.Color(204, 204, 204));
         T_mapItem3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         T_mapItem3.setForeground(new java.awt.Color(60, 63, 65));
-        T_gameBox.add(T_mapItem3, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 320, 150, 40));
+        T_gameBox.add(T_mapItem3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 550, 40));
         T_gameBox.add(T_floorLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 463, 762, 30));
 
         T_player1.setBackground(java.awt.Color.white);
         T_player1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank_p1.png"))); // NOI18N
-        T_gameBox.add(T_player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 402, 80, 80));
+        T_gameBox.add(T_player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 48, 80, 80));
 
         T_player2.setBackground(java.awt.Color.white);
         T_player2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank_p2.png"))); // NOI18N
-        T_gameBox.add(T_player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 402, 80, 80));
+        T_gameBox.add(T_player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 48, 80, 80));
 
         game4Frame.add(T_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 765, 515));
 
         T_cover.setBackground(new java.awt.Color(214, 196, 172));
         T_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         T_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        T_gameOverCover.setBackground(new java.awt.Color(214, 196, 172));
+        T_gameOverCover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        T_gameOverCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        T_gameOverText.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        T_gameOverText.setForeground(java.awt.Color.white);
+        T_gameOverText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        T_gameOverText.setText("Player <1/2> Wins Game!");
+        T_gameOverCover.add(T_gameOverText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 130));
+
+        T_restartGameButton.setBackground(new java.awt.Color(200, 151, 115));
+        T_restartGameButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        T_restartGameButton.setForeground(java.awt.Color.white);
+        T_restartGameButton.setText("Restart Game");
+        T_restartGameButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        T_restartGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                T_restartGameButtonMouseClicked(evt);
+            }
+        });
+        T_gameOverCover.add(T_restartGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 590, 80));
+
+        T_cover.add(T_gameOverCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 740, 260));
 
         jLabel78.setBackground(java.awt.Color.black);
         jLabel78.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -636,15 +694,9 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel83.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel83.setText("Angle:");
         T_cover.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 270, 50));
-
-        T_map3Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tanks_map3.png"))); // NOI18N
-        T_map3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        T_map3Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                T_map1ButtonMouseClicked(evt);
-            }
-        });
-        T_cover.add(T_map3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 200, 200));
+        T_cover.add(T_map1Cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 200, 200));
+        T_cover.add(T_map2Cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 200, 200));
+        T_cover.add(T_map3Cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 200, 200));
 
         T_map1Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tanks_map1.png"))); // NOI18N
         T_map1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -663,6 +715,15 @@ public class GUI_window extends javax.swing.JFrame {
             }
         });
         T_cover.add(T_map2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 200, 200));
+
+        T_map3Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tanks_map3.png"))); // NOI18N
+        T_map3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        T_map3Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                T_map1ButtonMouseClicked(evt);
+            }
+        });
+        T_cover.add(T_map3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 200, 200));
 
         jPanel7.setBackground(new java.awt.Color(151, 133, 108));
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2846,10 +2907,19 @@ private void switchFrame(javax.swing.JPanel target){
             
             T_cover.setVisible(true);     // Showing the cover
             T_gameBox.setVisible(false);  // Hiding the game box
+            T_gameOverCover.setVisible(false); // Hiding the game over cover
+            T_matchCover.setVisible(false);    // Hiding the match cover 
             
             T_player1Score.setText("0");  // Resetting scores
             T_player2Score.setText("0");  // Resetting scores
             
+            map1WonBy = 0; // Resetting the matches won by 
+            map2WonBy = 0;
+            map3WonBy = 0;
+            
+            T_map1Cover.setVisible(false); // Hidding each cover
+            T_map2Cover.setVisible(false);
+            T_map3Cover.setVisible(false);
         }
     }
 
@@ -3417,19 +3487,33 @@ private void switchFrame(javax.swing.JPanel target){
     
     
     
-// GAME 4 FUNCTIONS ====================================================================  
+// GAME 4 FUNCTIONS ====================================================================
+    int map1WonBy = 0;
+    int map2WonBy = 0;
+    int map3WonBy = 0;
     private void T_map1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_map1ButtonMouseClicked
-        T_gameBox.setLayout(null);
         
+        if(T_gameOverCover.isVisible())
+            return;
         
         // Drawing the map depending on which button was pressed (1-3)
         JLabel clickedMap = (JLabel) evt.getSource();
-        if(clickedMap == T_map1Button)
+        T_gameBox.setLayout(null);
+        if(clickedMap == T_map1Button){
+            if(map1WonBy != 0) // If someone already won this map, do not go into it
+                return;
             T.drawMap(1);
-        else if(clickedMap == T_map2Button)
+        }
+        else if(clickedMap == T_map2Button){
+            if(map2WonBy != 0)
+                return;
             T.drawMap(2);
-        else if(clickedMap == T_map3Button)
+        }
+        else if(clickedMap == T_map3Button){
+            if(map3WonBy != 0)
+                return;
             T.drawMap(3);
+        }
         
         // Uncovering the game after the map has loaded
         T_cover.setVisible(false);
@@ -3468,7 +3552,56 @@ private void switchFrame(javax.swing.JPanel target){
         
         
     }//GEN-LAST:event_T_gameBoxKeyReleased
+
+    private void T_matchCoverButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_matchCoverButtonMouseClicked
+        // Saving who won the match so we can show that in the next screen
+        switch(T.map){
+            case 1 -> {map1WonBy = T.matchWonBy;}
+            case 2 -> {map2WonBy = T.matchWonBy;}
+            case 3 -> {map3WonBy = T.matchWonBy;}
+        }
+        
+        // Making the covers for the game maps if they have already been played and won by someone
+        Color green = new Color(5,180,89,150);
+        Color red = new Color(237,28,36,150);
+        if(map1WonBy != 0){
+            T_map1Cover.setBackground((map1WonBy == 1) ? green : red);
+            T_map1Cover.setVisible(true); 
+        }
+        if(map2WonBy != 0){
+            T_map2Cover.setBackground((map2WonBy == 1) ? green : red);
+            T_map2Cover.setVisible(true);
+        }
+        if(map3WonBy != 0){
+            T_map3Cover.setBackground((map3WonBy == 1) ? green : red);
+            T_map3Cover.setVisible(true);
+        }
+        
+        T_matchCover.setVisible(false); // Hiding again the match cover so that it does not show with through regular cover
+        T_cover.setVisible(true); // Bringing back the cover with new covers on top
+        T_gameBox.setVisible(false); // Hiding the game
+        
+        // If player 1 wins the entire game
+        if((map1WonBy == 1 && map2WonBy == 1) ||
+           (map1WonBy == 1 && map3WonBy == 1) ||
+            map2WonBy == 1 && map3WonBy == 1){
+            T_gameOverText.setText("Player 1 Wins Game!");
+            T_gameOverCover.setVisible(true);
+        }
+        // If player 2 wins the entire game
+        else if((map1WonBy == 2 && map2WonBy == 2) ||
+                (map1WonBy == 2 && map3WonBy == 2) ||
+                 map2WonBy == 2 && map3WonBy == 2){
+            T_gameOverText.setText("Player 2 Wins Game!");
+            T_gameOverCover.setVisible(true);
+        }
+    }//GEN-LAST:event_T_matchCoverButtonMouseClicked
+
+    private void T_restartGameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_restartGameButtonMouseClicked
+        switchFrame(game4Frame);
+    }//GEN-LAST:event_T_restartGameButtonMouseClicked
    
+    
 
     
     
@@ -3705,13 +3838,21 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JPanel T_floor;
     private javax.swing.JSeparator T_floorLine;
     private javax.swing.JPanel T_gameBox;
+    private javax.swing.JPanel T_gameOverCover;
+    private javax.swing.JLabel T_gameOverText;
     private javax.swing.JProgressBar T_gasBar;
     private javax.swing.JLabel T_map1Button;
+    private javax.swing.JPanel T_map1Cover;
     private javax.swing.JLabel T_map2Button;
+    private javax.swing.JPanel T_map2Cover;
     private javax.swing.JLabel T_map3Button;
+    private javax.swing.JPanel T_map3Cover;
     private javax.swing.JPanel T_mapItem1;
     private javax.swing.JPanel T_mapItem2;
     private javax.swing.JPanel T_mapItem3;
+    private javax.swing.JPanel T_matchCover;
+    private javax.swing.JButton T_matchCoverButton;
+    private javax.swing.JLabel T_matchWinnerText;
     private javax.swing.JLabel T_player1;
     private javax.swing.JLabel T_player1Indicator;
     private javax.swing.JLabel T_player1Lifes;
@@ -3721,6 +3862,7 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel T_player2Lifes;
     private javax.swing.JLabel T_player2Score;
     private javax.swing.JProgressBar T_powerBar;
+    private javax.swing.JButton T_restartGameButton;
     private javax.swing.JButton createAccountButton;
     private javax.swing.JButton createAccountCancelButton;
     private javax.swing.JButton createAccountConfirmButton;

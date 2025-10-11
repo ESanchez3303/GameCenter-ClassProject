@@ -25,6 +25,10 @@ public class TanksGame {
     JLabel ball;
     JPanel gameBox;
     int floorLineYLocation;
+    JPanel matchCover;
+    JLabel matchWinnerText;
+    JLabel player1Score;
+    JLabel player2Score;
     
     
     // BIG GAME VARIABLES:
@@ -37,6 +41,10 @@ public class TanksGame {
     int POWER_TIMER_TICK = 10;
     int POWER_STEP = 1;
     int CYCLES_WAIT_AFTER_IMPACT = 10; // Time to wait after an impact
+    double GRAVITY = 0.7;     // Arc shape (vel. going downward)
+    double SPEED_SCALE = 0.3; // Arc shape (vel. long wise)
+    int FALLING_STEP = 10;
+    
     
     // Game Variables:
     int floor;
@@ -44,10 +52,12 @@ public class TanksGame {
     int maxLocation;
     int map = 0;
     boolean ballIsFlying = false;
+    int matchWonBy = 0;
     
     
     // Player Variables
     int gasLeft = 0;
+    boolean playerIsFalling = false;
     JLabel currentPlayer;
     TurretPanel player1Turret;
     TurretPanel player2Turret;
@@ -61,8 +71,7 @@ public class TanksGame {
     int cyclesWaited = 0;     // Keeps track of cycles waited
     double ballVelX = 0;
     double ballVelY = 0;
-    double GRAVITY = 0.4;     // Arc shape (vel. going downward)
-    double SPEED_SCALE = 0.3; // Arc shape (vel. long wise)
+    
     
     
     
@@ -73,7 +82,7 @@ public class TanksGame {
     public void setUp(JPanel mi1, JPanel mi2, JPanel mi3,
                       JLabel p1, JLabel p2, JLabel p1L, JLabel p2L,
                       JProgressBar g, JLabel b, JPanel gb, JProgressBar p,
-                      JSeparator fl){
+                      JSeparator fl, JPanel c, JLabel mw, JLabel p1s, JLabel p2s){
         
         // Set up variables with this function instead of a constructor
         player1 = p1;
@@ -93,6 +102,10 @@ public class TanksGame {
         powerBar = p;
         powerBar.setMaximum(POWER_BAR_MAX);
         floorLineYLocation = fl.getLocation().y;
+        matchCover = c;
+        matchWinnerText = mw;
+        player1Score = p1s;
+        player2Score = p2s;
         
         
         
@@ -123,9 +136,13 @@ public class TanksGame {
     public void leftReleased()  {leftPressed = false; playerMoving = false;}
     public void rightReleased()  {rightPressed = false; playerMoving = false;}
     public void spacePressed() {
+        if(ballIsFlying)
+            return;
         powerTimer.start();
     } 
     public void spaceReleased(){
+        if(ballIsFlying)
+            return;
         powerTimer.stop();        // Stopping the power growing
         
         // Game clock will then use these saved variables to call moveBall()
@@ -198,26 +215,33 @@ public class TanksGame {
                 mapItem3.setVisible(true);  
             }
             case 3 -> {
-                mapItem1.setLocation(30,2);    
-                mapItem1.setSize(700,150);
+                mapItem1.setLocation(330,350);    
+                mapItem1.setSize(100,100);
                 mapItem1.setVisible(true);  
                 
-                mapItem2.setLocation(2,200);    
-                mapItem2.setSize(200,40);
+                mapItem2.setLocation(330,60);    
+                mapItem2.setSize(100,230);
                 mapItem2.setVisible(true);  
                 
-                mapItem3.setLocation(563,200);    
-                mapItem3.setSize(200,40);
+                mapItem3.setLocation(110,110);    
+                mapItem3.setSize(550,40);
                 mapItem3.setVisible(true);  
             }
         }
         
         // Resetting other visuals
-        player1.setLocation(20,402);       // Moving player 1 to start
-        player2.setLocation(655,402);      // Moving player 2 to start
-        currentPlayer = player2;           // Setting the current player to player1
-        player1Lifes.setText(threeHeart);  // Resetting the lives
-        player2Lifes.setText(threeHeart);  // Resetting the lives
+        if(map == 3){
+            player1.setLocation(130,48);
+            player2.setLocation(560,48);
+            playerIsFalling = false;
+        }
+        else{
+            player1.setLocation(20,402);       // Moving player 1 to start
+            player2.setLocation(655,402);      // Moving player 2 to start
+        }
+        currentPlayer = player1;           // Setting the current player to player1
+        player1Lifes.setText(oneHeart);    // Resetting the lives
+        player2Lifes.setText(oneHeart);    // Resetting the lives
         gasBar.setValue(100);              // Resetting the gas
         gasLeft = 100;                     // Resetting the pixels moved by player1 to zero 
         ball.setVisible(false);            // Hidding the ball
@@ -225,27 +249,14 @@ public class TanksGame {
         upPressed = downPressed = leftPressed = rightPressed = false; // Setting all to F
         powerBar.setValue(0);              // Resetting the powerBar back to zero
         cyclesWaited = 0;                  // Resetting the cycles waiting 
+        matchCover.setVisible(false);      // Hiding the match cover that ends the match
+        matchWonBy = 0;
         
         
         player1Turret.setAngle(0 + TURRET_DEAD_ZONE);   // Moving turrent to regular pos
         player1TurretAngle = 0 + TURRET_DEAD_ZONE;      // Moving mem. of turret to pos
         player2Turret.setAngle(180 - TURRET_DEAD_ZONE); // Moving turrent to regular pos
         player2TurretAngle = 180- TURRET_DEAD_ZONE;     // Moving mem. of turret to pos
-       
-        
-        // Setting up the walls and boundaries of the map - seperated for easy-to-read code
-        // NOTE-TO-SELF: This could actually be mapped instead! try to before hard coding it
-        switch ( chosenMap ){
-            case 1 -> {
-                
-            }
-            case 2 -> {
-                
-            }
-            case 3 -> {
-                
-            }
-        }
         
         clock.start(); // Starting inside so that each match can start its own timer
     }
@@ -263,10 +274,23 @@ public class TanksGame {
         if(powerTimer.isRunning()) powerTimer.stop();
     }
     
-    
+    // MAJOR GAME TIMER 
     Timer clock = new Timer(GAME_TICK, e->{
+        // If player is falling, show that animation until finished
+        if(playerIsFalling){
+            System.out.println("ENTERED INNER LOOP");
+            int newY = currentPlayer.getLocation().y + FALLING_STEP;
+            if(newY >= 402){ // If we have reached the floor level, then change to 402 and change flag to get out of this inner loop
+                playerIsFalling = false;
+                newY = 402;
+            }
+            
+            currentPlayer.setLocation(currentPlayer.getLocation().x, newY); // Moving the player to new position
+            return; // Returning to make an inner loop inside clock
+        }
+        
         // If ball is in air, then NO player cannot move at all
-        if(!ballIsFlying){
+        if(!ballIsFlying){//                                                                  <====================== ball is not flying, aka player still has not shot
             // Moving players according to which player it is and sends direction so we can find bounds first
             if(leftPressed) movePlayer("left");
             if(rightPressed) movePlayer("right");
@@ -274,9 +298,9 @@ public class TanksGame {
             if(downPressed) moveTurrent("down");
         }
         
-        // If ball is flying, check for impacts
+        // If ball is flying, check for impacts                                                <===================== ball is flying
         else{
-            // If the ball hit a player or a wall, reset everything
+            // If the ball hit a player or a wall, reset everything  5 180 89 green | 237,28,36 <==================== ball hits something
             if(checkForPlayerHit() || checkForWallHit()){
                 cyclesWaited++;
                 
@@ -285,15 +309,20 @@ public class TanksGame {
                 if(cyclesWaited >= CYCLES_WAIT_AFTER_IMPACT){
                     cyclesWaited = 0;            // Resetting the waiting cycles
                     
-                    // If what was hit is a player, then take away health and check for end game
+                    // If what was hit is a player, then take away health and check for end game <=================== player gets hit
                     if(checkForPlayerHit()){
                         // Check health, check for end game, end clock if so
                         System.out.println("Ball hit player!");
-                        if(takeHeart()){
-                            // game has ended
-                            System.out.println("Game has ended"); // temp
+                        
+                        if(takeHeart()){                                                      // <=================== match ends
                             ((Timer)e.getSource()).stop();        // Stop timer to end the match
-                            // show pause menu to continue the match later <=============================== here!!!
+                            matchWinnerText.setText("Player " + (currentPlayer == player1 ? "1":"2") + " WINS!"); // Changing the match cover text to winner
+                            matchWonBy = (currentPlayer == player1 ? 1 : 2);                                      // Saving in unit who won
+                            if(currentPlayer == player1)                                                          // Changing the score on top
+                                player1Score.setText(Integer.toString(Integer.parseInt(player1Score.getText()) + 1));
+                            else
+                                player2Score.setText(Integer.toString(Integer.parseInt(player2Score.getText()) + 1));
+                            matchCover.setVisible(true);
                         }
                     }
                     
@@ -339,41 +368,48 @@ public class TanksGame {
         if(direction.equals("left")){
             newLocation = currentPlayer.getLocation().x - TANK_STEP;
             if(newLocation < minLocation){
-                currentPlayer.setLocation(minLocation, floor);
+                currentPlayer.setLocation(minLocation, currentPlayer.getLocation().y);
                 return;
             }
         }
         else{ // moving "right"
             newLocation = currentPlayer.getLocation().x + TANK_STEP;
             if(newLocation > maxLocation){
-                currentPlayer.setLocation(maxLocation, floor);
+                currentPlayer.setLocation(maxLocation, currentPlayer.getLocation().y);
                 return;
             }
         }
         
-        // NOTE: Map 1 and 2 have the middle section they cannot cross, Map 3 has no middle section
-        if(map != 3){
-            // If player 1 is moving right and hits the middle section
-            if(currentPlayer == player1 && !direction.equals("left")){
-                newLocation = currentPlayer.getLocation().x + TANK_STEP;
-                if(newLocation + currentPlayer.getWidth() > mapItem1.getLocation().x){
-                    currentPlayer.setLocation(mapItem1.getLocation().x - currentPlayer.getWidth(), floor);
-                    return;
-                }
+        
+        // If player 1 is moving right and hits the middle section
+        if(currentPlayer == player1 && !direction.equals("left")){
+            newLocation = currentPlayer.getLocation().x + TANK_STEP;
+            if(newLocation + currentPlayer.getWidth() > mapItem1.getLocation().x){
+                currentPlayer.setLocation(mapItem1.getLocation().x - currentPlayer.getWidth(), currentPlayer.getLocation().y);
+                return;
             }
-            // If player 2 is moveing left and hits the middle section
-            else if(currentPlayer == player2 && direction.equals("left")){
-                newLocation = currentPlayer.getLocation().x - TANK_STEP;
-                if(newLocation < mapItem1.getLocation().x + mapItem1.getWidth()){
-                    currentPlayer.setLocation(mapItem1.getLocation().x + mapItem1.getWidth(), floor);
-                    return;
-                }
+        }
+        // If player 2 is moveing left and hits the middle section
+        else if(currentPlayer == player2 && direction.equals("left")){
+            newLocation = currentPlayer.getLocation().x - TANK_STEP;
+            if(newLocation < mapItem1.getLocation().x + mapItem1.getWidth()){
+                currentPlayer.setLocation(mapItem1.getLocation().x + mapItem1.getWidth(), currentPlayer.getLocation().y);
+                return;
+            }
+        }
+        
+        // If we are in map 3 and the current player is still on top layer
+        if(map == 3 && currentPlayer.getLocation().y == 48){ // Will not enter if not in map3 or location is not on top
+            if(currentPlayer.getLocation().x <= 40 || currentPlayer.getLocation().x >= 655){
+                playerIsFalling = true;
+                currentPlayer.setLocation(currentPlayer.getLocation().x, currentPlayer.getLocation().y + FALLING_STEP);
+                return;
             }
         }
         
         // If no boundary is hit, then just move regulary
         newLocation = (direction.equals("left") ? currentPlayer.getLocation().x - TANK_STEP : currentPlayer.getLocation().x + TANK_STEP);
-        currentPlayer.setLocation(newLocation, floor);
+        currentPlayer.setLocation(newLocation, currentPlayer.getLocation().y);
         gasLeft--;
         gasBar.setValue(gasLeft);
     }
