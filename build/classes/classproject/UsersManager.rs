@@ -1,2 +1,0 @@
-classproject.UsersManager
-classproject.User

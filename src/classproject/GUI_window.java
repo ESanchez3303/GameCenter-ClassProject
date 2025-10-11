@@ -112,7 +112,7 @@ public class GUI_window extends javax.swing.JFrame {
         
         // Setting up Game 4: ------------------------------------------------------------------------
         T.setUp(T_mapItem1, T_mapItem2, T_mapItem3, T_player1, T_player2, T_player1Lifes, T_player2Lifes,
-                T_gasBar, T_ball);
+                T_gasBar, T_ball, T_gameBox);
         
  
     }
@@ -137,13 +137,13 @@ public class GUI_window extends javax.swing.JFrame {
         T_mapItem2 = new javax.swing.JPanel();
         T_floor = new javax.swing.JPanel();
         T_gasBar = new javax.swing.JProgressBar();
-        T_currentPlayer = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         T_player1Lifes = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         T_player2Lifes = new javax.swing.JLabel();
+        T_gasBar1 = new javax.swing.JProgressBar();
         T_mapItem3 = new javax.swing.JPanel();
         T_floorLine = new javax.swing.JSeparator();
         T_player1 = new javax.swing.JLabel();
@@ -170,49 +170,6 @@ public class GUI_window extends javax.swing.JFrame {
         T_player1Score = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
-        game3Frame = new javax.swing.JPanel();
-        G3_gameArea = new javax.swing.JPanel();
-        G3_cover = new javax.swing.JPanel();
-        G3_startButton = new javax.swing.JButton();
-        jLabel22 = new javax.swing.JLabel();
-        G3_twoPlayerButton = new javax.swing.JButton();
-        G3_singlePlayerModeCover = new javax.swing.JPanel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        G3_gameDescription = new javax.swing.JLabel();
-        G3_twoPlayerModeCover = new javax.swing.JPanel();
-        G3_gameDescription2 = new javax.swing.JLabel();
-        jLabel62 = new javax.swing.JLabel();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel67 = new javax.swing.JLabel();
-        jLabel68 = new javax.swing.JLabel();
-        jLabel69 = new javax.swing.JLabel();
-        jLabel70 = new javax.swing.JLabel();
-        jLabel71 = new javax.swing.JLabel();
-        G3_resetCover = new javax.swing.JPanel();
-        G3_resetButton = new javax.swing.JButton();
-        G3_computer = new javax.swing.JPanel();
-        G2_playerEdge = new javax.swing.JPanel();
-        G3_computerEdge = new javax.swing.JPanel();
-        G3_player = new javax.swing.JPanel();
-        G3_ball = new javax.swing.JPanel();
-        G3_countDownTimer = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        G3_playerLabel = new javax.swing.JLabel();
-        G3_computerLabel = new javax.swing.JLabel();
-        G3_playerScore = new javax.swing.JLabel();
-        G3_computerScore = new javax.swing.JLabel();
-        G3_scorePanel = new javax.swing.JPanel();
-        jLabel75 = new javax.swing.JLabel();
-        G3_pointsPanel = new javax.swing.JLabel();
-        jLabel77 = new javax.swing.JLabel();
-        JPanel991 = new javax.swing.JPanel();
-        G3_timerBar = new javax.swing.JProgressBar();
         mainMenuFrame = new javax.swing.JPanel();
         gamesScrollFrame = new javax.swing.JScrollPane();
         gamesPanel = new javax.swing.JPanel();
@@ -275,6 +232,49 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         MM_passwordConfirmInput = new javax.swing.JTextField();
         MM_saveSettingsButton = new javax.swing.JButton();
+        game3Frame = new javax.swing.JPanel();
+        G3_gameArea = new javax.swing.JPanel();
+        G3_cover = new javax.swing.JPanel();
+        G3_startButton = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        G3_twoPlayerButton = new javax.swing.JButton();
+        G3_singlePlayerModeCover = new javax.swing.JPanel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        G3_gameDescription = new javax.swing.JLabel();
+        G3_twoPlayerModeCover = new javax.swing.JPanel();
+        G3_gameDescription2 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        G3_resetCover = new javax.swing.JPanel();
+        G3_resetButton = new javax.swing.JButton();
+        G3_computer = new javax.swing.JPanel();
+        G2_playerEdge = new javax.swing.JPanel();
+        G3_computerEdge = new javax.swing.JPanel();
+        G3_player = new javax.swing.JPanel();
+        G3_ball = new javax.swing.JPanel();
+        G3_countDownTimer = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        G3_playerLabel = new javax.swing.JLabel();
+        G3_computerLabel = new javax.swing.JLabel();
+        G3_playerScore = new javax.swing.JLabel();
+        G3_computerScore = new javax.swing.JLabel();
+        G3_scorePanel = new javax.swing.JPanel();
+        jLabel75 = new javax.swing.JLabel();
+        G3_pointsPanel = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        JPanel991 = new javax.swing.JPanel();
+        G3_timerBar = new javax.swing.JProgressBar();
         loginFrame = new javax.swing.JPanel();
         loginButtonsFrame = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -529,20 +529,14 @@ public class GUI_window extends javax.swing.JFrame {
         T_mapItem2.setForeground(new java.awt.Color(60, 63, 65));
         T_gameBox.add(T_mapItem2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 150, 40));
 
-        T_floor.setBackground(new java.awt.Color(153, 181, 93));
+        T_floor.setBackground(new java.awt.Color(186, 205, 146));
         T_floor.setForeground(new java.awt.Color(60, 63, 65));
         T_floor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        T_gasBar.setForeground(new java.awt.Color(204, 255, 102));
+        T_gasBar.setForeground(new java.awt.Color(0, 153, 0));
         T_gasBar.setValue(50);
         T_gasBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         T_floor.add(T_gasBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 11, 140, 25));
-
-        T_currentPlayer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        T_currentPlayer.setForeground(java.awt.Color.white);
-        T_currentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        T_currentPlayer.setText("Player <1/2>");
-        T_floor.add(T_currentPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 11, 120, 25));
 
         jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel64.setForeground(java.awt.Color.white);
@@ -551,7 +545,7 @@ public class GUI_window extends javax.swing.JFrame {
 
         jLabel76.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel76.setForeground(java.awt.Color.white);
-        jLabel76.setText("Current: ");
+        jLabel76.setText("Power:");
         T_floor.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 11, 80, 25));
 
         jPanel4.setBackground(new java.awt.Color(217, 210, 200));
@@ -581,6 +575,11 @@ public class GUI_window extends javax.swing.JFrame {
         jPanel9.add(T_player2Lifes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 140, -1));
 
         T_floor.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 9, 140, 30));
+
+        T_gasBar1.setForeground(new java.awt.Color(255, 51, 51));
+        T_gasBar1.setValue(50);
+        T_gasBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        T_floor.add(T_gasBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 11, 140, 25));
 
         T_gameBox.add(T_floor, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 465, 761, 48));
 
@@ -752,6 +751,395 @@ public class GUI_window extends javax.swing.JFrame {
         game4Frame.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 70));
 
         getContentPane().add(game4Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
+
+        mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
+        mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        gamesScrollFrame.setBackground(new java.awt.Color(214, 196, 172));
+        gamesScrollFrame.setForeground(new java.awt.Color(200, 151, 115));
+        gamesScrollFrame.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        gamesScrollFrame.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        gamesScrollFrame.setViewportView(gamesPanel);
+
+        gamesPanel.setBackground(new java.awt.Color(214, 196, 172));
+        gamesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        game1.setBackground(new java.awt.Color(200, 151, 115));
+        game1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game1StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game1StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game1StartButton.setForeground(java.awt.Color.white);
+        MM_game1StartButton.setText("Start Game!");
+        MM_game1StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game1StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game1StartButtonMousePressed(evt);
+            }
+        });
+        game1.add(MM_game1StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game1HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game1HighScore.setForeground(java.awt.Color.white);
+        game1HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game1HighScore.setText("Not Set");
+        game1.add(game1HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game1Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game1Username.setForeground(java.awt.Color.white);
+        game1Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game1Username.setText("1234567890123456789");
+        game1Username.setToolTipText("");
+        game1.add(game1Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game1Image_.setBackground(new java.awt.Color(153, 135, 108));
+        game1Image_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/matchingGame.png"))); // NOI18N
+        game1Image_.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game1.add(game1Image_, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel39.setForeground(java.awt.Color.white);
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setText("Matching Game");
+        game1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel89.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel89.setForeground(java.awt.Color.white);
+        jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel89.setText("1 Player");
+        game1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(java.awt.Color.white);
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Game Type:");
+        game1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(java.awt.Color.white);
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Game Information:");
+        game1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(java.awt.Color.white);
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("User:");
+        game1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setForeground(java.awt.Color.white);
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Highest Score:");
+        game1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 160));
+
+        game2.setBackground(new java.awt.Color(200, 151, 115));
+        game2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game2StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game2StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game2StartButton.setForeground(java.awt.Color.white);
+        MM_game2StartButton.setText("Start Game!");
+        MM_game2StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game2StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game2StartButtonMousePressed(evt);
+            }
+        });
+        game2.add(MM_game2StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game2HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game2HighScore.setForeground(java.awt.Color.white);
+        game2HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game2HighScore.setText("----");
+        game2.add(game2HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game2Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game2Username.setForeground(java.awt.Color.white);
+        game2Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game2Username.setText("----");
+        game2Username.setToolTipText("");
+        game2.add(game2Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game2Image.setBackground(new java.awt.Color(153, 135, 108));
+        game2Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/dotsAndBoxes.png"))); // NOI18N
+        game2Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game2.add(game2Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel91.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel91.setForeground(java.awt.Color.white);
+        jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel91.setText("2 Players");
+        game2.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel92.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel92.setForeground(java.awt.Color.white);
+        jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel92.setText("Dots and Boxes");
+        game2.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setForeground(java.awt.Color.white);
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setText("Game Type:");
+        game2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setForeground(java.awt.Color.white);
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Game Information:");
+        game2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setForeground(java.awt.Color.white);
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setText("User:");
+        game2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(java.awt.Color.white);
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Highest Score:");
+        game2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 730, 160));
+
+        game3.setBackground(new java.awt.Color(200, 151, 115));
+        game3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game3StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game3StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game3StartButton.setForeground(java.awt.Color.white);
+        MM_game3StartButton.setText("Start Game!");
+        MM_game3StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game3StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game3StartButtonMousePressed(evt);
+            }
+        });
+        game3.add(MM_game3StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game3HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game3HighScore.setForeground(java.awt.Color.white);
+        game3HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game3HighScore.setText("Not Set");
+        game3.add(game3HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game3Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game3Username.setForeground(java.awt.Color.white);
+        game3Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game3Username.setText("Not Set");
+        game3Username.setToolTipText("");
+        game3.add(game3Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game3Image.setBackground(new java.awt.Color(153, 135, 108));
+        game3Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pingPong.png"))); // NOI18N
+        game3Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game3.add(game3Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel23.setForeground(java.awt.Color.white);
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Ping Pong");
+        game3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel72.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel72.setForeground(java.awt.Color.white);
+        jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel72.setText("1-2 Players");
+        game3.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.white);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Game Type:");
+        game3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(java.awt.Color.white);
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Game Information:");
+        game3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(java.awt.Color.white);
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("User:");
+        game3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setForeground(java.awt.Color.white);
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Highest Score:");
+        game3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 730, 160));
+
+        game4.setBackground(new java.awt.Color(200, 151, 115));
+        game4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game4StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game4StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game4StartButton.setForeground(java.awt.Color.white);
+        MM_game4StartButton.setText("Start Game!");
+        MM_game4StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game4StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game4StartButtonMousePressed(evt);
+            }
+        });
+        game4.add(MM_game4StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game4HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game4HighScore.setForeground(java.awt.Color.white);
+        game4HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game4HighScore.setText("----");
+        game4.add(game4HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game4Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game4Username.setForeground(java.awt.Color.white);
+        game4Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game4Username.setText("----");
+        game4Username.setToolTipText("");
+        game4.add(game4Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game4Image.setBackground(new java.awt.Color(153, 135, 108));
+        game4Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank.png"))); // NOI18N
+        game4Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game4.add(game4Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel48.setForeground(java.awt.Color.white);
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel48.setText("2 Players");
+        game4.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel45.setForeground(java.awt.Color.white);
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel45.setText("Tanks");
+        game4.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setForeground(java.awt.Color.white);
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("Game Type:");
+        game4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setForeground(java.awt.Color.white);
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Game Information:");
+        game4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setForeground(java.awt.Color.white);
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("User:");
+        game4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setForeground(java.awt.Color.white);
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Highest Score:");
+        game4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 730, 160));
+
+        gamesScrollFrame.setViewportView(gamesPanel);
+
+        mainMenuFrame.add(gamesScrollFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 590));
+
+        MM_userSettingsPanel.setBackground(new java.awt.Color(153, 135, 108));
+        MM_userSettingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_userSettingsCancelButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_userSettingsCancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_userSettingsCancelButton.setForeground(java.awt.Color.white);
+        MM_userSettingsCancelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        MM_userSettingsCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_userSettingsCancelButton.setLabel("X");
+        MM_userSettingsCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_userSettingsCancelButtonMousePressed(evt);
+            }
+        });
+        MM_userSettingsPanel.add(MM_userSettingsCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 30));
+
+        jPanel2.setBackground(new java.awt.Color(98, 82, 62));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_userSettingsPanelTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MM_userSettingsPanelTitle.setForeground(java.awt.Color.white);
+        MM_userSettingsPanelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MM_userSettingsPanelTitle.setText("User Settings");
+        jPanel2.add(MM_userSettingsPanelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 380, 20));
+
+        MM_userSettingsPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.white);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Username:");
+        MM_userSettingsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 30));
+
+        MM_usernameInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 280, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.white);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Password:");
+        MM_userSettingsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 30));
+
+        MM_passwordInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 280, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel5.setForeground(java.awt.Color.white);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Confirm Password:");
+        MM_userSettingsPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, 30));
+
+        MM_passwordConfirmInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 280, 30));
+
+        MM_saveSettingsButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_saveSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_saveSettingsButton.setForeground(java.awt.Color.white);
+        MM_saveSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_saveSettingsButton.setLabel("Save Settings");
+        MM_saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_saveSettingsButtonMousePressed(evt);
+            }
+        });
+        MM_userSettingsPanel.add(MM_saveSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, 40));
+
+        mainMenuFrame.add(MM_userSettingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 450, 220));
+
+        getContentPane().add(mainMenuFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         game3Frame.setBackground(new java.awt.Color(214, 196, 172));
         game3Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1022,395 +1410,6 @@ public class GUI_window extends javax.swing.JFrame {
         game3Frame.add(G3_timerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 720, 30));
 
         getContentPane().add(game3Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
-
-        mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
-        mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        gamesScrollFrame.setBackground(new java.awt.Color(214, 196, 172));
-        gamesScrollFrame.setForeground(new java.awt.Color(200, 151, 115));
-        gamesScrollFrame.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        gamesScrollFrame.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        gamesScrollFrame.setViewportView(gamesPanel);
-
-        gamesPanel.setBackground(new java.awt.Color(214, 196, 172));
-        gamesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        game1.setBackground(new java.awt.Color(200, 151, 115));
-        game1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game1StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game1StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game1StartButton.setForeground(java.awt.Color.white);
-        MM_game1StartButton.setText("Start Game!");
-        MM_game1StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game1StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game1StartButtonMousePressed(evt);
-            }
-        });
-        game1.add(MM_game1StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game1HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game1HighScore.setForeground(java.awt.Color.white);
-        game1HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game1HighScore.setText("Not Set");
-        game1.add(game1HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game1Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game1Username.setForeground(java.awt.Color.white);
-        game1Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game1Username.setText("1234567890123456789");
-        game1Username.setToolTipText("");
-        game1.add(game1Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game1Image_.setBackground(new java.awt.Color(153, 135, 108));
-        game1Image_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/matchingGame.png"))); // NOI18N
-        game1Image_.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game1.add(game1Image_, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel39.setForeground(java.awt.Color.white);
-        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel39.setText("Matching Game");
-        game1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel89.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel89.setForeground(java.awt.Color.white);
-        jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel89.setText("1 Player");
-        game1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(java.awt.Color.white);
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Game Type:");
-        game1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(java.awt.Color.white);
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Game Information:");
-        game1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel11.setForeground(java.awt.Color.white);
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("User:");
-        game1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setForeground(java.awt.Color.white);
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel12.setText("Highest Score:");
-        game1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 160));
-
-        game2.setBackground(new java.awt.Color(200, 151, 115));
-        game2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game2StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game2StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game2StartButton.setForeground(java.awt.Color.white);
-        MM_game2StartButton.setText("Start Game!");
-        MM_game2StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game2StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game2StartButtonMousePressed(evt);
-            }
-        });
-        game2.add(MM_game2StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game2HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game2HighScore.setForeground(java.awt.Color.white);
-        game2HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game2HighScore.setText("----");
-        game2.add(game2HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game2Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game2Username.setForeground(java.awt.Color.white);
-        game2Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game2Username.setText("----");
-        game2Username.setToolTipText("");
-        game2.add(game2Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game2Image.setBackground(new java.awt.Color(153, 135, 108));
-        game2Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/dotsAndBoxes.png"))); // NOI18N
-        game2Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game2.add(game2Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel91.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel91.setForeground(java.awt.Color.white);
-        jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel91.setText("2 Players");
-        game2.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel92.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel92.setForeground(java.awt.Color.white);
-        jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel92.setText("Dots and Boxes");
-        game2.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setForeground(java.awt.Color.white);
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel13.setText("Game Type:");
-        game2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(java.awt.Color.white);
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Game Information:");
-        game2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel15.setForeground(java.awt.Color.white);
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("User:");
-        game2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel16.setForeground(java.awt.Color.white);
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel16.setText("Highest Score:");
-        game2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 730, 160));
-
-        game3.setBackground(new java.awt.Color(200, 151, 115));
-        game3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game3StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game3StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game3StartButton.setForeground(java.awt.Color.white);
-        MM_game3StartButton.setText("Start Game!");
-        MM_game3StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game3StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game3StartButtonMousePressed(evt);
-            }
-        });
-        game3.add(MM_game3StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game3HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game3HighScore.setForeground(java.awt.Color.white);
-        game3HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game3HighScore.setText("Not Set");
-        game3.add(game3HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game3Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game3Username.setForeground(java.awt.Color.white);
-        game3Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game3Username.setText("Not Set");
-        game3Username.setToolTipText("");
-        game3.add(game3Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game3Image.setBackground(new java.awt.Color(153, 135, 108));
-        game3Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pingPong.png"))); // NOI18N
-        game3Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game3.add(game3Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel23.setForeground(java.awt.Color.white);
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Ping Pong");
-        game3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel72.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel72.setForeground(java.awt.Color.white);
-        jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel72.setText("1-2 Players");
-        game3.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(java.awt.Color.white);
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Game Type:");
-        game3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(java.awt.Color.white);
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Game Information:");
-        game3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(java.awt.Color.white);
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("User:");
-        game3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setForeground(java.awt.Color.white);
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Highest Score:");
-        game3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 730, 160));
-
-        game4.setBackground(new java.awt.Color(200, 151, 115));
-        game4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game4StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game4StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game4StartButton.setForeground(java.awt.Color.white);
-        MM_game4StartButton.setText("Start Game!");
-        MM_game4StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game4StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game4StartButtonMousePressed(evt);
-            }
-        });
-        game4.add(MM_game4StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game4HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game4HighScore.setForeground(java.awt.Color.white);
-        game4HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game4HighScore.setText("Not Set");
-        game4.add(game4HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game4Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game4Username.setForeground(java.awt.Color.white);
-        game4Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game4Username.setText("Not Set");
-        game4Username.setToolTipText("");
-        game4.add(game4Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game4Image.setBackground(new java.awt.Color(153, 135, 108));
-        game4Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank.png"))); // NOI18N
-        game4Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game4.add(game4Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel48.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel48.setForeground(java.awt.Color.white);
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText("2 Players");
-        game4.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel45.setForeground(java.awt.Color.white);
-        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel45.setText("Tanks");
-        game4.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel17.setForeground(java.awt.Color.white);
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel17.setText("Game Type:");
-        game4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel18.setForeground(java.awt.Color.white);
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Game Information:");
-        game4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel19.setForeground(java.awt.Color.white);
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel19.setText("User:");
-        game4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setForeground(java.awt.Color.white);
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel20.setText("Highest Score:");
-        game4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 730, 160));
-
-        gamesScrollFrame.setViewportView(gamesPanel);
-
-        mainMenuFrame.add(gamesScrollFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 590));
-
-        MM_userSettingsPanel.setBackground(new java.awt.Color(153, 135, 108));
-        MM_userSettingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_userSettingsCancelButton.setBackground(new java.awt.Color(200, 151, 115));
-        MM_userSettingsCancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        MM_userSettingsCancelButton.setForeground(java.awt.Color.white);
-        MM_userSettingsCancelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        MM_userSettingsCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_userSettingsCancelButton.setLabel("X");
-        MM_userSettingsCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_userSettingsCancelButtonMousePressed(evt);
-            }
-        });
-        MM_userSettingsPanel.add(MM_userSettingsCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 30));
-
-        jPanel2.setBackground(new java.awt.Color(98, 82, 62));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_userSettingsPanelTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        MM_userSettingsPanelTitle.setForeground(java.awt.Color.white);
-        MM_userSettingsPanelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MM_userSettingsPanelTitle.setText("User Settings");
-        jPanel2.add(MM_userSettingsPanelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 380, 20));
-
-        MM_userSettingsPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 30));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel3.setForeground(java.awt.Color.white);
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Username:");
-        MM_userSettingsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 30));
-
-        MM_usernameInput.setBackground(new java.awt.Color(246, 228, 199));
-        MM_usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MM_userSettingsPanel.add(MM_usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 280, 30));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.white);
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Password:");
-        MM_userSettingsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 30));
-
-        MM_passwordInput.setBackground(new java.awt.Color(246, 228, 199));
-        MM_passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MM_userSettingsPanel.add(MM_passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 280, 30));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel5.setForeground(java.awt.Color.white);
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Confirm Password:");
-        MM_userSettingsPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, 30));
-
-        MM_passwordConfirmInput.setBackground(new java.awt.Color(246, 228, 199));
-        MM_passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MM_userSettingsPanel.add(MM_passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 280, 30));
-
-        MM_saveSettingsButton.setBackground(new java.awt.Color(200, 151, 115));
-        MM_saveSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        MM_saveSettingsButton.setForeground(java.awt.Color.white);
-        MM_saveSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_saveSettingsButton.setLabel("Save Settings");
-        MM_saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_saveSettingsButtonMousePressed(evt);
-            }
-        });
-        MM_userSettingsPanel.add(MM_saveSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, 40));
-
-        mainMenuFrame.add(MM_userSettingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 450, 220));
-
-        getContentPane().add(mainMenuFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         loginFrame.setBackground(new java.awt.Color(214, 196, 172));
         loginFrame.setPreferredSize(new java.awt.Dimension(400, 350));
@@ -2767,7 +2766,8 @@ private void switchFrame(javax.swing.JPanel target){
     // Stop all timers
     if(gameTimer != null) gameTimer.stop();
 
-    PP.stopGame(); // Stops the timers inside the ping pong game
+    PP.stopGame(); // Stops the timers inside the ping pong game class
+    T.stopGame();  // Stops the timers inside the tank game class
 
 
     // Flipping between a login frame, main menu frame, or a game frame ----------------------------------
@@ -3417,13 +3417,10 @@ private void switchFrame(javax.swing.JPanel target){
     
     
     
-// GAME 4 FUNCTIONS ==================================================================== 
-    
-    int mapChosen = 0;
-    
+// GAME 4 FUNCTIONS ====================================================================  
     private void T_map1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_map1ButtonMouseClicked
-        T_gameBox.requestFocusInWindow();  // Requesting the focus here so players can move
         T_gameBox.setLayout(null);
+        
         
         // Drawing the map depending on which button was pressed (1-3)
         JLabel clickedMap = (JLabel) evt.getSource();
@@ -3437,28 +3434,21 @@ private void switchFrame(javax.swing.JPanel target){
         // Uncovering the game after the map has loaded
         T_cover.setVisible(false);
         T_gameBox.setVisible(true);
+        T_gameBox.requestFocusInWindow();  // Giving focus to the window so it can grab clicks
     }//GEN-LAST:event_T_map1ButtonMouseClicked
 
     private void T_gameBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T_gameBoxKeyPressed
         // Ignore inputs if the cover is visible 
         if(T_cover.isVisible())
             return;
-        
+        System.out.println("pressed");
         // Calling functions when keys are pressed down
-        if(evt.getKeyCode() == KeyEvent.VK_LEFT){
-            System.out.println("LEFT PRESSED");
-        }
-        else if(evt.getKeyCode() == KeyEvent.VK_RIGHT){
-            System.out.println("RIGHT PRESSED");
-        }
-        else if(evt.getKeyCode() == KeyEvent.VK_UP){
-            System.out.println("UP PRESSED");
-        }
-        else if(evt.getKeyCode() == KeyEvent.VK_DOWN){
-            System.out.println("DOWN PRESSED");
-        }
-        else if(evt.getKeyCode() == KeyEvent.VK_SPACE){
-            System.out.println("Shooting!");
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_LEFT  -> T.leftPressed();
+            case KeyEvent.VK_RIGHT -> T.rightPressed();
+            case KeyEvent.VK_UP    -> T.upPressed();
+            case KeyEvent.VK_DOWN  -> T.downPressed();
+            case KeyEvent.VK_SPACE -> T.spacePressed();
         }
     }//GEN-LAST:event_T_gameBoxKeyPressed
 
@@ -3467,15 +3457,16 @@ private void switchFrame(javax.swing.JPanel target){
         if(T_cover.isVisible())
             return;
         
+        System.out.println("released");
         // Calling functions when keys are pressed down
         switch (evt.getKeyCode()) {
-            case KeyEvent.VK_LEFT  -> System.out.println("LEFT PRESSED");
-            case KeyEvent.VK_RIGHT -> System.out.println("RIGHT PRESSED");
-            case KeyEvent.VK_UP    -> System.out.println("UP PRESSED");
-            case KeyEvent.VK_DOWN  -> System.out.println("DOWN PRESSED");
-            default -> {
-            }
+            case KeyEvent.VK_LEFT  -> T.leftReleased();
+            case KeyEvent.VK_RIGHT -> T.rightReleased();
+            case KeyEvent.VK_UP    -> T.upReleased();
+            case KeyEvent.VK_DOWN  -> T.downReleased();
         }
+        
+        
     }//GEN-LAST:event_T_gameBoxKeyReleased
    
 
@@ -3711,11 +3702,11 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JTextField MM_usernameInput;
     private javax.swing.JLabel T_ball;
     private javax.swing.JPanel T_cover;
-    private javax.swing.JLabel T_currentPlayer;
     private javax.swing.JPanel T_floor;
     private javax.swing.JSeparator T_floorLine;
     private javax.swing.JPanel T_gameBox;
     private javax.swing.JProgressBar T_gasBar;
+    private javax.swing.JProgressBar T_gasBar1;
     private javax.swing.JLabel T_map1Button;
     private javax.swing.JLabel T_map2Button;
     private javax.swing.JLabel T_map3Button;
