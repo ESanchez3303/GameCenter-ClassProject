@@ -2915,6 +2915,9 @@ private void switchFrame(javax.swing.JPanel target){
             T_player1Score.setText("0");  // Resetting scores
             T_player2Score.setText("0");  // Resetting scores
             
+            T_player1Indicator.setText("[ Player 1");
+            T_player2Indicator.setText("Player 2 ]");
+            
             map1WonBy = 0; // Resetting the matches won by 
             map2WonBy = 0;
             map3WonBy = 0;

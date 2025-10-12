@@ -348,10 +348,16 @@ public class TanksGame {
                             ((Timer)e.getSource()).stop();        // Stop timer to end the match
                             matchWinnerText.setText("Player " + (currentPlayer == player1 ? "1":"2") + " WINS!"); // Changing the match cover text to winner
                             matchWonBy = (currentPlayer == player1 ? 1 : 2);                                      // Saving in unit who won
+                            
+                            // Changing the indicators back to normal
+                            player1Indicator.setText("[ Player 1");
+                            player2Indicator.setText("Player 2 ]");
+                            
                             if(currentPlayer == player1)                                                          // Changing the score on top
                                 player1Score.setText(Integer.toString(Integer.parseInt(player1Score.getText()) + 1));
                             else
                                 player2Score.setText(Integer.toString(Integer.parseInt(player2Score.getText()) + 1));
+                            
                             matchCover.setVisible(true);
                         }
                         
