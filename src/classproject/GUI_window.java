@@ -15,8 +15,6 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class GUI_window extends javax.swing.JFrame {
     // GAME VARIABLES: -----------------------------------------------------------
@@ -113,7 +111,7 @@ public class GUI_window extends javax.swing.JFrame {
         // Setting up Game 4: ------------------------------------------------------------------------
         T.setUp(T_mapItem1, T_mapItem2, T_mapItem3, T_player1, T_player2, T_player1Lifes, T_player2Lifes,
                 T_gasBar, T_ball, T_gameBox, T_powerBar, T_floorLine, T_matchCover, T_matchWinnerText,
-                T_player1Score, T_player2Score);
+                T_player1Score, T_player2Score, T_explosion, T_player1Indicator, T_player2Indicator);
         
  
     }
@@ -137,6 +135,7 @@ public class GUI_window extends javax.swing.JFrame {
         T_matchCover = new javax.swing.JPanel();
         T_matchCoverButton = new javax.swing.JButton();
         T_matchWinnerText = new javax.swing.JLabel();
+        T_explosion = new javax.swing.JLabel();
         T_ball = new javax.swing.JLabel();
         T_mapItem1 = new javax.swing.JPanel();
         T_mapItem2 = new javax.swing.JPanel();
@@ -553,6 +552,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         T_gameBox.add(T_matchCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 390, 110));
 
+        T_explosion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank_explosion.png"))); // NOI18N
+        T_gameBox.add(T_explosion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 50, 50));
+
         T_ball.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         T_ball.setForeground(new java.awt.Color(102, 102, 102));
         T_ball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -796,17 +798,17 @@ public class GUI_window extends javax.swing.JFrame {
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 5, 50, 60));
 
         T_player2Indicator.setBackground(java.awt.Color.white);
-        T_player2Indicator.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        T_player2Indicator.setFont(new java.awt.Font("Segoe UI", 1, 34)); // NOI18N
         T_player2Indicator.setForeground(new java.awt.Color(225, 225, 225));
         T_player2Indicator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        T_player2Indicator.setText("Player 2 ] -------");
-        jPanel5.add(T_player2Indicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 5, 250, 60));
+        T_player2Indicator.setText("Player 2 ]");
+        jPanel5.add(T_player2Indicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 5, 270, 60));
 
         T_player1Indicator.setBackground(java.awt.Color.white);
-        T_player1Indicator.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
+        T_player1Indicator.setFont(new java.awt.Font("Segoe UI", 1, 34)); // NOI18N
         T_player1Indicator.setForeground(new java.awt.Color(225, 225, 225));
         T_player1Indicator.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        T_player1Indicator.setText("-------[ Player 1");
+        T_player1Indicator.setText("[ Player 1");
         jPanel5.add(T_player1Indicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 5, 250, 60));
 
         game4Frame.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 70));
@@ -3600,19 +3602,7 @@ private void switchFrame(javax.swing.JPanel target){
     private void T_restartGameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_restartGameButtonMouseClicked
         switchFrame(game4Frame);
     }//GEN-LAST:event_T_restartGameButtonMouseClicked
-   
-    
 
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
     // ========================================================================================
     
     
@@ -3835,6 +3825,7 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JTextField MM_usernameInput;
     private javax.swing.JLabel T_ball;
     private javax.swing.JPanel T_cover;
+    private javax.swing.JLabel T_explosion;
     private javax.swing.JPanel T_floor;
     private javax.swing.JSeparator T_floorLine;
     private javax.swing.JPanel T_gameBox;

@@ -119,6 +119,9 @@ public class PingPong {
     }
     
     public void continueGame(){
+        // Reset the player inputs
+        upPressed = downPressed = playerBusy = upPressed2 = downPressed2 = playerBusy2 = false;
+        
         countDownLabel.setText("3");
         countDownLabel.setVisible(true);
         Timer continueTimer = new Timer(1000, e->{
@@ -137,6 +140,9 @@ public class PingPong {
     }
     
     public void startGame(){
+        // Reset the player inputs
+        upPressed = downPressed = playerBusy = upPressed2 = downPressed2 = playerBusy2 = false;
+        
         countDownLabel.setText("3");
         countDownLabel.setVisible(true);
         betweenRounds = true;    
@@ -376,6 +382,10 @@ public class PingPong {
             countDownLabel.setVisible(false); // Hide the countdown 
             delta = getLaunchDegree();        // Set a new delta
             betweenRounds = false;            // Remove the between rounds signal
+            
+            // Reset the player inputs
+            upPressed = downPressed = playerBusy = upPressed2 = downPressed2 = playerBusy2 = false;
+        
             clock.start();                    // Start game clock
         }
         else{
@@ -477,6 +487,9 @@ public class PingPong {
                 score.setText(Integer.toString(Integer.parseInt(score.getText()) + SCORE_FOR_BAD_GOAL));
             }
         }
+        
+        // Reset the player inputs to false
+        upPressed = downPressed = playerBusy = upPressed2 = downPressed2 = playerBusy2 = false;
         
         // Reset game and do a countdown before starting again
         reset(); // Move everything to reset position

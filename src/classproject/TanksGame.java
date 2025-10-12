@@ -29,6 +29,9 @@ public class TanksGame {
     JLabel matchWinnerText;
     JLabel player1Score;
     JLabel player2Score;
+    JLabel explosion;
+    JLabel player1Indicator;
+    JLabel player2Indicator;
     
     
     // BIG GAME VARIABLES:
@@ -82,7 +85,8 @@ public class TanksGame {
     public void setUp(JPanel mi1, JPanel mi2, JPanel mi3,
                       JLabel p1, JLabel p2, JLabel p1L, JLabel p2L,
                       JProgressBar g, JLabel b, JPanel gb, JProgressBar p,
-                      JSeparator fl, JPanel c, JLabel mw, JLabel p1s, JLabel p2s){
+                      JSeparator fl, JPanel c, JLabel mw, JLabel p1s, JLabel p2s, 
+                      JLabel ex, JLabel pI1, JLabel pI2){
         
         // Set up variables with this function instead of a constructor
         player1 = p1;
@@ -106,6 +110,9 @@ public class TanksGame {
         matchWinnerText = mw;
         player1Score = p1s;
         player2Score = p2s;
+        explosion = ex;
+        player1Indicator = pI1;
+        player2Indicator = pI2;
         
         
         
@@ -240,7 +247,16 @@ public class TanksGame {
             player1.setLocation(20,402);       // Moving player 1 to start
             player2.setLocation(655,402);      // Moving player 2 to start
         }
-        currentPlayer = player1;           // Setting the current player to player1
+        currentPlayer = player1;               // Setting the current player to player1
+        
+        if(currentPlayer == player1){  
+            player1Indicator.setText("--> [ Player 1"); // Changing the indicator on which player is current playing
+            player2Indicator.setText("Player 2 ]");
+        }
+        else{  
+            player2Indicator.setText("Player 2 ] <--");
+            player1Indicator.setText("[Player 1");
+        }
         player1Lifes.setText(threeHeart);  // Resetting the lives
         player2Lifes.setText(threeHeart);  // Resetting the lives
         gasBar.setValue(100);              // Resetting the gas
@@ -251,7 +267,8 @@ public class TanksGame {
         powerBar.setValue(0);              // Resetting the powerBar back to zero
         cyclesWaited = 0;                  // Resetting the cycles waiting 
         matchCover.setVisible(false);      // Hiding the match cover that ends the match
-        matchWonBy = 0;
+        matchWonBy = 0;                    // Resetting the who won by 
+        explosion.setVisible(false);       // Hiding the explosion
         
         
         player1Turret.setAngle(0 + TURRET_DEAD_ZONE);   // Moving turrent to regular pos
@@ -279,7 +296,6 @@ public class TanksGame {
     Timer clock = new Timer(GAME_TICK, e->{
         // If player is falling, show that animation until finished
         if(playerIsFalling){
-            System.out.println("ENTERED INNER LOOP");
             int newY = currentPlayer.getLocation().y + FALLING_STEP;
             if(newY >= 402){ // If we have reached the floor level, then change to 402 and change flag to get out of this inner loop
                 playerIsFalling = false;
@@ -304,17 +320,30 @@ public class TanksGame {
             // If the ball hit a player or a wall, reset everything  5 180 89 green | 237,28,36 <==================== ball hits something
             if(checkForPlayerHit() || checkForWallHit()){
                 cyclesWaited++;
-                
+                // During wait inner loop, show the explosion (dont keep calculating, only make visible one)
+                if(checkForPlayerHit() && !explosion.isVisible()){
+                    // Calculate the middle of the ball
+                    int ballMiddleX = ball.getX() + ball.getWidth() / 2;
+                    int ballMiddleY = ball.getY() + ball.getHeight() / 2;
+                    
+                    // Get the position from the middle half way lenght of explosion from middle 
+                    int newX = ballMiddleX - explosion.getWidth() / 2;
+                    int newY = ballMiddleY - explosion.getHeight() / 2;
+                    
+                    // Set and make visible
+                    explosion.setLocation(newX, newY);
+                    explosion.setVisible(true);
+                }
                 
                 // Only enters here after the wanted waiting cycles passes
                 if(cyclesWaited >= CYCLES_WAIT_AFTER_IMPACT){
                     cyclesWaited = 0;            // Resetting the waiting cycles
+                    explosion.setVisible(false); // Making invisible again
                     
                     // If what was hit is a player, then take away health and check for end game <=================== player gets hit
                     if(checkForPlayerHit()){
-                        // Check health, check for end game, end clock if so
-                        System.out.println("Ball hit player!");
                         
+                        // Hurt health, check for end game, end clock if so
                         if(takeHeart()){                                                      // <=================== match ends
                             ((Timer)e.getSource()).stop();        // Stop timer to end the match
                             matchWinnerText.setText("Player " + (currentPlayer == player1 ? "1":"2") + " WINS!"); // Changing the match cover text to winner
@@ -325,13 +354,20 @@ public class TanksGame {
                                 player2Score.setText(Integer.toString(Integer.parseInt(player2Score.getText()) + 1));
                             matchCover.setVisible(true);
                         }
+                        
                     }
                     
                     ballIsFlying = false;        // Make ball is flying back to false so we can exit here
-                    if(currentPlayer == player1) 
-                        currentPlayer = player2; // Switch players
-                    else 
-                        currentPlayer = player1; // Swith Players
+                    if(currentPlayer == player1){ 
+                        currentPlayer = player2; // Switch player from 1 to 2
+                        player2Indicator.setText("Player 2 ] <--");
+                        player1Indicator.setText("[Player 1");
+                    }
+                    else{ 
+                        currentPlayer = player1; // Swith player from 2 to 1
+                        player1Indicator.setText("--> [ Player 1");
+                        player2Indicator.setText("Player 2 ]");
+                    }
                     gasBar.setValue(100);        // Give Players full gas
                     gasLeft = 100;               // Give Players full gas
                     powerBar.setValue(0);        // Resetting the powerbar back to zero
