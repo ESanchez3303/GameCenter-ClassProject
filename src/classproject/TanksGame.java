@@ -151,18 +151,20 @@ public class TanksGame {
         power = (powerBar.getValue() > POWER_BAR_MAX ? POWER_BAR_MAX : powerBar.getValue()); // Saving power
        
         
-        // Moving the ball to starting position according to player
-        int startingX, startingY;
-        int bufferX = 20;
-        int bufferY = 15;
-        if(currentPlayer == player1){
-            startingX = player1.getLocation().x + player1.getWidth() + bufferX;
-            startingY = player1.getLocation().y - bufferY;
-        }
-        else{
-            startingX = player2.getLocation().x - bufferX;
-            startingY = player2.getLocation().y - bufferY;
-        }
+        // Getting the starting position of the ball
+        TurretPanel turret = (currentPlayer == player1) ? player1Turret : player2Turret; // Determine which turret to use
+
+        // Getting the x and y in player of the end of turret || NOTE TO SELF: wowwwww so .getX() is the same as .getLocation().x bruhhhh
+        int endXInPlayer = turret.getX() + turret.getEndX();
+        int endYInPlayer = turret.getY() + turret.getEndY();
+
+        // Converting this to game box locations
+        int endXInGameBox = currentPlayer.getX() + endXInPlayer;
+        int endYInGameBox = currentPlayer.getY() + endYInPlayer;
+        int startingX = endXInGameBox - ball.getWidth() / 2;
+        int startingY = endYInGameBox - ball.getHeight() / 2;
+
+        // Set the ball’s initial position
         ball.setLocation(startingX, startingY);
         
         
@@ -172,9 +174,8 @@ public class TanksGame {
         ballVelY = Math.sin(radians) * power * SPEED_SCALE;
 
         // Reverse X direction for player2 (shooting left)
-        if (currentPlayer == player2) {
-            if(ballVelX > 0)
-                ballVelX *= -1;
+        if (currentPlayer == player2 && ballVelX > 0) {
+            ballVelX *= -1;
         }
         
         // Making ball visible
@@ -240,8 +241,8 @@ public class TanksGame {
             player2.setLocation(655,402);      // Moving player 2 to start
         }
         currentPlayer = player1;           // Setting the current player to player1
-        player1Lifes.setText(oneHeart);    // Resetting the lives
-        player2Lifes.setText(oneHeart);    // Resetting the lives
+        player1Lifes.setText(threeHeart);  // Resetting the lives
+        player2Lifes.setText(threeHeart);  // Resetting the lives
         gasBar.setValue(100);              // Resetting the gas
         gasLeft = 100;                     // Resetting the pixels moved by player1 to zero 
         ball.setVisible(false);            // Hidding the ball
@@ -471,8 +472,8 @@ public class TanksGame {
         Rectangle p1Rect = player1.getBounds();
         Rectangle p2Rect = player2.getBounds();
 
-        // Checkinf if the ball touches either player
-        return ballRect.intersects(p1Rect) || ballRect.intersects(p2Rect);
+        // Check if the ball hits an opponent depending on who shot 
+        return (currentPlayer == player1 ? ballRect.intersects(p2Rect) : ballRect.intersects(p1Rect));
     }
     
     private boolean checkForWallHit(){
