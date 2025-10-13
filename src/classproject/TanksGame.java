@@ -547,10 +547,12 @@ public class TanksGame {
     private boolean takeHeart(){
         // If its player 1 turn and made shot, affect player 2 lifes
         if(currentPlayer == player1){
-            if(player2Lifes.getText().equals(threeHeart))
+            if(player2Lifes.getText().equals(threeHeart)){
                 player2Lifes.setText(twoHeart);
-            else if(player2Lifes.getText().equals(twoHeart))
+            }
+            else if(player2Lifes.getText().equals(twoHeart)){
                 player2Lifes.setText(oneHeart);
+            }
             else if(player2Lifes.getText().equals(oneHeart)){
                 player2Lifes.setText(noHeart);
                 return true;
@@ -560,10 +562,13 @@ public class TanksGame {
         }
         // current player is 2, affect player 1 lifes
         else{
-            if(player1Lifes.getText().equals(threeHeart))
+            if(player1Lifes.getText().equals(threeHeart)){
                 player1Lifes.setText(twoHeart);
-            else if(player1Lifes.getText().equals(twoHeart))
+                
+            }
+            else if(player1Lifes.getText().equals(twoHeart)){
                 player1Lifes.setText(oneHeart);
+            }
             else if(player1Lifes.getText().equals(oneHeart)){
                 player1Lifes.setText(noHeart);
                 return true;
