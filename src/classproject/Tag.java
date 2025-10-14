@@ -42,9 +42,7 @@ public class Tag {
             currentTagger = player1;
         changeCurrentRunner();       // Correcting to the correct startig player -> needed to set up other variables
         
-        // Reseting variables
-        boost1.setVisible(true); // Showing the boost
-        boost2.setVisible(true); // Showing the boost
+        // Resetting other variables
         player1Frozen = player2Frozen = false; // Resetting the frozen players
     }
     
