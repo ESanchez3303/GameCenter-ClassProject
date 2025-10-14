@@ -112,6 +112,11 @@ public class GUI_window extends javax.swing.JFrame {
         T.setUp(T_mapItem1, T_mapItem2, T_mapItem3, T_player1, T_player2, T_player1Lifes, T_player2Lifes,
                 T_gasBar, T_ball, T_gameBox, T_powerBar, T_floorLine, T_matchCover, T_matchWinnerText,
                 T_player1Score, T_player2Score, T_explosion, T_player1Indicator, T_player2Indicator);
+        // -------------------------------------------------------------------------------------------
+        
+        
+        // Setting up Game 5: ------------------------------------------------------------------------
+        TA.setUp(TA_player1, TA_player2, TA_boost1, TA_boost2);
         
  
     }
@@ -148,6 +153,8 @@ public class GUI_window extends javax.swing.JFrame {
         TA_floor11 = new javax.swing.JPanel();
         TA_floor12 = new javax.swing.JPanel();
         TA_floor13 = new javax.swing.JPanel();
+        TA_boost2 = new javax.swing.JLabel();
+        TA_boost1 = new javax.swing.JLabel();
         TA_cover = new javax.swing.JPanel();
         jLabel94 = new javax.swing.JLabel();
         jLabel95 = new javax.swing.JLabel();
@@ -653,6 +660,12 @@ public class GUI_window extends javax.swing.JFrame {
         TA_floor13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         TA_floor13.setForeground(new java.awt.Color(60, 63, 65));
         TA_gameBox.add(TA_floor13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 135, 140, 30));
+
+        TA_boost2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tag_boost.png"))); // NOI18N
+        TA_gameBox.add(TA_boost2, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 430, 50, 50));
+
+        TA_boost1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tag_boost.png"))); // NOI18N
+        TA_gameBox.add(TA_boost1, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 10, 50, 50));
 
         game5Frame.add(TA_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 765, 515));
 
@@ -4247,6 +4260,8 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel MM_userSettingsPanelTitle;
     private javax.swing.JLabel MM_username;
     private javax.swing.JTextField MM_usernameInput;
+    private javax.swing.JLabel TA_boost1;
+    private javax.swing.JLabel TA_boost2;
     private javax.swing.JPanel TA_cover;
     private javax.swing.JPanel TA_floor0;
     private javax.swing.JPanel TA_floor1;
