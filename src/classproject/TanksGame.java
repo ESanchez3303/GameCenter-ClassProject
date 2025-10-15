@@ -4,7 +4,6 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
 import javax.swing.JSeparator;
-import javax.swing.*;
 import java.awt.*;
 
 public class TanksGame {
