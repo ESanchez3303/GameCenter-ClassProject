@@ -12,10 +12,21 @@ public class Tag {
     JLabel player2Flag;
     JPanel[] floors;
     
+    
+    // Main Variables:
+    int GAME_TICK = 2; // General Game Tick
+    
     // Player Variables
-    JPanel currentTagger = null; 
-    boolean player1Frozen = false;
-    boolean player2Frozen = false;
+    JPanel currentTagger = null;    // This is the current tagger
+    boolean player1Frozen = false;  // Player is frozen after tagged
+    boolean player2Frozen = false;  // Player is frozen after tagged
+    boolean p1PressingLeft = false;  // Player 1 is pressing left
+    boolean p1PressingRight = false; // PLayer 1 is pressing right
+    boolean p1OnFloor = false;       // Player 1 is currently on the ground
+    boolean p2PressingLeft = false;  // Player 2 is pressing left
+    boolean p2PressingRight = false; // Player 2 is pressing right 
+    boolean p2OnFloor = false;       // Player 2 is currenly on the ground
+    
     
 
     
@@ -49,12 +60,17 @@ public class Tag {
     
     // Stops all timers of the game 
     public void stopGame(){
-        
+        clock.stop();
     }
     
     
     
     // TIMERS:
+    Timer clock = new Timer(GAME_TICK, e->{
+        
+    });
+    
+    
     
     
     // Private Functions
@@ -72,6 +88,28 @@ public class Tag {
             player1Frozen = true;
         }
     }
+    
+    // Player inputs - pressing and releasing of left and right and up buttons
+    private void player1LeftPressed(){ if(!p1PressingRight) p1PressingLeft  = true; }
+    private void player1RightPressed(){ if(!p1PressingLeft) p1PressingRight = true; }
+    private void player2LeftPressed(){ if(!p2PressingRight) p2PressingLeft  = true; }
+    private void player2RightPressed(){ if(!p2PressingLeft) p2PressingRight = true; }
+    private void player1LeftReleased()  { p1PressingLeft  = false; }
+    private void player1RightReleased() { p1PressingRight = false; }
+    private void player2LeftReleased()  { p2PressingLeft  = false; }
+    private void player2RightReleased() { p2PressingRight = false; }
+    
+    private void player1UpPressed(){ 
+        if(!p1OnFloor){
+            // Give this player a plus on vector in Y
+        }
+    }
+    private void player2UpPressed(){ 
+        if(!p2OnFloor){ 
+            // Give this player a plus on vector in Y
+        }
+    } 
+    
 
     
     
