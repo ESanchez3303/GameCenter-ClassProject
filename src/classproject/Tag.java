@@ -13,7 +13,7 @@ public class Tag {
     int TIME_FROZEN = 1;         // Time that frozen causes  <-------------------------(in seconds)
     int BOOST_STEP = 2;          // The extra steps for the boost that is grabbed
     int BOOST_RESPAWN_TIME = 10; // Time that the boost takes to respawn <-------------(in seconds)
-    int BOOSTED_TIME       = 3;  // Time that the boost last in the player <-----------(in seconds)
+    int BOOSTED_TIME       = 4;  // Time that the boost last in the player <-----------(in seconds)
     double GRAVITY = 0.5;        // Gravity 
     double JUMP_POWER = -11;     // Power going up (negative because its y)
     double MAX_FALL_SPEED = 10;  // Since gravity is accel., giving a max falling speed to cap 
@@ -73,6 +73,7 @@ public class Tag {
     public void setUp(JPanel p1, JPanel p2, JLabel b1, JLabel b2, JPanel[] f,
                       JPanel gb, JLabel p1I, JLabel p2I, JProgressBar p1T, JProgressBar p2T,
                       JPanel wp, JLabel wpt){
+        // Setting up variables that we need from outside
         player1 = p1;
         player2 = p2;
         boost1 = b1;
@@ -101,6 +102,18 @@ public class Tag {
     
     
     // Public Functions:
+    public void changeSettings(int gmt, int rs, int ts, int tf, int bs, int brt, int bt, int g){
+        GAME_MAX_TIME = gmt;     
+        RUNNER_STEP = rs;       
+        TAGGER_STEP = ts;       
+        TIME_FROZEN = tf;      
+        BOOST_STEP = bs;         
+        BOOST_RESPAWN_TIME = brt;
+        BOOSTED_TIME = bt;  
+        GRAVITY = g;        
+    }
+    
+    
     // Main starting function to reset the game and set up variables
     public void start(int startingPlayer){
         
@@ -233,7 +246,7 @@ public class Tag {
                 newX = 0;
             
             // Moving player IF we are not touching a wall
-            if (!isPlayerTouchingWall(player1, newX)) {
+            if (!isPlayerTouchingWall(player2, newX)) {
                 player2.setLocation(newX, player2.getY());
             }
         }
@@ -247,7 +260,7 @@ public class Tag {
             }
             
             // Moving player IF we are not touching a wall
-            if (!isPlayerTouchingWall(player1, newX)) {
+            if (!isPlayerTouchingWall(player2, newX)) {
                 player2.setLocation(newX, player2.getY());
             }
         }
@@ -267,7 +280,7 @@ public class Tag {
         } 
         
         // Player 1 Y-Movement ----------------------------------------------------
-        if (!p1OnFloor) {
+        if (!p1OnFloor && !p1Frozen) {
             p1VelocityY += GRAVITY; // Apply gravity
             if (p1VelocityY > MAX_FALL_SPEED)
                 p1VelocityY = MAX_FALL_SPEED; // Cap speed at max fall speed
@@ -302,7 +315,7 @@ public class Tag {
         }
         
         // Player 2 Y-Movement ----------------------------------------------------
-        if (!p2OnFloor) {
+        if (!p2OnFloor && !p2Frozen) {
             p2VelocityY += GRAVITY;
             if (p2VelocityY > MAX_FALL_SPEED) 
                 p2VelocityY = MAX_FALL_SPEED;
@@ -427,7 +440,8 @@ public class Tag {
 
         if (player1Rect.intersects(player2Rect)) {
             // Find out who is tagger:
-            if (currentTagger == player1) {
+            if (currentTagger == player1 && !p1Frozen) {
+                
                 p2Frozen = true;
 
                 // Push runner away from tagger
@@ -440,7 +454,7 @@ public class Tag {
                 }
 
                 changeCurrentTagger();
-            } else {
+            } else if(currentTagger == player2 && !p2Frozen){
                 p1Frozen = true;
 
                 int push = player2.getWidth() + 1;
