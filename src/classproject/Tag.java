@@ -454,28 +454,52 @@ public class Tag {
 
         if (player1Rect.intersects(player2Rect)) {
             // Find out who is tagger:
-            if (currentTagger == player1 && !p1Frozen) {
-                
+            if (currentTagger == player1 && !p1Frozen) { // If tagger was p1, push p2 away
                 p2Frozen = true;
 
                 // Push runner away from tagger
                 int push = player1.getWidth() + 1; // small offset
-                
+                int newX;
                 if (player2.getX() < player1.getX()) {
-                    player2.setLocation(player2.getX() - push, player2.getY());
+                    newX = player2.getX() - push;
+                    
+                     // If this push would move the p2 outside of the game box, push player 1 instead
+                    if(newX < 0)
+                        player1.setLocation(player1.getX() + push, player1.getY());
+                    else
+                        player2.setLocation(newX, player2.getY());
+                    
                 } else {
-                    player2.setLocation(player2.getX() + push, player2.getY());
+                    newX = player2.getX() + push;
+                    
+                    // If this push would move the p2 outside of the game box, push p1 instead 
+                    if(newX > gameBox.getWidth() - player2.getWidth())
+                        player1.setLocation(player1.getX() - push, player1.getY());
+                    else
+                        player2.setLocation(newX, player2.getY());
                 }
-
                 changeCurrentTagger();
+                
+                
             } else if(currentTagger == player2 && !p2Frozen){
                 p1Frozen = true;
 
                 int push = player2.getWidth() + 1;
+                int newX;
                 if (player1.getX() < player2.getX()) {
-                    player1.setLocation(player1.getX() - push, player1.getY());
+                    newX = player1.getX() - push;
+                    
+                    if(newX < 0)
+                        player2.setLocation(player2.getX() + push, player2.getY());
+                    else
+                        player1.setLocation(newX, player1.getY());
                 } else {
-                    player1.setLocation(player1.getX() + push, player1.getY());
+                    newX = player1.getX() + push;
+                    
+                    if(newX > gameBox.getWidth() - player1.getWidth())
+                        player2.setLocation(player2.getX() - push, player2.getY());
+                    else
+                        player1.setLocation(newX, player1.getY());
                 }
 
                 changeCurrentTagger();
