@@ -149,6 +149,21 @@ public class GUI_window extends javax.swing.JFrame {
         MM_userSettingsButton = new javax.swing.JButton();
         MM_logOutButton = new javax.swing.JButton();
         MM_backToMenuButton = new javax.swing.JButton();
+        game6Frame = new javax.swing.JPanel();
+        CD_cover = new javax.swing.JPanel();
+        jLabel97 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
+        CD_startButton = new javax.swing.JButton();
+        jLabel101 = new javax.swing.JLabel();
+        jLabel110 = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
+        jLabel116 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel99 = new javax.swing.JLabel();
         mainMenuFrame = new javax.swing.JPanel();
         gamesScrollFrame = new javax.swing.JScrollPane();
         gamesPanel = new javax.swing.JPanel();
@@ -317,21 +332,6 @@ public class GUI_window extends javax.swing.JFrame {
         TA_player1Time = new javax.swing.JProgressBar();
         JLabel = new javax.swing.JLabel();
         JLabel19 = new javax.swing.JLabel();
-        game6Frame = new javax.swing.JPanel();
-        CD_cover = new javax.swing.JPanel();
-        jLabel97 = new javax.swing.JLabel();
-        jLabel100 = new javax.swing.JLabel();
-        CD_startButton = new javax.swing.JButton();
-        jLabel101 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel99 = new javax.swing.JLabel();
         game4Frame = new javax.swing.JPanel();
         T_gameBox = new javax.swing.JPanel();
         T_matchCover = new javax.swing.JPanel();
@@ -652,6 +652,83 @@ public class GUI_window extends javax.swing.JFrame {
         MM_topBar.add(MM_backToMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 5, 200, 40));
 
         getContentPane().add(MM_topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 50));
+
+        game6Frame.setBackground(new java.awt.Color(214, 196, 172));
+        game6Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_cover.setBackground(new java.awt.Color(153, 135, 108));
+        CD_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel97.setForeground(java.awt.Color.white);
+        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel97.setText("<Description>");
+        CD_cover.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 500, 50));
+
+        jLabel100.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel100.setForeground(java.awt.Color.white);
+        jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel100.setText("Defend the castle by planting one of 4 towers.");
+        CD_cover.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 740, 80));
+
+        CD_startButton.setBackground(new java.awt.Color(200, 151, 115));
+        CD_startButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CD_startButton.setForeground(java.awt.Color.white);
+        CD_startButton.setText("Start Defending!");
+        CD_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_cover.add(CD_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 496, 460, 70));
+
+        jLabel101.setFont(new java.awt.Font("Segoe UI", 2, 30)); // NOI18N
+        jLabel101.setForeground(java.awt.Color.white);
+        jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel101.setText("When your castle life reaches zero, you loose!");
+        CD_cover.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 80));
+
+        jLabel110.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 50, 50));
+
+        jLabel111.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 50, 50));
+
+        jLabel112.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel112.setForeground(java.awt.Color.white);
+        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel112.setText("<Description>");
+        CD_cover.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 500, 50));
+
+        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel113.setForeground(java.awt.Color.white);
+        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel113.setText("<Description>");
+        CD_cover.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 500, 50));
+
+        jLabel114.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 50, 50));
+
+        jLabel115.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 50, 50));
+
+        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel116.setForeground(java.awt.Color.white);
+        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel116.setText("<Description>");
+        CD_cover.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 500, 50));
+
+        jPanel17.setBackground(new java.awt.Color(200, 151, 115));
+        jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel99.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel99.setForeground(java.awt.Color.white);
+        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel99.setText("Game Instructions");
+        jPanel17.add(jLabel99);
+
+        CD_cover.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 70));
+
+        game6Frame.add(CD_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
+
+        getContentPane().add(game6Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
         mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1698,83 +1775,6 @@ public class GUI_window extends javax.swing.JFrame {
         game5Frame.add(TA_topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 70));
 
         getContentPane().add(game5Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
-
-        game6Frame.setBackground(new java.awt.Color(214, 196, 172));
-        game6Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CD_cover.setBackground(new java.awt.Color(153, 135, 108));
-        CD_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel97.setForeground(java.awt.Color.white);
-        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel97.setText("<Description>");
-        CD_cover.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 500, 50));
-
-        jLabel100.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel100.setForeground(java.awt.Color.white);
-        jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel100.setText("Defend the castle by planting one of 4 towers.");
-        CD_cover.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 740, 80));
-
-        CD_startButton.setBackground(new java.awt.Color(200, 151, 115));
-        CD_startButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        CD_startButton.setForeground(java.awt.Color.white);
-        CD_startButton.setText("Start Defending!");
-        CD_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_cover.add(CD_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 496, 460, 70));
-
-        jLabel101.setFont(new java.awt.Font("Segoe UI", 2, 30)); // NOI18N
-        jLabel101.setForeground(java.awt.Color.white);
-        jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel101.setText("When your castle life reaches zero, you loose!");
-        CD_cover.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 80));
-
-        jLabel110.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 50, 50));
-
-        jLabel111.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 50, 50));
-
-        jLabel112.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel112.setForeground(java.awt.Color.white);
-        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel112.setText("<Description>");
-        CD_cover.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 500, 50));
-
-        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel113.setForeground(java.awt.Color.white);
-        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel113.setText("<Description>");
-        CD_cover.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 500, 50));
-
-        jLabel114.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 50, 50));
-
-        jLabel115.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 50, 50));
-
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel116.setForeground(java.awt.Color.white);
-        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel116.setText("<Description>");
-        CD_cover.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 500, 50));
-
-        jPanel17.setBackground(new java.awt.Color(200, 151, 115));
-        jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel99.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel99.setForeground(java.awt.Color.white);
-        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel99.setText("Game Instructions");
-        jPanel17.add(jLabel99);
-
-        CD_cover.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 70));
-
-        game6Frame.add(CD_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
-
-        getContentPane().add(game6Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         game4Frame.setBackground(new java.awt.Color(214, 196, 172));
         game4Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
