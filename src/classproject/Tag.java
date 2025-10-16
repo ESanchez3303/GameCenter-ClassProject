@@ -102,7 +102,7 @@ public class Tag {
     
     
     // Public Functions:
-    public void changeSettings(int gmt, int rs, int ts, int tf, int bs, int brt, int bt, int g){
+    public void changeSettings(int gmt, int rs, int ts, int tf, int bs, int brt, int bt, double g){
         GAME_MAX_TIME = gmt;     
         RUNNER_STEP = rs;       
         TAGGER_STEP = ts;       
@@ -110,9 +110,23 @@ public class Tag {
         BOOST_STEP = bs;         
         BOOST_RESPAWN_TIME = brt;
         BOOSTED_TIME = bt;  
-        GRAVITY = g;        
+        GRAVITY = g;     
+        
+        // Setting again into variable we use taking GAME_TICK into respect
+        GAME_MAX_TIME      = (int)(GAME_MAX_TIME * (1000.0 / GAME_TICK));
+        TIME_FROZEN        = (int)(TIME_FROZEN * (1000.0 / GAME_TICK));
+        BOOST_RESPAWN_TIME = (int)(BOOST_RESPAWN_TIME * (1000.0 / GAME_TICK));
+        BOOSTED_TIME       = (int)(BOOSTED_TIME * (1000.0 / GAME_TICK));
     }
-    
+
+    public int getGameMaxTime(){return (GAME_MAX_TIME / (1000/GAME_TICK));}
+    public int getRunnerStep() {return RUNNER_STEP;}
+    public int getTaggerStep() {return TAGGER_STEP;}
+    public int getTimeFrozen() {return (TIME_FROZEN / (1000/GAME_TICK));}
+    public int getBoostStep()  {return BOOST_STEP;}
+    public int getBoostedTime(){return (BOOSTED_TIME / (1000/GAME_TICK));}
+    public double getGravity() {return GRAVITY;}
+    public int getBoostRespawnTime() {return (BOOST_RESPAWN_TIME / (1000/GAME_TICK));}
     
     // Main starting function to reset the game and set up variables
     public void start(int startingPlayer){
