@@ -8,32 +8,105 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.Timer;
+import javax.swing.JProgressBar;
 import java.util.Collections;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
         
 public class MatchingGame {
-    // CUSTOM VARIABLES
-    private int matchScoreIncrease;
-    private int timeLeftScoreIncrease;
-    private int previewTime;
-   
-    // ONE TIME USE! Sets the List below! (LIKE A CONSTRUCTOR BUT A FUNCTION INSTEAD)
-    public void setUp(List<JLabel> newValues, List<JLabel> newImages, JLabel sb, int matchSI, int timeLeftSI, int pT){
-        values = newValues; // Adding the values to the values list
-        images = newImages; // Adding the images to the images list
-        scoreBoard = sb;    // Setting the scoreboard
-        matchScoreIncrease = matchSI;
-        timeLeftScoreIncrease = timeLeftSI;
-        previewTime = pT;
-        shuffle();          // Shuffles and resets the cards
-    }
     
-    // Lists
+    // Main Game Variables:
+    private final int matchScoreIncrease = 200;
+    private final int timeLeftScoreIncrease = 100;
+    private final int previewTime = 500;
+    private final int GAME_TIME = 60;
+    
+    // Holding Variables:
     private List<JLabel> values;
     private List<JLabel> images;
     private JLabel scoreBoard;
+    private JProgressBar timerBar;
+    private JPanel disableCover;
+    private int timePassed = 0;
+    private JButton startButton;
+    private JLabel score;
+    private HighscoreManager scores_fromOutside;
+    private String currentUser_fromOutside;
+    Timer gameTimer;
+   
+    // Constructor Function:
+    public void setUp(List<JLabel> newValues, List<JLabel> newImages, JLabel sb, JProgressBar tb,
+                      JPanel dc, JButton b, JLabel s){
+        values = newValues; // Adding the values to the values list
+        images = newImages; // Adding the images to the images list
+        scoreBoard = sb;    // Setting the scoreboard
+        timerBar = tb;      // Setting the timer bar
+        disableCover = dc;
+        score = s;
+        shuffle();          // Shuffles and resets the cards
+    }
     
-    // Shuffle Function 
+    
+    // Get Functions:
+    public int getMatchScoreIncrease(){return matchScoreIncrease;}
+    public int getTimeLeftScoreIncrease(){return timeLeftScoreIncrease;}
+    public boolean isBusy() {return busy;}
+    public List<JLabel> getImages() {return images;}
+    public int getRemainingTime() { return GAME_TIME - timePassed;}
+    
+    
+    // Public Functions:
+    public void stopGame(){
+        gameTimer.stop();
+    }
+    public void start(){
+        timePassed = 0;                      // Resettinig the timePassed to 0 so that it can start at this amount
+        timerBar.setMaximum(GAME_TIME);  // Setting the max to that amount so each tick is that much
+        timerBar.setValue(0);             // Setting the bar to 0, as time goes, it will grow
+        
+        gameTimer = new Timer(1000,e->{  // Function for each tick of the timer (every 1 second)
+           timePassed++;                       // Up the amount by 1
+           timerBar.setValue(timePassed);      // Set the bar to this amount
+           
+           if(timePassed >= GAME_TIME){        // When the timer reaches Full Time:
+               ((Timer)e.getSource()).stop();  // Stop the timer
+               disableCover.setVisible(true);  // Disable the game using the cover
+               timerBar.setVisible(false);     // Hide the timer bar 
+               startButton.setVisible(true);   // Show the start button which now says "play again!"
+               
+               gameFinishedMessage("Times Up!", score.getText(), "0"); // Calls function to show the end of the game message
+           }
+        });
+        
+        gameTimer.start();                   // Start the timer 
+    } 
+    
+    public void gameFinishedMessage(String gMessage, String matchingPoints, String timePoints){
+        int maxMatchingScore = matchScoreIncrease * 9;
+        int maxTimeScore = GAME_TIME * timeLeftScoreIncrease;
+        
+        String message = gMessage;                                               // The top section of message is added
+        message +=  "\nMatching Points: "     + matchingPoints;                  // Matching points that were made
+        message += "/" + Integer.toString(maxMatchingScore);                     // Showing the max possible matching points
+        message +=  "\nTime Points:         " + timePoints;                      // Time Points given
+        message += "/" + Integer.toString(maxTimeScore);                         // SHowing the max possible time points
+        message += "\n--------------------------------------------------------"; // Line for Visual
+        message += "\nTotal Points:         " + score.getText();              // Total Points given
+        message += "/" + Integer.toString(maxMatchingScore + maxTimeScore);   // Total points possible (time+matching)
+        if(scores_fromOutside.reportScore("MG", currentUser_fromOutside, score.getText()))            // If this user made a new high score
+            message = message + "\nYOU SET THE NEW HIGH SCORE!";
+        
+         // Show all data to users
+        JOptionPane.showMessageDialog(null, message);        
+    }
+    
+    public void updateScore(HighscoreManager inputScores, String inputUser){
+        scores_fromOutside = inputScores;
+        currentUser_fromOutside = inputUser;
+    }
+    
     public void shuffle(){
         // Making a list of the symbols with 9 sets of symbols 
         List<String> symbols = new ArrayList<>(Arrays.asList("▲","■","♠","♦","♥","○","●","▼","⇨",
@@ -101,18 +174,10 @@ public class MatchingGame {
         return false;
     }
     
-    public void addTimeScore(int timeLeft){
+    public void addTimeScore(){
+        int timeLeft = GAME_TIME - timePassed;
         int currentScore = Integer.parseInt(scoreBoard.getText());
         currentScore += timeLeft * timeLeftScoreIncrease;
         scoreBoard.setText(Integer.toString(currentScore));
-    }
-    
-    
-    public boolean isBusy(){
-        return busy;
-    }
-    
-    public List<JLabel> getImages(){  // We need this to search through it 
-        return images;
     }
 }

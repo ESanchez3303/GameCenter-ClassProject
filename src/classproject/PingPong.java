@@ -10,12 +10,15 @@ import java.util.List;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
        
 
 
 
 public class PingPong {
-    // SET AND FORGET CUSTOM VARIABLES:
+    // MAIN GAME VARIABLES:
+    int GAME_TIME = 120;
     int SECONDS_BEFORE_BOOSTING = 5;
     int GAME_TICK = 10;
     int PLAYER_STEP = 4;
@@ -33,22 +36,13 @@ public class PingPong {
     List<Integer> boostedBallMovesY = new ArrayList<>();
    
     
-    // SET UP FUNCTION (CONSTRUCTOR):
-    public void setUp(JPanel p, JPanel c, JPanel b, JLabel pS, JLabel cS, JLabel cT, JLabel pP){
-        // Setting up variables:
-        player = p;
-        computer = c; // this will also be the player input instead of computer when we are in 2 player mode
-        ball = b;
-        playerScore = pS;
-        computerScore = cS;
-        countDownLabel = cT;
-        score = pP;
-        boostBall();
-    }
+    // Get Functions:
+    public int getGameTime(){return GAME_TIME;}
     
     
     
-    // Variables:
+    
+    // Holding Variables:
     JPanel player;   // Panel that is the player
     JPanel computer; // Panel that is the computer
     JPanel ball;     // Panel that is the ball
@@ -57,9 +51,15 @@ public class PingPong {
     JLabel countDownLabel;// Label that will be the countdown between goals
     JLabel score;         // Panel that shows the score
     int delta;            // The current angle of the ball (0-360)
+    JProgressBar timerBar;
+    JLabel countDownTimerText;
+    JLabel points;
+    HighscoreManager scores_fromOutside;
+    String currentUser_fromOutside;
+    JPanel resetCover;
     boolean twoPlayerMode = false;
     
-    // Movement Variables:
+    // Dynamic Movement Variables:
     boolean upPressed = false;
     boolean downPressed = false;
     boolean playerBusy = false;
@@ -71,13 +71,37 @@ public class PingPong {
     int computerPlaysAtTick = 5; // Computer is allowed to move every x ticks of the game clock (this slows down the computer to be fair)
     int computerTick = 0;        // Keeps track of which tick we are in, this will cycle between 0-x (x being computerPlaysAtTick)
     boolean betweenRounds = false;
-   
+    int timePassed = 0;
+    
+    // CONSTRUCTOR
+    public void setUp(JPanel p, JPanel c, JPanel b, JLabel pS, JLabel cS, JLabel cT, JLabel pP, JProgressBar t,
+                      JLabel cdt, JLabel pts, JPanel rc){
+        // Setting up variables:
+        player = p;
+        computer = c; // this will also be the player input instead of computer when we are in 2 player mode
+        ball = b;
+        playerScore = pS;
+        computerScore = cS;
+        countDownLabel = cT;
+        score = pP;
+        timerBar = t;
+        countDownTimerText = cdt;
+        points = pts;
+        resetCover = rc;
+        boostBall();
+    }
+    
+    public void updateScores(HighscoreManager s, String c){
+        scores_fromOutside = s;
+        currentUser_fromOutside = c;
+    }
+    
+    // Get Functions:
+    public boolean isTwoPlayerMode(){return twoPlayerMode;}
     
     
     
-    
-    
-    // PUBLIC FUNCTIONS: 
+    // MOVEMENT FUNCTIONS:
     public void upPressed(){if(!playerBusy){upPressed = true; playerBusy = true;}}  
     public void downPressed(){if(!playerBusy){downPressed = true; playerBusy = true;}}
     public void upReleased(){upPressed = false; playerBusy = false;}
@@ -91,7 +115,7 @@ public class PingPong {
     
 
     
-    
+    // Public Functions:
     public void reset(){
         player.setLocation(50,225);
         computer.setLocation(660,225);
@@ -147,12 +171,60 @@ public class PingPong {
         countDownLabel.setVisible(true);
         betweenRounds = true;    
         countDownTimer.start();  // Starts the countdown which also starts the game
-        
+        startGameTimer();        // Starts the timer that keeps track of how long the game has been played (general lenght timer)
     }
     
     
     
     // TIMERS:
+    private void startGameTimer(){
+        timePassed = 0;
+        timerBar.setMaximum(GAME_TIME);
+        timerBar.setValue(0);
+        
+        Timer gameTimer = new Timer(1000, e->{
+            if(countDownTimerText.isVisible() && timePassed != GAME_TIME){ // DO NOT COUNT WHEN WE ARE IN A COUNTDOWN, unless!! the game is waiting for next point
+                return;
+            }
+            timePassed++;
+            
+            if(timePassed >= GAME_TIME) // Clamping time passed to be at a max of full tiem
+                timePassed = GAME_TIME;
+            
+            timerBar.setValue(timePassed);
+            if(timePassed >= GAME_TIME){
+                if(!twoPlayerMode){ // If in single player mode, report score and show score
+                    ((Timer)e.getSource()).stop();
+                    stopGame();
+                    String message = "Game Finsihed!\nPoints: " + points.getText();
+                    if(scores_fromOutside.reportScore("PP", currentUser_fromOutside, points.getText()))
+                        message = message + "\nYOU SET THE NEW HIGH SCORE!";
+                    JOptionPane.showMessageDialog(null, message);    
+                    resetCover.setVisible(true);
+                }
+                else{ // If in two player mode
+                    if(countDownTimerText.isVisible()){   // When the countdown timer becomes visible, end the game
+                        countDownTimerText.setVisible(false); // Remake invisible
+                        ((Timer)e.getSource()).stop();
+                        stopGame();
+                        
+                        // Build the end of game message
+                        String message = "Game Finished!\n";
+                        if(Integer.parseInt(playerScore.getText()) > Integer.parseInt(computerScore.getText()))
+                            message += "Player 1 Wins!";
+                        else if(Integer.parseInt(playerScore.getText()) < Integer.parseInt(computerScore.getText()))
+                            message += "Player 2 Wins";
+                        else
+                            message += "Its a draw!";
+                        JOptionPane.showMessageDialog(null, message);  
+                        resetCover.setVisible(true);
+                    }
+                }
+            }
+        });
+        gameTimer.start();
+    }
+    
     Timer clock = new Timer(GAME_TICK, e->{
         // Checking if we need to boost the ball -------------------------------------------------------------------------------------
         if(twoPlayerMode){

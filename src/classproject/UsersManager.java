@@ -170,11 +170,9 @@ public class UsersManager {
             
         } catch (IOException e) {
             System.out.println("Error: Error when loading users file. (IO)");
-            e.printStackTrace();
         }
         catch (Exception e) {
             System.out.println("Error: Error when loading users file. (GENERAL)");
-            e.printStackTrace();
         }
         shift = -shift; // Flipping back the shift after to move back to encrypt 
     }
@@ -201,11 +199,9 @@ public class UsersManager {
             
         } catch (IOException e) {
             System.out.println("Error: Error when saving users file.");
-            e.printStackTrace();
         }
         catch (Exception e) {
             System.out.println("Error: Error when saving users file. (GENERAL)");
-            e.printStackTrace();
         }
     }
     
@@ -216,36 +212,6 @@ public class UsersManager {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

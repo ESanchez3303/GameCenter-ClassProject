@@ -13,18 +13,16 @@ import java.awt.Cursor;
 public class DotsAndBoxesGame {
     // Variables:
     private int turn = 1;
-    private Color playerActiveColor = new Color(200,151,115);   // The color to switch top to when player is IN TURN
-    private Color playerInactiveColor = new Color(153,135,108); // The color to switch top to when player is OUT OF TURN
-    private Color player1Color = new Color(255,102,102);        // Color of player 1 lines and symbol
-    private Color player2Color = new Color(102,102,255);        // Color of player 2 lines and symbol
-    private Color inactiveLine = new Color(153,153,153);
-    private String player1Icon;                                 // Holds the icon we use to present p1, triangle
-    private String player2Icon;                                 // Holds the icon we use to present p2,  a square
+    private final Color playerActiveColor = new Color(200,151,115);   // The color to switch top to when player is IN TURN
+    private final Color playerInactiveColor = new Color(153,135,108); // The color to switch top to when player is OUT OF TURN
+    private final Color player1Color = new Color(255,102,102);        // Color of player 1 lines and symbol
+    private final Color player2Color = new Color(102,102,255);        // Color of player 2 lines and symbol
+    private final Color inactiveLine = new Color(153,153,153);
+    private final String player1Icon = "▲";                     // Holds the icon we use to present p1, triangle
+    private final String player2Icon = "■";                     // Holds the icon we use to present p2,  a square
     private JPanel player1Panel;                                // Holds the panel that we are going to be changing the color of
     private JPanel player2Panel;                                // Holds the panel that we are going to be changing the color of
     private List<JPanel> lines = new ArrayList<>();             // Holds the  lines
-    private List<JPanel> outsideHorzLines = new ArrayList<>();  // Holds the outside horizontal lines
-    private List<JPanel> outsideVertLines = new ArrayList<>();  // Holds the outside vertical lines
     private List<JLabel> boxes = new ArrayList<>();             // Holds the boxes that can be changed to p1/p2 icons
     private List<JLabel> claimedBoxes = new ArrayList<>();      // Holds boxes we that have already been claimed (aka don't check these)
     private List<JPanel> claimedLines = new ArrayList<>();      // Holds the lines that have already been checked
@@ -39,17 +37,17 @@ public class DotsAndBoxesGame {
     List<List<JPanel>> boxMap = new ArrayList<>();
     
     
+    // Get Functions:
+    public String getP1Icon(){return player1Icon;}
+    public String getP2Icon(){return player2Icon;}
+    
     
     // USE THIS FUNCTION AS A "CONSTRUCTOR" to keep gui code clean
-    public void setUp(String p1, String p2, JPanel p1p, JPanel p2p, List<JPanel> l, List<JPanel> oH, List<JPanel> oV, List<JLabel> b){
+    public void setUp(JPanel p1p, JPanel p2p, List<JPanel> l, List<JLabel> b){
         // Setting up the variables:
-        player1Icon = p1; 
-        player2Icon = p2;
         player1Panel = p1p;
         player2Panel = p2p;
         lines = l;
-        outsideHorzLines = oH;
-        outsideVertLines = oV;
         boxes = b;
         
         resetBoard(); // Resetting board after setting up
@@ -82,14 +80,26 @@ public class DotsAndBoxesGame {
         boxMap.add(box13); boxMap.add(box14); boxMap.add(box15); boxMap.add(box16); boxMap.add(box17); boxMap.add(box18);
     }
    
+    // For assingment, a req. is for there to be a recursive method sooo:
+    public void resetLinesRecursively(int index){
+        if (index >= lines.size()) return;
+        
+        JPanel line = lines.get(index);
+        line.setBackground(inactiveLine);
+        line.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        resetLinesRecursively(index + 1);
+    }
+    private void resetBoxesRecursively(int index) {
+        if (index >= boxes.size()) return;
+        
+        boxes.get(index).setVisible(false);
+        resetBoxesRecursively(index + 1);
+    }
     
     public void resetBoard(){
-        for(JPanel line : lines){      // Changing Color of all horizontal lines
-            line.setBackground(inactiveLine);
-            line.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        }
-        for(JLabel box : boxes)           // Hiding all boxes
-            box.setVisible(false);
+        // Recursive Functions for the req. of assingment 
+        resetLinesRecursively(0);
+        resetBoxesRecursively(0);
         
         claimedBoxes = new ArrayList<>(); // Resetting the boxes that have been claimed
         claimedLines = new ArrayList<>(); // Resetting the lines that have been claimed
