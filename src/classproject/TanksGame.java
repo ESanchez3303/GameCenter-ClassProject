@@ -7,78 +7,74 @@ import javax.swing.JSeparator;
 import java.awt.*;
 
 public class TanksGame {
-    // Variables Holders:
-    String noHeart = "";
-    String oneHeart = "     ♥     ";
-    String twoHeart = "  ♥   ♥  ";
-    String threeHeart = "♥   ♥   ♥";
-    JPanel mapItem1;
-    JPanel mapItem2;
-    JPanel mapItem3;
-    JLabel player1;
-    JLabel player2;
-    JLabel player1Lifes;
-    JLabel player2Lifes;
-    JProgressBar gasBar;
-    JProgressBar powerBar;
-    JLabel ball;
-    JPanel gameBox;
-    int floorLineYLocation;
-    JPanel matchCover;
-    JLabel matchWinnerText;
-    JLabel player1Score;
-    JLabel player2Score;
-    JLabel explosion;
-    JLabel player1Indicator;
-    JLabel player2Indicator;
-    
-    
     // BIG GAME VARIABLES:
-    int GAME_TICK = 30;
-    int TANK_STEP = 1;
-    int MAX_GAS = 100;
-    double TURRET_STEP = 1;
-    int TURRET_DEAD_ZONE = 15; // Degrees where turret can't go into
-    int POWER_BAR_MAX = 100;
-    int POWER_TIMER_TICK = 10;
-    int POWER_STEP = 1;
-    int CYCLES_WAIT_AFTER_IMPACT = 10; // Time to wait after an impact
-    double GRAVITY = 0.7;     // Arc shape (vel. going downward)
-    double SPEED_SCALE = 0.3; // Arc shape (vel. long wise)
-    int FALLING_STEP = 10;
+    private int GAME_TICK = 30;
+    private int TANK_STEP = 1;
+    private int MAX_GAS = 100;
+    private double TURRET_STEP = 1;
+    private int TURRET_DEAD_ZONE = 15; // Degrees where turret can't go into
+    private int POWER_BAR_MAX = 100;
+    private int POWER_TIMER_TICK = 10;
+    private int POWER_STEP = 1;
+    private int CYCLES_WAIT_AFTER_IMPACT = 10; // Time to wait after an impact
+    private double GRAVITY = 0.7;     // Arc shape (vel. going downward)
+    private double SPEED_SCALE = 0.3; // Arc shape (vel. long wise)
+    private int FALLING_STEP = 10;
+    
+    // Variables Holders:
+    private String noHeart = "";
+    private String oneHeart = "     ♥     ";
+    private String twoHeart = "  ♥   ♥  ";
+    private String threeHeart = "♥   ♥   ♥";
+    private JPanel mapItem1;
+    private JPanel mapItem2;
+    private JPanel mapItem3;
+    private JLabel player1;
+    private JLabel player2;
+    private JLabel player1Lifes;
+    private JLabel player2Lifes;
+    private JProgressBar gasBar;
+    private JProgressBar powerBar;
+    private JLabel ball;
+    private JPanel gameBox;
+    private int floorLineYLocation;
+    private JPanel matchCover;
+    private JLabel matchWinnerText;
+    private JLabel player1Score;
+    private JLabel player2Score;
+    private JLabel explosion;
+    private JLabel player1Indicator;
+    private JLabel player2Indicator;
     
     
     // Game Variables:
-    int floor;
-    int minLocation = 2;
-    int maxLocation;
-    int map = 0;
-    boolean ballIsFlying = false;
-    int matchWonBy = 0;
+    private int minLocation = 2;
+    private int maxLocation;
+    private int map = 0;
+    private boolean ballIsFlying = false;
+    private int matchWonBy = 0;
     
     
     // Player Variables
-    int gasLeft = 0;
-    boolean playerIsFalling = false;
-    JLabel currentPlayer;
-    TurretPanel player1Turret;
-    TurretPanel player2Turret;
-    double player1TurretAngle = 0;
-    double player2TurretAngle = 0;
+    private int gasLeft = 0;
+    private boolean playerIsFalling = false;
+    private JLabel currentPlayer;
+    private TurretPanel player1Turret;
+    private TurretPanel player2Turret;
+    private double player1TurretAngle = 0;
+    private double player2TurretAngle = 0;
     
     
     // Ball Variables
-    int power;
-    double angle;
-    int cyclesWaited = 0;     // Keeps track of cycles waited
-    double ballVelX = 0;
-    double ballVelY = 0;
+    private int power;
+    private double angle;
+    private int cyclesWaited = 0;     // Keeps track of cycles waited
+    private double ballVelX = 0;
+    private double ballVelY = 0;
     
     
     
     
-    
-    // Private Functions
     
     // "Constructor" Function
     public void setUp(JPanel mi1, JPanel mi2, JPanel mi3,
@@ -99,7 +95,6 @@ public class TanksGame {
         gasBar = g;
         gasBar.setMaximum(MAX_GAS);
         ball = b;
-        floor = player1.getLocation().y;
         gameBox = gb;
         maxLocation = gameBox.getWidth() - currentPlayer.getWidth() - 2; // Sets up the max location a player can be according to game box (-2 for visual)
         powerBar = p;
@@ -130,6 +125,11 @@ public class TanksGame {
         player2Turret.setAngle(180 - TURRET_DEAD_ZONE);
         player2TurretAngle = 180 - TURRET_DEAD_ZONE;
     }
+    
+    // Get Functtions =================================
+    public int getMap(){ return map; }
+    public int getMatchWonBy() {return matchWonBy; } 
+    
     
     // PLAYER MOVEMENTS =====================================================================
     boolean upPressed = false, downPressed = false, leftPressed = false, rightPressed = false, playerMoving = false;
@@ -292,7 +292,7 @@ public class TanksGame {
     }
     
     // MAJOR GAME TIMER 
-    Timer clock = new Timer(GAME_TICK, e->{
+    private Timer clock = new Timer(GAME_TICK, e->{
         // If player is falling, show that animation until finished
         if(playerIsFalling){
             int newY = currentPlayer.getLocation().y + FALLING_STEP;
@@ -591,31 +591,27 @@ public class TanksGame {
 class TurretPanel extends JPanel {
     private double angle = 0; // in degrees, 0 = right, 90 = up, 180 = left
     private final Color turretColor;
-    int saved_endX;
-    int saved_endY;
+    private int saved_endX;
+    private int saved_endY;
     
-    // Constructor to save the color
+    // Constructor & to save the color
     public TurretPanel(Color c) {
         setOpaque(false); // transparent background so tank body shows
         turretColor = c;
     }
 
-    // Sets the angle and repaints
+    // Set Functions:
     public void setAngle(double newAngle) {
         angle = newAngle;
         repaint();
     }
     
-    // Gets the angle for when calculating the shot
-    public double getAngle(){
-        return angle;
-    }
-    
-    
-    // Getting the location of the end of the turrent
+    // Get Functions
+    public double getAngle(){ return angle; }
     public int getEndX() { return saved_endX; }
     public int getEndY() { return saved_endY; }
 
+    
     // Painting Overide Function 
     @Override
     protected void paintComponent(Graphics g) {
@@ -640,7 +636,7 @@ class TurretPanel extends JPanel {
         int endX = baseX + (int) (Math.cos(radians) * barrelLength);
         int endY = baseY - (int) (Math.sin(radians) * barrelLength);
         
-        // Saving these variables for when shooting
+        // Saving these  variables for when shooting
         saved_endX = endX;
         saved_endY = endY;
 

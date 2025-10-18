@@ -1,7 +1,7 @@
 package classproject;
 import javax.swing.*;
 
-public class castleDefense {
+public class CastleDefense {
     // MAIN GAME VARIABLES:
     // Holding Variables:
     // Dynamic Variables:

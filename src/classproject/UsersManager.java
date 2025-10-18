@@ -13,7 +13,6 @@ import java.io.IOException;
 // ********************************************************* SINGLE USER OBJECT *******************************************************************
 class User{
     // Constructors:
-    User(){}
     User(String newUser, String newPassword){
         username = newUser; password = newPassword;
     }
@@ -43,7 +42,9 @@ class User{
 // ****************************************************** USER MANAGER CLASS TO ORGANIZE AND HOLD USERS **************************************************************
 
 public class UsersManager {
-    // Constructor =====================================================================================================================================================
+    
+
+// Constructor =====================================================================================================================================================
     UsersManager(){
         Users = new ArrayList<>(); // Make users list object
         loadFromFile();            // Read and load users into list
@@ -51,6 +52,7 @@ public class UsersManager {
     
     // Variables =======================================================================================================================================================
     private List<User> Users;
+    private static int shift = 4;
     
     
     
@@ -127,7 +129,6 @@ public class UsersManager {
     
     
     // Not Password Things =============================================================================================================================================
-    private static int shift = 4;
     private String encrypt(String targetInput){
         StringBuilder coded_string = new StringBuilder();
         for(char curr : targetInput.toCharArray()){

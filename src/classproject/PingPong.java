@@ -224,7 +224,7 @@ public class PingPong {
         gameTimer.start();
     }
     
-    Timer clock = new Timer(GAME_TICK, e->{
+    private Timer clock = new Timer(GAME_TICK, e->{
         // Checking if we need to boost the ball -------------------------------------------------------------------------------------
         if(twoPlayerMode){
             if(boostedBallCountKeeper <= 0 ){
@@ -608,7 +608,7 @@ public class PingPong {
     }
     
     
-    public void updateScores(HighscoreManager s, String c){
+    public void setScores_fromOutside(HighscoreManager s, String c){
         scores_fromOutside = s;
         currentUser_fromOutside = c;
     }

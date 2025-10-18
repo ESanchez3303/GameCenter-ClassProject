@@ -6,66 +6,66 @@ import java.awt.*;
 public class Tag {
     
     // Main Variables:
-    int GAME_TICK = 15;          // General Game Tick
-    int GAME_MAX_TIME = 30;      // Max time being tagged           <------------------(in seconds)
-    int RUNNER_STEP = 2;         // The steps that the runner tages
-    int TAGGER_STEP = 3;         // The steps that the tagger takes
-    int TIME_FROZEN = 1;         // Time that frozen causes  <-------------------------(in seconds)
-    int BOOST_STEP = 2;          // The extra steps for the boost that is grabbed
-    int BOOST_RESPAWN_TIME = 10; // Time that the boost takes to respawn <-------------(in seconds)
-    int BOOSTED_TIME       = 4;  // Time that the boost last in the player <-----------(in seconds)
-    double GRAVITY = 0.5;        // Gravity 
-    double JUMP_POWER = -11;     // Power going up (negative because its y)
-    double MAX_FALL_SPEED = 10;  // Since gravity is accel., giving a max falling speed to cap 
+    private int GAME_TICK = 15;          // General Game Tick
+    private int GAME_MAX_TIME = 30;      // Max time being tagged           <------------------(in seconds)
+    private int RUNNER_STEP = 2;         // The steps that the runner tages
+    private int TAGGER_STEP = 3;         // The steps that the tagger takes
+    private int TIME_FROZEN = 1;         // Time that frozen causes  <-------------------------(in seconds)
+    private int BOOST_STEP = 2;          // The extra steps for the boost that is grabbed
+    private int BOOST_RESPAWN_TIME = 10; // Time that the boost takes to respawn <-------------(in seconds)
+    private int BOOSTED_TIME       = 4;  // Time that the boost last in the player <-----------(in seconds)
+    private double GRAVITY = 0.5;        // Gravity 
+    private double JUMP_POWER = -11;     // Power going up (negative because its y)
+    private double MAX_FALL_SPEED = 10;  // Since gravity is accel., giving a max falling speed to cap 
     
     
     
     // Holding Variables:
-    JPanel player1;
-    JPanel player2;
-    JLabel boost1;
-    JLabel boost2;
-    JPanel[] floors;
-    JPanel gameBox;
-    JLabel p1Indicator;
-    JLabel p2Indicator;
-    JProgressBar p1Time;
-    JProgressBar p2Time;
-    JPanel winningPanel;
-    JLabel winningPlayerText;
+    private JPanel player1;
+    private JPanel player2;
+    private JLabel boost1;
+    private JLabel boost2;
+    private JPanel[] floors;
+    private JPanel gameBox;
+    private JLabel p1Indicator;
+    private JLabel p2Indicator;
+    private JProgressBar p1Time;
+    private JProgressBar p2Time;
+    private JPanel winningPanel;
+    private JLabel winningPlayerText;
     
 
     
     // Dynamic Variables
-    JPanel currentTagger = null;     // This is the current tagger
-    boolean p1Frozen = false;        // Player is frozen after tagged
-    boolean p2Frozen = false;        // Player is frozen after tagged
-    int p1FrozenTime = 0;            // Keeps track of tick of player being frozen
-    int p2FrozenTime = 0;            // Keeps track of tick of player being frozen
-    boolean p1PressingLeft = false;  // Player 1 is pressing left
-    boolean p1PressingRight = false; // PLayer 1 is pressing right
-    boolean p1OnFloor = false;       // Player 1 is currently on the ground
-    boolean p2PressingLeft = false;  // Player 2 is pressing left
-    boolean p2PressingRight = false; // Player 2 is pressing right 
-    boolean p2OnFloor = false;       // Player 2 is currenly on the ground
-    Rectangle player1Rect;           // Holder for the rectangle bounds of a player
-    Rectangle player2Rect;           // Holder for the rectangle bounds of a player
-    Rectangle boost1Rect;            // Holder for the rectangle bounds of boost1 
-    Rectangle boost2Rect;            // Holder for the rectangle bounds of boost2
-    int p1Boost = 0;                 // The extra velocity this player has
-    int p2Boost = 0;                 // The extra velocity this player has
-    int boost1RespawnCounter = 0;    // Counter for the boost1
-    int boost2RespawnCounter = 0;    // Counter for the boost2
-    double p1VelocityY = 0;          // Player 1 vertical speed
-    double p2VelocityY = 0;          // Player 2 vertical speed
-    int p1BoostedTime = 0;           // Keeps track of how long player 1 has been boosted
-    int p2BoostedTime = 0;           // Keeps track of how long player 2 has been boosted
-    int boost1X;                     // Holds the x of boost 1
-    int boost1Y;                     // Holds the y of boost 1
-    int boost2X;                     // Holds the x of boost 2
-    int boost2Y;                     // Holds the y of boost 2
-    int indicatorX;                  // Holds the x of the indicators of the players
-    int indicatorY;                  // Holds the y of the indicators of the players
+    private JPanel currentTagger = null;     // This is the current tagger
+    private boolean p1Frozen = false;        // Player is frozen after tagged
+    private boolean p2Frozen = false;        // Player is frozen after tagged
+    private int p1FrozenTime = 0;            // Keeps track of tick of player being frozen
+    private int p2FrozenTime = 0;            // Keeps track of tick of player being frozen
+    private boolean p1PressingLeft = false;  // Player 1 is pressing left
+    private boolean p1PressingRight = false; // PLayer 1 is pressing right
+    private boolean p1OnFloor = false;       // Player 1 is currently on the ground
+    private boolean p2PressingLeft = false;  // Player 2 is pressing left
+    private boolean p2PressingRight = false; // Player 2 is pressing right 
+    private boolean p2OnFloor = false;       // Player 2 is currenly on the ground
+    private Rectangle player1Rect;           // Holder for the rectangle bounds of a player
+    private Rectangle player2Rect;           // Holder for the rectangle bounds of a player
+    private Rectangle boost1Rect;            // Holder for the rectangle bounds of boost1 
+    private Rectangle boost2Rect;            // Holder for the rectangle bounds of boost2
+    private int p1Boost = 0;                 // The extra velocity this player has
+    private int p2Boost = 0;                 // The extra velocity this player has
+    private int boost1RespawnCounter = 0;    // Counter for the boost1
+    private int boost2RespawnCounter = 0;    // Counter for the boost2
+    private double p1VelocityY = 0;          // Player 1 vertical speed
+    private double p2VelocityY = 0;          // Player 2 vertical speed
+    private int p1BoostedTime = 0;           // Keeps track of how long player 1 has been boosted
+    private int p2BoostedTime = 0;           // Keeps track of how long player 2 has been boosted
+    private int boost1X;                     // Holds the x of boost 1
+    private int boost1Y;                     // Holds the y of boost 1
+    private int boost2X;                     // Holds the x of boost 2
+    private int boost2Y;                     // Holds the y of boost 2
+    private int indicatorX;                  // Holds the x of the indicators of the players
+    private int indicatorY;                  // Holds the y of the indicators of the players
     
 
     
@@ -119,6 +119,7 @@ public class Tag {
         BOOSTED_TIME       = (int)(BOOSTED_TIME * (1000.0 / GAME_TICK));
     }
 
+    // Get Functions
     public int getGameMaxTime(){return (GAME_MAX_TIME / (1000/GAME_TICK));}
     public int getRunnerStep() {return RUNNER_STEP;}
     public int getTaggerStep() {return TAGGER_STEP;}
@@ -127,6 +128,36 @@ public class Tag {
     public int getBoostedTime(){return (BOOSTED_TIME / (1000/GAME_TICK));}
     public double getGravity() {return GRAVITY;}
     public int getBoostRespawnTime() {return (BOOST_RESPAWN_TIME / (1000/GAME_TICK));}
+    
+    
+    // PLAYER INPUTS ==========================================================================
+    // Player input: Buttons pressed
+    public void p1LeftPressed() { p1PressingLeft  = true; }
+    public void p1RightPressed(){ p1PressingRight = true; }
+    public void p2LeftPressed() { p2PressingLeft  = true; }
+    public void p2RightPressed(){ p2PressingRight = true; }
+    
+    // Player input: Buttons released
+    public void p1LeftReleased()  { p1PressingLeft  = false; }
+    public void p1RightReleased() { p1PressingRight = false; }
+    public void p2LeftReleased()  { p2PressingLeft  = false; }
+    public void p2RightReleased() { p2PressingRight = false; }
+    
+    // Player input: Up Buttons Pressed
+    public void p1UpPressed(){ 
+        if(p1OnFloor){
+            p1VelocityY = JUMP_POWER;
+            p1OnFloor = false; // Showing that the player is now jumping - will untrigger in the clock
+        }
+    }
+    public void p2UpPressed(){ 
+        if(p2OnFloor){ 
+            p2VelocityY = JUMP_POWER; // Giving velocity to move player up
+            p2OnFloor = false; // Showing that the player is now jumping - will untrigger in the clock
+        }
+    } 
+    
+    // ============================================================================================
     
     // Main starting function to reset the game and set up variables
     public void start(int startingPlayer){
@@ -180,7 +211,7 @@ public class Tag {
     
     
     // TIMERS:
-    Timer clock = new Timer(GAME_TICK, e->{
+    private Timer clock = new Timer(GAME_TICK, e->{
         // ADDING TIME TO TAGGER ===============================================================
         // Player 1 is tagger and is not frozen
         if(currentTagger == player1 && !p1Frozen){ 
@@ -564,35 +595,5 @@ public class Tag {
         }
         
     }
-    
-    // Player input: Buttons pressed
-    public void p1LeftPressed() { p1PressingLeft  = true; }
-    public void p1RightPressed(){ p1PressingRight = true; }
-    public void p2LeftPressed() { p2PressingLeft  = true; }
-    public void p2RightPressed(){ p2PressingRight = true; }
-    
-    // Player input: Buttons released
-    public void p1LeftReleased()  { p1PressingLeft  = false; }
-    public void p1RightReleased() { p1PressingRight = false; }
-    public void p2LeftReleased()  { p2PressingLeft  = false; }
-    public void p2RightReleased() { p2PressingRight = false; }
-    
-    // Player input: Up Buttons Pressed
-    public void p1UpPressed(){ 
-        if(p1OnFloor){
-            p1VelocityY = JUMP_POWER;
-            p1OnFloor = false; // Showing that the player is now jumping - will untrigger in the clock
-        }
-    }
-    public void p2UpPressed(){ 
-        if(p2OnFloor){ 
-            p2VelocityY = JUMP_POWER; // Giving velocity to move player up
-            p2OnFloor = false; // Showing that the player is now jumping - will untrigger in the clock
-        }
-    } 
-    
-
-    
-    
-    
+   
 }

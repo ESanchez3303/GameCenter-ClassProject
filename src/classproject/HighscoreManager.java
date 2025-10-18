@@ -25,7 +25,7 @@ public class HighscoreManager {
         gameSymbols.add("MG");
         gameSymbols.add("PP");
         
-        for(int i = 0; i < gameSymbols.size(); i++){
+        for (String gameSymbol : gameSymbols) { // Just add this AMOUNT of usernames and highscores, we don't actually NEED "gameSymbol"
             usernames.add("Not Set");
             highscores.add("Not Set");
         }
@@ -143,8 +143,6 @@ public class HighscoreManager {
             e.printStackTrace();
         }
     }
-    
-    
     
 }
 

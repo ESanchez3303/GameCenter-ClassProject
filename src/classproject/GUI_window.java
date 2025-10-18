@@ -44,9 +44,9 @@ public class GUI_window extends javax.swing.JFrame {
             G1_cardImage13, G1_cardImage14, G1_cardImage15, G1_cardImage16, G1_cardImage17, G1_cardImage18
         ));
 
-        MG.setUp(MG_values, MG_images, G1_score, G1_timerBar, G1_disableCover, G1_startButton, G1_score);
-        game1Frame.setComponentZOrder(G1_disableCover, 0); // Moving up frames
-        G1_disableCover.setBackground(new Color(175, 157, 136, 128)); // // Color Frames: semi-transparent main color 
+        MG.setUp(MG_values, MG_images, G1_score, MG_timerBar, MG_disableCover, MG_startButton, G1_score);
+        game1Frame.setComponentZOrder(MG_disableCover, 0); // Moving up frames
+        MG_disableCover.setBackground(new Color(175, 157, 136, 128)); // // Color Frames: semi-transparent main color 
         // -------------------------------------------------------------------------------------------
         
 
@@ -66,10 +66,10 @@ public class GUI_window extends javax.swing.JFrame {
         
 
         // Setting up Game 3: ------------------------------------------------------------------------
-        G3_gameDescription.setText(G3_gameDescription.getText() + Integer.toString(PP.getGameTime()) + " Seconds");            // Sets up the description of the game 
+        PP_gameDescription.setText(PP_gameDescription.getText() + Integer.toString(PP.getGameTime()) + " Seconds");            // Sets up the description of the game 
         G3_gameDescription2.setText(G3_gameDescription2.getText() + Integer.toString(PP.getGameTime()) + " Seconds");          // Sets up the description of the game
-        PP.setUp(G3_player, G3_computer, G3_ball, G3_playerScore, G3_computerScore, G3_countDownTimer, 
-                G3_pointsPanel, G3_timerBar, G3_countDownTimer, G3_pointsPanel, G3_resetCover);
+        PP.setUp(PP_player, PP_computer, PP_ball, PP_playerScore, PP_computerScore, PP_countDownTimer, 
+                PP_pointsPanel, PP_timerBar, PP_countDownTimer, PP_pointsPanel, PP_resetCover);
         
         // -------------------------------------------------------------------------------------------
         
@@ -128,20 +128,20 @@ public class GUI_window extends javax.swing.JFrame {
         MM_logOutButton = new javax.swing.JButton();
         MM_backToMenuButton = new javax.swing.JButton();
         game3Frame = new javax.swing.JPanel();
-        G3_gameArea = new javax.swing.JPanel();
-        G3_cover = new javax.swing.JPanel();
-        G3_startButton = new javax.swing.JButton();
+        PP_gameArea = new javax.swing.JPanel();
+        PP_cover = new javax.swing.JPanel();
+        PP_startButton = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
-        G3_twoPlayerButton = new javax.swing.JButton();
-        G3_singlePlayerModeCover = new javax.swing.JPanel();
+        PP_twoPlayerButton = new javax.swing.JButton();
+        PP_singlePlayerModeCover = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
-        G3_gameDescription = new javax.swing.JLabel();
-        G3_twoPlayerModeCover = new javax.swing.JPanel();
+        PP_gameDescription = new javax.swing.JLabel();
+        PP_twoPlayerModeCover = new javax.swing.JPanel();
         G3_gameDescription2 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
@@ -151,27 +151,128 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel69 = new javax.swing.JLabel();
         jLabel70 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
-        G3_resetCover = new javax.swing.JPanel();
-        G3_resetButton = new javax.swing.JButton();
-        G3_computer = new javax.swing.JPanel();
-        G2_playerEdge = new javax.swing.JPanel();
-        G3_computerEdge = new javax.swing.JPanel();
-        G3_player = new javax.swing.JPanel();
-        G3_ball = new javax.swing.JPanel();
-        G3_countDownTimer = new javax.swing.JLabel();
+        PP_resetCover = new javax.swing.JPanel();
+        PP_resetButton = new javax.swing.JButton();
+        PP_computer = new javax.swing.JPanel();
+        PP_playerEdge = new javax.swing.JPanel();
+        PP_computerEdge = new javax.swing.JPanel();
+        PP_player = new javax.swing.JPanel();
+        PP_ball = new javax.swing.JPanel();
+        PP_countDownTimer = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        G3_playerLabel = new javax.swing.JLabel();
-        G3_computerLabel = new javax.swing.JLabel();
-        G3_playerScore = new javax.swing.JLabel();
-        G3_computerScore = new javax.swing.JLabel();
-        G3_scorePanel = new javax.swing.JPanel();
+        PP_playerLabel = new javax.swing.JLabel();
+        PP_computerLabel = new javax.swing.JLabel();
+        PP_playerScore = new javax.swing.JLabel();
+        PP_computerScore = new javax.swing.JLabel();
+        PP_scorePanel = new javax.swing.JPanel();
         jLabel75 = new javax.swing.JLabel();
-        G3_pointsPanel = new javax.swing.JLabel();
+        PP_pointsPanel = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
         JPanel991 = new javax.swing.JPanel();
-        G3_timerBar = new javax.swing.JProgressBar();
+        PP_timerBar = new javax.swing.JProgressBar();
+        game2Frame = new javax.swing.JPanel();
+        G2_resetBar = new javax.swing.JPanel();
+        DB_resetButton = new javax.swing.JButton();
+        G2_gameArea = new javax.swing.JPanel();
+        G2_player1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        DB_player1TopIcon = new javax.swing.JLabel();
+        G2_player2 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        DB_player2TopIcon = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        DB_1 = new javax.swing.JPanel();
+        DB_2 = new javax.swing.JPanel();
+        DB_3 = new javax.swing.JPanel();
+        DB_4 = new javax.swing.JPanel();
+        DB_5 = new javax.swing.JPanel();
+        DB_6 = new javax.swing.JPanel();
+        DB_14 = new javax.swing.JPanel();
+        DB_15 = new javax.swing.JPanel();
+        DB_16 = new javax.swing.JPanel();
+        DB_17 = new javax.swing.JPanel();
+        DB_18 = new javax.swing.JPanel();
+        DB_19 = new javax.swing.JPanel();
+        DB_27 = new javax.swing.JPanel();
+        DB_28 = new javax.swing.JPanel();
+        DB_29 = new javax.swing.JPanel();
+        DB_30 = new javax.swing.JPanel();
+        DB_31 = new javax.swing.JPanel();
+        DB_32 = new javax.swing.JPanel();
+        DB_40 = new javax.swing.JPanel();
+        DB_41 = new javax.swing.JPanel();
+        DB_42 = new javax.swing.JPanel();
+        DB_43 = new javax.swing.JPanel();
+        DB_44 = new javax.swing.JPanel();
+        DB_45 = new javax.swing.JPanel();
+        DB_7 = new javax.swing.JPanel();
+        DB_8 = new javax.swing.JPanel();
+        DB_9 = new javax.swing.JPanel();
+        DB_10 = new javax.swing.JPanel();
+        DB_11 = new javax.swing.JPanel();
+        DB_12 = new javax.swing.JPanel();
+        DB_13 = new javax.swing.JPanel();
+        DB_20 = new javax.swing.JPanel();
+        DB_21 = new javax.swing.JPanel();
+        DB_22 = new javax.swing.JPanel();
+        DB_23 = new javax.swing.JPanel();
+        DB_24 = new javax.swing.JPanel();
+        DB_25 = new javax.swing.JPanel();
+        DB_26 = new javax.swing.JPanel();
+        DB_33 = new javax.swing.JPanel();
+        DB_34 = new javax.swing.JPanel();
+        DB_35 = new javax.swing.JPanel();
+        DB_36 = new javax.swing.JPanel();
+        DB_37 = new javax.swing.JPanel();
+        DB_38 = new javax.swing.JPanel();
+        DB_39 = new javax.swing.JPanel();
+        DB_b1 = new javax.swing.JLabel();
+        DB_b2 = new javax.swing.JLabel();
+        DB_b3 = new javax.swing.JLabel();
+        DB_b4 = new javax.swing.JLabel();
+        DB_b5 = new javax.swing.JLabel();
+        DB_b6 = new javax.swing.JLabel();
+        DB_b7 = new javax.swing.JLabel();
+        DB_b8 = new javax.swing.JLabel();
+        DB_b9 = new javax.swing.JLabel();
+        DB_b10 = new javax.swing.JLabel();
+        DB_b11 = new javax.swing.JLabel();
+        DB_b12 = new javax.swing.JLabel();
+        DB_b13 = new javax.swing.JLabel();
+        DB_b14 = new javax.swing.JLabel();
+        DB_b15 = new javax.swing.JLabel();
+        DB_b16 = new javax.swing.JLabel();
+        DB_b17 = new javax.swing.JLabel();
+        DB_b18 = new javax.swing.JLabel();
         game1Frame = new javax.swing.JPanel();
-        G1_gameArea = new javax.swing.JPanel();
+        MG_gameArea = new javax.swing.JPanel();
         G1_card1 = new javax.swing.JPanel();
         G1_cardValue1 = new javax.swing.JLabel();
         G1_cardImage1 = new javax.swing.JLabel();
@@ -226,11 +327,11 @@ public class GUI_window extends javax.swing.JFrame {
         G1_card18 = new javax.swing.JPanel();
         G1_cardValue18 = new javax.swing.JLabel();
         G1_cardImage18 = new javax.swing.JLabel();
-        G1_disableCover = new javax.swing.JPanel();
-        G1_timeBoard = new javax.swing.JPanel();
-        G1_timerBar = new javax.swing.JProgressBar();
-        G1_startButton = new javax.swing.JButton();
-        G1_scoreBoard = new javax.swing.JPanel();
+        MG_disableCover = new javax.swing.JPanel();
+        MG_timeBoard = new javax.swing.JPanel();
+        MG_timerBar = new javax.swing.JProgressBar();
+        MG_startButton = new javax.swing.JButton();
+        MG_scoreBoard = new javax.swing.JPanel();
         G1_score = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         mainMenuFrame = new javax.swing.JPanel();
@@ -465,107 +566,6 @@ public class GUI_window extends javax.swing.JFrame {
         T_player1Score = new javax.swing.JLabel();
         T_player2Indicator = new javax.swing.JLabel();
         T_player1Indicator = new javax.swing.JLabel();
-        game2Frame = new javax.swing.JPanel();
-        G2_resetBar = new javax.swing.JPanel();
-        G2_resetButton = new javax.swing.JButton();
-        G2_gameArea = new javax.swing.JPanel();
-        G2_player1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        DB_player1TopIcon = new javax.swing.JLabel();
-        G2_player2 = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
-        DB_player2TopIcon = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        DB_1 = new javax.swing.JPanel();
-        DB_2 = new javax.swing.JPanel();
-        DB_3 = new javax.swing.JPanel();
-        DB_4 = new javax.swing.JPanel();
-        DB_5 = new javax.swing.JPanel();
-        DB_6 = new javax.swing.JPanel();
-        DB_14 = new javax.swing.JPanel();
-        DB_15 = new javax.swing.JPanel();
-        DB_16 = new javax.swing.JPanel();
-        DB_17 = new javax.swing.JPanel();
-        DB_18 = new javax.swing.JPanel();
-        DB_19 = new javax.swing.JPanel();
-        DB_27 = new javax.swing.JPanel();
-        DB_28 = new javax.swing.JPanel();
-        DB_29 = new javax.swing.JPanel();
-        DB_30 = new javax.swing.JPanel();
-        DB_31 = new javax.swing.JPanel();
-        DB_32 = new javax.swing.JPanel();
-        DB_40 = new javax.swing.JPanel();
-        DB_41 = new javax.swing.JPanel();
-        DB_42 = new javax.swing.JPanel();
-        DB_43 = new javax.swing.JPanel();
-        DB_44 = new javax.swing.JPanel();
-        DB_45 = new javax.swing.JPanel();
-        DB_7 = new javax.swing.JPanel();
-        DB_8 = new javax.swing.JPanel();
-        DB_9 = new javax.swing.JPanel();
-        DB_10 = new javax.swing.JPanel();
-        DB_11 = new javax.swing.JPanel();
-        DB_12 = new javax.swing.JPanel();
-        DB_13 = new javax.swing.JPanel();
-        DB_20 = new javax.swing.JPanel();
-        DB_21 = new javax.swing.JPanel();
-        DB_22 = new javax.swing.JPanel();
-        DB_23 = new javax.swing.JPanel();
-        DB_24 = new javax.swing.JPanel();
-        DB_25 = new javax.swing.JPanel();
-        DB_26 = new javax.swing.JPanel();
-        DB_33 = new javax.swing.JPanel();
-        DB_34 = new javax.swing.JPanel();
-        DB_35 = new javax.swing.JPanel();
-        DB_36 = new javax.swing.JPanel();
-        DB_37 = new javax.swing.JPanel();
-        DB_38 = new javax.swing.JPanel();
-        DB_39 = new javax.swing.JPanel();
-        DB_b1 = new javax.swing.JLabel();
-        DB_b2 = new javax.swing.JLabel();
-        DB_b3 = new javax.swing.JLabel();
-        DB_b4 = new javax.swing.JLabel();
-        DB_b5 = new javax.swing.JLabel();
-        DB_b6 = new javax.swing.JLabel();
-        DB_b7 = new javax.swing.JLabel();
-        DB_b8 = new javax.swing.JLabel();
-        DB_b9 = new javax.swing.JLabel();
-        DB_b10 = new javax.swing.JLabel();
-        DB_b11 = new javax.swing.JLabel();
-        DB_b12 = new javax.swing.JLabel();
-        DB_b13 = new javax.swing.JLabel();
-        DB_b14 = new javax.swing.JLabel();
-        DB_b15 = new javax.swing.JLabel();
-        DB_b16 = new javax.swing.JLabel();
-        DB_b17 = new javax.swing.JLabel();
-        DB_b18 = new javax.swing.JLabel();
         loginFrame = new javax.swing.JPanel();
         loginButtonsFrame = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -634,259 +634,259 @@ public class GUI_window extends javax.swing.JFrame {
         game3Frame.setBackground(new java.awt.Color(214, 196, 172));
         game3Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        G3_gameArea.setBackground(java.awt.Color.black);
-        G3_gameArea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        G3_gameArea.addKeyListener(new java.awt.event.KeyAdapter() {
+        PP_gameArea.setBackground(java.awt.Color.black);
+        PP_gameArea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PP_gameArea.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                G3_gameAreaKeyPressed(evt);
+                PP_gameAreaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                G3_gameAreaKeyReleased(evt);
+                PP_gameAreaKeyReleased(evt);
             }
         });
-        G3_gameArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PP_gameArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        G3_cover.setBackground(new java.awt.Color(153, 135, 108));
-        G3_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PP_cover.setBackground(new java.awt.Color(153, 135, 108));
+        PP_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        G3_startButton.setBackground(new java.awt.Color(214, 196, 172));
-        G3_startButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        G3_startButton.setForeground(java.awt.Color.black);
-        G3_startButton.setText("Start Game!");
-        G3_startButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        G3_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        PP_startButton.setBackground(new java.awt.Color(214, 196, 172));
+        PP_startButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PP_startButton.setForeground(java.awt.Color.black);
+        PP_startButton.setText("Start Game!");
+        PP_startButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PP_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                G3_startButtonMousePressed(evt);
+                PP_startButtonMousePressed(evt);
             }
         });
-        G3_cover.add(G3_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 370, 50));
+        PP_cover.add(PP_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 370, 50));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel22.setForeground(java.awt.Color.white);
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("How to Play?");
         jLabel22.setToolTipText("");
-        G3_cover.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 40));
+        PP_cover.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 40));
 
-        G3_twoPlayerButton.setBackground(new java.awt.Color(204, 255, 204));
-        G3_twoPlayerButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        G3_twoPlayerButton.setForeground(java.awt.Color.black);
-        G3_twoPlayerButton.setText("Two Player Mode");
-        G3_twoPlayerButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_twoPlayerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        G3_twoPlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        PP_twoPlayerButton.setBackground(new java.awt.Color(204, 255, 204));
+        PP_twoPlayerButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PP_twoPlayerButton.setForeground(java.awt.Color.black);
+        PP_twoPlayerButton.setText("Two Player Mode");
+        PP_twoPlayerButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_twoPlayerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PP_twoPlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                G3_twoPlayerButtonMousePressed(evt);
+                PP_twoPlayerButtonMousePressed(evt);
             }
         });
-        G3_cover.add(G3_twoPlayerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 245, 370, 45));
+        PP_cover.add(PP_twoPlayerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 245, 370, 45));
 
-        G3_singlePlayerModeCover.setBackground(new java.awt.Color(153, 135, 108));
-        G3_singlePlayerModeCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PP_singlePlayerModeCover.setBackground(new java.awt.Color(153, 135, 108));
+        PP_singlePlayerModeCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel58.setForeground(java.awt.Color.white);
         jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel58.setText("Move Up");
-        G3_singlePlayerModeCover.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 95, 110, 35));
+        PP_singlePlayerModeCover.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 95, 110, 35));
 
         jLabel59.setBackground(new java.awt.Color(153, 135, 108));
         jLabel59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pongUpArrow.png"))); // NOI18N
         jLabel59.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_singlePlayerModeCover.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 95, 35, 35));
+        PP_singlePlayerModeCover.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 95, 35, 35));
 
         jLabel60.setBackground(new java.awt.Color(153, 135, 108));
         jLabel60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pongDownArrow.png"))); // NOI18N
         jLabel60.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_singlePlayerModeCover.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 95, 35, 35));
+        PP_singlePlayerModeCover.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 95, 35, 35));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel25.setForeground(java.awt.Color.white);
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel25.setText("Move Down");
-        G3_singlePlayerModeCover.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 95, 110, 35));
+        PP_singlePlayerModeCover.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 95, 110, 35));
 
         jLabel65.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel65.setForeground(java.awt.Color.white);
         jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel65.setText("Player Makes Goal: +100 Points");
-        G3_singlePlayerModeCover.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 170, 20));
+        PP_singlePlayerModeCover.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 170, 20));
 
         jLabel57.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel57.setForeground(java.awt.Color.white);
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel57.setText("Computer Makes Goal: -50 Points");
-        G3_singlePlayerModeCover.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 180, 20));
+        PP_singlePlayerModeCover.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 180, 20));
 
-        G3_gameDescription.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        G3_gameDescription.setForeground(java.awt.Color.white);
-        G3_gameDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        G3_gameDescription.setText("Make as many goals as you can in ");
-        G3_singlePlayerModeCover.add(G3_gameDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 380, 30));
+        PP_gameDescription.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        PP_gameDescription.setForeground(java.awt.Color.white);
+        PP_gameDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PP_gameDescription.setText("Make as many goals as you can in ");
+        PP_singlePlayerModeCover.add(PP_gameDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 380, 30));
 
-        G3_cover.add(G3_singlePlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 40, 405, 140));
+        PP_cover.add(PP_singlePlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 40, 405, 140));
 
-        G3_twoPlayerModeCover.setBackground(new java.awt.Color(153, 135, 108));
-        G3_twoPlayerModeCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PP_twoPlayerModeCover.setBackground(new java.awt.Color(153, 135, 108));
+        PP_twoPlayerModeCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         G3_gameDescription2.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         G3_gameDescription2.setForeground(java.awt.Color.white);
         G3_gameDescription2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         G3_gameDescription2.setText("Score as many goals in");
-        G3_twoPlayerModeCover.add(G3_gameDescription2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 380, 30));
+        PP_twoPlayerModeCover.add(G3_gameDescription2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 380, 30));
 
         jLabel62.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel62.setForeground(java.awt.Color.white);
         jLabel62.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel62.setText("Move Up P1");
-        G3_twoPlayerModeCover.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 110, 35));
+        PP_twoPlayerModeCover.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 110, 35));
 
         jLabel63.setBackground(new java.awt.Color(153, 135, 108));
         jLabel63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pingPong_wKey.png"))); // NOI18N
         jLabel63.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_twoPlayerModeCover.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 35, 35));
+        PP_twoPlayerModeCover.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 35, 35));
 
         jLabel66.setBackground(new java.awt.Color(153, 135, 108));
         jLabel66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pingPong_sKey.png"))); // NOI18N
         jLabel66.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_twoPlayerModeCover.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 35, 35));
+        PP_twoPlayerModeCover.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 35, 35));
 
         jLabel67.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel67.setForeground(java.awt.Color.white);
         jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel67.setText("Move Down P1");
-        G3_twoPlayerModeCover.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 140, 35));
+        PP_twoPlayerModeCover.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 140, 35));
 
         jLabel68.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel68.setForeground(java.awt.Color.white);
         jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel68.setText("P2 Move Up ");
         jLabel68.setToolTipText("");
-        G3_twoPlayerModeCover.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 110, 30));
+        PP_twoPlayerModeCover.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 110, 30));
 
         jLabel69.setBackground(new java.awt.Color(153, 135, 108));
         jLabel69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pongUpArrow.png"))); // NOI18N
         jLabel69.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_twoPlayerModeCover.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 35, 35));
+        PP_twoPlayerModeCover.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 35, 35));
 
         jLabel70.setBackground(new java.awt.Color(153, 135, 108));
         jLabel70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pongDownArrow.png"))); // NOI18N
         jLabel70.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_twoPlayerModeCover.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 35, 35));
+        PP_twoPlayerModeCover.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 35, 35));
 
         jLabel71.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel71.setForeground(java.awt.Color.white);
         jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel71.setText("P2 Move Down");
-        G3_twoPlayerModeCover.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 140, 35));
+        PP_twoPlayerModeCover.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 140, 35));
 
-        G3_cover.add(G3_twoPlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 40, 405, 140));
+        PP_cover.add(PP_twoPlayerModeCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 40, 405, 140));
 
-        G3_gameArea.add(G3_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 410, 300));
+        PP_gameArea.add(PP_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 410, 300));
 
-        G3_resetCover.setBackground(new java.awt.Color(153, 135, 108));
-        G3_resetCover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_resetCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PP_resetCover.setBackground(new java.awt.Color(153, 135, 108));
+        PP_resetCover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_resetCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        G3_resetButton.setBackground(new java.awt.Color(214, 196, 172));
-        G3_resetButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        G3_resetButton.setForeground(java.awt.Color.black);
-        G3_resetButton.setText("Reset Game!");
-        G3_resetButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_resetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        G3_resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        PP_resetButton.setBackground(new java.awt.Color(214, 196, 172));
+        PP_resetButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PP_resetButton.setForeground(java.awt.Color.black);
+        PP_resetButton.setText("Reset Game!");
+        PP_resetButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_resetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PP_resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                G3_resetButtonMousePressed(evt);
+                PP_resetButtonMousePressed(evt);
             }
         });
-        G3_resetCover.add(G3_resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 370, 90));
+        PP_resetCover.add(PP_resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 370, 90));
 
-        G3_gameArea.add(G3_resetCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 410, 120));
+        PP_gameArea.add(PP_resetCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 410, 120));
 
-        G3_computer.setBackground(java.awt.Color.white);
-        G3_computer.setForeground(java.awt.Color.white);
-        G3_gameArea.add(G3_computer, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 225, 10, 50));
+        PP_computer.setBackground(java.awt.Color.white);
+        PP_computer.setForeground(java.awt.Color.white);
+        PP_gameArea.add(PP_computer, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 225, 10, 50));
 
-        G2_playerEdge.setBackground(new java.awt.Color(204, 204, 204));
-        G2_playerEdge.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        G3_gameArea.add(G2_playerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 500));
+        PP_playerEdge.setBackground(new java.awt.Color(204, 204, 204));
+        PP_playerEdge.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PP_gameArea.add(PP_playerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 500));
 
-        G3_computerEdge.setBackground(new java.awt.Color(204, 204, 204));
-        G3_computerEdge.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        G3_gameArea.add(G3_computerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 30, 500));
+        PP_computerEdge.setBackground(new java.awt.Color(204, 204, 204));
+        PP_computerEdge.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PP_gameArea.add(PP_computerEdge, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 30, 500));
 
-        G3_player.setBackground(java.awt.Color.white);
-        G3_player.setForeground(java.awt.Color.white);
-        G3_player.setToolTipText("");
-        G3_gameArea.add(G3_player, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 10, 50));
+        PP_player.setBackground(java.awt.Color.white);
+        PP_player.setForeground(java.awt.Color.white);
+        PP_player.setToolTipText("");
+        PP_gameArea.add(PP_player, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 10, 50));
 
-        G3_ball.setBackground(java.awt.Color.white);
-        G3_gameArea.add(G3_ball, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 20, 20));
+        PP_ball.setBackground(java.awt.Color.white);
+        PP_gameArea.add(PP_ball, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 20, 20));
 
-        G3_countDownTimer.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        G3_countDownTimer.setForeground(java.awt.Color.white);
-        G3_countDownTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        G3_countDownTimer.setText("3");
-        G3_gameArea.add(G3_countDownTimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 300, 80));
+        PP_countDownTimer.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        PP_countDownTimer.setForeground(java.awt.Color.white);
+        PP_countDownTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PP_countDownTimer.setText("3");
+        PP_gameArea.add(PP_countDownTimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 300, 80));
 
-        game3Frame.add(G3_gameArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 500));
+        game3Frame.add(PP_gameArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 500));
 
         jPanel1.setBackground(new java.awt.Color(153, 135, 108));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        G3_playerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        G3_playerLabel.setForeground(java.awt.Color.white);
-        G3_playerLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        G3_playerLabel.setText("Player");
-        G3_playerLabel.setToolTipText("");
-        jPanel1.add(G3_playerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 5, 130, 40));
+        PP_playerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PP_playerLabel.setForeground(java.awt.Color.white);
+        PP_playerLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        PP_playerLabel.setText("Player");
+        PP_playerLabel.setToolTipText("");
+        jPanel1.add(PP_playerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 5, 130, 40));
 
-        G3_computerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        G3_computerLabel.setForeground(java.awt.Color.white);
-        G3_computerLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        G3_computerLabel.setText("Computer");
-        G3_computerLabel.setToolTipText("");
-        jPanel1.add(G3_computerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 5, 130, 40));
+        PP_computerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PP_computerLabel.setForeground(java.awt.Color.white);
+        PP_computerLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        PP_computerLabel.setText("Computer");
+        PP_computerLabel.setToolTipText("");
+        jPanel1.add(PP_computerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 5, 130, 40));
 
-        G3_playerScore.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        G3_playerScore.setForeground(java.awt.Color.white);
-        G3_playerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        G3_playerScore.setText("99");
-        jPanel1.add(G3_playerScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 50, 40));
+        PP_playerScore.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        PP_playerScore.setForeground(java.awt.Color.white);
+        PP_playerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PP_playerScore.setText("99");
+        jPanel1.add(PP_playerScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 50, 40));
 
-        G3_computerScore.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        G3_computerScore.setForeground(java.awt.Color.white);
-        G3_computerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        G3_computerScore.setText("99");
-        jPanel1.add(G3_computerScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 5, 50, 40));
+        PP_computerScore.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        PP_computerScore.setForeground(java.awt.Color.white);
+        PP_computerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PP_computerScore.setText("99");
+        jPanel1.add(PP_computerScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 5, 50, 40));
 
-        G3_scorePanel.setBackground(new java.awt.Color(153, 135, 108));
-        G3_scorePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G3_scorePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PP_scorePanel.setBackground(new java.awt.Color(153, 135, 108));
+        PP_scorePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_scorePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel75.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel75.setForeground(java.awt.Color.white);
         jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel75.setText("Score:");
         jLabel75.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        G3_scorePanel.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, 60, 20));
+        PP_scorePanel.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, 60, 20));
 
-        G3_pointsPanel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        G3_pointsPanel.setForeground(java.awt.Color.white);
-        G3_pointsPanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        G3_pointsPanel.setText("999");
-        G3_pointsPanel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        G3_scorePanel.add(G3_pointsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 15, 40, 20));
+        PP_pointsPanel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PP_pointsPanel.setForeground(java.awt.Color.white);
+        PP_pointsPanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PP_pointsPanel.setText("999");
+        PP_pointsPanel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        PP_scorePanel.add(PP_pointsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 15, 40, 20));
 
         jLabel77.setForeground(java.awt.Color.white);
         jLabel77.setText("Points");
         jLabel77.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        G3_scorePanel.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 15, 60, 20));
+        PP_scorePanel.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 15, 60, 20));
 
-        jPanel1.add(G3_scorePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, 50));
+        jPanel1.add(PP_scorePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, 50));
 
         JPanel991.setBackground(new java.awt.Color(153, 135, 108));
         JPanel991.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -895,18 +895,811 @@ public class GUI_window extends javax.swing.JFrame {
 
         game3Frame.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 55, 720, 50));
 
-        G3_timerBar.setForeground(new java.awt.Color(0, 0, 0));
-        G3_timerBar.setValue(50);
-        game3Frame.add(G3_timerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 720, 30));
+        PP_timerBar.setForeground(new java.awt.Color(0, 0, 0));
+        PP_timerBar.setValue(50);
+        game3Frame.add(PP_timerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 720, 30));
 
         getContentPane().add(game3Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
+
+        game2Frame.setBackground(new java.awt.Color(214, 196, 172));
+        game2Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        G2_resetBar.setBackground(new java.awt.Color(153, 135, 108));
+        G2_resetBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        G2_resetBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        DB_resetButton.setBackground(new java.awt.Color(200, 151, 115));
+        DB_resetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DB_resetButton.setForeground(java.awt.Color.white);
+        DB_resetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_resetButton.setLabel("Reset Game");
+        DB_resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_resetButtonMousePressed(evt);
+            }
+        });
+        G2_resetBar.add(DB_resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 710, 30));
+
+        game2Frame.add(G2_resetBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 65, 720, 40));
+
+        G2_gameArea.setBackground(new java.awt.Color(175, 155, 124));
+        G2_gameArea.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        G2_gameArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        G2_player1.setBackground(new java.awt.Color(153, 135, 108));
+        G2_player1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        G2_player1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.white);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Player 1");
+        G2_player1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 309, 40));
+
+        DB_player1TopIcon.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        DB_player1TopIcon.setForeground(new java.awt.Color(255, 102, 102));
+        DB_player1TopIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_player1TopIcon.setText("▲");
+        DB_player1TopIcon.setAlignmentX(0.5F);
+        G2_player1.add(DB_player1TopIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 2, 35, 35));
+
+        G2_gameArea.add(G2_player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 359, 40));
+
+        G2_player2.setBackground(new java.awt.Color(200, 151, 115));
+        G2_player2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        G2_player2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
+        jLabel24.setForeground(java.awt.Color.white);
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Player 2");
+        G2_player2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 309, 40));
+
+        DB_player2TopIcon.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        DB_player2TopIcon.setForeground(new java.awt.Color(102, 102, 255));
+        DB_player2TopIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_player2TopIcon.setText("■");
+        DB_player2TopIcon.setAlignmentX(0.5F);
+        G2_player2.add(DB_player2TopIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 35, 35));
+
+        G2_gameArea.add(G2_player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 1, 359, 40));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel26.setForeground(java.awt.Color.black);
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("●");
+        G2_gameArea.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 40, 30));
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel27.setForeground(java.awt.Color.black);
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("●");
+        G2_gameArea.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 40, 30));
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel28.setForeground(java.awt.Color.black);
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("●");
+        G2_gameArea.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 40, 30));
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel29.setForeground(java.awt.Color.black);
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("●");
+        G2_gameArea.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 40, 30));
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel30.setForeground(java.awt.Color.black);
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("●");
+        G2_gameArea.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 40, 30));
+
+        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel33.setForeground(java.awt.Color.black);
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("●");
+        G2_gameArea.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 40, 30));
+
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel34.setForeground(java.awt.Color.black);
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setText("●");
+        G2_gameArea.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 40, 30));
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel35.setForeground(java.awt.Color.black);
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setText("●");
+        G2_gameArea.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 40, 30));
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel36.setForeground(java.awt.Color.black);
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("●");
+        G2_gameArea.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 40, 30));
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel37.setForeground(java.awt.Color.black);
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("●");
+        G2_gameArea.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 40, 30));
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel38.setForeground(java.awt.Color.black);
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setText("●");
+        G2_gameArea.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 40, 30));
+
+        jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel40.setForeground(java.awt.Color.black);
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("●");
+        G2_gameArea.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 40, 30));
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel41.setForeground(java.awt.Color.black);
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel41.setText("●");
+        G2_gameArea.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 40, 30));
+
+        jLabel42.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel42.setForeground(java.awt.Color.black);
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel42.setText("●");
+        G2_gameArea.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 40, 30));
+
+        jLabel43.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel43.setForeground(java.awt.Color.black);
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel43.setText("●");
+        G2_gameArea.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 40, 30));
+
+        jLabel44.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel44.setForeground(java.awt.Color.black);
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel44.setText("●");
+        G2_gameArea.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 40, 30));
+
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel31.setForeground(java.awt.Color.black);
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("●");
+        G2_gameArea.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 40, 30));
+
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel32.setForeground(java.awt.Color.black);
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("●");
+        G2_gameArea.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 40, 30));
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel46.setForeground(java.awt.Color.black);
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel46.setText("●");
+        G2_gameArea.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 40, 30));
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel47.setForeground(java.awt.Color.black);
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel47.setText("●");
+        G2_gameArea.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 40, 30));
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel49.setForeground(java.awt.Color.black);
+        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel49.setText("●");
+        G2_gameArea.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 40, 30));
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel50.setForeground(java.awt.Color.black);
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel50.setText("●");
+        G2_gameArea.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 40, 30));
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel51.setForeground(java.awt.Color.black);
+        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel51.setText("●");
+        G2_gameArea.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, 40, 30));
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel52.setForeground(java.awt.Color.black);
+        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel52.setText("●");
+        G2_gameArea.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 40, 30));
+
+        jLabel53.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel53.setForeground(java.awt.Color.black);
+        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel53.setText("●");
+        G2_gameArea.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 40, 30));
+
+        jLabel54.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel54.setForeground(java.awt.Color.black);
+        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel54.setText("●");
+        G2_gameArea.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 40, 30));
+
+        jLabel55.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel55.setForeground(java.awt.Color.black);
+        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel55.setText("●");
+        G2_gameArea.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 40, 30));
+
+        jLabel56.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel56.setForeground(java.awt.Color.black);
+        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel56.setText("●");
+        G2_gameArea.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 40, 30));
+
+        DB_1.setBackground(new java.awt.Color(102, 102, 255));
+        DB_1.setForeground(new java.awt.Color(102, 102, 255));
+        DB_1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DB_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 126, 85, 10));
+
+        DB_2.setBackground(new java.awt.Color(153, 153, 153));
+        DB_2.setForeground(new java.awt.Color(102, 102, 255));
+        DB_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 126, 85, 10));
+
+        DB_3.setBackground(new java.awt.Color(102, 102, 255));
+        DB_3.setForeground(new java.awt.Color(102, 102, 255));
+        DB_3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 126, 85, 10));
+
+        DB_4.setBackground(new java.awt.Color(102, 102, 255));
+        DB_4.setForeground(new java.awt.Color(102, 102, 255));
+        DB_4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 126, 85, 10));
+
+        DB_5.setBackground(new java.awt.Color(102, 102, 255));
+        DB_5.setForeground(new java.awt.Color(102, 102, 255));
+        DB_5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 126, 85, 10));
+
+        DB_6.setBackground(new java.awt.Color(102, 102, 255));
+        DB_6.setForeground(new java.awt.Color(102, 102, 255));
+        DB_6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 126, 85, 10));
+
+        DB_14.setBackground(new java.awt.Color(102, 102, 255));
+        DB_14.setForeground(new java.awt.Color(102, 102, 255));
+        DB_14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_14, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 226, 85, 10));
+
+        DB_15.setBackground(new java.awt.Color(102, 102, 255));
+        DB_15.setForeground(new java.awt.Color(102, 102, 255));
+        DB_15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_15, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 226, 85, 10));
+
+        DB_16.setBackground(new java.awt.Color(102, 102, 255));
+        DB_16.setForeground(new java.awt.Color(102, 102, 255));
+        DB_16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_16, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 226, 85, 10));
+
+        DB_17.setBackground(new java.awt.Color(102, 102, 255));
+        DB_17.setForeground(new java.awt.Color(102, 102, 255));
+        DB_17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_17, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 226, 85, 10));
+
+        DB_18.setBackground(new java.awt.Color(102, 102, 255));
+        DB_18.setForeground(new java.awt.Color(102, 102, 255));
+        DB_18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_18, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 226, 85, 10));
+
+        DB_19.setBackground(new java.awt.Color(102, 102, 255));
+        DB_19.setForeground(new java.awt.Color(102, 102, 255));
+        DB_19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_19, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 226, 85, 10));
+
+        DB_27.setBackground(new java.awt.Color(102, 102, 255));
+        DB_27.setForeground(new java.awt.Color(102, 102, 255));
+        DB_27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_27, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 326, 85, 10));
+
+        DB_28.setBackground(new java.awt.Color(102, 102, 255));
+        DB_28.setForeground(new java.awt.Color(102, 102, 255));
+        DB_28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_28, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 326, 85, 10));
+
+        DB_29.setBackground(new java.awt.Color(102, 102, 255));
+        DB_29.setForeground(new java.awt.Color(102, 102, 255));
+        DB_29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_29, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 326, 85, 10));
+
+        DB_30.setBackground(new java.awt.Color(102, 102, 255));
+        DB_30.setForeground(new java.awt.Color(102, 102, 255));
+        DB_30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_30, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 326, 85, 10));
+
+        DB_31.setBackground(new java.awt.Color(102, 102, 255));
+        DB_31.setForeground(new java.awt.Color(102, 102, 255));
+        DB_31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_31, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 326, 85, 10));
+
+        DB_32.setBackground(new java.awt.Color(102, 102, 255));
+        DB_32.setForeground(new java.awt.Color(102, 102, 255));
+        DB_32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_32, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 326, 85, 10));
+
+        DB_40.setBackground(new java.awt.Color(102, 102, 255));
+        DB_40.setForeground(new java.awt.Color(102, 102, 255));
+        DB_40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_40.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_40, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 426, 85, 10));
+
+        DB_41.setBackground(new java.awt.Color(102, 102, 255));
+        DB_41.setForeground(new java.awt.Color(102, 102, 255));
+        DB_41.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_41.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_41, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 426, 85, 10));
+
+        DB_42.setBackground(new java.awt.Color(102, 102, 255));
+        DB_42.setForeground(new java.awt.Color(102, 102, 255));
+        DB_42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_42, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 426, 85, 10));
+
+        DB_43.setBackground(new java.awt.Color(102, 102, 255));
+        DB_43.setForeground(new java.awt.Color(102, 102, 255));
+        DB_43.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_43, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 426, 85, 10));
+
+        DB_44.setBackground(new java.awt.Color(102, 102, 255));
+        DB_44.setForeground(new java.awt.Color(102, 102, 255));
+        DB_44.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_44, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 426, 85, 10));
+
+        DB_45.setBackground(new java.awt.Color(102, 102, 255));
+        DB_45.setForeground(new java.awt.Color(102, 102, 255));
+        DB_45.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_45, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 426, 85, 10));
+
+        DB_7.setBackground(new java.awt.Color(255, 102, 102));
+        DB_7.setForeground(new java.awt.Color(102, 102, 255));
+        DB_7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_7, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 138, 10, 85));
+
+        DB_8.setBackground(new java.awt.Color(255, 102, 102));
+        DB_8.setForeground(new java.awt.Color(102, 102, 255));
+        DB_8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_8, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 138, 10, 85));
+
+        DB_9.setBackground(new java.awt.Color(255, 102, 102));
+        DB_9.setForeground(new java.awt.Color(102, 102, 255));
+        DB_9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_9, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 138, 10, 85));
+
+        DB_10.setBackground(new java.awt.Color(255, 102, 102));
+        DB_10.setForeground(new java.awt.Color(102, 102, 255));
+        DB_10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_10, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 138, 10, 85));
+
+        DB_11.setBackground(new java.awt.Color(255, 102, 102));
+        DB_11.setForeground(new java.awt.Color(102, 102, 255));
+        DB_11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_11, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 138, 10, 85));
+
+        DB_12.setBackground(new java.awt.Color(255, 102, 102));
+        DB_12.setForeground(new java.awt.Color(102, 102, 255));
+        DB_12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_12, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 138, 10, 85));
+
+        DB_13.setBackground(new java.awt.Color(255, 102, 102));
+        DB_13.setForeground(new java.awt.Color(102, 102, 255));
+        DB_13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_13, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 138, 10, 85));
+
+        DB_20.setBackground(new java.awt.Color(255, 102, 102));
+        DB_20.setForeground(new java.awt.Color(102, 102, 255));
+        DB_20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_20, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 238, 10, 85));
+
+        DB_21.setBackground(new java.awt.Color(255, 102, 102));
+        DB_21.setForeground(new java.awt.Color(102, 102, 255));
+        DB_21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_21, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 238, 10, 85));
+
+        DB_22.setBackground(new java.awt.Color(255, 102, 102));
+        DB_22.setForeground(new java.awt.Color(102, 102, 255));
+        DB_22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_22, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 238, 10, 85));
+
+        DB_23.setBackground(new java.awt.Color(255, 102, 102));
+        DB_23.setForeground(new java.awt.Color(102, 102, 255));
+        DB_23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_23, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 238, 10, 85));
+
+        DB_24.setBackground(new java.awt.Color(255, 102, 102));
+        DB_24.setForeground(new java.awt.Color(102, 102, 255));
+        DB_24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_24, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 238, 10, 85));
+
+        DB_25.setBackground(new java.awt.Color(255, 102, 102));
+        DB_25.setForeground(new java.awt.Color(102, 102, 255));
+        DB_25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_25, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 238, 10, 85));
+
+        DB_26.setBackground(new java.awt.Color(255, 102, 102));
+        DB_26.setForeground(new java.awt.Color(102, 102, 255));
+        DB_26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_26, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 238, 10, 85));
+
+        DB_33.setBackground(new java.awt.Color(255, 102, 102));
+        DB_33.setForeground(new java.awt.Color(102, 102, 255));
+        DB_33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_33, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 338, 10, 85));
+
+        DB_34.setBackground(new java.awt.Color(255, 102, 102));
+        DB_34.setForeground(new java.awt.Color(102, 102, 255));
+        DB_34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_34, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 338, 10, 85));
+
+        DB_35.setBackground(new java.awt.Color(255, 102, 102));
+        DB_35.setForeground(new java.awt.Color(102, 102, 255));
+        DB_35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_35, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 338, 10, 85));
+
+        DB_36.setBackground(new java.awt.Color(255, 102, 102));
+        DB_36.setForeground(new java.awt.Color(102, 102, 255));
+        DB_36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_36, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 338, 10, 85));
+
+        DB_37.setBackground(new java.awt.Color(255, 102, 102));
+        DB_37.setForeground(new java.awt.Color(102, 102, 255));
+        DB_37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_37.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_37, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 338, 10, 85));
+
+        DB_38.setBackground(new java.awt.Color(255, 102, 102));
+        DB_38.setForeground(new java.awt.Color(102, 102, 255));
+        DB_38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_38, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 338, 10, 85));
+
+        DB_39.setBackground(new java.awt.Color(255, 102, 102));
+        DB_39.setForeground(new java.awt.Color(102, 102, 255));
+        DB_39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DB_39.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DB_lineClicked(evt);
+            }
+        });
+        G2_gameArea.add(DB_39, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 338, 10, 85));
+
+        DB_b1.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b1.setForeground(new java.awt.Color(255, 102, 102));
+        DB_b1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b1.setText("▲");
+        G2_gameArea.add(DB_b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 135, 90, 90));
+
+        DB_b2.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b2.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b2.setText("■");
+        G2_gameArea.add(DB_b2, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 135, 90, 90));
+
+        DB_b3.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b3.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b3.setText("■");
+        G2_gameArea.add(DB_b3, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 135, 90, 90));
+
+        DB_b4.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b4.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b4.setText("■");
+        G2_gameArea.add(DB_b4, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 135, 90, 90));
+
+        DB_b5.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b5.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b5.setText("■");
+        G2_gameArea.add(DB_b5, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 135, 90, 90));
+
+        DB_b6.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b6.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b6.setText("■");
+        G2_gameArea.add(DB_b6, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 135, 90, 90));
+
+        DB_b7.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b7.setForeground(new java.awt.Color(255, 102, 102));
+        DB_b7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b7.setText("▲");
+        G2_gameArea.add(DB_b7, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 235, 90, 90));
+
+        DB_b8.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b8.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b8.setText("■");
+        G2_gameArea.add(DB_b8, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 235, 90, 90));
+
+        DB_b9.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b9.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b9.setText("■");
+        G2_gameArea.add(DB_b9, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 235, 90, 90));
+
+        DB_b10.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b10.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b10.setText("■");
+        G2_gameArea.add(DB_b10, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 235, 90, 90));
+
+        DB_b11.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b11.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b11.setText("■");
+        G2_gameArea.add(DB_b11, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 235, 90, 90));
+
+        DB_b12.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b12.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b12.setText("■");
+        G2_gameArea.add(DB_b12, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 235, 90, 90));
+
+        DB_b13.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b13.setForeground(new java.awt.Color(255, 102, 102));
+        DB_b13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b13.setText("▲");
+        G2_gameArea.add(DB_b13, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 335, 90, 90));
+
+        DB_b14.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b14.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b14.setText("■");
+        G2_gameArea.add(DB_b14, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 335, 90, 90));
+
+        DB_b15.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b15.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b15.setText("■");
+        G2_gameArea.add(DB_b15, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 335, 90, 90));
+
+        DB_b16.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b16.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b16.setText("■");
+        G2_gameArea.add(DB_b16, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 335, 90, 90));
+
+        DB_b17.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b17.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b17.setText("■");
+        G2_gameArea.add(DB_b17, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 335, 90, 90));
+
+        DB_b18.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        DB_b18.setForeground(new java.awt.Color(102, 102, 255));
+        DB_b18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DB_b18.setText("■");
+        G2_gameArea.add(DB_b18, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 335, 90, 90));
+
+        game2Frame.add(G2_gameArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 530));
+
+        getContentPane().add(game2Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         game1Frame.setBackground(new java.awt.Color(214, 196, 172));
         game1Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        G1_gameArea.setBackground(new java.awt.Color(175, 155, 124));
-        G1_gameArea.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        G1_gameArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MG_gameArea.setBackground(new java.awt.Color(175, 155, 124));
+        MG_gameArea.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        MG_gameArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         G1_card1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -927,7 +1720,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card1.add(G1_cardImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 100, 150));
+        MG_gameArea.add(G1_card1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 100, 150));
 
         G1_card2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -948,7 +1741,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card2.add(G1_cardImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 100, 150));
+        MG_gameArea.add(G1_card2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 100, 150));
 
         G1_card3.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -969,7 +1762,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card3.add(G1_cardImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 100, 150));
+        MG_gameArea.add(G1_card3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 100, 150));
 
         G1_card4.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -990,7 +1783,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card4.add(G1_cardImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 100, 150));
+        MG_gameArea.add(G1_card4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 100, 150));
 
         G1_card5.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1011,7 +1804,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card5.add(G1_cardImage5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 100, 150));
+        MG_gameArea.add(G1_card5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 100, 150));
 
         G1_card6.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1032,7 +1825,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card6.add(G1_cardImage6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 100, 150));
+        MG_gameArea.add(G1_card6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 100, 150));
 
         G1_card7.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1053,7 +1846,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card7.add(G1_cardImage7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 100, 150));
+        MG_gameArea.add(G1_card7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 100, 150));
 
         G1_card8.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1074,7 +1867,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card8.add(G1_cardImage8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 100, 150));
+        MG_gameArea.add(G1_card8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 100, 150));
 
         G1_card9.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1095,7 +1888,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card9.add(G1_cardImage9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 100, 150));
+        MG_gameArea.add(G1_card9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 100, 150));
 
         G1_card10.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1115,7 +1908,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card10.add(G1_cardImage10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, 150));
+        MG_gameArea.add(G1_card10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, 150));
 
         G1_card11.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1135,7 +1928,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card11.add(G1_cardImage11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 100, 150));
+        MG_gameArea.add(G1_card11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 100, 150));
 
         G1_card12.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1155,7 +1948,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card12.add(G1_cardImage12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 100, 150));
+        MG_gameArea.add(G1_card12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 100, 150));
 
         G1_card13.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1175,7 +1968,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card13.add(G1_cardImage13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 100, 150));
+        MG_gameArea.add(G1_card13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 100, 150));
 
         G1_card14.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1195,7 +1988,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card14.add(G1_cardImage14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 100, 150));
+        MG_gameArea.add(G1_card14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 100, 150));
 
         G1_card15.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1215,7 +2008,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card15.add(G1_cardImage15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 100, 150));
+        MG_gameArea.add(G1_card15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 100, 150));
 
         G1_card16.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1235,7 +2028,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card16.add(G1_cardImage16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 100, 150));
+        MG_gameArea.add(G1_card16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 100, 150));
 
         G1_card17.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1255,7 +2048,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card17.add(G1_cardImage17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card17, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 100, 150));
+        MG_gameArea.add(G1_card17, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 100, 150));
 
         G1_card18.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         G1_card18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1275,55 +2068,55 @@ public class GUI_window extends javax.swing.JFrame {
         });
         G1_card18.add(G1_cardImage18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 150));
 
-        G1_gameArea.add(G1_card18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 100, 150));
+        MG_gameArea.add(G1_card18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 100, 150));
 
-        game1Frame.add(G1_gameArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 530));
+        game1Frame.add(MG_gameArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 530));
 
-        G1_disableCover.setBackground(new java.awt.Color(172, 157, 136));
-        G1_disableCover.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        G1_disableCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        game1Frame.add(G1_disableCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 530));
+        MG_disableCover.setBackground(new java.awt.Color(172, 157, 136));
+        MG_disableCover.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        MG_disableCover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        game1Frame.add(MG_disableCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 530));
 
-        G1_timeBoard.setBackground(new java.awt.Color(153, 135, 108));
-        G1_timeBoard.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G1_timeBoard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MG_timeBoard.setBackground(new java.awt.Color(153, 135, 108));
+        MG_timeBoard.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MG_timeBoard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        G1_timerBar.setBackground(new java.awt.Color(200, 151, 115));
-        G1_timerBar.setForeground(new java.awt.Color(153, 135, 108));
-        G1_timerBar.setValue(30);
-        G1_timeBoard.add(G1_timerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 430, 30));
+        MG_timerBar.setBackground(new java.awt.Color(200, 151, 115));
+        MG_timerBar.setForeground(new java.awt.Color(153, 135, 108));
+        MG_timerBar.setValue(30);
+        MG_timeBoard.add(MG_timerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 430, 30));
 
-        G1_startButton.setBackground(new java.awt.Color(200, 151, 115));
-        G1_startButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        G1_startButton.setForeground(java.awt.Color.white);
-        G1_startButton.setText("Start Game");
-        G1_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        G1_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        MG_startButton.setBackground(new java.awt.Color(200, 151, 115));
+        MG_startButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MG_startButton.setForeground(java.awt.Color.white);
+        MG_startButton.setText("Start Game");
+        MG_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MG_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                G1_startButtonMousePressed(evt);
+                MG_startButtonMousePressed(evt);
             }
         });
-        G1_timeBoard.add(G1_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 430, 30));
+        MG_timeBoard.add(MG_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 430, 30));
 
-        game1Frame.add(G1_timeBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 65, 440, 40));
+        game1Frame.add(MG_timeBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 65, 440, 40));
 
-        G1_scoreBoard.setBackground(new java.awt.Color(153, 135, 108));
-        G1_scoreBoard.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G1_scoreBoard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MG_scoreBoard.setBackground(new java.awt.Color(153, 135, 108));
+        MG_scoreBoard.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MG_scoreBoard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         G1_score.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         G1_score.setForeground(java.awt.Color.white);
         G1_score.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         G1_score.setText("<score>");
-        G1_scoreBoard.add(G1_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 140, 40));
+        MG_scoreBoard.add(G1_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 140, 40));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel21.setForeground(java.awt.Color.white);
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("Current Score: ");
-        G1_scoreBoard.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+        MG_scoreBoard.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
 
-        game1Frame.add(G1_scoreBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 65, 270, 40));
+        game1Frame.add(MG_scoreBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 65, 270, 40));
 
         getContentPane().add(game1Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
@@ -2752,799 +3545,6 @@ public class GUI_window extends javax.swing.JFrame {
 
         getContentPane().add(game4Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
-        game2Frame.setBackground(new java.awt.Color(214, 196, 172));
-        game2Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        G2_resetBar.setBackground(new java.awt.Color(153, 135, 108));
-        G2_resetBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        G2_resetBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        G2_resetButton.setBackground(new java.awt.Color(200, 151, 115));
-        G2_resetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        G2_resetButton.setForeground(java.awt.Color.white);
-        G2_resetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        G2_resetButton.setLabel("Reset Game");
-        G2_resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                G2_resetButtonMousePressed(evt);
-            }
-        });
-        G2_resetBar.add(G2_resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 710, 30));
-
-        game2Frame.add(G2_resetBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 65, 720, 40));
-
-        G2_gameArea.setBackground(new java.awt.Color(175, 155, 124));
-        G2_gameArea.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        G2_gameArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        G2_player1.setBackground(new java.awt.Color(153, 135, 108));
-        G2_player1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        G2_player1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Player 1");
-        G2_player1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 309, 40));
-
-        DB_player1TopIcon.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        DB_player1TopIcon.setForeground(new java.awt.Color(255, 102, 102));
-        DB_player1TopIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_player1TopIcon.setText("▲");
-        DB_player1TopIcon.setAlignmentX(0.5F);
-        G2_player1.add(DB_player1TopIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 2, 35, 35));
-
-        G2_gameArea.add(G2_player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 359, 40));
-
-        G2_player2.setBackground(new java.awt.Color(200, 151, 115));
-        G2_player2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        G2_player2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
-        jLabel24.setForeground(java.awt.Color.white);
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("Player 2");
-        G2_player2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 309, 40));
-
-        DB_player2TopIcon.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        DB_player2TopIcon.setForeground(new java.awt.Color(102, 102, 255));
-        DB_player2TopIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_player2TopIcon.setText("■");
-        DB_player2TopIcon.setAlignmentX(0.5F);
-        G2_player2.add(DB_player2TopIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 35, 35));
-
-        G2_gameArea.add(G2_player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 1, 359, 40));
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel26.setForeground(java.awt.Color.black);
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setText("●");
-        G2_gameArea.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 40, 30));
-
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel27.setForeground(java.awt.Color.black);
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("●");
-        G2_gameArea.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 40, 30));
-
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel28.setForeground(java.awt.Color.black);
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("●");
-        G2_gameArea.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 40, 30));
-
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel29.setForeground(java.awt.Color.black);
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("●");
-        G2_gameArea.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 40, 30));
-
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel30.setForeground(java.awt.Color.black);
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setText("●");
-        G2_gameArea.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 40, 30));
-
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel33.setForeground(java.awt.Color.black);
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setText("●");
-        G2_gameArea.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 40, 30));
-
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel34.setForeground(java.awt.Color.black);
-        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setText("●");
-        G2_gameArea.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 40, 30));
-
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel35.setForeground(java.awt.Color.black);
-        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setText("●");
-        G2_gameArea.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 40, 30));
-
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel36.setForeground(java.awt.Color.black);
-        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setText("●");
-        G2_gameArea.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 40, 30));
-
-        jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel37.setForeground(java.awt.Color.black);
-        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel37.setText("●");
-        G2_gameArea.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 40, 30));
-
-        jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel38.setForeground(java.awt.Color.black);
-        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel38.setText("●");
-        G2_gameArea.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 40, 30));
-
-        jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel40.setForeground(java.awt.Color.black);
-        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel40.setText("●");
-        G2_gameArea.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 40, 30));
-
-        jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel41.setForeground(java.awt.Color.black);
-        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel41.setText("●");
-        G2_gameArea.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 40, 30));
-
-        jLabel42.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel42.setForeground(java.awt.Color.black);
-        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel42.setText("●");
-        G2_gameArea.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 40, 30));
-
-        jLabel43.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel43.setForeground(java.awt.Color.black);
-        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel43.setText("●");
-        G2_gameArea.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 40, 30));
-
-        jLabel44.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel44.setForeground(java.awt.Color.black);
-        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel44.setText("●");
-        G2_gameArea.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 40, 30));
-
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel31.setForeground(java.awt.Color.black);
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("●");
-        G2_gameArea.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 40, 30));
-
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel32.setForeground(java.awt.Color.black);
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("●");
-        G2_gameArea.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 40, 30));
-
-        jLabel46.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel46.setForeground(java.awt.Color.black);
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setText("●");
-        G2_gameArea.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 40, 30));
-
-        jLabel47.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel47.setForeground(java.awt.Color.black);
-        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel47.setText("●");
-        G2_gameArea.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 40, 30));
-
-        jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel49.setForeground(java.awt.Color.black);
-        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel49.setText("●");
-        G2_gameArea.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 40, 30));
-
-        jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel50.setForeground(java.awt.Color.black);
-        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel50.setText("●");
-        G2_gameArea.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 40, 30));
-
-        jLabel51.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel51.setForeground(java.awt.Color.black);
-        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel51.setText("●");
-        G2_gameArea.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, 40, 30));
-
-        jLabel52.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel52.setForeground(java.awt.Color.black);
-        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel52.setText("●");
-        G2_gameArea.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 40, 30));
-
-        jLabel53.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel53.setForeground(java.awt.Color.black);
-        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel53.setText("●");
-        G2_gameArea.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 40, 30));
-
-        jLabel54.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel54.setForeground(java.awt.Color.black);
-        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel54.setText("●");
-        G2_gameArea.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 40, 30));
-
-        jLabel55.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel55.setForeground(java.awt.Color.black);
-        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel55.setText("●");
-        G2_gameArea.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 40, 30));
-
-        jLabel56.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
-        jLabel56.setForeground(java.awt.Color.black);
-        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel56.setText("●");
-        G2_gameArea.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 40, 30));
-
-        DB_1.setBackground(new java.awt.Color(102, 102, 255));
-        DB_1.setForeground(new java.awt.Color(102, 102, 255));
-        DB_1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DB_1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 126, 85, 10));
-
-        DB_2.setBackground(new java.awt.Color(153, 153, 153));
-        DB_2.setForeground(new java.awt.Color(102, 102, 255));
-        DB_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 126, 85, 10));
-
-        DB_3.setBackground(new java.awt.Color(102, 102, 255));
-        DB_3.setForeground(new java.awt.Color(102, 102, 255));
-        DB_3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 126, 85, 10));
-
-        DB_4.setBackground(new java.awt.Color(102, 102, 255));
-        DB_4.setForeground(new java.awt.Color(102, 102, 255));
-        DB_4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 126, 85, 10));
-
-        DB_5.setBackground(new java.awt.Color(102, 102, 255));
-        DB_5.setForeground(new java.awt.Color(102, 102, 255));
-        DB_5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 126, 85, 10));
-
-        DB_6.setBackground(new java.awt.Color(102, 102, 255));
-        DB_6.setForeground(new java.awt.Color(102, 102, 255));
-        DB_6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 126, 85, 10));
-
-        DB_14.setBackground(new java.awt.Color(102, 102, 255));
-        DB_14.setForeground(new java.awt.Color(102, 102, 255));
-        DB_14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_14, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 226, 85, 10));
-
-        DB_15.setBackground(new java.awt.Color(102, 102, 255));
-        DB_15.setForeground(new java.awt.Color(102, 102, 255));
-        DB_15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_15, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 226, 85, 10));
-
-        DB_16.setBackground(new java.awt.Color(102, 102, 255));
-        DB_16.setForeground(new java.awt.Color(102, 102, 255));
-        DB_16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_16, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 226, 85, 10));
-
-        DB_17.setBackground(new java.awt.Color(102, 102, 255));
-        DB_17.setForeground(new java.awt.Color(102, 102, 255));
-        DB_17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_17, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 226, 85, 10));
-
-        DB_18.setBackground(new java.awt.Color(102, 102, 255));
-        DB_18.setForeground(new java.awt.Color(102, 102, 255));
-        DB_18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_18, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 226, 85, 10));
-
-        DB_19.setBackground(new java.awt.Color(102, 102, 255));
-        DB_19.setForeground(new java.awt.Color(102, 102, 255));
-        DB_19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_19, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 226, 85, 10));
-
-        DB_27.setBackground(new java.awt.Color(102, 102, 255));
-        DB_27.setForeground(new java.awt.Color(102, 102, 255));
-        DB_27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_27.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_27, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 326, 85, 10));
-
-        DB_28.setBackground(new java.awt.Color(102, 102, 255));
-        DB_28.setForeground(new java.awt.Color(102, 102, 255));
-        DB_28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_28.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_28, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 326, 85, 10));
-
-        DB_29.setBackground(new java.awt.Color(102, 102, 255));
-        DB_29.setForeground(new java.awt.Color(102, 102, 255));
-        DB_29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_29.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_29, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 326, 85, 10));
-
-        DB_30.setBackground(new java.awt.Color(102, 102, 255));
-        DB_30.setForeground(new java.awt.Color(102, 102, 255));
-        DB_30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_30.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_30, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 326, 85, 10));
-
-        DB_31.setBackground(new java.awt.Color(102, 102, 255));
-        DB_31.setForeground(new java.awt.Color(102, 102, 255));
-        DB_31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_31.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_31, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 326, 85, 10));
-
-        DB_32.setBackground(new java.awt.Color(102, 102, 255));
-        DB_32.setForeground(new java.awt.Color(102, 102, 255));
-        DB_32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_32.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_32, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 326, 85, 10));
-
-        DB_40.setBackground(new java.awt.Color(102, 102, 255));
-        DB_40.setForeground(new java.awt.Color(102, 102, 255));
-        DB_40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_40.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_40, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 426, 85, 10));
-
-        DB_41.setBackground(new java.awt.Color(102, 102, 255));
-        DB_41.setForeground(new java.awt.Color(102, 102, 255));
-        DB_41.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_41.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_41, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 426, 85, 10));
-
-        DB_42.setBackground(new java.awt.Color(102, 102, 255));
-        DB_42.setForeground(new java.awt.Color(102, 102, 255));
-        DB_42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_42.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_42, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 426, 85, 10));
-
-        DB_43.setBackground(new java.awt.Color(102, 102, 255));
-        DB_43.setForeground(new java.awt.Color(102, 102, 255));
-        DB_43.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_43.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_43, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 426, 85, 10));
-
-        DB_44.setBackground(new java.awt.Color(102, 102, 255));
-        DB_44.setForeground(new java.awt.Color(102, 102, 255));
-        DB_44.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_44.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_44, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 426, 85, 10));
-
-        DB_45.setBackground(new java.awt.Color(102, 102, 255));
-        DB_45.setForeground(new java.awt.Color(102, 102, 255));
-        DB_45.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_45.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_45, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 426, 85, 10));
-
-        DB_7.setBackground(new java.awt.Color(255, 102, 102));
-        DB_7.setForeground(new java.awt.Color(102, 102, 255));
-        DB_7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_7, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 138, 10, 85));
-
-        DB_8.setBackground(new java.awt.Color(255, 102, 102));
-        DB_8.setForeground(new java.awt.Color(102, 102, 255));
-        DB_8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_8, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 138, 10, 85));
-
-        DB_9.setBackground(new java.awt.Color(255, 102, 102));
-        DB_9.setForeground(new java.awt.Color(102, 102, 255));
-        DB_9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_9, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 138, 10, 85));
-
-        DB_10.setBackground(new java.awt.Color(255, 102, 102));
-        DB_10.setForeground(new java.awt.Color(102, 102, 255));
-        DB_10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_10, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 138, 10, 85));
-
-        DB_11.setBackground(new java.awt.Color(255, 102, 102));
-        DB_11.setForeground(new java.awt.Color(102, 102, 255));
-        DB_11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_11, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 138, 10, 85));
-
-        DB_12.setBackground(new java.awt.Color(255, 102, 102));
-        DB_12.setForeground(new java.awt.Color(102, 102, 255));
-        DB_12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_12, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 138, 10, 85));
-
-        DB_13.setBackground(new java.awt.Color(255, 102, 102));
-        DB_13.setForeground(new java.awt.Color(102, 102, 255));
-        DB_13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_13, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 138, 10, 85));
-
-        DB_20.setBackground(new java.awt.Color(255, 102, 102));
-        DB_20.setForeground(new java.awt.Color(102, 102, 255));
-        DB_20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_20.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_20, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 238, 10, 85));
-
-        DB_21.setBackground(new java.awt.Color(255, 102, 102));
-        DB_21.setForeground(new java.awt.Color(102, 102, 255));
-        DB_21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_21.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_21, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 238, 10, 85));
-
-        DB_22.setBackground(new java.awt.Color(255, 102, 102));
-        DB_22.setForeground(new java.awt.Color(102, 102, 255));
-        DB_22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_22, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 238, 10, 85));
-
-        DB_23.setBackground(new java.awt.Color(255, 102, 102));
-        DB_23.setForeground(new java.awt.Color(102, 102, 255));
-        DB_23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_23.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_23, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 238, 10, 85));
-
-        DB_24.setBackground(new java.awt.Color(255, 102, 102));
-        DB_24.setForeground(new java.awt.Color(102, 102, 255));
-        DB_24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_24.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_24, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 238, 10, 85));
-
-        DB_25.setBackground(new java.awt.Color(255, 102, 102));
-        DB_25.setForeground(new java.awt.Color(102, 102, 255));
-        DB_25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_25.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_25, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 238, 10, 85));
-
-        DB_26.setBackground(new java.awt.Color(255, 102, 102));
-        DB_26.setForeground(new java.awt.Color(102, 102, 255));
-        DB_26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_26.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_26, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 238, 10, 85));
-
-        DB_33.setBackground(new java.awt.Color(255, 102, 102));
-        DB_33.setForeground(new java.awt.Color(102, 102, 255));
-        DB_33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_33.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_33, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 338, 10, 85));
-
-        DB_34.setBackground(new java.awt.Color(255, 102, 102));
-        DB_34.setForeground(new java.awt.Color(102, 102, 255));
-        DB_34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_34.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_34, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 338, 10, 85));
-
-        DB_35.setBackground(new java.awt.Color(255, 102, 102));
-        DB_35.setForeground(new java.awt.Color(102, 102, 255));
-        DB_35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_35.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_35, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 338, 10, 85));
-
-        DB_36.setBackground(new java.awt.Color(255, 102, 102));
-        DB_36.setForeground(new java.awt.Color(102, 102, 255));
-        DB_36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_36.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_36, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 338, 10, 85));
-
-        DB_37.setBackground(new java.awt.Color(255, 102, 102));
-        DB_37.setForeground(new java.awt.Color(102, 102, 255));
-        DB_37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_37.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_37, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 338, 10, 85));
-
-        DB_38.setBackground(new java.awt.Color(255, 102, 102));
-        DB_38.setForeground(new java.awt.Color(102, 102, 255));
-        DB_38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_38.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_38, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 338, 10, 85));
-
-        DB_39.setBackground(new java.awt.Color(255, 102, 102));
-        DB_39.setForeground(new java.awt.Color(102, 102, 255));
-        DB_39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_39.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_lineClicked(evt);
-            }
-        });
-        G2_gameArea.add(DB_39, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 338, 10, 85));
-
-        DB_b1.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b1.setForeground(new java.awt.Color(255, 102, 102));
-        DB_b1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b1.setText("▲");
-        G2_gameArea.add(DB_b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 135, 90, 90));
-
-        DB_b2.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b2.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b2.setText("■");
-        G2_gameArea.add(DB_b2, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 135, 90, 90));
-
-        DB_b3.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b3.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b3.setText("■");
-        G2_gameArea.add(DB_b3, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 135, 90, 90));
-
-        DB_b4.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b4.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b4.setText("■");
-        G2_gameArea.add(DB_b4, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 135, 90, 90));
-
-        DB_b5.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b5.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b5.setText("■");
-        G2_gameArea.add(DB_b5, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 135, 90, 90));
-
-        DB_b6.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b6.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b6.setText("■");
-        G2_gameArea.add(DB_b6, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 135, 90, 90));
-
-        DB_b7.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b7.setForeground(new java.awt.Color(255, 102, 102));
-        DB_b7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b7.setText("▲");
-        G2_gameArea.add(DB_b7, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 235, 90, 90));
-
-        DB_b8.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b8.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b8.setText("■");
-        G2_gameArea.add(DB_b8, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 235, 90, 90));
-
-        DB_b9.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b9.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b9.setText("■");
-        G2_gameArea.add(DB_b9, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 235, 90, 90));
-
-        DB_b10.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b10.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b10.setText("■");
-        G2_gameArea.add(DB_b10, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 235, 90, 90));
-
-        DB_b11.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b11.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b11.setText("■");
-        G2_gameArea.add(DB_b11, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 235, 90, 90));
-
-        DB_b12.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b12.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b12.setText("■");
-        G2_gameArea.add(DB_b12, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 235, 90, 90));
-
-        DB_b13.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b13.setForeground(new java.awt.Color(255, 102, 102));
-        DB_b13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b13.setText("▲");
-        G2_gameArea.add(DB_b13, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 335, 90, 90));
-
-        DB_b14.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b14.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b14.setText("■");
-        G2_gameArea.add(DB_b14, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 335, 90, 90));
-
-        DB_b15.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b15.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b15.setText("■");
-        G2_gameArea.add(DB_b15, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 335, 90, 90));
-
-        DB_b16.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b16.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b16.setText("■");
-        G2_gameArea.add(DB_b16, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 335, 90, 90));
-
-        DB_b17.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b17.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b17.setText("■");
-        G2_gameArea.add(DB_b17, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 335, 90, 90));
-
-        DB_b18.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
-        DB_b18.setForeground(new java.awt.Color(102, 102, 255));
-        DB_b18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DB_b18.setText("■");
-        G2_gameArea.add(DB_b18, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 335, 90, 90));
-
-        game2Frame.add(G2_gameArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 720, 530));
-
-        getContentPane().add(game2Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
-
         loginFrame.setBackground(new java.awt.Color(214, 196, 172));
         loginFrame.setPreferredSize(new java.awt.Dimension(400, 350));
         loginFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3658,6 +3658,7 @@ public class GUI_window extends javax.swing.JFrame {
     private final PingPong PP = new PingPong();                                           //||
     private final TanksGame T = new TanksGame();                                          //||
     private final Tag TA = new Tag();                                                     //||
+    private final CastleDefense CD = new CastleDefense();                                 //||
     // =======================================================================================
     // =======================================================================================
     
@@ -3665,7 +3666,7 @@ public class GUI_window extends javax.swing.JFrame {
     
     
 // SWITCH FRAME ===========================================================================
-private void switchFrame(javax.swing.JPanel target){  
+    private void switchFrame(JPanel target){  
     // Hiding all panels
     mainMenuFrame.setVisible(false);
     MM_topBar.setVisible(false);
@@ -3723,11 +3724,11 @@ private void switchFrame(javax.swing.JPanel target){
         // Setting the corresponding game reset and variables
         if(target == game1Frame){
             MM_username.setText("Matching Game"); // Changing the title to the game name
-            G1_disableCover.setVisible(true);     // Showign the disable cover so player knows to start game 
-            G1_timerBar.setValue(0);              // Set timer bar to zero 
-            G1_timerBar.setVisible(false);        // Hide Timer bar
-            G1_startButton.setVisible(true);      // Show the start button instead of timer bar
-            G1_startButton.setText("Start Game!"); // Change text to reset next press
+            MG_disableCover.setVisible(true);     // Showign the disable cover so player knows to start game 
+            MG_timerBar.setValue(0);              // Set timer bar to zero 
+            MG_timerBar.setVisible(false);        // Hide Timer bar
+            MG_startButton.setVisible(true);      // Show the start button instead of timer bar
+            MG_startButton.setText("Start Game!"); // Change text to reset next press
             G1_score.setText("0");                 // Sets the score back to 0
             MG.shuffle();                          // Shuffles and resets the board
         }
@@ -3737,22 +3738,22 @@ private void switchFrame(javax.swing.JPanel target){
         }
         else if(target == game3Frame){
             MM_username.setText("Ping Pong");      // Changing game title
-            G3_playerScore.setText("0");           // Reseting player 1 score
-            G3_computerScore.setText("0");         // Resetting player 2 / computer score
-            G3_pointsPanel.setText("0");           // Resetting points label
-            G3_countDownTimer.setVisible(false);   // Hiding the countdown timer
+            PP_playerScore.setText("0");           // Reseting player 1 score
+            PP_computerScore.setText("0");         // Resetting player 2 / computer score
+            PP_pointsPanel.setText("0");           // Resetting points label
+            PP_countDownTimer.setVisible(false);   // Hiding the countdown timer
             PP.reset();                            // Resetting the game
 
             // Setting to single player mode
             PP.setTwoPlayerMode(false);     // Setting game class to single player mode
-            G3_twoPlayerModeCover.setVisible(false);   // Hiding the two player mode display
-            G3_singlePlayerModeCover.setVisible(true); // Showing the single player mode display
-            G3_computerLabel.setText("Computer");      // Changing player 2 label to computer
-            G3_playerLabel.setText("Player");          // Changing the player 1 label to player
-            G3_twoPlayerButton.setBackground(new Color(214,196,172)); // Setting color to unclicked
-            G3_resetCover.setVisible(false);           // Hiding the reset button 
-            G3_cover.setVisible(true);                 // Showing the game start cover
-            G3_timerBar.setValue(0);                   // Resetting the time bar
+            PP_twoPlayerModeCover.setVisible(false);   // Hiding the two player mode display
+            PP_singlePlayerModeCover.setVisible(true); // Showing the single player mode display
+            PP_computerLabel.setText("Computer");      // Changing player 2 label to computer
+            PP_playerLabel.setText("Player");          // Changing the player 1 label to player
+            PP_twoPlayerButton.setBackground(new Color(214,196,172)); // Setting color to unclicked
+            PP_resetCover.setVisible(false);           // Hiding the reset button 
+            PP_cover.setVisible(true);                 // Showing the game start cover
+            PP_timerBar.setValue(0);                   // Resetting the time bar
         }
         else if(target == game4Frame){
             MM_username.setText("Tanks"); // Changing the title
@@ -4070,30 +4071,30 @@ private void switchFrame(javax.swing.JPanel target){
     
     
 // GAME 1 FUNCTIONS ==================================================================== 
-    private void G1_startButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G1_startButtonMousePressed
+    private void MG_startButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MG_startButtonMousePressed
         // Resetting game by sending back into game 1 if user finished previous game
-        if(G1_startButton.getText().equals("Play Again!")){
+        if(MG_startButton.getText().equals("Play Again!")){
             switchFrame(game1Frame);
             return;
         }
         
         // Start game Flow:
-        G1_disableCover.setVisible(false);     // Hide the disable cover to start the game
-        G1_timerBar.setVisible(true);          // Show the timer bar
-        G1_startButton.setVisible(false);      // Hide the start button
-        G1_startButton.setText("Play Again!"); // Change text to reset next press
+        MG_disableCover.setVisible(false);     // Hide the disable cover to start the game
+        MG_timerBar.setVisible(true);          // Show the timer bar
+        MG_startButton.setVisible(false);      // Hide the start button
+        MG_startButton.setText("Play Again!"); // Change text to reset next press
         
         // Update score object
         MG.setScore_fromOutside(scores, currentUser);
         
         // Start the timer for the game when start button is pressed
         MG.startGame();
-    }//GEN-LAST:event_G1_startButtonMousePressed
+    }//GEN-LAST:event_MG_startButtonMousePressed
 
     private void MG_cardClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MG_cardClicked
         if(MG.isBusy())                  // Checking if we are currently in showing timer, return if so
             return;
-        if(G1_disableCover.isVisible()) // Checking if cover is visible (usually when the game ends or is starting)
+        if(MG_disableCover.isVisible()) // Checking if cover is visible (usually when the game ends or is starting)
             return;
         
         JLabel clickedLabel = (JLabel) evt.getSource();    // Getting the card that was clicked (we are really clicking on the card)
@@ -4106,9 +4107,9 @@ private void switchFrame(javax.swing.JPanel target){
                 String matchingPoints = G1_score.getText(); // Save the points given by matches before adding the time points
                 
                 MG.addTimeScore();      // Sending remaining time to add points, also updates the score
-                G1_disableCover.setVisible(true);          // Covering up game
-                G1_startButton.setVisible(true);           // Showing reset button 
-                G1_timerBar.setVisible(false);             // Hiding game timer bar
+                MG_disableCover.setVisible(true);          // Covering up game
+                MG_startButton.setVisible(true);           // Showing reset button 
+                MG_timerBar.setVisible(false);             // Hiding game timer bar
                 
                 
                 String timePoints = Integer.toString((MG.getRemainingTime())* MG.getTimeLeftScoreIncrease()); // Calculating the points made by time\
@@ -4124,9 +4125,9 @@ private void switchFrame(javax.swing.JPanel target){
     
     
  // GAME 2 FUNCTIONS ==================================================================== 
-    private void G2_resetButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G2_resetButtonMousePressed
+    private void DB_resetButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DB_resetButtonMousePressed
         switchFrame(game2Frame);
-    }//GEN-LAST:event_G2_resetButtonMousePressed
+    }//GEN-LAST:event_DB_resetButtonMousePressed
 
 
     private void DB_lineClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DB_lineClicked
@@ -4154,15 +4155,13 @@ private void switchFrame(javax.swing.JPanel target){
     
     
 // GAME 3 FUNCTIONS ==================================================================== 
-    
-    
     private boolean gamePaused = false;
-    private void G3_gameAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_G3_gameAreaKeyPressed
+    private void PP_gameAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PP_gameAreaKeyPressed
         // If player is pushing the "P", they want to pause the game
         if(evt.getKeyCode() == KeyEvent.VK_P){
             // Making sure to ignore when the timer is visible and is counting down
-            if(G3_countDownTimer.isVisible() && 
-               !G3_countDownTimer.getText().equals("Game Paused")) 
+            if(PP_countDownTimer.isVisible() && 
+               !PP_countDownTimer.getText().equals("Game Paused")) 
                 return;
             gamePaused = !gamePaused;  // Toggle the pause button
             if(gamePaused)             // Pause the Game 
@@ -4171,7 +4170,7 @@ private void switchFrame(javax.swing.JPanel target){
                 PP.continueGame();
         }
         
-        if(G3_countDownTimer.getText().equals("Game Paused")) // If the countdown are numbers! then we can just ignore this key
+        if(PP_countDownTimer.getText().equals("Game Paused")) // If the countdown are numbers! then we can just ignore this key
             return;
 
         
@@ -4199,10 +4198,10 @@ private void switchFrame(javax.swing.JPanel target){
                 PP.downPressed2();
             }
         }
-    }//GEN-LAST:event_G3_gameAreaKeyPressed
+    }//GEN-LAST:event_PP_gameAreaKeyPressed
 
-    private void G3_gameAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_G3_gameAreaKeyReleased
-        if(G3_countDownTimer.isVisible())
+    private void PP_gameAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PP_gameAreaKeyReleased
+        if(PP_countDownTimer.isVisible())
             return;
         
         if(!PP.isTwoPlayerMode()){
@@ -4227,41 +4226,41 @@ private void switchFrame(javax.swing.JPanel target){
                 PP.downReleased2();
             }
         }
-    }//GEN-LAST:event_G3_gameAreaKeyReleased
+    }//GEN-LAST:event_PP_gameAreaKeyReleased
 
-    private void G3_startButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G3_startButtonMousePressed
-        G3_cover.setVisible(false);         // Hide the cover 
+    private void PP_startButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PP_startButtonMousePressed
+        PP_cover.setVisible(false);         // Hide the cover 
         PP.startGame();                     // Start the game
-        PP.updateScores(scores,currentUser);
-        G3_gameArea.requestFocusInWindow(); // Sends focus to the game window
-    }//GEN-LAST:event_G3_startButtonMousePressed
+        PP.setScores_fromOutside(scores,currentUser); // Send in again the scores from here
+        PP_gameArea.requestFocusInWindow(); // Sends focus to the game window
+    }//GEN-LAST:event_PP_startButtonMousePressed
 
-    private void G3_resetButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G3_resetButtonMousePressed
+    private void PP_resetButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PP_resetButtonMousePressed
         switchFrame(game3Frame);
-    }//GEN-LAST:event_G3_resetButtonMousePressed
+    }//GEN-LAST:event_PP_resetButtonMousePressed
 
-    private void G3_twoPlayerButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G3_twoPlayerButtonMousePressed
+    private void PP_twoPlayerButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PP_twoPlayerButtonMousePressed
         if(!PP.isTwoPlayerMode()){ // Going into Two Player Mode
-            G3_twoPlayerButton.setBackground(new Color(204,255,204));
-            G3_twoPlayerModeCover.setVisible(true);
-            G3_singlePlayerModeCover.setVisible(false);
+            PP_twoPlayerButton.setBackground(new Color(204,255,204));
+            PP_twoPlayerModeCover.setVisible(true);
+            PP_singlePlayerModeCover.setVisible(false);
             PP.setTwoPlayerMode(true);
-            G3_scorePanel.setVisible(false);
-            G3_computerLabel.setText("Player 2");
-            G3_playerLabel.setText("Player 1");
+            PP_scorePanel.setVisible(false);
+            PP_computerLabel.setText("Player 2");
+            PP_playerLabel.setText("Player 1");
            
         }
         else{ // Going into Single Player Mode
-            G3_twoPlayerButton.setBackground(new Color(214,196,172));
-            G3_twoPlayerModeCover.setVisible(false);
-            G3_singlePlayerModeCover.setVisible(true);
+            PP_twoPlayerButton.setBackground(new Color(214,196,172));
+            PP_twoPlayerModeCover.setVisible(false);
+            PP_singlePlayerModeCover.setVisible(true);
             PP.setTwoPlayerMode(false);
-            G3_scorePanel.setVisible(true);
-            G3_computerLabel.setText("Computer");
-            G3_playerLabel.setText("Player");
+            PP_scorePanel.setVisible(true);
+            PP_computerLabel.setText("Computer");
+            PP_playerLabel.setText("Player");
             
         }
-    }//GEN-LAST:event_G3_twoPlayerButtonMousePressed
+    }//GEN-LAST:event_PP_twoPlayerButtonMousePressed
 
 // ========================================================================================
  
@@ -4337,10 +4336,10 @@ private void switchFrame(javax.swing.JPanel target){
 
     private void T_matchCoverButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_matchCoverButtonMouseClicked
         // Saving who won the match so we can show that in the next screen
-        switch(T.map){
-            case 1 -> {map1WonBy = T.matchWonBy;}
-            case 2 -> {map2WonBy = T.matchWonBy;}
-            case 3 -> {map3WonBy = T.matchWonBy;}
+        switch(T.getMap()){
+            case 1 -> {map1WonBy = T.getMatchWonBy();}
+            case 2 -> {map2WonBy = T.getMatchWonBy();}
+            case 3 -> {map3WonBy = T.getMatchWonBy();}
         }
         
         // Making the covers for the game maps if they have already been played and won by someone
@@ -4564,7 +4563,7 @@ private void switchFrame(javax.swing.JPanel target){
    
    
     
-// GAME 5 FUNCTIONS ====================================================================
+// GAME 6 FUNCTIONS ====================================================================
 
     
     
@@ -4686,6 +4685,7 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel DB_b9;
     private javax.swing.JLabel DB_player1TopIcon;
     private javax.swing.JLabel DB_player2TopIcon;
+    private javax.swing.JButton DB_resetButton;
     private javax.swing.JPanel G1_card1;
     private javax.swing.JPanel G1_card10;
     private javax.swing.JPanel G1_card11;
@@ -4740,44 +4740,21 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel G1_cardValue7;
     private javax.swing.JLabel G1_cardValue8;
     private javax.swing.JLabel G1_cardValue9;
-    private javax.swing.JPanel G1_disableCover;
-    private javax.swing.JPanel G1_gameArea;
     private javax.swing.JLabel G1_score;
-    private javax.swing.JPanel G1_scoreBoard;
-    private javax.swing.JButton G1_startButton;
-    private javax.swing.JPanel G1_timeBoard;
-    private javax.swing.JProgressBar G1_timerBar;
     private javax.swing.JPanel G2_gameArea;
     private javax.swing.JPanel G2_player1;
     private javax.swing.JPanel G2_player2;
-    private javax.swing.JPanel G2_playerEdge;
     private javax.swing.JPanel G2_resetBar;
-    private javax.swing.JButton G2_resetButton;
-    private javax.swing.JPanel G3_ball;
-    private javax.swing.JPanel G3_computer;
-    private javax.swing.JPanel G3_computerEdge;
-    private javax.swing.JLabel G3_computerLabel;
-    private javax.swing.JLabel G3_computerScore;
-    private javax.swing.JLabel G3_countDownTimer;
-    private javax.swing.JPanel G3_cover;
-    private javax.swing.JPanel G3_gameArea;
-    private javax.swing.JLabel G3_gameDescription;
     private javax.swing.JLabel G3_gameDescription2;
-    private javax.swing.JPanel G3_player;
-    private javax.swing.JLabel G3_playerLabel;
-    private javax.swing.JLabel G3_playerScore;
-    private javax.swing.JLabel G3_pointsPanel;
-    private javax.swing.JButton G3_resetButton;
-    private javax.swing.JPanel G3_resetCover;
-    private javax.swing.JPanel G3_scorePanel;
-    private javax.swing.JPanel G3_singlePlayerModeCover;
-    private javax.swing.JButton G3_startButton;
-    private javax.swing.JProgressBar G3_timerBar;
-    private javax.swing.JButton G3_twoPlayerButton;
-    private javax.swing.JPanel G3_twoPlayerModeCover;
     private javax.swing.JLabel JLabel;
     private javax.swing.JLabel JLabel19;
     private javax.swing.JPanel JPanel991;
+    private javax.swing.JPanel MG_disableCover;
+    private javax.swing.JPanel MG_gameArea;
+    private javax.swing.JPanel MG_scoreBoard;
+    private javax.swing.JButton MG_startButton;
+    private javax.swing.JPanel MG_timeBoard;
+    private javax.swing.JProgressBar MG_timerBar;
     private javax.swing.JButton MM_backToMenuButton;
     private javax.swing.JButton MM_game1StartButton;
     private javax.swing.JButton MM_game2StartButton;
@@ -4796,6 +4773,28 @@ private void switchFrame(javax.swing.JPanel target){
     private javax.swing.JLabel MM_userSettingsPanelTitle;
     private javax.swing.JLabel MM_username;
     private javax.swing.JTextField MM_usernameInput;
+    private javax.swing.JPanel PP_ball;
+    private javax.swing.JPanel PP_computer;
+    private javax.swing.JPanel PP_computerEdge;
+    private javax.swing.JLabel PP_computerLabel;
+    private javax.swing.JLabel PP_computerScore;
+    private javax.swing.JLabel PP_countDownTimer;
+    private javax.swing.JPanel PP_cover;
+    private javax.swing.JPanel PP_gameArea;
+    private javax.swing.JLabel PP_gameDescription;
+    private javax.swing.JPanel PP_player;
+    private javax.swing.JPanel PP_playerEdge;
+    private javax.swing.JLabel PP_playerLabel;
+    private javax.swing.JLabel PP_playerScore;
+    private javax.swing.JLabel PP_pointsPanel;
+    private javax.swing.JButton PP_resetButton;
+    private javax.swing.JPanel PP_resetCover;
+    private javax.swing.JPanel PP_scorePanel;
+    private javax.swing.JPanel PP_singlePlayerModeCover;
+    private javax.swing.JButton PP_startButton;
+    private javax.swing.JProgressBar PP_timerBar;
+    private javax.swing.JButton PP_twoPlayerButton;
+    private javax.swing.JPanel PP_twoPlayerModeCover;
     private javax.swing.JLabel TA_boost1;
     private javax.swing.JLabel TA_boost2;
     private javax.swing.JSpinner TA_boostRespawnTime;
