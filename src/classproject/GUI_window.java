@@ -23,7 +23,6 @@ public class GUI_window extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI_window.class.getName());
     public GUI_window() {
         initComponents();
-        switchFrame(loginFrame);
         
         passwordInput.addActionListener(e -> {
             loginButtonPressed();
@@ -106,6 +105,10 @@ public class GUI_window extends javax.swing.JFrame {
         JSpinner.NumberEditor editor = new JSpinner.NumberEditor(TA_gravity, "0.0");
         TA_gravity.setEditor(editor);
         // -------------------------------------------------------------------------------------------
+        
+        
+        // Switching into frame once everything is finished:
+        switchFrame(loginFrame);
         
  
     }
@@ -4081,10 +4084,10 @@ private void switchFrame(javax.swing.JPanel target){
         G1_startButton.setText("Play Again!"); // Change text to reset next press
         
         // Update score object
-        MG.updateScore(scores, currentUser);
+        MG.setScore_fromOutside(scores, currentUser);
         
         // Start the timer for the game when start button is pressed
-        MG.start();
+        MG.startGame();
     }//GEN-LAST:event_G1_startButtonMousePressed
 
     private void MG_cardClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MG_cardClicked

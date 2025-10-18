@@ -18,60 +18,62 @@ import javax.swing.JProgressBar;
 
 public class PingPong {
     // MAIN GAME VARIABLES:
-    int GAME_TIME = 120;
-    int SECONDS_BEFORE_BOOSTING = 5;
-    int GAME_TICK = 10;
-    int PLAYER_STEP = 4;
-    int COMPUTER_STEP = 1;
-    int SCORE_FOR_GOOD_GOAL = 100;
-    int SCORE_FOR_BAD_GOAL = -50;
-    List<Integer> deltaEdges = new ArrayList<>(Arrays.asList(18,36,54,72,90,108,126,144,162,180,198,216,234,252,270,288,306,324,342,360));
-    List<Integer> ballMovesX_list = new ArrayList<>(Arrays.asList(0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4,-4,-3,-2,-1,0));
-    List<Integer> ballMovesY_list = new ArrayList<>(Arrays.asList(-4,-3,-2,-1,0,0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4));
-    
+    private final int GAME_TIME = 120;
+    private final int SECONDS_BEFORE_BOOSTING = 5;
+    private final int GAME_TICK = 10;
+    private final int PLAYER_STEP = 4;
+    private int COMPUTER_STEP = 1;         // Not final because this is changed when computer gets "better"
+    private final int SCORE_FOR_GOOD_GOAL = 100;
+    private final int SCORE_FOR_BAD_GOAL = -50;
+    private final List<Integer> deltaEdges = new ArrayList<>(Arrays.asList(18,36,54,72,90,108,126,144,162,180,198,216,234,252,270,288,306,324,342,360));
+    private final List<Integer> ballMovesX_list = new ArrayList<>(Arrays.asList(0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4,-4,-3,-2,-1,0));
+    private final List<Integer> ballMovesY_list = new ArrayList<>(Arrays.asList(-4,-3,-2,-1,0,0,1,2,3,4,4,3,2,1,0,0,-1,-2,-3,-4));
+     
     // BOOSTED BALL MOVES:
-    int boostedBallMultiply = 1;
-    int boostedBallCountKeeper = 0;                       
-    List<Integer> boostedBallMovesX = new ArrayList<>();
-    List<Integer> boostedBallMovesY = new ArrayList<>();
+    private int boostedBallMultiply = 1;
+    private int boostedBallCountKeeper = 0;                       
+    private List<Integer> boostedBallMovesX = new ArrayList<>();
+    private List<Integer> boostedBallMovesY = new ArrayList<>();
    
     
-    // Get Functions:
-    public int getGameTime(){return GAME_TIME;}
     
     
     
     
     // Holding Variables:
-    JPanel player;   // Panel that is the player
-    JPanel computer; // Panel that is the computer
-    JPanel ball;     // Panel that is the ball
-    JLabel playerScore;   // Players score keeper
-    JLabel computerScore; // Computer score keeper
-    JLabel countDownLabel;// Label that will be the countdown between goals
-    JLabel score;         // Panel that shows the score
-    int delta;            // The current angle of the ball (0-360)
-    JProgressBar timerBar;
-    JLabel countDownTimerText;
-    JLabel points;
-    HighscoreManager scores_fromOutside;
-    String currentUser_fromOutside;
-    JPanel resetCover;
-    boolean twoPlayerMode = false;
+    private JPanel player;   // Panel that is the player
+    private JPanel computer; // Panel that is the computer
+    private JPanel ball;     // Panel that is the ball
+    private JLabel playerScore;   // Players score keeper
+    private JLabel computerScore; // Computer score keeper
+    private JLabel countDownLabel;// Label that will be the countdown between goals
+    private JLabel score;         // Panel that shows the score
+    private int delta;            // The current angle of the ball (0-360)
+    private JProgressBar timerBar;
+    private JLabel countDownTimerText;
+    private JLabel points;
+    private HighscoreManager scores_fromOutside;
+    private String currentUser_fromOutside;
+    private JPanel resetCover;
+    private boolean twoPlayerMode = false;
     
     // Dynamic Movement Variables:
-    boolean upPressed = false;
-    boolean downPressed = false;
-    boolean playerBusy = false;
-    boolean upPressed2 = false;
-    boolean downPressed2 = false;
-    boolean playerBusy2 = false;
-    int ballMoveX;
-    int ballMoveY;
-    int computerPlaysAtTick = 5; // Computer is allowed to move every x ticks of the game clock (this slows down the computer to be fair)
-    int computerTick = 0;        // Keeps track of which tick we are in, this will cycle between 0-x (x being computerPlaysAtTick)
-    boolean betweenRounds = false;
-    int timePassed = 0;
+    private boolean upPressed = false;
+    private boolean downPressed = false;
+    private boolean playerBusy = false;
+    private boolean upPressed2 = false;
+    private boolean downPressed2 = false;
+    private boolean playerBusy2 = false;
+    private int ballMoveX;
+    private int ballMoveY;
+    private int computerPlaysAtTick = 5; // Computer is allowed to move every x ticks of the game clock (this slows down the computer to be fair)
+    private int computerTick = 0;        // Keeps track of which tick we are in, this will cycle between 0-x (x being computerPlaysAtTick)
+    private boolean betweenRounds = false;
+    private int timePassed = 0;
+    
+    
+    
+    
     
     // CONSTRUCTOR
     public void setUp(JPanel p, JPanel c, JPanel b, JLabel pS, JLabel cS, JLabel cT, JLabel pP, JProgressBar t,
@@ -91,13 +93,10 @@ public class PingPong {
         boostBall();
     }
     
-    public void updateScores(HighscoreManager s, String c){
-        scores_fromOutside = s;
-        currentUser_fromOutside = c;
-    }
     
     // Get Functions:
     public boolean isTwoPlayerMode(){return twoPlayerMode;}
+    public int getGameTime(){return GAME_TIME;}
     
     
     
@@ -606,6 +605,12 @@ public class PingPong {
             case 3: ball.setBackground(new Color(255,50,50)); break;
             case 4: ball.setBackground(new Color(255,0,0)); break;
         }
+    }
+    
+    
+    public void updateScores(HighscoreManager s, String c){
+        scores_fromOutside = s;
+        currentUser_fromOutside = c;
     }
 }
 
