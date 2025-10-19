@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class HighscoreManager {
     // LIST OF GAMES FOR EASY ADDING:
-    private List<String> gameSymbols = new ArrayList<>();
-    private List<String> usernames   = new ArrayList<>();
-    private List<String> highscores  = new ArrayList<>();
+    private final List<String> gameSymbols = new ArrayList<>();
+    private final List<String> usernames   = new ArrayList<>();
+    private final List<String> highscores  = new ArrayList<>();
     
     // Cosntructor 
     HighscoreManager(){

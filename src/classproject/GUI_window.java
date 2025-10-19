@@ -6,7 +6,6 @@
 
 
 package classproject;
-import javax.swing.Timer;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
