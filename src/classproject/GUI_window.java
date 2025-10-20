@@ -106,6 +106,39 @@ public class GUI_window extends javax.swing.JFrame {
         // -------------------------------------------------------------------------------------------
         
         
+        
+        // Setting up Game 6: ------------------------------------------------------------------------
+        
+        // Making the **HUGEEE** list of panels that we have to send into game 6
+        JLabel[] placements = {
+            CD_placement1,CD_placement2,CD_placement3,CD_placement4,CD_placement5,CD_placement6,CD_placement7,
+            CD_placement8,CD_placement9,CD_placement10,CD_placement11,CD_placement12,CD_placement13,CD_placement14,
+            CD_placement15,CD_placement16,CD_placement17,CD_placement18,CD_placement19,CD_placement20,CD_placement21,
+            CD_placement22,CD_placement23,CD_placement24,CD_placement25,CD_placement26,CD_placement27,CD_placement28,
+            CD_placement29,CD_placement30,CD_placement31,CD_placement32,CD_placement33,CD_placement34,CD_placement35,
+            CD_placement36,CD_placement37,CD_placement38,CD_placement41,CD_placement42,CD_placement43,CD_placement44,
+            CD_placement45,CD_placement46,CD_placement47,CD_placement48,CD_placement49,CD_placement50,CD_placement51,
+            CD_placement52,CD_placement53,CD_placement54,CD_placement55,CD_placement56,CD_placement57,CD_placement58,
+            CD_placement59,CD_placement60,CD_placement61,CD_placement62,CD_placement63,CD_placement64,CD_placement65,
+            CD_placement66,CD_placement67,CD_placement68,CD_placement69,CD_placement70,CD_placement71,CD_placement72,
+            CD_placement73,CD_placement74,CD_placement77,CD_placement78,CD_placement79,CD_placement80,CD_placement81,
+            CD_placement82,CD_placement83,CD_placement84,CD_placement85,CD_placement86,CD_placement87,CD_placement88,
+            CD_placement89,CD_placement90,CD_placement91,CD_placement92,CD_placement93,CD_placement94,CD_placement95,
+            CD_placement96,CD_placement97,CD_placement98,CD_placement99,CD_placement100,CD_placement101,CD_placement102,
+            CD_placement103,CD_placement104,CD_placement105,CD_placement106,CD_placement107,CD_placement108,CD_placement111,
+            CD_placement112,CD_placement113,CD_placement114,CD_placement115,CD_placement116,CD_placement117,CD_placement118,
+            CD_placement119,CD_placement120,CD_placement121,CD_placement122,CD_placement123,CD_placement124,CD_placement125,
+            CD_placement126,CD_placement127,CD_placement128,CD_placement129,CD_placement130,CD_placement131,CD_placement132,
+            CD_placement133,CD_placement134,CD_placement135,CD_placement136,CD_placement137,CD_placement138,CD_placement139,
+            CD_placement140,CD_placement141,CD_placement142,CD_placement143,CD_placement144,CD_placement145,
+        };
+        
+        // Send it allllllllllllllllll in!!!
+        CD.setUp(placements);
+        // -------------------------------------------------------------------------------------------
+        
+        
+        
         // Switching into frame once everything is finished:
         switchFrame(loginFrame);
         
@@ -126,6 +159,182 @@ public class GUI_window extends javax.swing.JFrame {
         MM_userSettingsButton = new javax.swing.JButton();
         MM_logOutButton = new javax.swing.JButton();
         MM_backToMenuButton = new javax.swing.JButton();
+        game6Frame = new javax.swing.JPanel();
+        CD_gameBox = new javax.swing.JPanel();
+        CD_bottomBar = new javax.swing.JPanel();
+        CD_menuButton = new javax.swing.JButton();
+        jLabel131 = new javax.swing.JLabel();
+        CD_cash = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        CD_menu = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        CD_menuBuyTower1 = new javax.swing.JLabel();
+        CD_menuBuyTower2 = new javax.swing.JLabel();
+        CD_menuBuyTower3 = new javax.swing.JLabel();
+        CD_menuBuyTower4 = new javax.swing.JLabel();
+        jLabel135 = new javax.swing.JLabel();
+        CD_path1 = new javax.swing.JPanel();
+        CD_path2 = new javax.swing.JPanel();
+        CD_path3 = new javax.swing.JPanel();
+        CD_path4 = new javax.swing.JPanel();
+        CD_path5 = new javax.swing.JPanel();
+        CD_path6 = new javax.swing.JPanel();
+        CD_lake = new javax.swing.JLabel();
+        CD_castle = new javax.swing.JLabel();
+        CD_placement1 = new javax.swing.JLabel();
+        CD_placement2 = new javax.swing.JLabel();
+        CD_placement3 = new javax.swing.JLabel();
+        CD_placement4 = new javax.swing.JLabel();
+        CD_placement5 = new javax.swing.JLabel();
+        CD_placement6 = new javax.swing.JLabel();
+        CD_placement7 = new javax.swing.JLabel();
+        CD_placement8 = new javax.swing.JLabel();
+        CD_placement9 = new javax.swing.JLabel();
+        CD_placement10 = new javax.swing.JLabel();
+        CD_placement11 = new javax.swing.JLabel();
+        CD_placement12 = new javax.swing.JLabel();
+        CD_placement13 = new javax.swing.JLabel();
+        CD_placement14 = new javax.swing.JLabel();
+        CD_placement15 = new javax.swing.JLabel();
+        CD_placement16 = new javax.swing.JLabel();
+        CD_placement17 = new javax.swing.JLabel();
+        CD_placement18 = new javax.swing.JLabel();
+        CD_placement19 = new javax.swing.JLabel();
+        CD_placement20 = new javax.swing.JLabel();
+        CD_placement21 = new javax.swing.JLabel();
+        CD_placement22 = new javax.swing.JLabel();
+        CD_placement23 = new javax.swing.JLabel();
+        CD_placement24 = new javax.swing.JLabel();
+        CD_placement25 = new javax.swing.JLabel();
+        CD_placement26 = new javax.swing.JLabel();
+        CD_placement27 = new javax.swing.JLabel();
+        CD_placement28 = new javax.swing.JLabel();
+        CD_placement29 = new javax.swing.JLabel();
+        CD_placement30 = new javax.swing.JLabel();
+        CD_placement31 = new javax.swing.JLabel();
+        CD_placement32 = new javax.swing.JLabel();
+        CD_placement33 = new javax.swing.JLabel();
+        CD_placement34 = new javax.swing.JLabel();
+        CD_placement35 = new javax.swing.JLabel();
+        CD_placement36 = new javax.swing.JLabel();
+        CD_placement37 = new javax.swing.JLabel();
+        CD_placement38 = new javax.swing.JLabel();
+        CD_placement41 = new javax.swing.JLabel();
+        CD_placement42 = new javax.swing.JLabel();
+        CD_placement43 = new javax.swing.JLabel();
+        CD_placement44 = new javax.swing.JLabel();
+        CD_placement45 = new javax.swing.JLabel();
+        CD_placement46 = new javax.swing.JLabel();
+        CD_placement47 = new javax.swing.JLabel();
+        CD_placement48 = new javax.swing.JLabel();
+        CD_placement49 = new javax.swing.JLabel();
+        CD_placement50 = new javax.swing.JLabel();
+        CD_placement51 = new javax.swing.JLabel();
+        CD_placement52 = new javax.swing.JLabel();
+        CD_placement53 = new javax.swing.JLabel();
+        CD_placement54 = new javax.swing.JLabel();
+        CD_placement55 = new javax.swing.JLabel();
+        CD_placement56 = new javax.swing.JLabel();
+        CD_placement57 = new javax.swing.JLabel();
+        CD_placement58 = new javax.swing.JLabel();
+        CD_placement59 = new javax.swing.JLabel();
+        CD_placement60 = new javax.swing.JLabel();
+        CD_placement61 = new javax.swing.JLabel();
+        CD_placement62 = new javax.swing.JLabel();
+        CD_placement63 = new javax.swing.JLabel();
+        CD_placement64 = new javax.swing.JLabel();
+        CD_placement65 = new javax.swing.JLabel();
+        CD_placement66 = new javax.swing.JLabel();
+        CD_placement67 = new javax.swing.JLabel();
+        CD_placement68 = new javax.swing.JLabel();
+        CD_placement69 = new javax.swing.JLabel();
+        CD_placement70 = new javax.swing.JLabel();
+        CD_placement71 = new javax.swing.JLabel();
+        CD_placement72 = new javax.swing.JLabel();
+        CD_placement73 = new javax.swing.JLabel();
+        CD_placement74 = new javax.swing.JLabel();
+        CD_placement77 = new javax.swing.JLabel();
+        CD_placement78 = new javax.swing.JLabel();
+        CD_placement79 = new javax.swing.JLabel();
+        CD_placement80 = new javax.swing.JLabel();
+        CD_placement81 = new javax.swing.JLabel();
+        CD_placement82 = new javax.swing.JLabel();
+        CD_placement83 = new javax.swing.JLabel();
+        CD_placement84 = new javax.swing.JLabel();
+        CD_placement85 = new javax.swing.JLabel();
+        CD_placement86 = new javax.swing.JLabel();
+        CD_placement87 = new javax.swing.JLabel();
+        CD_placement88 = new javax.swing.JLabel();
+        CD_placement89 = new javax.swing.JLabel();
+        CD_placement90 = new javax.swing.JLabel();
+        CD_placement91 = new javax.swing.JLabel();
+        CD_placement92 = new javax.swing.JLabel();
+        CD_placement93 = new javax.swing.JLabel();
+        CD_placement94 = new javax.swing.JLabel();
+        CD_placement95 = new javax.swing.JLabel();
+        CD_placement96 = new javax.swing.JLabel();
+        CD_placement97 = new javax.swing.JLabel();
+        CD_placement98 = new javax.swing.JLabel();
+        CD_placement99 = new javax.swing.JLabel();
+        CD_placement100 = new javax.swing.JLabel();
+        CD_placement101 = new javax.swing.JLabel();
+        CD_placement102 = new javax.swing.JLabel();
+        CD_placement103 = new javax.swing.JLabel();
+        CD_placement104 = new javax.swing.JLabel();
+        CD_placement105 = new javax.swing.JLabel();
+        CD_placement106 = new javax.swing.JLabel();
+        CD_placement107 = new javax.swing.JLabel();
+        CD_placement108 = new javax.swing.JLabel();
+        CD_placement111 = new javax.swing.JLabel();
+        CD_placement112 = new javax.swing.JLabel();
+        CD_placement113 = new javax.swing.JLabel();
+        CD_placement114 = new javax.swing.JLabel();
+        CD_placement115 = new javax.swing.JLabel();
+        CD_placement116 = new javax.swing.JLabel();
+        CD_placement117 = new javax.swing.JLabel();
+        CD_placement118 = new javax.swing.JLabel();
+        CD_placement119 = new javax.swing.JLabel();
+        CD_placement120 = new javax.swing.JLabel();
+        CD_placement121 = new javax.swing.JLabel();
+        CD_placement122 = new javax.swing.JLabel();
+        CD_placement123 = new javax.swing.JLabel();
+        CD_placement124 = new javax.swing.JLabel();
+        CD_placement125 = new javax.swing.JLabel();
+        CD_placement126 = new javax.swing.JLabel();
+        CD_placement127 = new javax.swing.JLabel();
+        CD_placement128 = new javax.swing.JLabel();
+        CD_placement129 = new javax.swing.JLabel();
+        CD_placement130 = new javax.swing.JLabel();
+        CD_placement131 = new javax.swing.JLabel();
+        CD_placement132 = new javax.swing.JLabel();
+        CD_placement133 = new javax.swing.JLabel();
+        CD_placement134 = new javax.swing.JLabel();
+        CD_placement135 = new javax.swing.JLabel();
+        CD_placement136 = new javax.swing.JLabel();
+        CD_placement137 = new javax.swing.JLabel();
+        CD_placement138 = new javax.swing.JLabel();
+        CD_placement139 = new javax.swing.JLabel();
+        CD_placement140 = new javax.swing.JLabel();
+        CD_placement141 = new javax.swing.JLabel();
+        CD_placement142 = new javax.swing.JLabel();
+        CD_placement143 = new javax.swing.JLabel();
+        CD_placement144 = new javax.swing.JLabel();
+        CD_placement145 = new javax.swing.JLabel();
+        CD_cover = new javax.swing.JPanel();
+        jLabel97 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
+        CD_startButton = new javax.swing.JButton();
+        jLabel101 = new javax.swing.JLabel();
+        jLabel110 = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
+        jLabel116 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel130 = new javax.swing.JLabel();
         game3Frame = new javax.swing.JPanel();
         PP_gameArea = new javax.swing.JPanel();
         PP_cover = new javax.swing.JPanel();
@@ -501,21 +710,6 @@ public class GUI_window extends javax.swing.JFrame {
         TA_player1Time = new javax.swing.JProgressBar();
         JLabel = new javax.swing.JLabel();
         JLabel19 = new javax.swing.JLabel();
-        game6Frame = new javax.swing.JPanel();
-        CD_cover = new javax.swing.JPanel();
-        jLabel97 = new javax.swing.JLabel();
-        jLabel100 = new javax.swing.JLabel();
-        CD_startButton = new javax.swing.JButton();
-        jLabel101 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel99 = new javax.swing.JLabel();
         game4Frame = new javax.swing.JPanel();
         T_gameBox = new javax.swing.JPanel();
         T_matchCover = new javax.swing.JPanel();
@@ -629,6 +823,319 @@ public class GUI_window extends javax.swing.JFrame {
         MM_topBar.add(MM_backToMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 5, 200, 40));
 
         getContentPane().add(MM_topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 50));
+
+        game6Frame.setBackground(new java.awt.Color(214, 196, 172));
+        game6Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_gameBox.setBackground(new java.awt.Color(239, 233, 224));
+        CD_gameBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        CD_gameBox.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_bottomBar.setBackground(new java.awt.Color(165, 149, 125));
+        CD_bottomBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_bottomBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_menuButton.setBackground(new java.awt.Color(200, 151, 115));
+        CD_menuButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        CD_menuButton.setForeground(java.awt.Color.white);
+        CD_menuButton.setText("Open Menu");
+        CD_menuButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        CD_menuButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_menuButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_menuButtonMouseClicked(evt);
+            }
+        });
+        CD_bottomBar.add(CD_menuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 300, 35));
+
+        jLabel131.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel131.setForeground(java.awt.Color.white);
+        jLabel131.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel131.setText("$");
+        CD_bottomBar.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 5, 30, 35));
+
+        CD_cash.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        CD_cash.setForeground(java.awt.Color.white);
+        CD_cash.setText("999,9999");
+        CD_bottomBar.add(CD_cash, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 5, 100, 35));
+
+        jProgressBar1.setForeground(new java.awt.Color(0, 204, 51));
+        jProgressBar1.setValue(50);
+        CD_bottomBar.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 8, 270, 30));
+
+        CD_gameBox.add(CD_bottomBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 740, 45));
+
+        CD_menu.setBackground(new java.awt.Color(165, 149, 125));
+        CD_menu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel19.setBackground(new java.awt.Color(200, 151, 115));
+        jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel19.add(CD_menuBuyTower1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 40, 40));
+        jPanel19.add(CD_menuBuyTower2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 5, 40, 40));
+        jPanel19.add(CD_menuBuyTower3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 5, 40, 40));
+        jPanel19.add(CD_menuBuyTower4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 5, 40, 40));
+
+        CD_menu.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 260, 50));
+
+        jLabel135.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel135.setForeground(java.awt.Color.white);
+        jLabel135.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel135.setText("Buy Tower");
+        CD_menu.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 260, 40));
+
+        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 320, 500));
+
+        CD_path1.setBackground(new java.awt.Color(204, 204, 204));
+        CD_gameBox.add(CD_path1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 410, 158, 40));
+
+        CD_path2.setBackground(new java.awt.Color(204, 204, 204));
+        CD_gameBox.add(CD_path2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 40, 320));
+
+        CD_path3.setBackground(new java.awt.Color(204, 204, 204));
+        CD_gameBox.add(CD_path3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 560, 40));
+
+        CD_path4.setBackground(new java.awt.Color(204, 204, 204));
+        CD_gameBox.add(CD_path4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 40, 240));
+
+        CD_path5.setBackground(new java.awt.Color(204, 204, 204));
+        CD_gameBox.add(CD_path5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 200, 40));
+
+        CD_path6.setBackground(new java.awt.Color(204, 204, 204));
+        CD_gameBox.add(CD_path6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 40, 60));
+
+        CD_lake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/CastleDefense_lake.png"))); // NOI18N
+        CD_gameBox.add(CD_lake, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 250, 140));
+
+        CD_castle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/CastleDefense_castle.png"))); // NOI18N
+        CD_gameBox.add(CD_castle, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 388, 160, 160));
+        CD_gameBox.add(CD_placement1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 40, 40));
+        CD_gameBox.add(CD_placement2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 40, 40));
+        CD_gameBox.add(CD_placement3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 40, 40));
+        CD_gameBox.add(CD_placement4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 40, 40));
+        CD_gameBox.add(CD_placement5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 40, 40));
+        CD_gameBox.add(CD_placement6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 40, 40));
+        CD_gameBox.add(CD_placement7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 40, 40));
+        CD_gameBox.add(CD_placement8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 40, 40));
+        CD_gameBox.add(CD_placement9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 40, 40));
+        CD_gameBox.add(CD_placement10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 40, 40));
+        CD_gameBox.add(CD_placement11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 40, 40));
+        CD_gameBox.add(CD_placement12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 40, 40));
+        CD_gameBox.add(CD_placement13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 40, 40));
+        CD_gameBox.add(CD_placement14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 40, 40));
+        CD_gameBox.add(CD_placement15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 40, 40));
+        CD_gameBox.add(CD_placement16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 40, 40));
+        CD_gameBox.add(CD_placement17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 40, 40));
+        CD_gameBox.add(CD_placement18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 40, 40));
+        CD_gameBox.add(CD_placement19, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 40, 40));
+        CD_gameBox.add(CD_placement20, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 40, 40));
+        CD_gameBox.add(CD_placement21, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 40, 40));
+        CD_gameBox.add(CD_placement22, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 40, 40));
+        CD_gameBox.add(CD_placement23, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, 40));
+        CD_gameBox.add(CD_placement24, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 40, 40));
+        CD_gameBox.add(CD_placement25, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 40, 40));
+        CD_gameBox.add(CD_placement26, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 40, 40));
+        CD_gameBox.add(CD_placement27, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 40, 40));
+        CD_gameBox.add(CD_placement28, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 40, 40));
+        CD_gameBox.add(CD_placement29, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 40, 40));
+        CD_gameBox.add(CD_placement30, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 40, 40));
+        CD_gameBox.add(CD_placement31, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 40, 40));
+        CD_gameBox.add(CD_placement32, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 40, 40));
+        CD_gameBox.add(CD_placement33, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, 40, 40));
+        CD_gameBox.add(CD_placement34, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 40, 40));
+        CD_gameBox.add(CD_placement35, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 40, 40));
+        CD_gameBox.add(CD_placement36, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 40, 40));
+        CD_gameBox.add(CD_placement37, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, 40, 40));
+        CD_gameBox.add(CD_placement38, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 40, 40));
+        CD_gameBox.add(CD_placement41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 40, 40));
+        CD_gameBox.add(CD_placement42, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 40, 40));
+        CD_gameBox.add(CD_placement43, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 40, 40));
+        CD_gameBox.add(CD_placement44, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 40, 40));
+        CD_gameBox.add(CD_placement45, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 40, 40));
+        CD_gameBox.add(CD_placement46, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 40, 40));
+        CD_gameBox.add(CD_placement47, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 40, 40));
+        CD_gameBox.add(CD_placement48, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 40, 40));
+        CD_gameBox.add(CD_placement49, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 40, 40));
+        CD_gameBox.add(CD_placement50, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 40, 40));
+        CD_gameBox.add(CD_placement51, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 40, 40));
+        CD_gameBox.add(CD_placement52, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 40, 40));
+        CD_gameBox.add(CD_placement53, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 40, 40));
+        CD_gameBox.add(CD_placement54, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 40, 40));
+        CD_gameBox.add(CD_placement55, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 40, 40));
+        CD_gameBox.add(CD_placement56, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 40, 40));
+        CD_gameBox.add(CD_placement57, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 40, 40));
+        CD_gameBox.add(CD_placement58, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 40, 40));
+        CD_gameBox.add(CD_placement59, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 40, 40));
+        CD_gameBox.add(CD_placement60, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 40, 40));
+        CD_gameBox.add(CD_placement61, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 40, 40));
+        CD_gameBox.add(CD_placement62, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 40, 40));
+        CD_gameBox.add(CD_placement63, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 40, 40));
+        CD_gameBox.add(CD_placement64, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 40, 40));
+        CD_gameBox.add(CD_placement65, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 40, 40));
+        CD_gameBox.add(CD_placement66, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 40, 40));
+        CD_gameBox.add(CD_placement67, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 40, 40));
+        CD_gameBox.add(CD_placement68, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 40, 40));
+        CD_gameBox.add(CD_placement69, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 40, 40));
+        CD_gameBox.add(CD_placement70, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 40, 40));
+        CD_gameBox.add(CD_placement71, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 40, 40));
+        CD_gameBox.add(CD_placement72, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 40, 40));
+        CD_gameBox.add(CD_placement73, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 40, 40));
+        CD_gameBox.add(CD_placement74, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 40, 40));
+        CD_gameBox.add(CD_placement77, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 40, 40));
+        CD_gameBox.add(CD_placement78, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 40, 40));
+        CD_gameBox.add(CD_placement79, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 40, 40));
+        CD_gameBox.add(CD_placement80, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 40, 40));
+        CD_gameBox.add(CD_placement81, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 40, 40));
+        CD_gameBox.add(CD_placement82, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 40, 40));
+        CD_gameBox.add(CD_placement83, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 40, 40));
+        CD_gameBox.add(CD_placement84, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 40, 40));
+        CD_gameBox.add(CD_placement85, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 40, 40));
+        CD_gameBox.add(CD_placement86, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 40, 40));
+        CD_gameBox.add(CD_placement87, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 40, 40));
+        CD_gameBox.add(CD_placement88, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 40, 40));
+        CD_gameBox.add(CD_placement89, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 40, 40));
+        CD_gameBox.add(CD_placement90, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 40, 40));
+        CD_gameBox.add(CD_placement91, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 40, 40));
+        CD_gameBox.add(CD_placement92, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 40, 40));
+        CD_gameBox.add(CD_placement93, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 40, 40));
+        CD_gameBox.add(CD_placement94, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 40, 40));
+        CD_gameBox.add(CD_placement95, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 40, 40));
+        CD_gameBox.add(CD_placement96, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 40, 40));
+        CD_gameBox.add(CD_placement97, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 40, 40));
+        CD_gameBox.add(CD_placement98, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 40, 40));
+        CD_gameBox.add(CD_placement99, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 40, 40));
+        CD_gameBox.add(CD_placement100, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 40, 40));
+        CD_gameBox.add(CD_placement101, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 40, 40));
+        CD_gameBox.add(CD_placement102, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 40, 40));
+        CD_gameBox.add(CD_placement103, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 40, 40));
+        CD_gameBox.add(CD_placement104, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 40, 40));
+        CD_gameBox.add(CD_placement105, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 40, 40));
+        CD_gameBox.add(CD_placement106, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 40, 40));
+        CD_gameBox.add(CD_placement107, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 40, 40));
+        CD_gameBox.add(CD_placement108, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 40, 40));
+        CD_gameBox.add(CD_placement111, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 40, 40));
+        CD_gameBox.add(CD_placement112, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 40, 40));
+        CD_gameBox.add(CD_placement113, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 40, 40));
+        CD_gameBox.add(CD_placement114, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 40, 40));
+        CD_gameBox.add(CD_placement115, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 40, 40));
+        CD_gameBox.add(CD_placement116, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 40, 40));
+        CD_gameBox.add(CD_placement117, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 40, 40));
+        CD_gameBox.add(CD_placement118, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 40, 40));
+        CD_gameBox.add(CD_placement119, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 40, 40));
+        CD_gameBox.add(CD_placement120, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 40, 40));
+        CD_gameBox.add(CD_placement121, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 40, 40));
+        CD_gameBox.add(CD_placement122, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 40, 40));
+        CD_gameBox.add(CD_placement123, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 40, 40));
+        CD_gameBox.add(CD_placement124, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, 40, 40));
+        CD_gameBox.add(CD_placement125, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 40, 40));
+        CD_gameBox.add(CD_placement126, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 40, 40));
+        CD_gameBox.add(CD_placement127, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 40, 40));
+        CD_gameBox.add(CD_placement128, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 40, 40));
+        CD_gameBox.add(CD_placement129, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, 40, 40));
+        CD_gameBox.add(CD_placement130, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 450, 40, 40));
+        CD_gameBox.add(CD_placement131, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 40, 40));
+        CD_gameBox.add(CD_placement132, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, 40, 40));
+        CD_gameBox.add(CD_placement133, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 40, 40));
+        CD_gameBox.add(CD_placement134, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 40, 40));
+        CD_gameBox.add(CD_placement135, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 40, 40));
+        CD_gameBox.add(CD_placement136, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 40, 40));
+        CD_gameBox.add(CD_placement137, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 40, 40));
+        CD_gameBox.add(CD_placement138, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, 40, 40));
+        CD_gameBox.add(CD_placement139, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 40, 40));
+        CD_gameBox.add(CD_placement140, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, 40, 40));
+        CD_gameBox.add(CD_placement141, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, 40, 40));
+        CD_gameBox.add(CD_placement142, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 40, 40));
+        CD_gameBox.add(CD_placement143, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 490, 40, 40));
+        CD_gameBox.add(CD_placement144, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, 40, 40));
+        CD_gameBox.add(CD_placement145, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 40, 40));
+
+        game6Frame.add(CD_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
+
+        CD_cover.setBackground(new java.awt.Color(153, 135, 108));
+        CD_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel97.setForeground(java.awt.Color.white);
+        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel97.setText("<Description>");
+        CD_cover.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 500, 50));
+
+        jLabel100.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel100.setForeground(java.awt.Color.white);
+        jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel100.setText("Each tower can be upgraded as needed!");
+        CD_cover.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 740, 40));
+
+        CD_startButton.setBackground(new java.awt.Color(200, 151, 115));
+        CD_startButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CD_startButton.setForeground(java.awt.Color.white);
+        CD_startButton.setText("Start Defending!");
+        CD_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_startButtonMouseClicked(evt);
+            }
+        });
+        CD_cover.add(CD_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 496, 460, 70));
+
+        jLabel101.setFont(new java.awt.Font("Segoe UI", 2, 30)); // NOI18N
+        jLabel101.setForeground(java.awt.Color.white);
+        jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel101.setText("When your castle life reaches zero, you loose!");
+        CD_cover.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 80));
+
+        jLabel110.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 50, 50));
+
+        jLabel111.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 50, 50));
+
+        jLabel112.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel112.setForeground(java.awt.Color.white);
+        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel112.setText("<Description>");
+        CD_cover.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 500, 50));
+
+        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel113.setForeground(java.awt.Color.white);
+        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel113.setText("<Description>");
+        CD_cover.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 500, 50));
+
+        jLabel114.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 50, 50));
+
+        jLabel115.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cover.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 50, 50));
+
+        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel116.setForeground(java.awt.Color.white);
+        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel116.setText("<Description>");
+        CD_cover.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 500, 50));
+
+        jPanel17.setBackground(new java.awt.Color(200, 151, 115));
+        jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel99.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel99.setForeground(java.awt.Color.white);
+        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel99.setText("Game Instructions");
+        jPanel17.add(jLabel99);
+
+        CD_cover.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 70));
+
+        jLabel130.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel130.setForeground(java.awt.Color.white);
+        jLabel130.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel130.setText("Defend the castle by planting one of 4 towers.");
+        CD_cover.add(jLabel130, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 740, 40));
+
+        game6Frame.add(CD_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
+
+        getContentPane().add(game6Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         game3Frame.setBackground(new java.awt.Color(214, 196, 172));
         game3Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3165,83 +3672,6 @@ public class GUI_window extends javax.swing.JFrame {
 
         getContentPane().add(game5Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
-        game6Frame.setBackground(new java.awt.Color(214, 196, 172));
-        game6Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CD_cover.setBackground(new java.awt.Color(153, 135, 108));
-        CD_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel97.setForeground(java.awt.Color.white);
-        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel97.setText("<Description>");
-        CD_cover.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 500, 50));
-
-        jLabel100.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel100.setForeground(java.awt.Color.white);
-        jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel100.setText("Defend the castle by planting one of 4 towers.");
-        CD_cover.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 740, 80));
-
-        CD_startButton.setBackground(new java.awt.Color(200, 151, 115));
-        CD_startButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        CD_startButton.setForeground(java.awt.Color.white);
-        CD_startButton.setText("Start Defending!");
-        CD_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_cover.add(CD_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 496, 460, 70));
-
-        jLabel101.setFont(new java.awt.Font("Segoe UI", 2, 30)); // NOI18N
-        jLabel101.setForeground(java.awt.Color.white);
-        jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel101.setText("When your castle life reaches zero, you loose!");
-        CD_cover.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 80));
-
-        jLabel110.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 50, 50));
-
-        jLabel111.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 50, 50));
-
-        jLabel112.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel112.setForeground(java.awt.Color.white);
-        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel112.setText("<Description>");
-        CD_cover.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 500, 50));
-
-        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel113.setForeground(java.awt.Color.white);
-        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel113.setText("<Description>");
-        CD_cover.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 500, 50));
-
-        jLabel114.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 50, 50));
-
-        jLabel115.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 50, 50));
-
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel116.setForeground(java.awt.Color.white);
-        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel116.setText("<Description>");
-        CD_cover.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 500, 50));
-
-        jPanel17.setBackground(new java.awt.Color(200, 151, 115));
-        jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel99.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel99.setForeground(java.awt.Color.white);
-        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel99.setText("Game Instructions");
-        jPanel17.add(jLabel99);
-
-        CD_cover.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 70));
-
-        game6Frame.add(CD_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
-
-        getContentPane().add(game6Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
-
         game4Frame.setBackground(new java.awt.Color(214, 196, 172));
         game4Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -3789,6 +4219,13 @@ public class GUI_window extends javax.swing.JFrame {
         }
         else if(target == game6Frame){
             MM_username.setText("Castle Defense"); // Changing the title
+            
+            CD_menu.setLocation(0,535);            // Hiding the menu 
+            CD_menuButton.setText("Open Menu");    // Resetting the menu button text
+            
+            CD_cover.setVisible(true);             // Showing the cover 
+            CD_gameBox.setVisible(false);          // Hiding the game box
+            CD_gameBox.setLayout(null);            // This is needed for some reason, we saw last time
         }
     }
 
@@ -4557,14 +4994,36 @@ public class GUI_window extends javax.swing.JFrame {
             TA_gravity.setValue(originalGravity);
     }//GEN-LAST:event_TA_resetButtonClicked
 
-     
-// ========================================================================================
+ // ========================================================================================
    
    
+  
     
-// GAME 6 FUNCTIONS ====================================================================
+      
+// GAME 6 FUNCTIONS ====================================================================   
+    private void CD_startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_startButtonMouseClicked
+        CD_gameBox.setVisible(true); // Showing the game box
+        CD_cover.setVisible(false);  // Hiding the game cover
+    }//GEN-LAST:event_CD_startButtonMouseClicked
 
-    
+    // Opening and Closing the Menu 
+    private void CD_menuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_menuButtonMouseClicked
+        
+        // If the menu is currently CLOSED, we are OPENING it now
+        if(CD_menuButton.getText().equals("Open Menu")){
+            CD_menuButton.setText("Close Menu");    // Change the button text
+            CD_menu.setLocation(0, 40);
+        }
+        // if the menu is currently OPENED, we are not CLOSING
+        else{
+            CD_menuButton.setText("Open Menu");     // Change the button text
+            CD_menu.setLocation(0,535);
+        }
+        
+    }//GEN-LAST:event_CD_menuButtonMouseClicked
+
+     
+
     
 // ========================================================================================
  
@@ -4617,7 +5076,163 @@ public class GUI_window extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CD_bottomBar;
+    private javax.swing.JLabel CD_cash;
+    private javax.swing.JLabel CD_castle;
     private javax.swing.JPanel CD_cover;
+    private javax.swing.JPanel CD_gameBox;
+    private javax.swing.JLabel CD_lake;
+    private javax.swing.JPanel CD_menu;
+    private javax.swing.JButton CD_menuButton;
+    private javax.swing.JLabel CD_menuBuyTower1;
+    private javax.swing.JLabel CD_menuBuyTower2;
+    private javax.swing.JLabel CD_menuBuyTower3;
+    private javax.swing.JLabel CD_menuBuyTower4;
+    private javax.swing.JPanel CD_path1;
+    private javax.swing.JPanel CD_path2;
+    private javax.swing.JPanel CD_path3;
+    private javax.swing.JPanel CD_path4;
+    private javax.swing.JPanel CD_path5;
+    private javax.swing.JPanel CD_path6;
+    private javax.swing.JLabel CD_placement1;
+    private javax.swing.JLabel CD_placement10;
+    private javax.swing.JLabel CD_placement100;
+    private javax.swing.JLabel CD_placement101;
+    private javax.swing.JLabel CD_placement102;
+    private javax.swing.JLabel CD_placement103;
+    private javax.swing.JLabel CD_placement104;
+    private javax.swing.JLabel CD_placement105;
+    private javax.swing.JLabel CD_placement106;
+    private javax.swing.JLabel CD_placement107;
+    private javax.swing.JLabel CD_placement108;
+    private javax.swing.JLabel CD_placement11;
+    private javax.swing.JLabel CD_placement111;
+    private javax.swing.JLabel CD_placement112;
+    private javax.swing.JLabel CD_placement113;
+    private javax.swing.JLabel CD_placement114;
+    private javax.swing.JLabel CD_placement115;
+    private javax.swing.JLabel CD_placement116;
+    private javax.swing.JLabel CD_placement117;
+    private javax.swing.JLabel CD_placement118;
+    private javax.swing.JLabel CD_placement119;
+    private javax.swing.JLabel CD_placement12;
+    private javax.swing.JLabel CD_placement120;
+    private javax.swing.JLabel CD_placement121;
+    private javax.swing.JLabel CD_placement122;
+    private javax.swing.JLabel CD_placement123;
+    private javax.swing.JLabel CD_placement124;
+    private javax.swing.JLabel CD_placement125;
+    private javax.swing.JLabel CD_placement126;
+    private javax.swing.JLabel CD_placement127;
+    private javax.swing.JLabel CD_placement128;
+    private javax.swing.JLabel CD_placement129;
+    private javax.swing.JLabel CD_placement13;
+    private javax.swing.JLabel CD_placement130;
+    private javax.swing.JLabel CD_placement131;
+    private javax.swing.JLabel CD_placement132;
+    private javax.swing.JLabel CD_placement133;
+    private javax.swing.JLabel CD_placement134;
+    private javax.swing.JLabel CD_placement135;
+    private javax.swing.JLabel CD_placement136;
+    private javax.swing.JLabel CD_placement137;
+    private javax.swing.JLabel CD_placement138;
+    private javax.swing.JLabel CD_placement139;
+    private javax.swing.JLabel CD_placement14;
+    private javax.swing.JLabel CD_placement140;
+    private javax.swing.JLabel CD_placement141;
+    private javax.swing.JLabel CD_placement142;
+    private javax.swing.JLabel CD_placement143;
+    private javax.swing.JLabel CD_placement144;
+    private javax.swing.JLabel CD_placement145;
+    private javax.swing.JLabel CD_placement15;
+    private javax.swing.JLabel CD_placement16;
+    private javax.swing.JLabel CD_placement17;
+    private javax.swing.JLabel CD_placement18;
+    private javax.swing.JLabel CD_placement19;
+    private javax.swing.JLabel CD_placement2;
+    private javax.swing.JLabel CD_placement20;
+    private javax.swing.JLabel CD_placement21;
+    private javax.swing.JLabel CD_placement22;
+    private javax.swing.JLabel CD_placement23;
+    private javax.swing.JLabel CD_placement24;
+    private javax.swing.JLabel CD_placement25;
+    private javax.swing.JLabel CD_placement26;
+    private javax.swing.JLabel CD_placement27;
+    private javax.swing.JLabel CD_placement28;
+    private javax.swing.JLabel CD_placement29;
+    private javax.swing.JLabel CD_placement3;
+    private javax.swing.JLabel CD_placement30;
+    private javax.swing.JLabel CD_placement31;
+    private javax.swing.JLabel CD_placement32;
+    private javax.swing.JLabel CD_placement33;
+    private javax.swing.JLabel CD_placement34;
+    private javax.swing.JLabel CD_placement35;
+    private javax.swing.JLabel CD_placement36;
+    private javax.swing.JLabel CD_placement37;
+    private javax.swing.JLabel CD_placement38;
+    private javax.swing.JLabel CD_placement4;
+    private javax.swing.JLabel CD_placement41;
+    private javax.swing.JLabel CD_placement42;
+    private javax.swing.JLabel CD_placement43;
+    private javax.swing.JLabel CD_placement44;
+    private javax.swing.JLabel CD_placement45;
+    private javax.swing.JLabel CD_placement46;
+    private javax.swing.JLabel CD_placement47;
+    private javax.swing.JLabel CD_placement48;
+    private javax.swing.JLabel CD_placement49;
+    private javax.swing.JLabel CD_placement5;
+    private javax.swing.JLabel CD_placement50;
+    private javax.swing.JLabel CD_placement51;
+    private javax.swing.JLabel CD_placement52;
+    private javax.swing.JLabel CD_placement53;
+    private javax.swing.JLabel CD_placement54;
+    private javax.swing.JLabel CD_placement55;
+    private javax.swing.JLabel CD_placement56;
+    private javax.swing.JLabel CD_placement57;
+    private javax.swing.JLabel CD_placement58;
+    private javax.swing.JLabel CD_placement59;
+    private javax.swing.JLabel CD_placement6;
+    private javax.swing.JLabel CD_placement60;
+    private javax.swing.JLabel CD_placement61;
+    private javax.swing.JLabel CD_placement62;
+    private javax.swing.JLabel CD_placement63;
+    private javax.swing.JLabel CD_placement64;
+    private javax.swing.JLabel CD_placement65;
+    private javax.swing.JLabel CD_placement66;
+    private javax.swing.JLabel CD_placement67;
+    private javax.swing.JLabel CD_placement68;
+    private javax.swing.JLabel CD_placement69;
+    private javax.swing.JLabel CD_placement7;
+    private javax.swing.JLabel CD_placement70;
+    private javax.swing.JLabel CD_placement71;
+    private javax.swing.JLabel CD_placement72;
+    private javax.swing.JLabel CD_placement73;
+    private javax.swing.JLabel CD_placement74;
+    private javax.swing.JLabel CD_placement77;
+    private javax.swing.JLabel CD_placement78;
+    private javax.swing.JLabel CD_placement79;
+    private javax.swing.JLabel CD_placement8;
+    private javax.swing.JLabel CD_placement80;
+    private javax.swing.JLabel CD_placement81;
+    private javax.swing.JLabel CD_placement82;
+    private javax.swing.JLabel CD_placement83;
+    private javax.swing.JLabel CD_placement84;
+    private javax.swing.JLabel CD_placement85;
+    private javax.swing.JLabel CD_placement86;
+    private javax.swing.JLabel CD_placement87;
+    private javax.swing.JLabel CD_placement88;
+    private javax.swing.JLabel CD_placement89;
+    private javax.swing.JLabel CD_placement9;
+    private javax.swing.JLabel CD_placement90;
+    private javax.swing.JLabel CD_placement91;
+    private javax.swing.JLabel CD_placement92;
+    private javax.swing.JLabel CD_placement93;
+    private javax.swing.JLabel CD_placement94;
+    private javax.swing.JLabel CD_placement95;
+    private javax.swing.JLabel CD_placement96;
+    private javax.swing.JLabel CD_placement97;
+    private javax.swing.JLabel CD_placement98;
+    private javax.swing.JLabel CD_placement99;
     private javax.swing.JButton CD_startButton;
     private javax.swing.JPanel DB_1;
     private javax.swing.JPanel DB_10;
@@ -4944,6 +5559,9 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel128;
     private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel130;
+    private javax.swing.JLabel jLabel131;
+    private javax.swing.JLabel jLabel135;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -5048,6 +5666,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -5056,6 +5675,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
