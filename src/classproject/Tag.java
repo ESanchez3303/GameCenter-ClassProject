@@ -195,8 +195,8 @@ public class Tag {
         p1Time.setValue(0);                       // Resetting the tagged time for player
         p1Time.setValue(0);                       // Resetting the tagged time for player
         
-        clock.start(); // Start the game clock!!!
-        if(currentTagger == player1)
+        clock.start();                            // Start the game clock!!!
+        if(currentTagger == player1)              // Setting up the indicator for whoever is tagger
             p2Indicator.setLocation(-200,-200);
         else
             p1Indicator.setLocation(-200,-200);
@@ -211,7 +211,7 @@ public class Tag {
     
     
     // TIMERS:
-    private Timer clock = new Timer(GAME_TICK, e->{
+    private final Timer clock = new Timer(GAME_TICK, e->{
         // ADDING TIME TO TAGGER ===============================================================
         // Player 1 is tagger and is not frozen
         if(currentTagger == player1 && !p1Frozen){ 
@@ -406,16 +406,26 @@ public class Tag {
         
         
         // CHECK IF A PLAYER HAS TOUCHED THE BOOST =============================================
-        // If boost is visible, check if player has touched it 
+        // If boost is visible, check if player has touched it (CHECKING BOOST 1)
         if(boost1.getX() == boost1X){
             boost1Rect = boost1.getBounds();
             if(player1Rect.intersects(boost1Rect)){    
-                p1Boost = BOOST_STEP;
-                boost1.setLocation(-200, -200); // Moving it out of range
+                if(p1Boost == BOOST_STEP){ // Checking if the player already has the boost, just add the time instead of doing the ELSE
+                    p1BoostedTime = 0;
+                }
+                else{
+                    p1Boost = BOOST_STEP;
+                    boost1.setLocation(-200, -200); // Moving it out of range
+                }
             }
             else if(player2Rect.intersects(boost1Rect)){
-                p2Boost = BOOST_STEP;
-                boost1.setLocation(-200, -200); // Moving it out of range
+                if(p2Boost == BOOST_STEP){
+                    p1BoostedTime = 0;
+                }
+                else{
+                    p2Boost = BOOST_STEP;
+                    boost1.setLocation(-200, -200); // Moving it out of range
+                }
             }
         }
         // If this boost is not visible, continue the ticks to make it later visible
@@ -427,15 +437,27 @@ public class Tag {
             }
         }
         
+        
+        // CHECKING BOOST 2:
         if(boost2.getX() == boost2X){
             boost2Rect = boost2.getBounds();
             if(player1Rect.intersects(boost2Rect)){
-                p1Boost = BOOST_STEP;
-                boost2.setLocation(-200,-200);
+                if(p1Boost == BOOST_STEP){
+                    p1BoostedTime = 0;
+                }
+                else{
+                    p1Boost = BOOST_STEP;
+                    boost2.setLocation(-200,-200);
+                }
             }
             else if(player2Rect.intersects(boost2Rect)){
-                p2Boost = BOOST_STEP;
-                boost2.setLocation(-200,-200);
+                if(p2Boost == BOOST_STEP){
+                    p2BoostedTime = 0;
+                }
+                else{
+                    p2Boost = BOOST_STEP;
+                    boost2.setLocation(-200,-200);
+                }
             }
         }
         // If this boost is not visible, continue ticks to make it visible later

@@ -885,7 +885,7 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel135.setText("Buy Tower");
         CD_menu.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 260, 40));
 
-        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 320, 500));
+        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 320, 500));
 
         CD_path1.setBackground(new java.awt.Color(204, 204, 204));
         CD_gameBox.add(CD_path1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 410, 158, 40));
