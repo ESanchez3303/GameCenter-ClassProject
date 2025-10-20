@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.BorderFactory;
 
 public class GUI_window extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI_window.class.getName());
@@ -130,11 +131,14 @@ public class GUI_window extends javax.swing.JFrame {
             CD_placement119,CD_placement120,CD_placement121,CD_placement122,CD_placement123,CD_placement124,CD_placement125,
             CD_placement126,CD_placement127,CD_placement128,CD_placement129,CD_placement130,CD_placement131,CD_placement132,
             CD_placement133,CD_placement134,CD_placement135,CD_placement136,CD_placement137,CD_placement138,CD_placement139,
-            CD_placement140,CD_placement141,CD_placement142,CD_placement143,CD_placement144,CD_placement145,
+            CD_placement140,CD_placement145
         };
         
         // Send it allllllllllllllllll in!!!
-        CD.setUp(placements);
+        CD.setUp(placements, CD_buyTower1Button, CD_buyTower2Button, CD_buyTower3Button, CD_buyTower4Button,
+                 CD_menu, CD_menuButton, CD_buyTower1, CD_buyTower2, CD_buyTower3, CD_buyTower4, CD_cash,
+                 CD_castleHealth, CD_upgradeMenu, CD_cat1Button, CD_cat2Button, CD_cat3Button, CD_cat1ProgressBar,
+                 CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription);
         // -------------------------------------------------------------------------------------------
         
         
@@ -154,6 +158,7 @@ public class GUI_window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSlider1 = new javax.swing.JSlider();
         MM_topBar = new javax.swing.JPanel();
         MM_username = new javax.swing.JLabel();
         MM_userSettingsButton = new javax.swing.JButton();
@@ -165,13 +170,35 @@ public class GUI_window extends javax.swing.JFrame {
         CD_menuButton = new javax.swing.JButton();
         jLabel131 = new javax.swing.JLabel();
         CD_cash = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        CD_castleHealth = new javax.swing.JProgressBar();
+        CD_upgradeMenu = new javax.swing.JPanel();
+        CD_cat2Button = new javax.swing.JButton();
+        CD_cat1Button = new javax.swing.JButton();
+        CD_cat3Button = new javax.swing.JButton();
+        CD_cat1ProgressBar = new javax.swing.JProgressBar();
+        jLabel110 = new javax.swing.JLabel();
+        CD_cat2ProgressBar = new javax.swing.JProgressBar();
+        CD_cat3ProgressBar = new javax.swing.JProgressBar();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
+        jLabel132 = new javax.swing.JLabel();
+        jLabel133 = new javax.swing.JLabel();
+        jLabel134 = new javax.swing.JLabel();
+        jLabel136 = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        CD_upgradeDescription = new javax.swing.JLabel();
+        CD_upgradeTower = new javax.swing.JLabel();
         CD_menu = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
-        CD_menuBuyTower1 = new javax.swing.JLabel();
-        CD_menuBuyTower2 = new javax.swing.JLabel();
-        CD_menuBuyTower3 = new javax.swing.JLabel();
-        CD_menuBuyTower4 = new javax.swing.JLabel();
+        CD_buyTower1 = new javax.swing.JLabel();
+        CD_buyTower2 = new javax.swing.JLabel();
+        CD_buyTower3 = new javax.swing.JLabel();
+        CD_buyTower4 = new javax.swing.JLabel();
+        CD_buyTower1Button = new javax.swing.JButton();
+        CD_buyTower2Button = new javax.swing.JButton();
+        CD_buyTower3Button = new javax.swing.JButton();
+        CD_buyTower4Button = new javax.swing.JButton();
         jLabel135 = new javax.swing.JLabel();
         CD_path1 = new javax.swing.JPanel();
         CD_path2 = new javax.swing.JPanel();
@@ -315,26 +342,110 @@ public class GUI_window extends javax.swing.JFrame {
         CD_placement138 = new javax.swing.JLabel();
         CD_placement139 = new javax.swing.JLabel();
         CD_placement140 = new javax.swing.JLabel();
-        CD_placement141 = new javax.swing.JLabel();
-        CD_placement142 = new javax.swing.JLabel();
-        CD_placement143 = new javax.swing.JLabel();
-        CD_placement144 = new javax.swing.JLabel();
         CD_placement145 = new javax.swing.JLabel();
+        CD_nextRoundButton = new javax.swing.JButton();
         CD_cover = new javax.swing.JPanel();
-        jLabel97 = new javax.swing.JLabel();
         jLabel100 = new javax.swing.JLabel();
         CD_startButton = new javax.swing.JButton();
         jLabel101 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jLabel99 = new javax.swing.JLabel();
         jLabel130 = new javax.swing.JLabel();
+        jPanel20 = new javax.swing.JPanel();
+        CD_tower1 = new javax.swing.JLabel();
+        jLabel97 = new javax.swing.JLabel();
+        CD_tower2 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        CD_tower3 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        CD_tower4 = new javax.swing.JLabel();
+        jLabel116 = new javax.swing.JLabel();
+        mainMenuFrame = new javax.swing.JPanel();
+        gamesScrollFrame = new javax.swing.JScrollPane();
+        gamesPanel = new javax.swing.JPanel();
+        game1 = new javax.swing.JPanel();
+        MM_game1StartButton = new javax.swing.JButton();
+        game1HighScore = new javax.swing.JLabel();
+        game1Username = new javax.swing.JLabel();
+        game1Image_ = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel89 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        game2 = new javax.swing.JPanel();
+        MM_game2StartButton = new javax.swing.JButton();
+        game2HighScore = new javax.swing.JLabel();
+        game2Username = new javax.swing.JLabel();
+        game2Image = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel91 = new javax.swing.JLabel();
+        jLabel92 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        game3 = new javax.swing.JPanel();
+        MM_game3StartButton = new javax.swing.JButton();
+        game3HighScore = new javax.swing.JLabel();
+        game3Username = new javax.swing.JLabel();
+        game3Image = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        game4 = new javax.swing.JPanel();
+        MM_game4StartButton = new javax.swing.JButton();
+        game4HighScore = new javax.swing.JLabel();
+        game4Username = new javax.swing.JLabel();
+        game4Image = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        game5 = new javax.swing.JPanel();
+        MM_game5StartButton = new javax.swing.JButton();
+        game5HighScore = new javax.swing.JLabel();
+        game5Username = new javax.swing.JLabel();
+        game5Image = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel86 = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
+        jLabel88 = new javax.swing.JLabel();
+        game6 = new javax.swing.JPanel();
+        MM_game6StartButton = new javax.swing.JButton();
+        game6HighScore = new javax.swing.JLabel();
+        game6Username = new javax.swing.JLabel();
+        game6Image = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel90 = new javax.swing.JLabel();
+        jLabel93 = new javax.swing.JLabel();
+        jLabel118 = new javax.swing.JLabel();
+        jLabel119 = new javax.swing.JLabel();
+        jLabel120 = new javax.swing.JLabel();
+        jLabel121 = new javax.swing.JLabel();
+        MM_userSettingsPanel = new javax.swing.JPanel();
+        MM_userSettingsCancelButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        MM_userSettingsPanelTitle = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        MM_usernameInput = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        MM_passwordInput = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        MM_passwordConfirmInput = new javax.swing.JTextField();
+        MM_saveSettingsButton = new javax.swing.JButton();
         game3Frame = new javax.swing.JPanel();
         PP_gameArea = new javax.swing.JPanel();
         PP_cover = new javax.swing.JPanel();
@@ -542,92 +653,6 @@ public class GUI_window extends javax.swing.JFrame {
         MG_scoreBoard = new javax.swing.JPanel();
         G1_score = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        mainMenuFrame = new javax.swing.JPanel();
-        gamesScrollFrame = new javax.swing.JScrollPane();
-        gamesPanel = new javax.swing.JPanel();
-        game1 = new javax.swing.JPanel();
-        MM_game1StartButton = new javax.swing.JButton();
-        game1HighScore = new javax.swing.JLabel();
-        game1Username = new javax.swing.JLabel();
-        game1Image_ = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel89 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        game2 = new javax.swing.JPanel();
-        MM_game2StartButton = new javax.swing.JButton();
-        game2HighScore = new javax.swing.JLabel();
-        game2Username = new javax.swing.JLabel();
-        game2Image = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel91 = new javax.swing.JLabel();
-        jLabel92 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        game3 = new javax.swing.JPanel();
-        MM_game3StartButton = new javax.swing.JButton();
-        game3HighScore = new javax.swing.JLabel();
-        game3Username = new javax.swing.JLabel();
-        game3Image = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        game4 = new javax.swing.JPanel();
-        MM_game4StartButton = new javax.swing.JButton();
-        game4HighScore = new javax.swing.JLabel();
-        game4Username = new javax.swing.JLabel();
-        game4Image = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        game5 = new javax.swing.JPanel();
-        MM_game5StartButton = new javax.swing.JButton();
-        game5HighScore = new javax.swing.JLabel();
-        game5Username = new javax.swing.JLabel();
-        game5Image = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
-        jLabel86 = new javax.swing.JLabel();
-        jLabel87 = new javax.swing.JLabel();
-        jLabel88 = new javax.swing.JLabel();
-        game6 = new javax.swing.JPanel();
-        MM_game6StartButton = new javax.swing.JButton();
-        game6HighScore = new javax.swing.JLabel();
-        game6Username = new javax.swing.JLabel();
-        game6Image = new javax.swing.JLabel();
-        jSeparator8 = new javax.swing.JSeparator();
-        jLabel90 = new javax.swing.JLabel();
-        jLabel93 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
-        MM_userSettingsPanel = new javax.swing.JPanel();
-        MM_userSettingsCancelButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        MM_userSettingsPanelTitle = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        MM_usernameInput = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        MM_passwordInput = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        MM_passwordConfirmInput = new javax.swing.JTextField();
-        MM_saveSettingsButton = new javax.swing.JButton();
         game5Frame = new javax.swing.JPanel();
         TA_cover = new javax.swing.JPanel();
         TA_settingsPanel = new javax.swing.JPanel();
@@ -859,11 +884,128 @@ public class GUI_window extends javax.swing.JFrame {
         CD_cash.setText("999,9999");
         CD_bottomBar.add(CD_cash, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 5, 100, 35));
 
-        jProgressBar1.setForeground(new java.awt.Color(0, 204, 51));
-        jProgressBar1.setValue(50);
-        CD_bottomBar.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 8, 270, 30));
+        CD_castleHealth.setForeground(new java.awt.Color(0, 204, 51));
+        CD_castleHealth.setValue(50);
+        CD_bottomBar.add(CD_castleHealth, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 8, 270, 30));
 
         CD_gameBox.add(CD_bottomBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 740, 45));
+
+        CD_upgradeMenu.setBackground(new java.awt.Color(165, 149, 125));
+        CD_upgradeMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_upgradeMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_cat2Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_cat2Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CD_cat2Button.setForeground(java.awt.Color.white);
+        CD_cat2Button.setText("Upgrade");
+        CD_cat2Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cat2Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_cat2ButtonMouseClicked(evt);
+            }
+        });
+        CD_upgradeMenu.add(CD_cat2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 65, 40));
+
+        CD_cat1Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_cat1Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CD_cat1Button.setForeground(java.awt.Color.white);
+        CD_cat1Button.setText("Upgrade");
+        CD_cat1Button.setToolTipText("");
+        CD_cat1Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cat1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_cat2ButtonMouseClicked(evt);
+            }
+        });
+        CD_upgradeMenu.add(CD_cat1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 65, 40));
+
+        CD_cat3Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_cat3Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CD_cat3Button.setForeground(java.awt.Color.white);
+        CD_cat3Button.setText("Upgrade");
+        CD_cat3Button.setToolTipText("");
+        CD_cat3Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cat3Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_cat2ButtonMouseClicked(evt);
+            }
+        });
+        CD_upgradeMenu.add(CD_cat3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 65, 40));
+
+        CD_cat1ProgressBar.setForeground(new java.awt.Color(102, 255, 102));
+        CD_cat1ProgressBar.setValue(33);
+        CD_cat1ProgressBar.setString("Range");
+        CD_upgradeMenu.add(CD_cat1ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, 40));
+
+        jLabel110.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel110.setForeground(java.awt.Color.white);
+        jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel110.setText("Upgrade Menu");
+        CD_upgradeMenu.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 370, 40));
+
+        CD_cat2ProgressBar.setForeground(new java.awt.Color(51, 204, 255));
+        CD_cat2ProgressBar.setValue(66);
+        CD_cat2ProgressBar.setString("Distance");
+        CD_upgradeMenu.add(CD_cat2ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 210, 40));
+
+        CD_cat3ProgressBar.setForeground(new java.awt.Color(255, 255, 0));
+        CD_cat3ProgressBar.setValue(100);
+        CD_upgradeMenu.add(CD_cat3ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 210, 40));
+
+        jLabel111.setForeground(java.awt.Color.white);
+        jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel111.setText("LVL 3");
+        CD_upgradeMenu.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 190, 40, 40));
+
+        jLabel114.setForeground(java.awt.Color.white);
+        jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel114.setText("LVL 0");
+        CD_upgradeMenu.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 40, 40));
+
+        jLabel115.setForeground(java.awt.Color.white);
+        jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel115.setText("LVL 2");
+        CD_upgradeMenu.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 40, 40));
+
+        jLabel132.setForeground(java.awt.Color.white);
+        jLabel132.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel132.setText("LVL 1");
+        CD_upgradeMenu.add(jLabel132, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 40, 40));
+
+        jLabel133.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel133.setForeground(java.awt.Color.white);
+        jLabel133.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel133.setText("Range");
+        CD_upgradeMenu.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 70, 40));
+
+        jLabel134.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel134.setForeground(java.awt.Color.white);
+        jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel134.setText("Power");
+        CD_upgradeMenu.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 70, 40));
+
+        jLabel136.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel136.setForeground(java.awt.Color.white);
+        jLabel136.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel136.setText("Ability");
+        CD_upgradeMenu.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 70, 40));
+
+        jPanel21.setBackground(new java.awt.Color(165, 149, 125));
+        jPanel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_upgradeDescription.setForeground(java.awt.Color.white);
+        CD_upgradeDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_upgradeDescription.setText("Missle Shooter: Shoots missles, but takes a long time ");
+        jPanel21.add(CD_upgradeDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 300, 80));
+
+        CD_upgradeTower.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower3.png"))); // NOI18N
+        CD_upgradeTower.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel21.add(CD_upgradeTower, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 40));
+
+        CD_upgradeMenu.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 360, 80));
+
+        CD_gameBox.add(CD_upgradeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 217, 380, 320));
 
         CD_menu.setBackground(new java.awt.Color(165, 149, 125));
         CD_menu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -872,18 +1014,78 @@ public class GUI_window extends javax.swing.JFrame {
         jPanel19.setBackground(new java.awt.Color(200, 151, 115));
         jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel19.add(CD_menuBuyTower1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 40, 40));
-        jPanel19.add(CD_menuBuyTower2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 5, 40, 40));
-        jPanel19.add(CD_menuBuyTower3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 5, 40, 40));
-        jPanel19.add(CD_menuBuyTower4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 5, 40, 40));
 
-        CD_menu.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 260, 50));
+        CD_buyTower1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower1.png"))); // NOI18N
+        CD_buyTower1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel19.add(CD_buyTower1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
+
+        CD_buyTower2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower2.png"))); // NOI18N
+        CD_buyTower2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel19.add(CD_buyTower2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 40, 40));
+
+        CD_buyTower3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower3.png"))); // NOI18N
+        CD_buyTower3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel19.add(CD_buyTower3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 40, 40));
+
+        CD_buyTower4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower4.png"))); // NOI18N
+        CD_buyTower4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel19.add(CD_buyTower4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 40, 40));
+
+        CD_buyTower1Button.setBackground(new java.awt.Color(255, 51, 0));
+        CD_buyTower1Button.setForeground(java.awt.Color.white);
+        CD_buyTower1Button.setText("Buy Tower");
+        CD_buyTower1Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_buyTower1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_buyTower1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_buyTower1ButtonMouseClicked(evt);
+            }
+        });
+        jPanel19.add(CD_buyTower1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 190, 40));
+
+        CD_buyTower2Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_buyTower2Button.setForeground(java.awt.Color.white);
+        CD_buyTower2Button.setText("Buy Tower");
+        CD_buyTower2Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_buyTower2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_buyTower2Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_buyTower1ButtonMouseClicked(evt);
+            }
+        });
+        jPanel19.add(CD_buyTower2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 190, 40));
+
+        CD_buyTower3Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_buyTower3Button.setForeground(java.awt.Color.white);
+        CD_buyTower3Button.setText("Buy Tower");
+        CD_buyTower3Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_buyTower3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_buyTower3Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_buyTower1ButtonMouseClicked(evt);
+            }
+        });
+        jPanel19.add(CD_buyTower3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 190, 40));
+
+        CD_buyTower4Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_buyTower4Button.setForeground(java.awt.Color.white);
+        CD_buyTower4Button.setText("Buy Tower");
+        CD_buyTower4Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_buyTower4Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_buyTower4Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_buyTower1ButtonMouseClicked(evt);
+            }
+        });
+        jPanel19.add(CD_buyTower4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 190, 40));
+
+        CD_menu.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 210));
 
         jLabel135.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel135.setForeground(java.awt.Color.white);
         jLabel135.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel135.setText("Buy Tower");
-        CD_menu.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 260, 40));
+        CD_menu.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, 40));
 
         CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 320, 500));
 
@@ -910,145 +1112,1369 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_castle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/CastleDefense_castle.png"))); // NOI18N
         CD_gameBox.add(CD_castle, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 388, 160, 160));
+
+        CD_placement1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 40, 40));
+
+        CD_placement2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 40, 40));
+
+        CD_placement3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 40, 40));
+
+        CD_placement4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 40, 40));
+
+        CD_placement5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 40, 40));
+
+        CD_placement6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 40, 40));
+
+        CD_placement7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 40, 40));
+
+        CD_placement8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 40, 40));
+
+        CD_placement9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 40, 40));
+
+        CD_placement10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 40, 40));
+
+        CD_placement11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 40, 40));
+
+        CD_placement12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 40, 40));
+
+        CD_placement13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 40, 40));
+
+        CD_placement14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 40, 40));
+
+        CD_placement15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 40, 40));
+
+        CD_placement16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 40, 40));
+
+        CD_placement17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 40, 40));
+
+        CD_placement18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 40, 40));
+
+        CD_placement19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement19, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 40, 40));
+
+        CD_placement20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement20, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 40, 40));
+
+        CD_placement21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement21, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 40, 40));
+
+        CD_placement22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement22, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 40, 40));
+
+        CD_placement23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement23, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, 40));
+
+        CD_placement24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement24, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 40, 40));
+
+        CD_placement25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement25, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 40, 40));
+
+        CD_placement26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement26, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 40, 40));
+
+        CD_placement27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement27, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 40, 40));
+
+        CD_placement28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement28, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 40, 40));
+
+        CD_placement29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement29, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 40, 40));
+
+        CD_placement30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement30, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 40, 40));
+
+        CD_placement31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement31, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 40, 40));
+
+        CD_placement32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement32, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 40, 40));
+
+        CD_placement33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement33, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, 40, 40));
+
+        CD_placement34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement34, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 40, 40));
+
+        CD_placement35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement35, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 40, 40));
+
+        CD_placement36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement36, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 40, 40));
+
+        CD_placement37.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement37, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, 40, 40));
+
+        CD_placement38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement38, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 40, 40));
+
+        CD_placement41.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 40, 40));
+
+        CD_placement42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement42, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 40, 40));
+
+        CD_placement43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement43, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 40, 40));
+
+        CD_placement44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement44, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 40, 40));
+
+        CD_placement45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement45, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 40, 40));
+
+        CD_placement46.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement46, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 40, 40));
+
+        CD_placement47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower4.png"))); // NOI18N
+        CD_placement47.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement47, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 40, 40));
+
+        CD_placement48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower3.png"))); // NOI18N
+        CD_placement48.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement48, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 40, 40));
+
+        CD_placement49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower2.png"))); // NOI18N
+        CD_placement49.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement49, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 40, 40));
+
+        CD_placement50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower1.png"))); // NOI18N
+        CD_placement50.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement50, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 40, 40));
+
+        CD_placement51.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement51, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 40, 40));
+
+        CD_placement52.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement52, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 40, 40));
+
+        CD_placement53.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement53, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 40, 40));
+
+        CD_placement54.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement54, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 40, 40));
+
+        CD_placement55.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement55, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 40, 40));
+
+        CD_placement56.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement56, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 40, 40));
+
+        CD_placement57.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement57, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 40, 40));
+
+        CD_placement58.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement58, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 40, 40));
+
+        CD_placement59.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement59, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 40, 40));
+
+        CD_placement60.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement60, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 40, 40));
+
+        CD_placement61.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement61, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 40, 40));
+
+        CD_placement62.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement62, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 40, 40));
+
+        CD_placement63.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement63, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 40, 40));
+
+        CD_placement64.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement64, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 40, 40));
+
+        CD_placement65.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement65, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 40, 40));
+
+        CD_placement66.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement66, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 40, 40));
+
+        CD_placement67.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement67, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 40, 40));
+
+        CD_placement68.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement68, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 40, 40));
+
+        CD_placement69.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement69, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 40, 40));
+
+        CD_placement70.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement70, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 40, 40));
+
+        CD_placement71.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement71, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 40, 40));
+
+        CD_placement72.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement72, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 40, 40));
+
+        CD_placement73.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement73, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 40, 40));
+
+        CD_placement74.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement74, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 40, 40));
+
+        CD_placement77.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement77, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 40, 40));
+
+        CD_placement78.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement78, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 40, 40));
+
+        CD_placement79.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement79, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 40, 40));
+
+        CD_placement80.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement80, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 40, 40));
+
+        CD_placement81.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement81, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 40, 40));
+
+        CD_placement82.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement82, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 40, 40));
+
+        CD_placement83.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement83, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 40, 40));
+
+        CD_placement84.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement84, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 40, 40));
+
+        CD_placement85.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement85, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 40, 40));
+
+        CD_placement86.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement86, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 40, 40));
+
+        CD_placement87.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement87, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 40, 40));
+
+        CD_placement88.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CD_placement88.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement88, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 40, 40));
+
+        CD_placement89.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement89, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 40, 40));
+
+        CD_placement90.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement90, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 40, 40));
+
+        CD_placement91.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement91, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 40, 40));
+
+        CD_placement92.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement92, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 40, 40));
+
+        CD_placement93.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement93, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 40, 40));
+
+        CD_placement94.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement94, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 40, 40));
+
+        CD_placement95.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement95, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 40, 40));
+
+        CD_placement96.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement96, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 40, 40));
+
+        CD_placement97.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement97, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 40, 40));
+
+        CD_placement98.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement98, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 40, 40));
+
+        CD_placement99.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement99, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 40, 40));
+
+        CD_placement100.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement100, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 40, 40));
+
+        CD_placement101.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement101, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 40, 40));
+
+        CD_placement102.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement102, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 40, 40));
+
+        CD_placement103.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement103, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 40, 40));
+
+        CD_placement104.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement104, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 40, 40));
+
+        CD_placement105.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement105, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 40, 40));
+
+        CD_placement106.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement106, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 40, 40));
+
+        CD_placement107.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement107, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 40, 40));
+
+        CD_placement108.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement108, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 40, 40));
+
+        CD_placement111.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        CD_placement111.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement111, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 40, 40));
+
+        CD_placement112.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement112, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 40, 40));
+
+        CD_placement113.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement113, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 40, 40));
+
+        CD_placement114.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement114, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 40, 40));
+
+        CD_placement115.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement115, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 40, 40));
+
+        CD_placement116.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement116, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 40, 40));
+
+        CD_placement117.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement117, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 40, 40));
+
+        CD_placement118.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement118, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 40, 40));
+
+        CD_placement119.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement119, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 40, 40));
+
+        CD_placement120.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement120, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 40, 40));
+
+        CD_placement121.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement121, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 40, 40));
+
+        CD_placement122.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement122, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 40, 40));
+
+        CD_placement123.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement123, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 40, 40));
+
+        CD_placement124.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement124, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, 40, 40));
+
+        CD_placement125.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement125, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 40, 40));
+
+        CD_placement126.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement126, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 40, 40));
+
+        CD_placement127.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement127, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 40, 40));
+
+        CD_placement128.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement128, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 40, 40));
+
+        CD_placement129.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement129, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, 40, 40));
+
+        CD_placement130.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement130, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 450, 40, 40));
+
+        CD_placement131.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement131, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 40, 40));
+
+        CD_placement132.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement132, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, 40, 40));
+
+        CD_placement133.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement133, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 40, 40));
+
+        CD_placement134.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement134, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 40, 40));
+
+        CD_placement135.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement135, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 40, 40));
+
+        CD_placement136.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement136, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 40, 40));
+
+        CD_placement137.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement137, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 40, 40));
+
+        CD_placement138.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement138, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, 40, 40));
+
+        CD_placement139.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement139, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 40, 40));
+
+        CD_placement140.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement140, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, 40, 40));
-        CD_gameBox.add(CD_placement141, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, 40, 40));
-        CD_gameBox.add(CD_placement142, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 40, 40));
-        CD_gameBox.add(CD_placement143, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 490, 40, 40));
-        CD_gameBox.add(CD_placement144, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, 40, 40));
+
+        CD_placement145.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CD_placement1MouseEntered(evt);
+            }
+        });
         CD_gameBox.add(CD_placement145, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 40, 40));
+
+        CD_nextRoundButton.setBackground(new java.awt.Color(0, 153, 51));
+        CD_nextRoundButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        CD_nextRoundButton.setForeground(java.awt.Color.white);
+        CD_nextRoundButton.setText("Start Next Round");
+        CD_nextRoundButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_gameBox.add(CD_nextRoundButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 500, 190, 30));
 
         game6Frame.add(CD_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
 
@@ -1056,17 +2482,11 @@ public class GUI_window extends javax.swing.JFrame {
         CD_cover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_cover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel97.setForeground(java.awt.Color.white);
-        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel97.setText("<Description>");
-        CD_cover.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 500, 50));
-
-        jLabel100.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel100.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel100.setForeground(java.awt.Color.white);
         jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel100.setText("Each tower can be upgraded as needed!");
-        CD_cover.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 740, 40));
+        jLabel100.setText("Each tower cost a certain amount. Each upgrade costs a certain amount. ");
+        CD_cover.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 740, 30));
 
         CD_startButton.setBackground(new java.awt.Color(200, 151, 115));
         CD_startButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -1078,64 +2498,619 @@ public class GUI_window extends javax.swing.JFrame {
                 CD_startButtonMouseClicked(evt);
             }
         });
-        CD_cover.add(CD_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 496, 460, 70));
+        CD_cover.add(CD_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 506, 700, 60));
 
-        jLabel101.setFont(new java.awt.Font("Segoe UI", 2, 30)); // NOI18N
+        jLabel101.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel101.setForeground(java.awt.Color.white);
         jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel101.setText("When your castle life reaches zero, you loose!");
-        CD_cover.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 80));
+        jLabel101.setText("Each level will get harder as the amount of enemies go up and so does the difficulty.");
+        CD_cover.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 740, 40));
 
-        jLabel110.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 50, 50));
-
-        jLabel111.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 50, 50));
-
-        jLabel112.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel112.setForeground(java.awt.Color.white);
-        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel112.setText("<Description>");
-        CD_cover.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 500, 50));
-
-        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel113.setForeground(java.awt.Color.white);
-        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel113.setText("<Description>");
-        CD_cover.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 500, 50));
-
-        jLabel114.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 50, 50));
-
-        jLabel115.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cover.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 50, 50));
-
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel116.setForeground(java.awt.Color.white);
-        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel116.setText("<Description>");
-        CD_cover.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 500, 50));
-
-        jPanel17.setBackground(new java.awt.Color(200, 151, 115));
+        jPanel17.setBackground(new java.awt.Color(158, 141, 116));
         jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel99.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel99.setForeground(java.awt.Color.white);
         jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel99.setText("Game Instructions");
+        jLabel99.setText("[ Game Instructions ]");
         jPanel17.add(jLabel99);
 
         CD_cover.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 70));
 
-        jLabel130.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jLabel130.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel130.setForeground(java.awt.Color.white);
         jLabel130.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel130.setText("Defend the castle by planting one of 4 towers.");
+        jLabel130.setText("Defend the castle by planting one of 4 towers. Each tower can be upgraded as needed.");
         CD_cover.add(jLabel130, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 740, 40));
+
+        jPanel20.setBackground(new java.awt.Color(158, 141, 116));
+        jPanel20.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_tower1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower1.png"))); // NOI18N
+        CD_tower1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel20.add(CD_tower1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 40, 40));
+
+        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel97.setForeground(java.awt.Color.white);
+        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel97.setText("::      Regular Shooter: Shoots 1-3 shots to one enemy");
+        jPanel20.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 500, 40));
+
+        CD_tower2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower2.png"))); // NOI18N
+        CD_tower2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel20.add(CD_tower2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 40, 40));
+
+        jLabel112.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel112.setForeground(java.awt.Color.white);
+        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel112.setText("::      Electric Shooter: Shoots 2-4 enemies with one shot");
+        jPanel20.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 500, 40));
+
+        CD_tower3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower3.png"))); // NOI18N
+        CD_tower3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel20.add(CD_tower3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 40, 40));
+
+        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel113.setForeground(java.awt.Color.white);
+        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel113.setText("::      Rocket Shooter:  Shoots rockets that damages large areas");
+        jPanel20.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 500, 40));
+
+        CD_tower4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower4.png"))); // NOI18N
+        CD_tower4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel20.add(CD_tower4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 40, 40));
+
+        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel116.setForeground(java.awt.Color.white);
+        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel116.setText("::      Military Base: Has the abilities of all the above towers");
+        jPanel20.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 500, 40));
+
+        CD_cover.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 700, 290));
 
         game6Frame.add(CD_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
 
         getContentPane().add(game6Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
+
+        mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
+        mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        gamesScrollFrame.setBackground(new java.awt.Color(214, 196, 172));
+        gamesScrollFrame.setForeground(new java.awt.Color(200, 151, 115));
+        gamesScrollFrame.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        gamesScrollFrame.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        gamesScrollFrame.setViewportView(gamesPanel);
+
+        gamesPanel.setBackground(new java.awt.Color(214, 196, 172));
+        gamesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        game1.setBackground(new java.awt.Color(200, 151, 115));
+        game1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game1StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game1StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game1StartButton.setForeground(java.awt.Color.white);
+        MM_game1StartButton.setText("Start Game!");
+        MM_game1StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game1StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game1StartButtonMousePressed(evt);
+            }
+        });
+        game1.add(MM_game1StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game1HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game1HighScore.setForeground(java.awt.Color.white);
+        game1HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game1HighScore.setText("Not Set");
+        game1.add(game1HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game1Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game1Username.setForeground(java.awt.Color.white);
+        game1Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game1Username.setText("1234567890123456789");
+        game1Username.setToolTipText("");
+        game1.add(game1Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game1Image_.setBackground(new java.awt.Color(153, 135, 108));
+        game1Image_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/matchingGame.png"))); // NOI18N
+        game1Image_.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game1.add(game1Image_, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel39.setForeground(java.awt.Color.white);
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setText("Matching Game");
+        game1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel89.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel89.setForeground(java.awt.Color.white);
+        jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel89.setText("1 Player");
+        game1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(java.awt.Color.white);
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Game Type:");
+        game1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(java.awt.Color.white);
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Game Information:");
+        game1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(java.awt.Color.white);
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("User:");
+        game1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setForeground(java.awt.Color.white);
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Highest Score:");
+        game1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 160));
+
+        game2.setBackground(new java.awt.Color(200, 151, 115));
+        game2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game2StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game2StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game2StartButton.setForeground(java.awt.Color.white);
+        MM_game2StartButton.setText("Start Game!");
+        MM_game2StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game2StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game2StartButtonMousePressed(evt);
+            }
+        });
+        game2.add(MM_game2StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game2HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game2HighScore.setForeground(java.awt.Color.white);
+        game2HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game2HighScore.setText("----");
+        game2.add(game2HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game2Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game2Username.setForeground(java.awt.Color.white);
+        game2Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game2Username.setText("----");
+        game2Username.setToolTipText("");
+        game2.add(game2Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game2Image.setBackground(new java.awt.Color(153, 135, 108));
+        game2Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/dotsAndBoxes.png"))); // NOI18N
+        game2Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game2.add(game2Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel91.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel91.setForeground(java.awt.Color.white);
+        jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel91.setText("2 Players");
+        game2.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel92.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel92.setForeground(java.awt.Color.white);
+        jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel92.setText("Dots and Boxes");
+        game2.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setForeground(java.awt.Color.white);
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setText("Game Type:");
+        game2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setForeground(java.awt.Color.white);
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Game Information:");
+        game2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setForeground(java.awt.Color.white);
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setText("User:");
+        game2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(java.awt.Color.white);
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Highest Score:");
+        game2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 730, 160));
+
+        game3.setBackground(new java.awt.Color(200, 151, 115));
+        game3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game3StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game3StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game3StartButton.setForeground(java.awt.Color.white);
+        MM_game3StartButton.setText("Start Game!");
+        MM_game3StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game3StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game3StartButtonMousePressed(evt);
+            }
+        });
+        game3.add(MM_game3StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game3HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game3HighScore.setForeground(java.awt.Color.white);
+        game3HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game3HighScore.setText("Not Set");
+        game3.add(game3HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game3Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game3Username.setForeground(java.awt.Color.white);
+        game3Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game3Username.setText("Not Set");
+        game3Username.setToolTipText("");
+        game3.add(game3Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game3Image.setBackground(new java.awt.Color(153, 135, 108));
+        game3Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pingPong.png"))); // NOI18N
+        game3Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game3.add(game3Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel23.setForeground(java.awt.Color.white);
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Ping Pong");
+        game3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel72.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel72.setForeground(java.awt.Color.white);
+        jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel72.setText("1-2 Players");
+        game3.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.white);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Game Type:");
+        game3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(java.awt.Color.white);
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Game Information:");
+        game3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(java.awt.Color.white);
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("User:");
+        game3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setForeground(java.awt.Color.white);
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Highest Score:");
+        game3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 730, 160));
+
+        game4.setBackground(new java.awt.Color(200, 151, 115));
+        game4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game4StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game4StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game4StartButton.setForeground(java.awt.Color.white);
+        MM_game4StartButton.setText("Start Game!");
+        MM_game4StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game4StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game4StartButtonMousePressed(evt);
+            }
+        });
+        game4.add(MM_game4StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game4HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game4HighScore.setForeground(java.awt.Color.white);
+        game4HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game4HighScore.setText("----");
+        game4.add(game4HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game4Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game4Username.setForeground(java.awt.Color.white);
+        game4Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game4Username.setText("----");
+        game4Username.setToolTipText("");
+        game4.add(game4Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game4Image.setBackground(new java.awt.Color(153, 135, 108));
+        game4Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank.png"))); // NOI18N
+        game4Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game4.add(game4Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel48.setForeground(java.awt.Color.white);
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel48.setText("2 Players");
+        game4.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel45.setForeground(java.awt.Color.white);
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel45.setText("Tanks");
+        game4.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setForeground(java.awt.Color.white);
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("Game Type:");
+        game4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setForeground(java.awt.Color.white);
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Game Information:");
+        game4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setForeground(java.awt.Color.white);
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("User:");
+        game4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setForeground(java.awt.Color.white);
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Highest Score:");
+        game4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 730, 160));
+
+        game5.setBackground(new java.awt.Color(200, 151, 115));
+        game5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game5StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game5StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game5StartButton.setForeground(java.awt.Color.white);
+        MM_game5StartButton.setText("Start Game!");
+        MM_game5StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game5StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game5StartButtonMousePressed(evt);
+            }
+        });
+        game5.add(MM_game5StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game5HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game5HighScore.setForeground(java.awt.Color.white);
+        game5HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game5HighScore.setText("----");
+        game5.add(game5HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game5Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game5Username.setForeground(java.awt.Color.white);
+        game5Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game5Username.setText("----");
+        game5Username.setToolTipText("");
+        game5.add(game5Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game5Image.setBackground(new java.awt.Color(153, 135, 108));
+        game5Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tag.png"))); // NOI18N
+        game5Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game5.add(game5Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel61.setForeground(java.awt.Color.white);
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("2 Players");
+        game5.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel73.setForeground(java.awt.Color.white);
+        jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel73.setText("Tag");
+        game5.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel74.setForeground(java.awt.Color.white);
+        jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel74.setText("Game Type:");
+        game5.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel86.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel86.setForeground(java.awt.Color.white);
+        jLabel86.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel86.setText("Game Information:");
+        game5.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel87.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel87.setForeground(java.awt.Color.white);
+        jLabel87.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel87.setText("User:");
+        game5.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel88.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel88.setForeground(java.awt.Color.white);
+        jLabel88.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel88.setText("Highest Score:");
+        game5.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 690, 730, 160));
+
+        game6.setBackground(new java.awt.Color(200, 151, 115));
+        game6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        game6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_game6StartButton.setBackground(new java.awt.Color(217, 191, 157));
+        MM_game6StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        MM_game6StartButton.setForeground(java.awt.Color.white);
+        MM_game6StartButton.setText("Start Game!");
+        MM_game6StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_game6StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_game6StartButtonMousePressed(evt);
+            }
+        });
+        game6.add(MM_game6StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
+
+        game6HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game6HighScore.setForeground(java.awt.Color.white);
+        game6HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game6HighScore.setText("Not Set");
+        game6.add(game6HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
+
+        game6Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        game6Username.setForeground(java.awt.Color.white);
+        game6Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game6Username.setText("Not Set");
+        game6Username.setToolTipText("");
+        game6.add(game6Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
+
+        game6Image.setBackground(new java.awt.Color(153, 135, 108));
+        game6Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/CastleDefense.png"))); // NOI18N
+        game6Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        game6.add(game6Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
+
+        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        game6.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
+
+        jLabel90.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel90.setForeground(java.awt.Color.white);
+        jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel90.setText("1 Player");
+        game6.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
+
+        jLabel93.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel93.setForeground(java.awt.Color.white);
+        jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel93.setText("Castle Defense");
+        game6.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
+
+        jLabel118.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel118.setForeground(java.awt.Color.white);
+        jLabel118.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel118.setText("Game Type:");
+        game6.add(jLabel118, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
+
+        jLabel119.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel119.setForeground(java.awt.Color.white);
+        jLabel119.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel119.setText("Game Information:");
+        game6.add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
+
+        jLabel120.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel120.setForeground(java.awt.Color.white);
+        jLabel120.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel120.setText("User:");
+        game6.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
+
+        jLabel121.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel121.setForeground(java.awt.Color.white);
+        jLabel121.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel121.setText("Highest Score:");
+        game6.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
+
+        gamesPanel.add(game6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 860, 730, 160));
+
+        gamesScrollFrame.setViewportView(gamesPanel);
+
+        mainMenuFrame.add(gamesScrollFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 590));
+
+        MM_userSettingsPanel.setBackground(new java.awt.Color(153, 135, 108));
+        MM_userSettingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_userSettingsCancelButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_userSettingsCancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_userSettingsCancelButton.setForeground(java.awt.Color.white);
+        MM_userSettingsCancelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        MM_userSettingsCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_userSettingsCancelButton.setLabel("X");
+        MM_userSettingsCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_userSettingsCancelButtonMousePressed(evt);
+            }
+        });
+        MM_userSettingsPanel.add(MM_userSettingsCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 30));
+
+        jPanel2.setBackground(new java.awt.Color(98, 82, 62));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MM_userSettingsPanelTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MM_userSettingsPanelTitle.setForeground(java.awt.Color.white);
+        MM_userSettingsPanelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MM_userSettingsPanelTitle.setText("User Settings");
+        jPanel2.add(MM_userSettingsPanelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 380, 20));
+
+        MM_userSettingsPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.white);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Username:");
+        MM_userSettingsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 30));
+
+        MM_usernameInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 280, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.white);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Password:");
+        MM_userSettingsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 30));
+
+        MM_passwordInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 280, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel5.setForeground(java.awt.Color.white);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Confirm Password:");
+        MM_userSettingsPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, 30));
+
+        MM_passwordConfirmInput.setBackground(new java.awt.Color(246, 228, 199));
+        MM_passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        MM_userSettingsPanel.add(MM_passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 280, 30));
+
+        MM_saveSettingsButton.setBackground(new java.awt.Color(200, 151, 115));
+        MM_saveSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        MM_saveSettingsButton.setForeground(java.awt.Color.white);
+        MM_saveSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MM_saveSettingsButton.setLabel("Save Settings");
+        MM_saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MM_saveSettingsButtonMousePressed(evt);
+            }
+        });
+        MM_userSettingsPanel.add(MM_saveSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, 40));
+
+        mainMenuFrame.add(MM_userSettingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 450, 220));
+
+        getContentPane().add(mainMenuFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
         game3Frame.setBackground(new java.awt.Color(214, 196, 172));
         game3Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2626,544 +4601,6 @@ public class GUI_window extends javax.swing.JFrame {
 
         getContentPane().add(game1Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
-        mainMenuFrame.setBackground(new java.awt.Color(214, 196, 172));
-        mainMenuFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        gamesScrollFrame.setBackground(new java.awt.Color(214, 196, 172));
-        gamesScrollFrame.setForeground(new java.awt.Color(200, 151, 115));
-        gamesScrollFrame.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        gamesScrollFrame.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        gamesScrollFrame.setViewportView(gamesPanel);
-
-        gamesPanel.setBackground(new java.awt.Color(214, 196, 172));
-        gamesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        game1.setBackground(new java.awt.Color(200, 151, 115));
-        game1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game1StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game1StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game1StartButton.setForeground(java.awt.Color.white);
-        MM_game1StartButton.setText("Start Game!");
-        MM_game1StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game1StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game1StartButtonMousePressed(evt);
-            }
-        });
-        game1.add(MM_game1StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game1HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game1HighScore.setForeground(java.awt.Color.white);
-        game1HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game1HighScore.setText("Not Set");
-        game1.add(game1HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game1Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game1Username.setForeground(java.awt.Color.white);
-        game1Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game1Username.setText("1234567890123456789");
-        game1Username.setToolTipText("");
-        game1.add(game1Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game1Image_.setBackground(new java.awt.Color(153, 135, 108));
-        game1Image_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/matchingGame.png"))); // NOI18N
-        game1Image_.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game1.add(game1Image_, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel39.setForeground(java.awt.Color.white);
-        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel39.setText("Matching Game");
-        game1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel89.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel89.setForeground(java.awt.Color.white);
-        jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel89.setText("1 Player");
-        game1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(java.awt.Color.white);
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Game Type:");
-        game1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(java.awt.Color.white);
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Game Information:");
-        game1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel11.setForeground(java.awt.Color.white);
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("User:");
-        game1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setForeground(java.awt.Color.white);
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel12.setText("Highest Score:");
-        game1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 160));
-
-        game2.setBackground(new java.awt.Color(200, 151, 115));
-        game2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game2StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game2StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game2StartButton.setForeground(java.awt.Color.white);
-        MM_game2StartButton.setText("Start Game!");
-        MM_game2StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game2StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game2StartButtonMousePressed(evt);
-            }
-        });
-        game2.add(MM_game2StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game2HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game2HighScore.setForeground(java.awt.Color.white);
-        game2HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game2HighScore.setText("----");
-        game2.add(game2HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game2Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game2Username.setForeground(java.awt.Color.white);
-        game2Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game2Username.setText("----");
-        game2Username.setToolTipText("");
-        game2.add(game2Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game2Image.setBackground(new java.awt.Color(153, 135, 108));
-        game2Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/dotsAndBoxes.png"))); // NOI18N
-        game2Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game2.add(game2Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel91.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel91.setForeground(java.awt.Color.white);
-        jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel91.setText("2 Players");
-        game2.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel92.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel92.setForeground(java.awt.Color.white);
-        jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel92.setText("Dots and Boxes");
-        game2.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setForeground(java.awt.Color.white);
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel13.setText("Game Type:");
-        game2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(java.awt.Color.white);
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Game Information:");
-        game2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel15.setForeground(java.awt.Color.white);
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("User:");
-        game2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel16.setForeground(java.awt.Color.white);
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel16.setText("Highest Score:");
-        game2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 730, 160));
-
-        game3.setBackground(new java.awt.Color(200, 151, 115));
-        game3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game3StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game3StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game3StartButton.setForeground(java.awt.Color.white);
-        MM_game3StartButton.setText("Start Game!");
-        MM_game3StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game3StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game3StartButtonMousePressed(evt);
-            }
-        });
-        game3.add(MM_game3StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game3HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game3HighScore.setForeground(java.awt.Color.white);
-        game3HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game3HighScore.setText("Not Set");
-        game3.add(game3HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game3Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game3Username.setForeground(java.awt.Color.white);
-        game3Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game3Username.setText("Not Set");
-        game3Username.setToolTipText("");
-        game3.add(game3Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game3Image.setBackground(new java.awt.Color(153, 135, 108));
-        game3Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/pingPong.png"))); // NOI18N
-        game3Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game3.add(game3Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel23.setForeground(java.awt.Color.white);
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Ping Pong");
-        game3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel72.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel72.setForeground(java.awt.Color.white);
-        jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel72.setText("1-2 Players");
-        game3.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(java.awt.Color.white);
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Game Type:");
-        game3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(java.awt.Color.white);
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Game Information:");
-        game3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(java.awt.Color.white);
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("User:");
-        game3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setForeground(java.awt.Color.white);
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Highest Score:");
-        game3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 730, 160));
-
-        game4.setBackground(new java.awt.Color(200, 151, 115));
-        game4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game4StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game4StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game4StartButton.setForeground(java.awt.Color.white);
-        MM_game4StartButton.setText("Start Game!");
-        MM_game4StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game4StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game4StartButtonMousePressed(evt);
-            }
-        });
-        game4.add(MM_game4StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game4HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game4HighScore.setForeground(java.awt.Color.white);
-        game4HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game4HighScore.setText("----");
-        game4.add(game4HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game4Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game4Username.setForeground(java.awt.Color.white);
-        game4Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game4Username.setText("----");
-        game4Username.setToolTipText("");
-        game4.add(game4Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game4Image.setBackground(new java.awt.Color(153, 135, 108));
-        game4Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tank.png"))); // NOI18N
-        game4Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game4.add(game4Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel48.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel48.setForeground(java.awt.Color.white);
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText("2 Players");
-        game4.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel45.setForeground(java.awt.Color.white);
-        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel45.setText("Tanks");
-        game4.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel17.setForeground(java.awt.Color.white);
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel17.setText("Game Type:");
-        game4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel18.setForeground(java.awt.Color.white);
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Game Information:");
-        game4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel19.setForeground(java.awt.Color.white);
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel19.setText("User:");
-        game4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setForeground(java.awt.Color.white);
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel20.setText("Highest Score:");
-        game4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 730, 160));
-
-        game5.setBackground(new java.awt.Color(200, 151, 115));
-        game5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game5StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game5StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game5StartButton.setForeground(java.awt.Color.white);
-        MM_game5StartButton.setText("Start Game!");
-        MM_game5StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game5StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game5StartButtonMousePressed(evt);
-            }
-        });
-        game5.add(MM_game5StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game5HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game5HighScore.setForeground(java.awt.Color.white);
-        game5HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game5HighScore.setText("----");
-        game5.add(game5HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game5Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game5Username.setForeground(java.awt.Color.white);
-        game5Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game5Username.setText("----");
-        game5Username.setToolTipText("");
-        game5.add(game5Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game5Image.setBackground(new java.awt.Color(153, 135, 108));
-        game5Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tag.png"))); // NOI18N
-        game5Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game5.add(game5Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel61.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel61.setForeground(java.awt.Color.white);
-        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel61.setText("2 Players");
-        game5.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel73.setForeground(java.awt.Color.white);
-        jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel73.setText("Tag");
-        game5.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel74.setForeground(java.awt.Color.white);
-        jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel74.setText("Game Type:");
-        game5.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel86.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel86.setForeground(java.awt.Color.white);
-        jLabel86.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel86.setText("Game Information:");
-        game5.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel87.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel87.setForeground(java.awt.Color.white);
-        jLabel87.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel87.setText("User:");
-        game5.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel88.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel88.setForeground(java.awt.Color.white);
-        jLabel88.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel88.setText("Highest Score:");
-        game5.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 690, 730, 160));
-
-        game6.setBackground(new java.awt.Color(200, 151, 115));
-        game6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        game6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_game6StartButton.setBackground(new java.awt.Color(217, 191, 157));
-        MM_game6StartButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        MM_game6StartButton.setForeground(java.awt.Color.white);
-        MM_game6StartButton.setText("Start Game!");
-        MM_game6StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game6StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game6StartButtonMousePressed(evt);
-            }
-        });
-        game6.add(MM_game6StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
-
-        game6HighScore.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game6HighScore.setForeground(java.awt.Color.white);
-        game6HighScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game6HighScore.setText("Not Set");
-        game6.add(game6HighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 150, 30));
-
-        game6Username.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        game6Username.setForeground(java.awt.Color.white);
-        game6Username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        game6Username.setText("Not Set");
-        game6Username.setToolTipText("");
-        game6.add(game6Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 150, 30));
-
-        game6Image.setBackground(new java.awt.Color(153, 135, 108));
-        game6Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        game6.add(game6Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 145, 145));
-
-        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        game6.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 140));
-
-        jLabel90.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel90.setForeground(java.awt.Color.white);
-        jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel90.setText("1 Player");
-        game6.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 150, 30));
-
-        jLabel93.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel93.setForeground(java.awt.Color.white);
-        jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel93.setText("Castle Defense");
-        game6.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 60));
-
-        jLabel118.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel118.setForeground(java.awt.Color.white);
-        jLabel118.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel118.setText("Game Type:");
-        game6.add(jLabel118, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 130, 30));
-
-        jLabel119.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel119.setForeground(java.awt.Color.white);
-        jLabel119.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel119.setText("Game Information:");
-        game6.add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 300, 30));
-
-        jLabel120.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel120.setForeground(java.awt.Color.white);
-        jLabel120.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel120.setText("User:");
-        game6.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 130, 30));
-
-        jLabel121.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel121.setForeground(java.awt.Color.white);
-        jLabel121.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel121.setText("Highest Score:");
-        game6.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 30));
-
-        gamesPanel.add(game6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 860, 730, 160));
-
-        gamesScrollFrame.setViewportView(gamesPanel);
-
-        mainMenuFrame.add(gamesScrollFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 765, 590));
-
-        MM_userSettingsPanel.setBackground(new java.awt.Color(153, 135, 108));
-        MM_userSettingsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_userSettingsCancelButton.setBackground(new java.awt.Color(200, 151, 115));
-        MM_userSettingsCancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        MM_userSettingsCancelButton.setForeground(java.awt.Color.white);
-        MM_userSettingsCancelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        MM_userSettingsCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_userSettingsCancelButton.setLabel("X");
-        MM_userSettingsCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_userSettingsCancelButtonMousePressed(evt);
-            }
-        });
-        MM_userSettingsPanel.add(MM_userSettingsCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 30));
-
-        jPanel2.setBackground(new java.awt.Color(98, 82, 62));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MM_userSettingsPanelTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        MM_userSettingsPanelTitle.setForeground(java.awt.Color.white);
-        MM_userSettingsPanelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MM_userSettingsPanelTitle.setText("User Settings");
-        jPanel2.add(MM_userSettingsPanelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 380, 20));
-
-        MM_userSettingsPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 30));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel3.setForeground(java.awt.Color.white);
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Username:");
-        MM_userSettingsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 30));
-
-        MM_usernameInput.setBackground(new java.awt.Color(246, 228, 199));
-        MM_usernameInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MM_userSettingsPanel.add(MM_usernameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 280, 30));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.white);
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Password:");
-        MM_userSettingsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 30));
-
-        MM_passwordInput.setBackground(new java.awt.Color(246, 228, 199));
-        MM_passwordInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MM_userSettingsPanel.add(MM_passwordInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 280, 30));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel5.setForeground(java.awt.Color.white);
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Confirm Password:");
-        MM_userSettingsPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, 30));
-
-        MM_passwordConfirmInput.setBackground(new java.awt.Color(246, 228, 199));
-        MM_passwordConfirmInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MM_userSettingsPanel.add(MM_passwordConfirmInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 280, 30));
-
-        MM_saveSettingsButton.setBackground(new java.awt.Color(200, 151, 115));
-        MM_saveSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        MM_saveSettingsButton.setForeground(java.awt.Color.white);
-        MM_saveSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_saveSettingsButton.setLabel("Save Settings");
-        MM_saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_saveSettingsButtonMousePressed(evt);
-            }
-        });
-        MM_userSettingsPanel.add(MM_saveSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, 40));
-
-        mainMenuFrame.add(MM_userSettingsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 450, 220));
-
-        getContentPane().add(mainMenuFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
-
         game5Frame.setBackground(new java.awt.Color(214, 196, 172));
         game5Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -4222,6 +5659,9 @@ public class GUI_window extends javax.swing.JFrame {
             
             CD_menu.setLocation(0,535);            // Hiding the menu 
             CD_menuButton.setText("Open Menu");    // Resetting the menu button text
+            CD.resetGame();                        // Resetting everything inside the game for a new game
+            CD_nextRoundButton.setVisible(true);   // Showing the start next roudn button so player can click
+            
             
             CD_cover.setVisible(true);             // Showing the cover 
             CD_gameBox.setVisible(false);          // Hiding the game box
@@ -5008,21 +6448,45 @@ public class GUI_window extends javax.swing.JFrame {
 
     // Opening and Closing the Menu 
     private void CD_menuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_menuButtonMouseClicked
-        
-        // If the menu is currently CLOSED, we are OPENING it now
-        if(CD_menuButton.getText().equals("Open Menu")){
-            CD_menuButton.setText("Close Menu");    // Change the button text
-            CD_menu.setLocation(0, 40);
-        }
-        // if the menu is currently OPENED, we are not CLOSING
-        else{
-            CD_menuButton.setText("Open Menu");     // Change the button text
-            CD_menu.setLocation(0,535);
-        }
-        
+        CD.menuButtonClicked();
     }//GEN-LAST:event_CD_menuButtonMouseClicked
+    
+    private void CD_placement1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_placement1MouseEntered
+        // If we are not in selection mode, then cancel the action
+        if(!CD.getSelectionMode())
+            return;
+        
+        // Highlight this placement when we enter and unhighlight every other one
+        JLabel currentPlacement = (JLabel)evt.getSource();
+        CD.highlightPlacement(currentPlacement);
+    }//GEN-LAST:event_CD_placement1MouseEntered
 
-     
+    private void CD_buyTower1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_buyTower1ButtonMouseClicked
+        JButton clickedButton = (JButton) evt.getSource();
+        int clickedTower = 0;
+        if(clickedButton == CD_buyTower1Button)
+            clickedTower = 1;
+        else if(clickedButton == CD_buyTower2Button)
+            clickedTower = 2;
+        else if(clickedButton == CD_buyTower3Button)
+            clickedTower = 3;
+        else if(clickedButton == CD_buyTower4Button)
+            clickedTower = 4;
+        
+        CD.buyTowerButtonClicked(clickedTower, clickedButton);
+    }//GEN-LAST:event_CD_buyTower1ButtonMouseClicked
+
+    private void CD_placement1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_placement1MouseClicked
+        JLabel placementClicked = (JLabel) evt.getSource();
+        CD.placementClicked(placementClicked);
+    }//GEN-LAST:event_CD_placement1MouseClicked
+
+    private void CD_cat2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_cat2ButtonMouseClicked
+        JButton catButtonClicked = (JButton) evt.getSource();
+        //CD.catButtonClicked(catButtonClicked);
+    }//GEN-LAST:event_CD_cat2ButtonMouseClicked
+
+    
 
     
 // ========================================================================================
@@ -5077,17 +6541,29 @@ public class GUI_window extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CD_bottomBar;
+    private javax.swing.JLabel CD_buyTower1;
+    private javax.swing.JButton CD_buyTower1Button;
+    private javax.swing.JLabel CD_buyTower2;
+    private javax.swing.JButton CD_buyTower2Button;
+    private javax.swing.JLabel CD_buyTower3;
+    private javax.swing.JButton CD_buyTower3Button;
+    private javax.swing.JLabel CD_buyTower4;
+    private javax.swing.JButton CD_buyTower4Button;
     private javax.swing.JLabel CD_cash;
     private javax.swing.JLabel CD_castle;
+    private javax.swing.JProgressBar CD_castleHealth;
+    private javax.swing.JButton CD_cat1Button;
+    private javax.swing.JProgressBar CD_cat1ProgressBar;
+    private javax.swing.JButton CD_cat2Button;
+    private javax.swing.JProgressBar CD_cat2ProgressBar;
+    private javax.swing.JButton CD_cat3Button;
+    private javax.swing.JProgressBar CD_cat3ProgressBar;
     private javax.swing.JPanel CD_cover;
     private javax.swing.JPanel CD_gameBox;
     private javax.swing.JLabel CD_lake;
     private javax.swing.JPanel CD_menu;
     private javax.swing.JButton CD_menuButton;
-    private javax.swing.JLabel CD_menuBuyTower1;
-    private javax.swing.JLabel CD_menuBuyTower2;
-    private javax.swing.JLabel CD_menuBuyTower3;
-    private javax.swing.JLabel CD_menuBuyTower4;
+    private javax.swing.JButton CD_nextRoundButton;
     private javax.swing.JPanel CD_path1;
     private javax.swing.JPanel CD_path2;
     private javax.swing.JPanel CD_path3;
@@ -5139,10 +6615,6 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_placement139;
     private javax.swing.JLabel CD_placement14;
     private javax.swing.JLabel CD_placement140;
-    private javax.swing.JLabel CD_placement141;
-    private javax.swing.JLabel CD_placement142;
-    private javax.swing.JLabel CD_placement143;
-    private javax.swing.JLabel CD_placement144;
     private javax.swing.JLabel CD_placement145;
     private javax.swing.JLabel CD_placement15;
     private javax.swing.JLabel CD_placement16;
@@ -5234,6 +6706,13 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_placement98;
     private javax.swing.JLabel CD_placement99;
     private javax.swing.JButton CD_startButton;
+    private javax.swing.JLabel CD_tower1;
+    private javax.swing.JLabel CD_tower2;
+    private javax.swing.JLabel CD_tower3;
+    private javax.swing.JLabel CD_tower4;
+    private javax.swing.JLabel CD_upgradeDescription;
+    private javax.swing.JPanel CD_upgradeMenu;
+    private javax.swing.JLabel CD_upgradeTower;
     private javax.swing.JPanel DB_1;
     private javax.swing.JPanel DB_10;
     private javax.swing.JPanel DB_11;
@@ -5561,7 +7040,11 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel130;
     private javax.swing.JLabel jLabel131;
+    private javax.swing.JLabel jLabel132;
+    private javax.swing.JLabel jLabel133;
+    private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -5668,6 +7151,8 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -5675,7 +7160,6 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -5683,6 +7167,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginButtonsFrame;
     private javax.swing.JPanel loginFrame;
