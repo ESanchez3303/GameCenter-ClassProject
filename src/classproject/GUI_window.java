@@ -138,7 +138,11 @@ public class GUI_window extends javax.swing.JFrame {
         CD.setUp(placements, CD_buyTower1Button, CD_buyTower2Button, CD_buyTower3Button, CD_buyTower4Button,
                  CD_menu, CD_menuButton, CD_buyTower1, CD_buyTower2, CD_buyTower3, CD_buyTower4, CD_cash,
                  CD_castleHealth, CD_upgradeMenu, CD_cat1Button, CD_cat2Button, CD_cat3Button, CD_cat1ProgressBar,
-                 CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription);
+                 CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription, CD_roundTime);
+        CD_coverDes1.setText(CD.getAllDescriptions()[0]);
+        CD_coverDes2.setText(CD.getAllDescriptions()[1]);
+        CD_coverDes3.setText(CD.getAllDescriptions()[2]);
+        CD_coverDes4.setText(CD.getAllDescriptions()[3]);
         // -------------------------------------------------------------------------------------------
         
         
@@ -171,6 +175,18 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel131 = new javax.swing.JLabel();
         CD_cash = new javax.swing.JLabel();
         CD_castleHealth = new javax.swing.JProgressBar();
+        CD_roundTime = new javax.swing.JProgressBar();
+        CD_menu = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        CD_buyTower1 = new javax.swing.JLabel();
+        CD_buyTower2 = new javax.swing.JLabel();
+        CD_buyTower3 = new javax.swing.JLabel();
+        CD_buyTower4 = new javax.swing.JLabel();
+        CD_buyTower1Button = new javax.swing.JButton();
+        CD_buyTower2Button = new javax.swing.JButton();
+        CD_buyTower3Button = new javax.swing.JButton();
+        CD_buyTower4Button = new javax.swing.JButton();
+        jLabel135 = new javax.swing.JLabel();
         CD_upgradeMenu = new javax.swing.JPanel();
         CD_cat2Button = new javax.swing.JButton();
         CD_cat1Button = new javax.swing.JButton();
@@ -189,17 +205,7 @@ public class GUI_window extends javax.swing.JFrame {
         jPanel21 = new javax.swing.JPanel();
         CD_upgradeDescription = new javax.swing.JLabel();
         CD_upgradeTower = new javax.swing.JLabel();
-        CD_menu = new javax.swing.JPanel();
-        jPanel19 = new javax.swing.JPanel();
-        CD_buyTower1 = new javax.swing.JLabel();
-        CD_buyTower2 = new javax.swing.JLabel();
-        CD_buyTower3 = new javax.swing.JLabel();
-        CD_buyTower4 = new javax.swing.JLabel();
-        CD_buyTower1Button = new javax.swing.JButton();
-        CD_buyTower2Button = new javax.swing.JButton();
-        CD_buyTower3Button = new javax.swing.JButton();
-        CD_buyTower4Button = new javax.swing.JButton();
-        jLabel135 = new javax.swing.JLabel();
+        CD_upgradeSellButton = new javax.swing.JButton();
         CD_path1 = new javax.swing.JPanel();
         CD_path2 = new javax.swing.JPanel();
         CD_path3 = new javax.swing.JPanel();
@@ -353,13 +359,13 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel130 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
         CD_tower1 = new javax.swing.JLabel();
-        jLabel97 = new javax.swing.JLabel();
+        CD_coverDes1 = new javax.swing.JLabel();
         CD_tower2 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
+        CD_coverDes2 = new javax.swing.JLabel();
         CD_tower3 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
+        CD_coverDes3 = new javax.swing.JLabel();
         CD_tower4 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
+        CD_coverDes4 = new javax.swing.JLabel();
         mainMenuFrame = new javax.swing.JPanel();
         gamesScrollFrame = new javax.swing.JScrollPane();
         gamesPanel = new javax.swing.JPanel();
@@ -886,126 +892,17 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_castleHealth.setForeground(new java.awt.Color(0, 204, 51));
         CD_castleHealth.setValue(50);
-        CD_bottomBar.add(CD_castleHealth, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 8, 270, 30));
+        CD_castleHealth.setString("Castle Health");
+        CD_castleHealth.setStringPainted(true);
+        CD_bottomBar.add(CD_castleHealth, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 8, 140, 30));
+
+        CD_roundTime.setForeground(new java.awt.Color(0, 204, 255));
+        CD_roundTime.setValue(50);
+        CD_roundTime.setString("Round Time");
+        CD_roundTime.setStringPainted(true);
+        CD_bottomBar.add(CD_roundTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 8, 140, 30));
 
         CD_gameBox.add(CD_bottomBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 740, 45));
-
-        CD_upgradeMenu.setBackground(new java.awt.Color(165, 149, 125));
-        CD_upgradeMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_upgradeMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CD_cat2Button.setBackground(new java.awt.Color(202, 157, 123));
-        CD_cat2Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CD_cat2Button.setForeground(java.awt.Color.white);
-        CD_cat2Button.setText("Upgrade");
-        CD_cat2Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cat2Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_cat2ButtonMouseClicked(evt);
-            }
-        });
-        CD_upgradeMenu.add(CD_cat2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 65, 40));
-
-        CD_cat1Button.setBackground(new java.awt.Color(202, 157, 123));
-        CD_cat1Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CD_cat1Button.setForeground(java.awt.Color.white);
-        CD_cat1Button.setText("Upgrade");
-        CD_cat1Button.setToolTipText("");
-        CD_cat1Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cat1Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_cat2ButtonMouseClicked(evt);
-            }
-        });
-        CD_upgradeMenu.add(CD_cat1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 65, 40));
-
-        CD_cat3Button.setBackground(new java.awt.Color(202, 157, 123));
-        CD_cat3Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CD_cat3Button.setForeground(java.awt.Color.white);
-        CD_cat3Button.setText("Upgrade");
-        CD_cat3Button.setToolTipText("");
-        CD_cat3Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_cat3Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_cat2ButtonMouseClicked(evt);
-            }
-        });
-        CD_upgradeMenu.add(CD_cat3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 65, 40));
-
-        CD_cat1ProgressBar.setForeground(new java.awt.Color(102, 255, 102));
-        CD_cat1ProgressBar.setValue(33);
-        CD_cat1ProgressBar.setString("Range");
-        CD_upgradeMenu.add(CD_cat1ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, 40));
-
-        jLabel110.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel110.setForeground(java.awt.Color.white);
-        jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel110.setText("Upgrade Menu");
-        CD_upgradeMenu.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 370, 40));
-
-        CD_cat2ProgressBar.setForeground(new java.awt.Color(51, 204, 255));
-        CD_cat2ProgressBar.setValue(66);
-        CD_cat2ProgressBar.setString("Distance");
-        CD_upgradeMenu.add(CD_cat2ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 210, 40));
-
-        CD_cat3ProgressBar.setForeground(new java.awt.Color(255, 255, 0));
-        CD_cat3ProgressBar.setValue(100);
-        CD_upgradeMenu.add(CD_cat3ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 210, 40));
-
-        jLabel111.setForeground(java.awt.Color.white);
-        jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel111.setText("LVL 3");
-        CD_upgradeMenu.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 190, 40, 40));
-
-        jLabel114.setForeground(java.awt.Color.white);
-        jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel114.setText("LVL 0");
-        CD_upgradeMenu.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 40, 40));
-
-        jLabel115.setForeground(java.awt.Color.white);
-        jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel115.setText("LVL 2");
-        CD_upgradeMenu.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 40, 40));
-
-        jLabel132.setForeground(java.awt.Color.white);
-        jLabel132.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel132.setText("LVL 1");
-        CD_upgradeMenu.add(jLabel132, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 40, 40));
-
-        jLabel133.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel133.setForeground(java.awt.Color.white);
-        jLabel133.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel133.setText("Range");
-        CD_upgradeMenu.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 70, 40));
-
-        jLabel134.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel134.setForeground(java.awt.Color.white);
-        jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel134.setText("Power");
-        CD_upgradeMenu.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 70, 40));
-
-        jLabel136.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel136.setForeground(java.awt.Color.white);
-        jLabel136.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel136.setText("Ability");
-        CD_upgradeMenu.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 70, 40));
-
-        jPanel21.setBackground(new java.awt.Color(165, 149, 125));
-        jPanel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CD_upgradeDescription.setForeground(java.awt.Color.white);
-        CD_upgradeDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CD_upgradeDescription.setText("Missle Shooter: Shoots missles, but takes a long time ");
-        jPanel21.add(CD_upgradeDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 300, 80));
-
-        CD_upgradeTower.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower3.png"))); // NOI18N
-        CD_upgradeTower.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel21.add(CD_upgradeTower, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 40));
-
-        CD_upgradeMenu.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 360, 80));
-
-        CD_gameBox.add(CD_upgradeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 217, 380, 320));
 
         CD_menu.setBackground(new java.awt.Color(165, 149, 125));
         CD_menu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1087,7 +984,141 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel135.setText("Buy Tower");
         CD_menu.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, 40));
 
-        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 320, 500));
+        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 44, 320, 500));
+
+        CD_upgradeMenu.setBackground(new java.awt.Color(165, 149, 125));
+        CD_upgradeMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_upgradeMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_cat2Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_cat2Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CD_cat2Button.setForeground(java.awt.Color.white);
+        CD_cat2Button.setText("Upgrade");
+        CD_cat2Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cat2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_cat2Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_cat2ButtonMouseClicked(evt);
+            }
+        });
+        CD_upgradeMenu.add(CD_cat2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 65, 40));
+
+        CD_cat1Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_cat1Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CD_cat1Button.setForeground(java.awt.Color.white);
+        CD_cat1Button.setText("Upgrade");
+        CD_cat1Button.setToolTipText("");
+        CD_cat1Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cat1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_cat1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_cat2ButtonMouseClicked(evt);
+            }
+        });
+        CD_upgradeMenu.add(CD_cat1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 65, 40));
+
+        CD_cat3Button.setBackground(new java.awt.Color(202, 157, 123));
+        CD_cat3Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CD_cat3Button.setForeground(java.awt.Color.white);
+        CD_cat3Button.setText("Upgrade");
+        CD_cat3Button.setToolTipText("");
+        CD_cat3Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_cat3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_cat3Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_cat2ButtonMouseClicked(evt);
+            }
+        });
+        CD_upgradeMenu.add(CD_cat3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 65, 40));
+
+        CD_cat1ProgressBar.setForeground(new java.awt.Color(102, 255, 102));
+        CD_cat1ProgressBar.setValue(33);
+        CD_cat1ProgressBar.setString("Range");
+        CD_upgradeMenu.add(CD_cat1ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, 40));
+
+        jLabel110.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel110.setForeground(java.awt.Color.white);
+        jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel110.setText("Upgrade Menu");
+        CD_upgradeMenu.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 370, 40));
+
+        CD_cat2ProgressBar.setForeground(new java.awt.Color(51, 204, 255));
+        CD_cat2ProgressBar.setValue(66);
+        CD_cat2ProgressBar.setString("Distance");
+        CD_upgradeMenu.add(CD_cat2ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 210, 40));
+
+        CD_cat3ProgressBar.setForeground(new java.awt.Color(255, 255, 0));
+        CD_cat3ProgressBar.setValue(100);
+        CD_upgradeMenu.add(CD_cat3ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 210, 40));
+
+        jLabel111.setForeground(java.awt.Color.white);
+        jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel111.setText("LVL 3");
+        CD_upgradeMenu.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 190, 40, 40));
+
+        jLabel114.setForeground(java.awt.Color.white);
+        jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel114.setText("LVL 0");
+        CD_upgradeMenu.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 40, 40));
+
+        jLabel115.setForeground(java.awt.Color.white);
+        jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel115.setText("LVL 2");
+        CD_upgradeMenu.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 40, 40));
+
+        jLabel132.setForeground(java.awt.Color.white);
+        jLabel132.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel132.setText("LVL 1");
+        CD_upgradeMenu.add(jLabel132, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 40, 40));
+
+        jLabel133.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel133.setForeground(java.awt.Color.white);
+        jLabel133.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel133.setText("Range");
+        CD_upgradeMenu.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 70, 40));
+
+        jLabel134.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel134.setForeground(java.awt.Color.white);
+        jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel134.setText("Power");
+        CD_upgradeMenu.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 70, 40));
+
+        jLabel136.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel136.setForeground(java.awt.Color.white);
+        jLabel136.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel136.setText("Ability");
+        CD_upgradeMenu.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 70, 40));
+
+        jPanel21.setBackground(new java.awt.Color(165, 149, 125));
+        jPanel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_upgradeDescription.setForeground(java.awt.Color.white);
+        CD_upgradeDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_upgradeDescription.setText("Missle Shooter: Shoots missles, but takes a long time ");
+        jPanel21.add(CD_upgradeDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 300, 80));
+
+        CD_upgradeTower.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower3.png"))); // NOI18N
+        CD_upgradeTower.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel21.add(CD_upgradeTower, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 40));
+
+        CD_upgradeMenu.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 360, 80));
+
+        CD_upgradeSellButton.setBackground(new java.awt.Color(0, 102, 0));
+        CD_upgradeSellButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CD_upgradeSellButton.setForeground(java.awt.Color.white);
+        CD_upgradeSellButton.setText("$ Sell $");
+        CD_upgradeSellButton.setToolTipText("");
+        CD_upgradeSellButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_upgradeSellButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_upgradeSellButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_upgradeSellButtonMouseClicked(evt);
+            }
+        });
+        CD_upgradeMenu.add(CD_upgradeSellButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 5, 65, 40));
+
+        CD_gameBox.add(CD_upgradeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 217, 380, 320));
 
         CD_path1.setBackground(new java.awt.Color(204, 204, 204));
         CD_gameBox.add(CD_path1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 410, 158, 40));
@@ -2474,6 +2505,11 @@ public class GUI_window extends javax.swing.JFrame {
         CD_nextRoundButton.setForeground(java.awt.Color.white);
         CD_nextRoundButton.setText("Start Next Round");
         CD_nextRoundButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_nextRoundButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_nextRoundButtonMouseClicked(evt);
+            }
+        });
         CD_gameBox.add(CD_nextRoundButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 500, 190, 30));
 
         game6Frame.add(CD_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
@@ -2531,41 +2567,41 @@ public class GUI_window extends javax.swing.JFrame {
         CD_tower1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel20.add(CD_tower1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 40, 40));
 
-        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel97.setForeground(java.awt.Color.white);
-        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel97.setText("::      Regular Shooter: Shoots 1-3 shots to one enemy");
-        jPanel20.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 500, 40));
+        CD_coverDes1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        CD_coverDes1.setForeground(java.awt.Color.white);
+        CD_coverDes1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CD_coverDes1.setText("<text>");
+        jPanel20.add(CD_coverDes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 500, 60));
 
         CD_tower2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower2.png"))); // NOI18N
         CD_tower2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel20.add(CD_tower2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 40, 40));
 
-        jLabel112.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel112.setForeground(java.awt.Color.white);
-        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel112.setText("::      Electric Shooter: Shoots 2-4 enemies with one shot");
-        jPanel20.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 500, 40));
+        CD_coverDes2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        CD_coverDes2.setForeground(java.awt.Color.white);
+        CD_coverDes2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CD_coverDes2.setText("<text>");
+        jPanel20.add(CD_coverDes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 500, 60));
 
         CD_tower3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower3.png"))); // NOI18N
         CD_tower3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel20.add(CD_tower3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 40, 40));
 
-        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel113.setForeground(java.awt.Color.white);
-        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel113.setText("::      Rocket Shooter:  Shoots rockets that damages large areas");
-        jPanel20.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 500, 40));
+        CD_coverDes3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        CD_coverDes3.setForeground(java.awt.Color.white);
+        CD_coverDes3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CD_coverDes3.setText("<text>");
+        jPanel20.add(CD_coverDes3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 500, 60));
 
         CD_tower4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/tower4.png"))); // NOI18N
         CD_tower4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel20.add(CD_tower4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 40, 40));
 
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel116.setForeground(java.awt.Color.white);
-        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel116.setText("::      Military Base: Has the abilities of all the above towers");
-        jPanel20.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 500, 40));
+        CD_coverDes4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        CD_coverDes4.setForeground(java.awt.Color.white);
+        CD_coverDes4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CD_coverDes4.setText("<text>");
+        jPanel20.add(CD_coverDes4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 500, 60));
 
         CD_cover.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 700, 290));
 
@@ -6483,8 +6519,16 @@ public class GUI_window extends javax.swing.JFrame {
 
     private void CD_cat2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_cat2ButtonMouseClicked
         JButton catButtonClicked = (JButton) evt.getSource();
-        //CD.catButtonClicked(catButtonClicked);
+        CD.catButtonClicked(catButtonClicked);
     }//GEN-LAST:event_CD_cat2ButtonMouseClicked
+
+    private void CD_upgradeSellButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_upgradeSellButtonMouseClicked
+        CD.upgradeSellButtonClicked();
+    }//GEN-LAST:event_CD_upgradeSellButtonMouseClicked
+
+    private void CD_nextRoundButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_nextRoundButtonMouseClicked
+        CD.nextRoundButtonClicked();
+    }//GEN-LAST:event_CD_nextRoundButtonMouseClicked
 
     
 
@@ -6559,6 +6603,10 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JButton CD_cat3Button;
     private javax.swing.JProgressBar CD_cat3ProgressBar;
     private javax.swing.JPanel CD_cover;
+    private javax.swing.JLabel CD_coverDes1;
+    private javax.swing.JLabel CD_coverDes2;
+    private javax.swing.JLabel CD_coverDes3;
+    private javax.swing.JLabel CD_coverDes4;
     private javax.swing.JPanel CD_gameBox;
     private javax.swing.JLabel CD_lake;
     private javax.swing.JPanel CD_menu;
@@ -6705,6 +6753,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_placement97;
     private javax.swing.JLabel CD_placement98;
     private javax.swing.JLabel CD_placement99;
+    private javax.swing.JProgressBar CD_roundTime;
     private javax.swing.JButton CD_startButton;
     private javax.swing.JLabel CD_tower1;
     private javax.swing.JLabel CD_tower2;
@@ -6712,6 +6761,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_tower4;
     private javax.swing.JLabel CD_upgradeDescription;
     private javax.swing.JPanel CD_upgradeMenu;
+    private javax.swing.JButton CD_upgradeSellButton;
     private javax.swing.JLabel CD_upgradeTower;
     private javax.swing.JPanel DB_1;
     private javax.swing.JPanel DB_10;
@@ -7018,11 +7068,8 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
     private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
@@ -7136,7 +7183,6 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;

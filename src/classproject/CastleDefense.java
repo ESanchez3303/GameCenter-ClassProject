@@ -1,35 +1,32 @@
 package classproject;
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
 
 public class CastleDefense {
     // MAIN GAME VARIABLES:
-    int STARTING_CASH = 400;
+    int STARTING_CASH = 20000;
     int CASTLE_HEALTH = 10000;
+    int ENEMY_STARTING_HEALTH = 100;
     
     // PRICES
     int TOWER1_COST = 200;
-    int TOWER1_CAT1_COST = 200;
-    int TOWER1_CAT2_COST = 400;
-    int TOWER1_CAT3_COST = 600;
+    int[] TOWER1_UPGRADE_COST = {200,400,600};
     
     int TOWER2_COST = 400;
-    int TOWER2_CAT1_COST = 400;
-    int TOWER2_CAT2_COST = 800;
-    int TOWER2_CAT3_COST = 100;
+    int[] TOWER2_UPGRADE_COST = {400,800,1000};
     
     int TOWER3_COST = 1000;
-    int TOWER3_CAT1_COST = 1000;
-    int TOWER3_CAT2_COST = 1000;
-    int TOWER3_CAT3_COST = 1000;
+    int[] TOWER3_UPGRADE_COST = {1000,1000,1000};
     
     int TOWER4_COST = 20000; 
-    int TOWER4_CAT1_COST = 10000;
-    int TOWER4_CAT2_COST = 10000;
-    int TOWER4_CAT3_COST = 10000;
+    int[] TOWER4_UPGRADE_COST = {10000,10000,10000};
     
-    String[] allDescriptions = {"tower1", "tower2", "tower3", "tower4"};
+    String[] allDescriptions = {"<html>Regular Shooter: Shoots 1-4 shots at the enemy with greater speed than other towers!</html>", 
+                                "<html>Shocking Tower: This tower takes a little bit longer, but it delivers a blow to 2-5 enemies!</html>", 
+                                "<html>Missle Launcher: Missles are heavy! These make a lot of damage, but take forever to get another ready to shoot.</html>", 
+                                "<html>Military Base: Previously named the '!Superman!', this thing alone can win against almost anything!</html>"};
     
+    // Saving Colors
     Color buttonColor = new Color(202,157,123);
     Color redColor    = new Color(255,51,0);
     
@@ -61,6 +58,7 @@ public class CastleDefense {
     JProgressBar cat3Progress;
     JLabel upgradeTower;
     JLabel upgradeDescription;
+    JProgressBar roundTime;
     
     
     // Dynamic Variables:
@@ -70,12 +68,16 @@ public class CastleDefense {
     int flashingCounter;
     JButton savedButton;
     int savedIndex;
+    int roundNumber;
+    JLabel[] allEnemies; // THIS IS VERY IMPORTANT! It holds all enemies overall!
+    
     
     // Construction Function:
     public void setUp(JLabel[] aP, JButton bt1, JButton bt2, JButton bt3, JButton bt4, 
                       JPanel m, JButton mb, JLabel t1, JLabel t2, JLabel t3, JLabel t4,
                       JLabel cT, JProgressBar ch, JPanel um, JButton c1, JButton c2, JButton c3,
-                      JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud){
+                      JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
+                      JProgressBar rt){
         allPlacements = aP;
         
         cat1 = new int[allPlacements.length];
@@ -109,6 +111,8 @@ public class CastleDefense {
         cat3Progress = c3p;
         upgradeTower = ut;
         upgradeDescription = ud;
+        roundTime = rt;
+        allEnemies = null;
     }
     
     
@@ -117,6 +121,7 @@ public class CastleDefense {
     // Get Functions
     public JLabel[] getAllPlacements() { return allPlacements; }
     public boolean getSelectionMode() { return selectionMode; }
+    public String[] getAllDescriptions() { return allDescriptions; }
     
     
     
@@ -127,6 +132,7 @@ public class CastleDefense {
         for(JLabel placement : allPlacements){
             placement.setIcon(null);
             placement.setBorder(null);
+            placement.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
         
         // Reseting Variables
@@ -145,6 +151,8 @@ public class CastleDefense {
         cat1Progress.setMaximum(99);
         cat2Progress.setMaximum(99);
         cat3Progress.setMaximum(99);
+        roundTime.setMaximum(100);
+        roundTime.setValue(0);
     }
     
     
@@ -229,7 +237,7 @@ public class CastleDefense {
             
             
             // Update the UPGRADE MENU
-            savedIndex = getPlacementIndex(placementClicked);
+            savedIndex = getPlacementIndex(placementClicked);        // Saving the index of this placement Label
             upgradeTower.setIcon(placementClicked.getIcon());        // Updating the chosen tower
             upgradeDescription.setText(allDescriptions[allTowerTypes[savedIndex]-1]); // Update the description
             cat1Progress.setValue(cat1[savedIndex] * 33);            // Updating cat 1 
@@ -241,24 +249,120 @@ public class CastleDefense {
         }
     }
     
+    public void upgradeSellButtonClicked(){
+        // Checking if the upgrade menu is visible
+        if(!upgradeMenu.isVisible())
+            return;
+        
+        
+        int towerType = allTowerTypes[savedIndex];
+        int refund;
+        switch(towerType){
+            case 1 -> refund = TOWER1_COST/2;
+            case 2 -> refund = TOWER2_COST/2;
+            case 3 -> refund = TOWER3_COST/2;
+            case 4 -> refund = TOWER4_COST/2;
+            default -> refund = -1;
+        }
+        
+        
+        // If for some reason, the tower type was 0 or something else, then just return
+        if(refund == -1) return;
+        
+        
+        // Giving refund and showing in the amount had
+        cash += refund;
+        cashText.setText(Integer.toString(cash));
+        
+        
+        // Reseting the placement index in all arrays
+        allPlacements[savedIndex].setIcon(null);                    // Removing the tower image
+        allPlacements[savedIndex].setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // Setting back to regular cursor
+        cat1[savedIndex] = cat2[savedIndex] = cat2[savedIndex] = 0; // Resetting the cats for this index
+        allTowerTypes[savedIndex] = 0;                              // Resetting the type for this index
+        
+        
+        // Hiding the upgrade panel -> this should automatically do all of the hiding
+        menuButtonClicked();
+    }
+    
+    
+
+    
+    
+    public void catButtonClicked(JButton catButtonClicked){
+        // Step 1: Ffind out what level we are preparing to buy for this category
+        int levelBuying = 0;
+        JProgressBar categoryBar = null;
+        
+        if(catButtonClicked == cat1Button)      categoryBar = cat1Progress;
+        else if(catButtonClicked == cat2Button) categoryBar = cat2Progress;
+        else if(catButtonClicked == cat3Button) categoryBar = cat3Progress;
+        levelBuying = switch (categoryBar.getValue()) {
+            case 0 -> 0; // These are in index based, so that means => the level 1 price is index 0
+            case 33 -> 1;
+            case 66 -> 2;
+            default -> -1;
+        };
+        
+        // CHECKING IF THE BAR IS ALREADY FULL, then do nothing and return!
+        if(levelBuying == -1)
+            return;
+        
+        // Step 2: Find out which tower type we are upgrading
+        int towerType = allTowerTypes[savedIndex];
+        
+        // Step 3: Find out the cost of the upgrade
+        int cost = 0; 
+        switch(towerType){
+            case 1 -> cost = TOWER1_UPGRADE_COST[levelBuying];
+            case 2 -> cost = TOWER2_UPGRADE_COST[levelBuying];
+            case 3 -> cost = TOWER3_UPGRADE_COST[levelBuying];
+            case 4 -> cost = TOWER4_UPGRADE_COST[levelBuying];
+        }
+        
+        // Step 4: Find out if the user has enough money -> return if not
+        if(cash < cost){
+            flashButton(catButtonClicked); // Flash the button and return
+            return;                        // DO NOT CONTINUE
+        }
+        
+        
+        // Step 5: Taking money away from the cash
+        cash -= cost;
+        cashText.setText(Integer.toString(cash));
+                 
+        
+        // Step 6: Saving this data into the arrays (first we have to turn it back into data from index)
+        if(catButtonClicked == cat1Button) cat1[savedIndex] = levelBuying + 1;
+        else if(catButtonClicked == cat2Button) cat2[savedIndex] = levelBuying + 1;
+        else if(catButtonClicked == cat3Button) cat3[savedIndex] = levelBuying + 1;
+        
+        // Step 7: Show the amount in the progress bar
+        categoryBar.setValue(categoryBar.getValue() + 33); // Increasing the cat's progress bar
+    }
+    
     
     public void highlightPlacement(JLabel targetPlacement){
-        // Give the target the border and set the other borders to NULL
-        // (do not highlight the labels that already have a tower)
-        for(JLabel placement : allPlacements){
-            if(placement == targetPlacement && placement.getIcon() == null)
-                placement.setBorder(BorderFactory.createSoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-            else
-                placement.setBorder(null);
+    // Give the target the border and set the other borders to NULL
+    // (do not highlight the labels that already have a tower)
+    for(JLabel placement : allPlacements){
+        if(placement == targetPlacement && placement.getIcon() == null)
+            placement.setBorder(BorderFactory.createSoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        else
+            placement.setBorder(null);
         }
     }
     
     
-    public void catButtonClicked(JButton catButtonClicked){
-        // Check which category was clicked and for which index (should already be in saved index)
-        
+    // NEXT ROUND BUTTON ===================================================================================
+    // THE FUN PART!! well almost lmao, here is when the user starts the match!!
+    // NOTE: This is also the first time that the user starts the game so keep watch at that on how this reacts 
+    public void nextRoundButtonClicked(){
+        roundNumber++;
+        makeEnemies();
     }
-    
+    // ======================================================================================================
     
     
     // GAME CLOCK ===========================
@@ -269,6 +373,11 @@ public class CastleDefense {
     
     
     // Private Functions:
+    private void makeEnemies(){
+        // Depending on the round, we want to spawn that many enemies.
+        // Then after every 5 rounds, I want to up the health
+    }
+    
     private int getPlacementIndex(JLabel targetLabel){
         int count = 0;
         for(JLabel placement : allPlacements){
@@ -310,18 +419,14 @@ public class CastleDefense {
             return;
         
         // Saving the purchase into the allTowerTypes ====== IMPORTANT for later knowing where the towers are
-        int indexOfPlacement = 0;
-        for(JLabel placement : allPlacements){
-            if(placement == placementClicked)
-                break;
-            indexOfPlacement++;
-        }
+        int indexOfPlacement = getPlacementIndex(placementClicked); // Getting the index
         allTowerTypes[indexOfPlacement] = towerType; // Setting the tower type into this index
         
         
         // Applying the purchase and building the tower! (also leaving the selectionMode)
         cash -= cost;
         placementClicked.setIcon(towerBought.getIcon());
+        placementClicked.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Setting the hand cursor so use knows to click later
         placementClicked.setBorder(null);
         selectionMode = false;
         
