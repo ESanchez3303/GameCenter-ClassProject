@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class Tower{
-    private JLabel placement;
+    private final JLabel placement;
     private int towerType = 0;
     private int cat1Level = 0;
     private int cat2Level = 0;
@@ -17,9 +17,9 @@ class Tower{
     private final int[] powerList;
     private final int[] rangeList;
     private final int[] abilityList;
-    private JProgressBar cat1ProgressBar;
-    private JProgressBar cat2ProgressBar;
-    private JProgressBar cat3ProgressBar;
+    private final JProgressBar cat1ProgressBar;
+    private final JProgressBar cat2ProgressBar;
+    private final JProgressBar cat3ProgressBar;
 
     
     // Constructor 
@@ -62,7 +62,7 @@ class Tower{
         }
     }
     
-    
+    // Tries to upgrade a category, returns false if not possible, returns true AND does it if it is possible
     public boolean upgradeCategory(int targetCategory, int cash){
         
         //  Checking if we can afford this upgrade
@@ -114,15 +114,43 @@ class Tower{
 
 
 class Enemy{
+    private final JLabel hitBox; // This is the actual enemy itself
+    private int health;          // Amount of health this object has 
+    private int moneyDrop;       // Amount of money the obeject drops
+    private int damage;          // Amount of damage the object can make
+    
+    // Constructor:
+    public Enemy(JLabel hitBoxInput, int currentRound, int startingHealth, int healthIncrease, int startingDrop, int dropIncrese,
+                 int startingDamage, int damageIncrease){
+        hitBox = hitBoxInput;
+        health = startingHealth + (healthIncrease * currentRound);
+        moneyDrop = startingDrop + (dropIncrese * currentRound);
+        damage = startingDamage + (damageIncrease * currentRound);
+    }
+
+    // Get Functions:
+    public int getX(){ return hitBox.getX(); }
+    public int getY(){ return hitBox.getY(); }
+    public int getHealth() { return health; }
+    public int getMoneyDrop() { return moneyDrop; }
     
 }
 
 
 public class CastleDefense {
     // MAIN GAME VARIABLES:
-    int STARTING_CASH = 20000;
-    int CASTLE_HEALTH = 10000;
-    //int ENEMY_STARTING_HEALTH = 100;
+    int ROUND_TICK = 10;            // Tick for the round
+    int STARTING_CASH = 20000;      // Starting money
+    int CASTLE_HEALTH = 10000;      // Amount of health the castle has
+    int ENEMY_STARTING_HEALTH = 100;// Starting health of the enemy
+    int ENEMY_HEALTH_INCREASE = 10; // Amount of more health per round
+    int ENEMY_STARTING_DROP = 100;  // Amount of money the enemy drops in beginning
+    int ENEMY_DROP_INCREASE = 100;  // Amount more money per round the enemy drops
+    int ENEMY_STARTING_DAMAGE = 10; // Amount of damage the enemy does on round 1
+    int ENEMY_DAMAGE_INCREASE = 1;  // Amount of damage the enemy does every round after
+    int ENEMIES_PER_ROUND = 2;      // How many enemies are made per round -> Round=2 * enemies_per_round=2 = 4 enemies
+    int ENEMY_STEP = 2;             // Speed of the enmies through the map
+    
     
     // TOWER INFOMRATION: ====================================
     int TOWER1_COST = 200;
@@ -189,6 +217,7 @@ public class CastleDefense {
     JLabel upgradeDescription;
     JProgressBar roundTime;
     JLabel savingPlacement;
+    JButton nextRoundButton;
     
     
     // Dynamic Variables:
@@ -205,7 +234,7 @@ public class CastleDefense {
                       JPanel m, JButton mb, JLabel t1, JLabel t2, JLabel t3, JLabel t4,
                       JLabel cT, JProgressBar ch, JPanel um, JButton c1, JButton c2, JButton c3,
                       JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
-                      JProgressBar rt){
+                      JProgressBar rt, JButton nrb){
         allPlacements = new ArrayList<>();
         allTowers  = new ArrayList<>();
         allEnemies = new ArrayList<>();
@@ -236,6 +265,7 @@ public class CastleDefense {
         upgradeTower = ut;
         upgradeDescription = ud;
         roundTime = rt;
+        nextRoundButton = nrb;
     }
     
     
@@ -277,6 +307,8 @@ public class CastleDefense {
         roundTime.setValue(0);
         allTowers.clear();
         allEnemies.clear();
+        roundNumber = 0; 
+        nextRoundButton.setVisible(true);
     }
     
     
@@ -460,16 +492,31 @@ public class CastleDefense {
     // THE FUN PART!! well almost lmao, here is when the user starts the match!!
     // NOTE: This is also the first time that the user starts the game so keep watch at that on how this reacts 
     public void nextRoundButtonClicked(){
-        roundNumber++;
+        // Increasing to next round
+        roundNumber++; 
         
+        // Adding the amount of needed enemies
+        for(int i = 0; i < roundNumber*ENEMIES_PER_ROUND; i++){
+            //Enemy sendingEnemy = Enemy(); // <===========================================================< ![ HERE ]!! >====< Add the enemies >
+        }
+        nextRoundButton.setVisible(false); // Hiding the button until next round
+        roundClock.start();                // Starting the game clock finally!!!
     }
     // ======================================================================================================
     
     
     // GAME CLOCK ===========================
     public void stopGame(){
-        
+        if(roundClock.isRunning()) roundClock.stop();
     }
+    // MAIN CLOCK TIMER FOR THE ROUND
+    Timer roundClock = new Timer(ROUND_TICK, e->{
+        // If all enemies are currently dead, clear the board and start the pause
+        if(allEnemies.isEmpty()){
+            ((Timer)e.getSource()).stop();    // Stopping the timer
+            nextRoundButton.setVisible(true); // Showing the next round button again
+        }
+    });
     
     
     

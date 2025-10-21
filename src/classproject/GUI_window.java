@@ -138,7 +138,7 @@ public class GUI_window extends javax.swing.JFrame {
         CD.setUp(placements, CD_buyTower1Button, CD_buyTower2Button, CD_buyTower3Button, CD_buyTower4Button,
                  CD_menu, CD_menuButton, CD_buyTower1, CD_buyTower2, CD_buyTower3, CD_buyTower4, CD_cash,
                  CD_castleHealth, CD_upgradeMenu, CD_cat1Button, CD_cat2Button, CD_cat3Button, CD_cat1ProgressBar,
-                 CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription, CD_roundTime);
+                 CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription, CD_roundTime, CD_nextRoundButton);
         CD_coverDes1.setText(CD.getAllDescriptions()[0]);
         CD_coverDes2.setText(CD.getAllDescriptions()[1]);
         CD_coverDes3.setText(CD.getAllDescriptions()[2]);
@@ -5585,6 +5585,7 @@ public class GUI_window extends javax.swing.JFrame {
     PP.stopGame(); // Stops the timers inside the ping pong game class
     T.stopGame();  // Stops the timers inside the tank game class
     TA.stopGame(); // Stops the timers inside the tag game class
+    CD.stopGame(); // Stops the timers inside the castle defense game
 
 
     // Flipping between a login frame, main menu frame, or a game frame ----------------------------------
