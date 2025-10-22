@@ -138,7 +138,8 @@ public class GUI_window extends javax.swing.JFrame {
         CD.setUp(placements, CD_buyTower1Button, CD_buyTower2Button, CD_buyTower3Button, CD_buyTower4Button,
                  CD_menu, CD_menuButton, CD_buyTower1, CD_buyTower2, CD_buyTower3, CD_buyTower4, CD_cash,
                  CD_castleHealth, CD_upgradeMenu, CD_cat1Button, CD_cat2Button, CD_cat3Button, CD_cat1ProgressBar,
-                 CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription, CD_roundTime, CD_nextRoundButton);
+                 CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription, CD_roundTime, 
+                 CD_nextRoundButton, CD_enemyExample, CD_gameBox);
         CD_coverDes1.setText(CD.getAllDescriptions()[0]);
         CD_coverDes2.setText(CD.getAllDescriptions()[1]);
         CD_coverDes3.setText(CD.getAllDescriptions()[2]);
@@ -350,6 +351,7 @@ public class GUI_window extends javax.swing.JFrame {
         CD_placement140 = new javax.swing.JLabel();
         CD_placement145 = new javax.swing.JLabel();
         CD_nextRoundButton = new javax.swing.JButton();
+        CD_enemyExample = new javax.swing.JLabel();
         CD_cover = new javax.swing.JPanel();
         jLabel100 = new javax.swing.JLabel();
         CD_startButton = new javax.swing.JButton();
@@ -984,7 +986,7 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel135.setText("Buy Tower");
         CD_menu.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, 40));
 
-        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 44, 320, 500));
+        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 320, 500));
 
         CD_upgradeMenu.setBackground(new java.awt.Color(165, 149, 125));
         CD_upgradeMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1121,21 +1123,27 @@ public class GUI_window extends javax.swing.JFrame {
         CD_gameBox.add(CD_upgradeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 217, 380, 320));
 
         CD_path1.setBackground(new java.awt.Color(204, 204, 204));
+        CD_path1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         CD_gameBox.add(CD_path1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 410, 158, 40));
 
         CD_path2.setBackground(new java.awt.Color(204, 204, 204));
+        CD_path2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         CD_gameBox.add(CD_path2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 40, 320));
 
         CD_path3.setBackground(new java.awt.Color(204, 204, 204));
+        CD_path3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         CD_gameBox.add(CD_path3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 560, 40));
 
         CD_path4.setBackground(new java.awt.Color(204, 204, 204));
+        CD_path4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         CD_gameBox.add(CD_path4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 40, 240));
 
         CD_path5.setBackground(new java.awt.Color(204, 204, 204));
+        CD_path5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         CD_gameBox.add(CD_path5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 200, 40));
 
         CD_path6.setBackground(new java.awt.Color(204, 204, 204));
+        CD_path6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         CD_gameBox.add(CD_path6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 40, 60));
 
         CD_lake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/CastleDefense_lake.png"))); // NOI18N
@@ -2511,6 +2519,9 @@ public class GUI_window extends javax.swing.JFrame {
             }
         });
         CD_gameBox.add(CD_nextRoundButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 500, 190, 30));
+
+        CD_enemyExample.setText("jLabel97");
+        CD_gameBox.add(CD_enemyExample, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -40, 40, 40));
 
         game6Frame.add(CD_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
 
@@ -6608,6 +6619,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_coverDes2;
     private javax.swing.JLabel CD_coverDes3;
     private javax.swing.JLabel CD_coverDes4;
+    private javax.swing.JLabel CD_enemyExample;
     private javax.swing.JPanel CD_gameBox;
     private javax.swing.JLabel CD_lake;
     private javax.swing.JPanel CD_menu;

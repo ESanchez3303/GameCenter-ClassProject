@@ -150,6 +150,10 @@ public class CastleDefense {
     int ENEMY_DAMAGE_INCREASE = 1;  // Amount of damage the enemy does every round after
     int ENEMIES_PER_ROUND = 2;      // How many enemies are made per round -> Round=2 * enemies_per_round=2 = 4 enemies
     int ENEMY_STEP = 2;             // Speed of the enmies through the map
+    int ENEMY_SPAWN_X = 2;          // Location X of where the enemies should spawn
+    int ENEMY_SPAWN_Y = 410;        // Location Y of where the enemies should spawn
+    int ENEMY_SIZE = 40;            // The size of the enemy, this should match the size of the path we are following
+    
     
     
     // TOWER INFOMRATION: ====================================
@@ -193,7 +197,7 @@ public class CastleDefense {
     // Holding Variables:
     ArrayList<JLabel>allPlacements;  // This holds all the placements
     ArrayList<Tower> allTowers;     // This holds all the towers
-    ArrayList<JLabel> allEnemies;    // This holds all the enemies
+    ArrayList<Enemy> allEnemies;    // This holds all the enemies
     JButton buyTower1Button;
     JButton buyTower2Button;
     JButton buyTower3Button;
@@ -218,6 +222,8 @@ public class CastleDefense {
     JProgressBar roundTime;
     JLabel savingPlacement;
     JButton nextRoundButton;
+    JLabel enemyExample;
+    JPanel gameBox;
     
     
     // Dynamic Variables:
@@ -226,7 +232,8 @@ public class CastleDefense {
     JButton flashingButton;
     int flashingCounter;
     JButton savedButton;
-    int roundNumber;
+    int currentRound;
+    int nextSendingEnemy;
     
     
     // Construction Function:
@@ -234,7 +241,7 @@ public class CastleDefense {
                       JPanel m, JButton mb, JLabel t1, JLabel t2, JLabel t3, JLabel t4,
                       JLabel cT, JProgressBar ch, JPanel um, JButton c1, JButton c2, JButton c3,
                       JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
-                      JProgressBar rt, JButton nrb){
+                      JProgressBar rt, JButton nrb, JLabel ee, JPanel gb){
         allPlacements = new ArrayList<>();
         allTowers  = new ArrayList<>();
         allEnemies = new ArrayList<>();
@@ -266,6 +273,8 @@ public class CastleDefense {
         upgradeDescription = ud;
         roundTime = rt;
         nextRoundButton = nrb;
+        enemyExample = ee;
+        gameBox = gb;
     }
     
     
@@ -307,7 +316,7 @@ public class CastleDefense {
         roundTime.setValue(0);
         allTowers.clear();
         allEnemies.clear();
-        roundNumber = 0; 
+        currentRound = 0; 
         nextRoundButton.setVisible(true);
     }
     
@@ -493,12 +502,26 @@ public class CastleDefense {
     // NOTE: This is also the first time that the user starts the game so keep watch at that on how this reacts 
     public void nextRoundButtonClicked(){
         // Increasing to next round
-        roundNumber++; 
+        currentRound++; 
         
         // Adding the amount of needed enemies
-        for(int i = 0; i < roundNumber*ENEMIES_PER_ROUND; i++){
-            //Enemy sendingEnemy = Enemy(); // <===========================================================< ![ HERE ]!! >====< Add the enemies >
+        for(int i = 0; i < (currentRound*ENEMIES_PER_ROUND); i++){
+            JLabel sendingHitBox = new JLabel(); // ERROR: we need to set its parent to game box!!
+            sendingHitBox.setLocation(ENEMY_SPAWN_X, ENEMY_SPAWN_Y); // Moving the object to the spawn location
+            sendingHitBox.setSize(ENEMY_SIZE,ENEMY_SIZE);  // Setting the hit boxes to fit on in the size of the path 
+            sendingHitBox.setIcon(enemyExample.getIcon()); // Setting up the icon of this hitBox
+            
+            // Making object
+            Enemy sendingEnemy = new  Enemy(sendingHitBox, currentRound, 
+                                            ENEMY_STARTING_HEALTH, ENEMY_HEALTH_INCREASE, 
+                                            ENEMY_STARTING_DROP, ENEMY_DROP_INCREASE, 
+                                            ENEMY_STARTING_DAMAGE, ENEMY_DAMAGE_INCREASE);
+            
+            // Saving the object into the array that we have currently
+            allEnemies.add(sendingEnemy);
         }
+        
+        nextSendingEnemy = 0;              // Setting to zero so that we can send the first enemy in the array
         nextRoundButton.setVisible(false); // Hiding the button until next round
         roundClock.start();                // Starting the game clock finally!!!
     }
