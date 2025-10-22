@@ -3,7 +3,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.awt.geom.Line2D;
 
+
+// ===================================================================================
+// ========================     T O W E R   C L A S S ================================
+// ===================================================================================
 class Tower{
     private final JLabel placement;
     private int towerType = 0;
@@ -23,12 +28,12 @@ class Tower{
     private final JProgressBar cat1ProgressBar;
     private final JProgressBar cat2ProgressBar;
     private final JProgressBar cat3ProgressBar;
-    private Color projectileColor;
+    private final Color projectileColor;
 
     
     // Constructor 
     public Tower(JLabel placementInput, int towerTypeInput, int[] upgradeCostsInput, int[] powerListInput, int[] rangeListInput, int[] abilityListInput,
-                 JProgressBar c1Progress, JProgressBar c2Progress, JProgressBar c3Progress, int reloadTimeInput){
+                 JProgressBar c1Progress, JProgressBar c2Progress, JProgressBar c3Progress, int reloadTimeInput, Color projectileColorInput){
         // Setting up the variables
         placement = placementInput;
         cat1Level = cat2Level = cat3Level = 0;
@@ -42,12 +47,7 @@ class Tower{
         cat3ProgressBar = c3Progress;
         reloadTime = reloadTimeInput;
         reloadCounter = 0;
-        switch(towerType){
-            case 1 -> projectileColor = new Color(102,102,102); // Regular shooter
-            case 2 -> projectileColor = new Color(255,51,51);   // Eletric Shooter
-            case 3 -> projectileColor = new Color(255,255,51);  // Missle Shooter
-            default -> projectileColor = new Color(255,51,255); // Superman Shooter
-        }
+        projectileColor = projectileColorInput;
         
         // Setting the power, range, and ability
         power = powerList[cat1Level];
@@ -105,9 +105,11 @@ class Tower{
                     return false;
                 
                 // If possible to upgrade, then upgrade and return true
+                System.out.println("Previous range was: " + range);
                 cat2Level++;
                 range = rangeList[cat2Level];
                 cat2ProgressBar.setValue(cat2ProgressBar.getValue() + 33);
+                System.out.println("Changing range to: " + range);
             }
             
             // If category is cat3: ability
@@ -128,7 +130,6 @@ class Tower{
     }
     
     public boolean update(ArrayList<Enemy> allEnemies) {
-        
         // Rechecking if the current target we have is still alive and is in range
         if (currentTarget != null) {
             if (!currentTarget.isAlive() || !isInRange(currentTarget))
@@ -156,7 +157,7 @@ class Tower{
     // Finds the first alive enemy in range
     private Enemy findTarget(ArrayList<Enemy> allEnemies) {
         for (Enemy e : allEnemies) {
-            if (e.isAlive() && isInRange(e))
+            if (e.isAlive() && isInRange(e) &&e.getIsMoving()) // DOUBLE CHECKING THAT WE ARENT TARGETING SOME THAT ARENT SPAWNED YET!
                 return e; // Return the first one found
         }
         return null; // No target was found, just return null to say that we are not shooting
@@ -174,6 +175,10 @@ class Tower{
 
 }
 
+
+// ===================================================================================
+// ========================     E N E M Y   C L A S S ================================
+// ===================================================================================
 
 class Enemy{
     private final JLabel hitBox; // This is the actual enemy itself
@@ -230,19 +235,41 @@ class Enemy{
 }
 
 
+
+
+// ===================================================================================
+// ======================  P R O J E C T I L E   C L A S S ===========================
+// ===================================================================================
+
 class Projectile {
+    private final int LIGHTNING_SHOW_TIME = 200; // AMOUNT OF TIME THAT THE LIGHTNING IS SHOWING FOR
+    private final Tower shootingTower;
     private final JLabel sprite;
-    private final Enemy target;
+    private final Color spriteColor;
+    private Enemy target;
     private final int step;
     private final int damage;
     private boolean active;
-
-    public Projectile(JLabel towerPlacement, Enemy targetInput, int damageInput, int stepinput, Color spriteColor) {
+    private final JPanel gameBox;
+    private final JPanel menu;        // Needed to push back to the top
+    private final JPanel upgradeMenu; // Needed to push back to the top
+    private final JPanel bottomBar;   // Needed to push back to the top
+    
+    public Projectile(Tower shootingTowerInput, Enemy targetInput, int damageInput, 
+                      int stepinput, Color spriteColorInput, JPanel gameBoxInput, JPanel menuInput, 
+                      JPanel upgradeMenuInput, JPanel bottomBarInput) {
         target = targetInput;
         damage = damageInput;
         step = stepinput;
         active = true;
-
+        shootingTower = shootingTowerInput;
+        JLabel towerPlacement = shootingTower.getPlacement();
+        gameBox = gameBoxInput;
+        menu = menuInput;
+        upgradeMenu = upgradeMenuInput;
+        bottomBar = bottomBarInput;
+        spriteColor = spriteColorInput;
+        
         sprite = new JLabel();
         sprite.setBounds(
             towerPlacement.getX() + towerPlacement.getWidth() / 2 - 5,
@@ -250,7 +277,7 @@ class Projectile {
             10, 10
         );
         
-        sprite.setBackground(spriteColor);
+        sprite.setBackground(spriteColorInput);
         sprite.setOpaque(true);
     }
 
@@ -258,49 +285,163 @@ class Projectile {
     public boolean isActive() { return active; }
     public boolean killedTarget() { return !target.isAlive(); }
 
-    public void update() {
-        // If target is already dead, then just remove this projectile, it didnt make it in time
+    public void update(ArrayList<Enemy> enemies) {
+        // If target is already dead, then just remove this projectile
         if (!target.isAlive()) {
             active = false;
             sprite.setVisible(false);
             return;
         }
 
-        
         // Finding out the distance now
         int dx = target.getX() - sprite.getX();
         int dy = target.getY() - sprite.getY();
         double distance = Math.sqrt(dx * dx + dy * dy);
 
-        
-        if (distance <= step) {       // Hit target withing this frame (aka if we move, we are moving that way in "speed" distance, think about it 
-            target.takeDamage(damage); // BINGO! we hit em !
-            active = false;            // Going inactive so that it can get removed 
-            sprite.setVisible(false);
+        // Finding out the tower type
+        int towerType = shootingTower.getTowerType();
+
+        // ========== Tower Type 2: Shocking Shooter ==========
+        if (towerType == 2) {
+            active = false;                                  // Signaling for removal since we are using lines instead of the projectile
+            sprite.setVisible(false);                        // Removing the projectile since we are doing lines for this tower instead
+            target.takeDamage(damage);                       // Initial hit to the first enemy
+            int towerJumps = shootingTower.getAbility() - 1; // Finding out the remaining jumps
+            int range = shootingTower.getRange();            // Finding the range that the shock can jump
+            ArrayList<Enemy> alreadyShot = new ArrayList<>();// Holds the previously shot enemies 
+            alreadyShot.add(target);                         // Adding the inital enemy here
+            
+            
+            // Finding the points that we are going to draw and then make the lightning
+            JLabel startingBox = shootingTower.getPlacement();
+            JLabel endBox = target.getHitBox();
+            Point start = new Point(startingBox.getX() + (startingBox.getWidth()/2), startingBox.getY() + (startingBox.getHeight()/2));
+            Point end = new Point(endBox.getX() + (endBox.getWidth()/2), endBox.getY() + (endBox.getHeight()/2));
+            createLightningLine(start,end); 
+            
+            for (int i = 0; i < towerJumps; i++) {           // For how ever many time we have left to jump
+                Enemy nextTarget = null;                     // Holding variable for next jump-to enemy
+                double closestDistance = Double.MAX_VALUE;   // Setting to a really high number for first search (aka MAX_VALUE)
+
+                // Finding the next target
+                for (Enemy currentEnemy : enemies) {
+                    if (alreadyShot.contains(currentEnemy) || !currentEnemy.isAlive()) // If enemy is already shot or dead, continue
+                        continue;
+
+                    // Calculating the distance between current "target" and potential enemy jump-to
+                    int newDX = target.getX() - currentEnemy.getX();
+                    int newDY = target.getY() - currentEnemy.getY();
+                    double newDistance = Math.sqrt(newDX * newDX + newDY * newDY);
+                    
+
+                    // If this enemy is in range ANDDDD if it is the closest enemy avaliable
+                    if (newDistance <= range && newDistance < closestDistance) {
+                        closestDistance = newDistance;
+                        nextTarget = currentEnemy;
+                    }
+                }
+
+                // Shooting this next enemy and moving "target" to that /now/ last hit enemy
+                if (nextTarget != null) {
+                    start = end;                   // Setting the start to the end of the last one so that the lines touch
+                    endBox = nextTarget.getHitBox(); // Getting the box that we are going to hit, then calculating the middle to set as the end
+                    end = new Point(endBox.getX() + (endBox.getWidth()/2), endBox.getY() + (endBox.getHeight()/2));
+                    nextTarget.takeDamage(damage); // Dealing damage to the next
+                    alreadyShot.add(nextTarget);   // Adding to the already shot
+                    target = nextTarget;           // Moving the current target to the nextTarget
+                    createLightningLine(start,end);
+                } 
+                else {
+                    break; // No valid enemy, then we cant jump anywhere, jsut leave :)
+                }
+            }
+
+            return; // done, no projectile movement needed for this case
         }
-        else {                         // Not close enough to hit yet, go ahead and just move this frame
+
+        
+        // ========== Tower Type 4 ==========
+        if (towerType == 4) {
+            // Do something special for this later
+            return;
+        }
+        
+
+        // ========== Tower Type 1 & 3 ==========
+        if (distance <= step) {
+            target.takeDamage(damage);
+            active = false;
+            sprite.setVisible(false);
+        } else {
             sprite.setLocation(
                 (int)(sprite.getX() + dx / distance * step),
                 (int)(sprite.getY() + dy / distance * step)
             );
         }
     }
+    
+    // HELPER FUNCTIONS:
+    private void createLightningLine(Point start, Point end) {
+        int x1 = start.x;
+        int y1 = start.y;
+        int x2 = end.x;
+        int y2 = end.y;
+
+        // Top-left corner of panel
+        int panelX = Math.min(x1, x2);
+        int panelY = Math.min(y1, y2);
+
+        int panelWidth = Math.max(1, Math.abs(x2 - x1));
+        int panelHeight = Math.max(1, Math.abs(y2 - y1));
+
+        JPanel linePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2 = (Graphics2D) g;
+                //g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(spriteColor);
+                g2.setStroke(new BasicStroke(3));
+
+                // draw line relative to panel
+                g2.drawLine(x1 - panelX, y1 - panelY, x2 - panelX, y2 - panelY);
+            }
+        };
+
+        linePanel.setOpaque(false);
+        linePanel.setBounds(panelX, panelY, panelWidth, panelHeight);
+        gameBox.add(linePanel);
+        gameBox.setComponentZOrder(linePanel, 0);
+        gameBox.setComponentZOrder(menu, 0);
+        gameBox.setComponentZOrder(upgradeMenu, 0);
+        gameBox.setComponentZOrder(bottomBar, 0);
+        gameBox.repaint();
+
+        // Remove after the show time duration! very important lmao, you wouldn't belive what it looked like without this
+        new Timer(LIGHTNING_SHOW_TIME, e -> {
+            gameBox.remove(linePanel);
+            gameBox.repaint();
+            ((Timer)e.getSource()).stop();
+        }).start();
+    }
 }
 
 
 
-
+// ===================================================================================
+// ====================  M A I N   C A S T L E   C L A S S ===========================
+// ===================================================================================
 public class CastleDefense {
     // MAIN GAME VARIABLES:
     int ROUND_TICK = 5;           // Tick for the round
     int STARTING_CASH = 20000;    // Starting money
     int CASH_PER_KILL = 200;      // Amount of cash you get per kill     
-    int CASTLE_HEALTH = 500;      // Amount of health the castle has
+    int CASTLE_HEALTH = 1000;      // Amount of health the castle has
     
     
     // ENEMY VARIABLES: =========================================
     int ENEMY_STARTING_HEALTH = 100;// Starting health of the enemy
-    int ENEMY_HEALTH_INCREASE = 10; // Amount of more health per round
+    int ENEMY_HEALTH_INCREASE = 20; // Amount of more health per round
     int ENEMY_STARTING_DROP = 100;  // Amount of money the enemy drops in beginning
     int ENEMY_DROP_INCREASE = 100;  // Amount more money per round the enemy drops
     int ENEMY_STARTING_DAMAGE = 10; // Amount of damage the enemy does on round 1
@@ -316,41 +457,51 @@ public class CastleDefense {
     
     
     // PROJECTILE VARIABELES : ===============================
-    int PROJECTILE_STEP = 8;
+    int PROJECTILE_STEP = 8; // Really fast so that it never misses 
+    Color TOWER1_PROJECTILE_COLOR = new Color(215,215,215);
+    
+    Color TOWER2_PROJECTILE_COLOR = new Color(204,51,0);
+    
+    Color TOWER3_PROJECTILE_COLOR = new Color(215,215,215);
+    
+    Color TOWER4_PROJECTILE_COLOR = new Color(215,215,215);
     // =======================================================
     
     
     // TOWER VARIABLES: ====================================
-    int RANGE_SCALE_FACTOR = 100; // To scale up the range
-    int POWER_SCALE_FACTOR = 100; // To scale up the power
+    int RANGE_SCALE_FACTOR = 55; // To scale up the range
+    int POWER_SCALE_FACTOR = 150; // To scale up the power
     
+    // REGULAR SHOOTER:
     int TOWER1_COST = 200;
-    int TOWER1_RELOAD_TICKS = 60;
+    int TOWER1_RELOAD_TICKS = 65;
     int[] TOWER1_UPGRADE_COST = {0,200,400,600};
     int[] TOWER1_POWER_LIST = {1,2,3,4};
-    int[] TOWER1_RANGE_LIST = {1,2,3,4};
+    int[] TOWER1_RANGE_LIST = {2,3,4,5};
     int[] TOWER1_ABILITY_LIST = {1,2,3,4};
     
-    
+    // ELECTRIC SHOOTER:
     int TOWER2_COST = 400;
-    int TOWER2_RELOAD_TICKS = 100;
+    int TOWER2_RELOAD_TICKS = 150;
     int[] TOWER2_UPGRADE_COST = {0,400,800,1000};
     int[] TOWER2_POWER_LIST = {1,2,3,4};
     int[] TOWER2_RANGE_LIST = {1,2,3,4};
-    int[] TOWER2_ABILITY_LIST = {1,2,3,4};
+    int[] TOWER2_ABILITY_LIST = {2,3,4,5};
     
+    // MISSLE SHOOTER:
     int TOWER3_COST = 1000;
-    int TOWER3_RELOAD_TICKS = 250;
+    int TOWER3_RELOAD_TICKS = 400;
     int[] TOWER3_UPGRADE_COST = {0,1000,1000,1000};
-    int[] TOWER3_POWER_LIST = {1,2,3,4};
-    int[] TOWER3_RANGE_LIST = {1,2,3,4};
+    int[] TOWER3_POWER_LIST = {3,4,5,6};
+    int[] TOWER3_RANGE_LIST = {3,4,5,6};
     int[] TOWER3_ABILITY_LIST = {1,2,3,4};
     
+    // MILITARY BASE SHOOTER:
     int TOWER4_COST = 20000; 
-    int TOWER4_RELOAD_TICKS = 5;
+    int TOWER4_RELOAD_TICKS = 10;
     int[] TOWER4_UPGRADE_COST = {0,10000,10000,10000};
-    int[] TOWER4_POWER_LIST = {1,2,3,4};
-    int[] TOWER4_RANGE_LIST = {1,2,3,4};
+    int[] TOWER4_POWER_LIST = {10,20,25,30};
+    int[] TOWER4_RANGE_LIST = {6,7,8,9};
     int[] TOWER4_ABILITY_LIST = {1,2,3,4};
     // ======================================================
     
@@ -371,6 +522,7 @@ public class CastleDefense {
     ArrayList<Enemy> allEnemies;          // This holds all the enemies
     ArrayList<Projectile> allProjectiles; // This holds all proejectils
     ArrayList<JPanel> allLines;           // This holds all the lines that are the path in the game
+    ArrayList<JLabel> activeLightningLines ; // This holds the lightnings that we make so that users can experience them visually
     JButton buyTower1Button;
     JButton buyTower2Button;
     JButton buyTower3Button;
@@ -423,6 +575,7 @@ public class CastleDefense {
         allTowers  = new ArrayList<>();
         allEnemies = new ArrayList<>();
         allLines = new ArrayList<>();
+        activeLightningLines = new ArrayList<>();
         allPlacements.addAll(Arrays.asList(aP));
         allLines.addAll(Arrays.asList(l));
         buyTower1Button = bt1;
@@ -491,6 +644,8 @@ public class CastleDefense {
         // Removing any previous enemies from previous games and projectiles
         removeAllEnemies();
         removeAllProjectiles();
+        removeAllLightning();
+        
         
         // Reseting Variables
         cash = STARTING_CASH; 
@@ -780,11 +935,12 @@ public class CastleDefense {
         
         // Updating every tower -> finding a new target and returning if we can shoot!
         for (Tower tower : allTowers) {
-            
-            // If we can shoot, create a new projectile and set the start and stop of it for direction, also put it on top of everything so that we can see it on the paths
+            // If we can shoot, create a new projectile and set the start and stop of it for direction,
+            // also put it on top of everything so that we can see it on the paths
             boolean canShoot = tower.update(allEnemies);
             if (canShoot) {
-                Projectile sendingProjectile = new Projectile(tower.getPlacement(), tower.getCurrentTarget(), tower.getPower(), PROJECTILE_STEP, tower.getProjectileColor());
+                Projectile sendingProjectile = new Projectile(tower, tower.getCurrentTarget(), tower.getPower(), PROJECTILE_STEP, 
+                                                              tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
                 allProjectiles.add(sendingProjectile);
                 gameBox.add(sendingProjectile.getSprite());
                 gameBox.setComponentZOrder(sendingProjectile.getSprite(), 0);
@@ -803,7 +959,7 @@ public class CastleDefense {
             Projectile currentProjectile = allProjectiles.get(i);
             
             // Moves the projectile and also sets the isActive to false if it already made impact
-            currentProjectile.update();
+            currentProjectile.update(allEnemies);
                     
             // If last move made us hit, then remove the projectile
             if (!currentProjectile.isActive()) {
@@ -816,6 +972,8 @@ public class CastleDefense {
                 allProjectiles.remove(i);
                 i--;
             }
+            
+            // Checking if some lighning lines were made
             
         }
         
@@ -934,6 +1092,15 @@ public class CastleDefense {
         allProjectiles.clear();
     }
     
+    private void removeAllLightning(){
+        for(JLabel currLine : activeLightningLines ){
+            gameBox.remove(currLine);
+        }
+        gameBox.revalidate();
+        gameBox.repaint();
+        activeLightningLines.clear();
+    }
+    
     private int enemiesLeft(){
         int enemiesLeft = 0;
         for(Enemy currEnemy : allEnemies){
@@ -955,6 +1122,7 @@ public class CastleDefense {
         // Setting up data to send into new object to send into "allTowers"
         int cost = 0;
         int reloadTime = 0;
+        Color projectileColor = null;
         JLabel towerBought = null;
         int[] powerTEMP = {};
         int[] rangeTEMP = {};
@@ -971,6 +1139,7 @@ public class CastleDefense {
             powerTEMP = TOWER1_POWER_LIST;
             rangeTEMP = TOWER1_RANGE_LIST;
             abilityTEMP = TOWER1_ABILITY_LIST;
+            projectileColor = TOWER1_PROJECTILE_COLOR;
         }
         else if(buttonOfTower == buyTower2Button){
             towerType = 2;
@@ -981,6 +1150,7 @@ public class CastleDefense {
             powerTEMP = TOWER2_POWER_LIST;
             rangeTEMP = TOWER2_RANGE_LIST;
             abilityTEMP = TOWER2_ABILITY_LIST;
+            projectileColor = TOWER2_PROJECTILE_COLOR;
         }
         else if(buttonOfTower == buyTower3Button){
             towerType = 3;
@@ -991,6 +1161,7 @@ public class CastleDefense {
             powerTEMP = TOWER3_POWER_LIST;
             rangeTEMP = TOWER3_RANGE_LIST;
             abilityTEMP = TOWER3_ABILITY_LIST;
+            projectileColor = TOWER3_PROJECTILE_COLOR;
         }
         else if(buttonOfTower == buyTower4Button){
             towerType = 4;
@@ -1001,6 +1172,7 @@ public class CastleDefense {
             powerTEMP = TOWER4_POWER_LIST;
             rangeTEMP = TOWER4_RANGE_LIST;
             abilityTEMP = TOWER4_ABILITY_LIST;
+            projectileColor = TOWER4_PROJECTILE_COLOR;
         }
         
         // JUSTTT IN CASE: we will cancel the transaction if something happened weird
@@ -1009,7 +1181,8 @@ public class CastleDefense {
         
         
         // Making the object and adding into the list
-        Tower newTower = new Tower(placementClicked, towerType, upgradeTEMP, powerTEMP, rangeTEMP, abilityTEMP, cat1Progress, cat2Progress, cat3Progress, reloadTime);
+        Tower newTower = new Tower(placementClicked, towerType, upgradeTEMP, powerTEMP, rangeTEMP, abilityTEMP, 
+                                   cat1Progress, cat2Progress, cat3Progress, reloadTime, projectileColor);
         allTowers.add(newTower);
         
         

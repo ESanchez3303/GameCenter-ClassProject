@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.BorderFactory;
 
 public class GUI_window extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI_window.class.getName());
@@ -972,7 +971,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         jPanel19.add(CD_buyTower3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 190, 40));
 
-        CD_buyTower4Button.setBackground(new java.awt.Color(255, 255, 51));
+        CD_buyTower4Button.setBackground(new java.awt.Color(204, 51, 0));
         CD_buyTower4Button.setForeground(java.awt.Color.white);
         CD_buyTower4Button.setText("Buy Tower");
         CD_buyTower4Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1124,13 +1123,13 @@ public class GUI_window extends javax.swing.JFrame {
         jLabel133.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel133.setForeground(java.awt.Color.white);
         jLabel133.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel133.setText("Range");
+        jLabel133.setText("Power");
         CD_upgradeMenu.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 70, 40));
 
         jLabel134.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel134.setForeground(java.awt.Color.white);
         jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel134.setText("Power");
+        jLabel134.setText("Range");
         CD_upgradeMenu.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 70, 40));
 
         jLabel136.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
