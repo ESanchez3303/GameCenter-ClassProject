@@ -971,7 +971,7 @@ public class GUI_window extends javax.swing.JFrame {
         });
         jPanel19.add(CD_buyTower3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 190, 40));
 
-        CD_buyTower4Button.setBackground(new java.awt.Color(204, 51, 0));
+        CD_buyTower4Button.setBackground(new java.awt.Color(0, 255, 51));
         CD_buyTower4Button.setForeground(java.awt.Color.white);
         CD_buyTower4Button.setText("Buy Tower");
         CD_buyTower4Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

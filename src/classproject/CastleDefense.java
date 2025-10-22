@@ -401,7 +401,7 @@ class Projectile {
                 Graphics2D g2 = (Graphics2D) g;
                 //g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(spriteColor);
-                g2.setStroke(new BasicStroke(3));
+                g2.setStroke(new BasicStroke(6));
 
                 // draw line relative to panel
                 g2.drawLine(x1 - panelX, y1 - panelY, x2 - panelX, y2 - panelY);
@@ -458,11 +458,11 @@ public class CastleDefense {
     
     // PROJECTILE VARIABELES : ===============================
     int PROJECTILE_STEP = 8; // Really fast so that it never misses 
-    Color TOWER1_PROJECTILE_COLOR = new Color(215,215,215);
+    Color TOWER1_PROJECTILE_COLOR = new Color(0,0,0);
     
     Color TOWER2_PROJECTILE_COLOR = new Color(204,51,0);
     
-    Color TOWER3_PROJECTILE_COLOR = new Color(215,215,215);
+    Color TOWER3_PROJECTILE_COLOR = new Color(0,255,51);
     
     Color TOWER4_PROJECTILE_COLOR = new Color(215,215,215);
     // =======================================================
@@ -470,13 +470,13 @@ public class CastleDefense {
     
     // TOWER VARIABLES: ====================================
     int RANGE_SCALE_FACTOR = 55; // To scale up the range
-    int POWER_SCALE_FACTOR = 150; // To scale up the power
+    int POWER_SCALE_FACTOR = 50; // To scale up the power
     
     // REGULAR SHOOTER:
     int TOWER1_COST = 200;
     int TOWER1_RELOAD_TICKS = 65;
     int[] TOWER1_UPGRADE_COST = {0,200,400,600};
-    int[] TOWER1_POWER_LIST = {1,2,3,4};
+    int[] TOWER1_POWER_LIST = {2,4,5,6};
     int[] TOWER1_RANGE_LIST = {2,3,4,5};
     int[] TOWER1_ABILITY_LIST = {1,2,3,4};
     
@@ -490,7 +490,7 @@ public class CastleDefense {
     
     // MISSLE SHOOTER:
     int TOWER3_COST = 1000;
-    int TOWER3_RELOAD_TICKS = 400;
+    int TOWER3_RELOAD_TICKS = 600;
     int[] TOWER3_UPGRADE_COST = {0,1000,1000,1000};
     int[] TOWER3_POWER_LIST = {3,4,5,6};
     int[] TOWER3_RANGE_LIST = {3,4,5,6};
