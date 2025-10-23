@@ -280,6 +280,7 @@ class Projectile {
     private final JPanel upgradeMenu; // Needed to push back to the top
     private final JPanel bottomBar;   // Needed to push back to the top
     private final int towerType;      // Used to know the projectile type we are going to use
+    private Point missleTarget = null; // Keeps track of the missle target so that it can reach destination even if the enemy is dead
     
     public Projectile(Tower shootingTowerInput, int towerTypeInput, Enemy targetInput, int damageInput, 
                       int stepinput, Color spriteColorInput, JPanel gameBoxInput, JPanel menuInput, 
@@ -306,6 +307,9 @@ class Projectile {
         
         sprite.setBackground(spriteColorInput);
         sprite.setOpaque(true);
+        
+        // Changing the location where projectile is going if its a missle (will only be used it its tower3)
+        missleTarget = new Point(target.getX(), target.getY());
     }
 
     public JLabel getSprite() { return sprite; }
@@ -315,16 +319,12 @@ class Projectile {
     public int update(ArrayList<Enemy> enemies) {
         int enemiesKilled = 0;
         // If target is already dead, then just remove this projectile
-        if (target == null || !target.isAlive()) {
+        if ((target == null || !target.isAlive()) && (towerType != 3)) {
             active = false;
             sprite.setVisible(false);
             return enemiesKilled; // Enemy was not killed here, it was already dead before this was called
         }
 
-        // Finding out the distance now
-        int dx = target.getX() - sprite.getX();
-        int dy = target.getY() - sprite.getY();
-        double distance = Math.sqrt(dx * dx + dy * dy);
 
         // NOTE: when we are sending in tower type, if its 4, then we are sending it as either 1,2, or 3
 
@@ -390,12 +390,26 @@ class Projectile {
 
         
         
+        
 
         // ========== Tower Type 1 & 3 ==========
+        // Finding out the distance now
+        int dx, dy;
+        if(towerType == 1){
+            dx = target.getX() - sprite.getX();
+            dy = target.getY() - sprite.getY();
+        }
+        else{
+            dx = missleTarget.x - sprite.getX();
+            dy = missleTarget.y - sprite.getY();
+        }
+            
+        
+        double distance = Math.sqrt(dx * dx + dy * dy);
         // If we made impact
         if (distance <= step) {
             // If tower type is 1, then jsut take damage
-            if(towerType == 1){ 
+            if(towerType == 1 && target != null && target.isAlive()){ 
                 if(target.takeDamage(damage))
                     enemiesKilled++;
                 active = false;
@@ -405,9 +419,9 @@ class Projectile {
             // If tower type is 3, then we need to make it explode and hurt around
             else if(towerType == 3){
                 // Making the visual of the explosion in helper function
-                int explosionRadius = shootingTower.getAbility()*50;                                                // Setting the radius according to the current ability
-                Point epicenter = new Point(sprite.getX() + sprite.getWidth(), sprite.getY() + sprite.getHeight()); // Finding the center of the impact
-                createExplosion(epicenter, explosionRadius);                                                        // Making the visual
+                int explosionRadius = shootingTower.getAbility()*50;          // Setting the radius according to the current ability
+                Point epicenter = new Point(missleTarget.x, missleTarget.y);   // Finding the center of the impact
+                createExplosion(epicenter, explosionRadius);                  // Making the visual
                 
                 // Dealing damage to the enemies inside explosion
                 for(Enemy currEnemy : enemies){
@@ -417,13 +431,13 @@ class Projectile {
                     double dy_explosion = currEnemy.getY() - epicenter.y;
                     double distanceToEpicenter = Math.sqrt(dx_explosion*dx_explosion + dy_explosion*dy_explosion);
                     
-                    
                     if(distanceToEpicenter <= explosionRadius){
                         if(currEnemy.takeDamage(damage))
                             enemiesKilled++;
                     }
                 }
-                
+                active = false;
+                sprite.setVisible(false);
                 return enemiesKilled; // Return the amount of enemies that are killed
             }
         } else {
@@ -438,6 +452,7 @@ class Projectile {
     }
     
     // HELPER FUNCTIONS:
+    
    private void createExplosion(Point center, int radius){
         final JPanel explosion = new JPanel() {
             @Override
@@ -467,6 +482,7 @@ class Projectile {
             ((Timer)e.getSource()).stop();
         }).start();
     }
+    
     
     private void createLightningLine(Point start, Point end) {
         int x1 = start.x;
@@ -520,7 +536,7 @@ class Projectile {
 public class CastleDefense {
     // MAIN GAME VARIABLES:
     private final int ROUND_TICK = 5;           // Tick for the round
-    private final int STARTING_CASH = 200;      // Starting money
+    private final int STARTING_CASH = 20000;      // Starting money
     private final int CASH_PER_KILL = 100;      // Amount of cash you get per kill     
     private final int CASTLE_HEALTH = 1000;     // Amount of health the castle has
     private final int FLASH_AMOUNT = 6;         // Amount of times the flash happens for the buttons
@@ -662,6 +678,7 @@ public class CastleDefense {
     private int lastSentEnemy;
     private JButton flashingButton;
     private int flashingCounter;
+    private int spawningEnemyHealth;
     
     
     
@@ -794,6 +811,7 @@ public class CastleDefense {
         cashMadeStat.setText("0");
         nextRoundButton.setVisible(true);
         gameEndedHighscoreIndicator.setVisible(false);
+        spawningEnemyHealth = ENEMY_STARTING_HEALTH;
     }
     
     
@@ -1015,8 +1033,10 @@ public class CastleDefense {
             gameBox.repaint();                             // Repainting the gamebox
             
             // Making object
+            if((currentRound % 30 == 0) && currentRound != 0)
+                spawningEnemyHealth *= 2;
             Enemy sendingEnemy = new  Enemy(sendingHitBox, currentRound, 
-                                            ENEMY_STARTING_HEALTH, ENEMY_HEALTH_INCREASE, 
+                                            spawningEnemyHealth, ENEMY_HEALTH_INCREASE, 
                                             ENEMY_STARTING_DROP, ENEMY_DROP_INCREASE, 
                                             ENEMY_STARTING_DAMAGE, ENEMY_DAMAGE_INCREASE, allLines.get(0));
             
