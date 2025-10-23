@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.awt.geom.Line2D;
 
 
 // ===================================================================================
@@ -69,6 +68,11 @@ class Tower{
     public Color getProjectileColor() { return projectileColor; }
     
     
+    // Set Functions
+    public void resetReload(){
+        reloadCounter = 0;
+    }
+    
     // Helper Functions
     public int getCurrentUpgradeCost(int targetCategory){
         switch (targetCategory) {
@@ -105,11 +109,9 @@ class Tower{
                     return false;
                 
                 // If possible to upgrade, then upgrade and return true
-                System.out.println("Previous range was: " + range);
                 cat2Level++;
                 range = rangeList[cat2Level];
                 cat2ProgressBar.setValue(cat2ProgressBar.getValue() + 33);
-                System.out.println("Changing range to: " + range);
             }
             
             // If category is cat3: ability
@@ -141,7 +143,8 @@ class Tower{
             currentTarget = findTarget(allEnemies);
 
         
-        // If new target was found, and we are reloading, then return true and reset reloadcounter
+        // If new target was found, and reload time is ready then return true and reset reloadcounter
+        
         if (currentTarget != null && reloadCounter <= 0) {
             reloadCounter = reloadTime;
             return true; 
@@ -157,7 +160,7 @@ class Tower{
     // Finds the first alive enemy in range
     private Enemy findTarget(ArrayList<Enemy> allEnemies) {
         for (Enemy e : allEnemies) {
-            if (e.isAlive() && isInRange(e) &&e.getIsMoving()) // DOUBLE CHECKING THAT WE ARENT TARGETING SOME THAT ARENT SPAWNED YET!
+            if (e.isAlive() && isInRange(e) &&e.getIsMoving() && e.getHitBox().getX() > 0) // DOUBLE CHECKING THAT WE ARENT TARGETING SOME THAT ARENT SPAWNED YET!
                 return e; // Return the first one found
         }
         return null; // No target was found, just return null to say that we are not shooting
@@ -243,6 +246,7 @@ class Enemy{
 
 class Projectile {
     private final int LIGHTNING_SHOW_TIME = 200; // AMOUNT OF TIME THAT THE LIGHTNING IS SHOWING FOR
+    private final int EXPLOSION_SHOW_TIME = 400; // AMOUNT OF TIME THAT THE EXPLOSION IS SHOWING FOR
     private final Tower shootingTower;
     private final JLabel sprite;
     private final Color spriteColor;
@@ -254,8 +258,9 @@ class Projectile {
     private final JPanel menu;        // Needed to push back to the top
     private final JPanel upgradeMenu; // Needed to push back to the top
     private final JPanel bottomBar;   // Needed to push back to the top
+    private final int towerType;      // Used to know the projectile type we are going to use
     
-    public Projectile(Tower shootingTowerInput, Enemy targetInput, int damageInput, 
+    public Projectile(Tower shootingTowerInput, int towerTypeInput, Enemy targetInput, int damageInput, 
                       int stepinput, Color spriteColorInput, JPanel gameBoxInput, JPanel menuInput, 
                       JPanel upgradeMenuInput, JPanel bottomBarInput) {
         target = targetInput;
@@ -269,6 +274,7 @@ class Projectile {
         upgradeMenu = upgradeMenuInput;
         bottomBar = bottomBarInput;
         spriteColor = spriteColorInput;
+        towerType = towerTypeInput;
         
         sprite = new JLabel();
         sprite.setBounds(
@@ -287,7 +293,7 @@ class Projectile {
 
     public void update(ArrayList<Enemy> enemies) {
         // If target is already dead, then just remove this projectile
-        if (!target.isAlive()) {
+        if (target == null || !target.isAlive()) {
             active = false;
             sprite.setVisible(false);
             return;
@@ -298,8 +304,7 @@ class Projectile {
         int dy = target.getY() - sprite.getY();
         double distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Finding out the tower type
-        int towerType = shootingTower.getTowerType();
+        // NOTE: when we are sending in tower type, if its 4, then we are sending it as either 1,2, or 3
 
         // ========== Tower Type 2: Shocking Shooter ==========
         if (towerType == 2) {
@@ -360,19 +365,38 @@ class Projectile {
         }
 
         
-        // ========== Tower Type 4 ==========
-        if (towerType == 4) {
-            // Do something special for this later
-            return;
-        }
         
 
         // ========== Tower Type 1 & 3 ==========
+        // If we made impact
         if (distance <= step) {
-            target.takeDamage(damage);
-            active = false;
-            sprite.setVisible(false);
+            // If tower type is 1, then jsut take damage
+            if(towerType == 1){ 
+                target.takeDamage(damage);
+                active = false;
+                sprite.setVisible(false);
+            }
+            // If tower type is 3, then we need to make it explode and hurt around
+            else if(towerType == 3){
+                // Making the visual of the explosion in helper function
+                int explosionRadius = shootingTower.getAbility()*50;                                                // Setting the radius according to the current ability
+                Point epicenter = new Point(sprite.getX() + sprite.getWidth(), sprite.getY() + sprite.getHeight()); // Finding the center of the impact
+                createExplosion(epicenter, explosionRadius);                                                        // Making the visual
+                
+                // Dealing damage to the enemies inside explosion
+                for(Enemy currEnemy : enemies){
+                    if(!currEnemy.isAlive() || currEnemy.getX() < 0) // Dont hurt not in board and dead enemies
+                        continue;
+                    double dx_explosion = currEnemy.getX() - epicenter.x;
+                    double dy_explosion = currEnemy.getY() - epicenter.y;
+                    double distanceToEpicenter = Math.sqrt(dx_explosion*dx_explosion + dy_explosion*dy_explosion);
+                    
+                    if(distanceToEpicenter <= explosionRadius)
+                        currEnemy.takeDamage(damage);
+                }
+            }
         } else {
+        // Regular chasing projectile 
             sprite.setLocation(
                 (int)(sprite.getX() + dx / distance * step),
                 (int)(sprite.getY() + dy / distance * step)
@@ -381,6 +405,37 @@ class Projectile {
     }
     
     // HELPER FUNCTIONS:
+   private void createExplosion(Point center, int radius){
+        final JPanel explosion = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                int x1 = spriteColor.getRed();
+                int x2 = spriteColor.getGreen();
+                int x3 = spriteColor.getBlue();
+                g.setColor(new Color(x1,x2,x3,150));
+                g.fillOval(0, 0, getWidth(), getHeight());
+            }
+        };
+
+        explosion.setBounds(center.x - radius, center.y - radius, radius * 2, radius * 2);
+        explosion.setOpaque(false);
+        //explosion.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2));
+
+        gameBox.add(explosion, 0);
+        gameBox.setComponentZOrder(explosion, 0);
+        gameBox.setComponentZOrder(menu, 0);
+        gameBox.setComponentZOrder(upgradeMenu, 0);
+        gameBox.setComponentZOrder(bottomBar, 0);
+        gameBox.repaint();
+
+        new Timer(EXPLOSION_SHOW_TIME, e -> {
+            gameBox.remove(explosion);
+            gameBox.repaint();
+            ((Timer)e.getSource()).stop();
+        }).start();
+    }
+    
     private void createLightningLine(Point start, Point end) {
         int x1 = start.x;
         int y1 = start.y;
@@ -399,7 +454,6 @@ class Projectile {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
-                //g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(spriteColor);
                 g2.setStroke(new BasicStroke(6));
 
@@ -433,134 +487,136 @@ class Projectile {
 // ===================================================================================
 public class CastleDefense {
     // MAIN GAME VARIABLES:
-    int ROUND_TICK = 5;           // Tick for the round
-    int STARTING_CASH = 20000;    // Starting money
-    int CASH_PER_KILL = 200;      // Amount of cash you get per kill     
-    int CASTLE_HEALTH = 1000;      // Amount of health the castle has
+    private final int ROUND_TICK = 5;           // Tick for the round
+    private final int STARTING_CASH = 200;      // Starting money
+    private final int CASH_PER_KILL = 100;      // Amount of cash you get per kill     
+    private final int CASTLE_HEALTH = 1000;     // Amount of health the castle has
+    private final int FLASH_AMOUNT = 6;         // Amount of times the flash happens for the buttons
     
     
     // ENEMY VARIABLES: =========================================
-    int ENEMY_STARTING_HEALTH = 100;// Starting health of the enemy
-    int ENEMY_HEALTH_INCREASE = 20; // Amount of more health per round
-    int ENEMY_STARTING_DROP = 100;  // Amount of money the enemy drops in beginning
-    int ENEMY_DROP_INCREASE = 100;  // Amount more money per round the enemy drops
-    int ENEMY_STARTING_DAMAGE = 10; // Amount of damage the enemy does on round 1
-    int ENEMY_DAMAGE_INCREASE = 1;  // Amount of damage the enemy does every round after
-    int ENEMIES_PER_ROUND = 2;      // How many enemies are made per round -> Round=2 * enemies_per_round=2 = 4 enemies
-    int ENEMY_STEP = 1;             // Speed of the enmies through the map
-    int ENEMY_SPAWN_X = -40;        // Location X of where the enemies should spawn
-    int ENEMY_SPAWN_Y = 410;        // Location Y of where the enemies should spawn
-    int ENEMY_SIZE = 40;            // The size of the enemy, this should match the size of the path we are following
-    int ENEMY_SPACING = 10;         // Spacing between the enemies (where enemy 1 needs to be when we send out enemy 2)
+    private final int ENEMY_STARTING_HEALTH = 100;// Starting health of the enemy
+    private final int ENEMY_HEALTH_INCREASE = 20; // Amount of more health per round
+    private final int ENEMY_STARTING_DROP = 100;  // Amount of money the enemy drops in beginning
+    private final int ENEMY_DROP_INCREASE = 100;  // Amount more money per round the enemy drops
+    private final int ENEMY_STARTING_DAMAGE = 10; // Amount of damage the enemy does on round 1
+    private final int ENEMY_DAMAGE_INCREASE = 1;  // Amount of damage the enemy does every round after
+    private final int ENEMIES_PER_ROUND = 2;      // How many enemies are made per round -> Round=2 * enemies_per_round=2 = 4 enemies
+    private final int ENEMY_STEP = 1;             // Speed of the enmies through the map
+    private final int ENEMY_SPAWN_X = -40;        // Location X of where the enemies should spawn
+    private final int ENEMY_SPAWN_Y = 410;        // Location Y of where the enemies should spawn
+    private final int ENEMY_SIZE = 40;            // The size of the enemy, this should match the size of the path we are following
+    private final int ENEMY_SPACING = 10;         // Spacing between the enemies (where enemy 1 needs to be when we send out enemy 2)
     
     // ======================================================
-    
-    
-    // PROJECTILE VARIABELES : ===============================
-    int PROJECTILE_STEP = 8; // Really fast so that it never misses 
-    Color TOWER1_PROJECTILE_COLOR = new Color(0,0,0);
-    
-    Color TOWER2_PROJECTILE_COLOR = new Color(204,51,0);
-    
-    Color TOWER3_PROJECTILE_COLOR = new Color(0,255,51);
-    
-    Color TOWER4_PROJECTILE_COLOR = new Color(215,215,215);
-    // =======================================================
     
     
     // TOWER VARIABLES: ====================================
-    int RANGE_SCALE_FACTOR = 55; // To scale up the range
-    int POWER_SCALE_FACTOR = 50; // To scale up the power
+    private final int RANGE_SCALE_FACTOR = 55; // To scale up the range
+    private final int POWER_SCALE_FACTOR = 50; // To scale up the power
     
     // REGULAR SHOOTER:
-    int TOWER1_COST = 200;
-    int TOWER1_RELOAD_TICKS = 65;
-    int[] TOWER1_UPGRADE_COST = {0,200,400,600};
-    int[] TOWER1_POWER_LIST = {2,4,5,6};
-    int[] TOWER1_RANGE_LIST = {2,3,4,5};
-    int[] TOWER1_ABILITY_LIST = {1,2,3,4};
+    private final int TOWER1_COST = 200;
+    private final int TOWER1_RELOAD_TICKS = 150;
+    private final int TOWER1_PROJECTILE_SPACING = 50;
+    private final int TOWER1_PROJECTILE_STEP = 5;
+    private final int[] TOWER1_UPGRADE_COST = {0,200,400,600};
+    private final int[] TOWER1_POWER_LIST = {2,4,5,6};
+    private final int[] TOWER1_RANGE_LIST = {2,3,4,5};
+    private final int[] TOWER1_ABILITY_LIST = {1,2,3,4};
+    private final Color TOWER1_PROJECTILE_COLOR = new Color(0,0,0);      // Black
+    
     
     // ELECTRIC SHOOTER:
-    int TOWER2_COST = 400;
-    int TOWER2_RELOAD_TICKS = 150;
-    int[] TOWER2_UPGRADE_COST = {0,400,800,1000};
-    int[] TOWER2_POWER_LIST = {1,2,3,4};
-    int[] TOWER2_RANGE_LIST = {1,2,3,4};
-    int[] TOWER2_ABILITY_LIST = {2,3,4,5};
+    private final int TOWER2_COST = 400;
+    private final int TOWER2_RELOAD_TICKS = 180;
+    private final int TOWER2_PROJECTILE_STEP = 8;
+    private final int[] TOWER2_UPGRADE_COST = {0,400,800,1000};
+    private final int[] TOWER2_POWER_LIST = {1,2,3,4};
+    private final int[] TOWER2_RANGE_LIST = {1,2,3,4};
+    private final int[] TOWER2_ABILITY_LIST = {2,3,4,5};
+    private final Color TOWER2_PROJECTILE_COLOR = new Color(204,51,0);   // Red ish 
     
     // MISSLE SHOOTER:
-    int TOWER3_COST = 1000;
-    int TOWER3_RELOAD_TICKS = 600;
-    int[] TOWER3_UPGRADE_COST = {0,1000,1000,1000};
-    int[] TOWER3_POWER_LIST = {3,4,5,6};
-    int[] TOWER3_RANGE_LIST = {3,4,5,6};
-    int[] TOWER3_ABILITY_LIST = {1,2,3,4};
+    private final int TOWER3_COST = 1000;
+    private final int TOWER3_RELOAD_TICKS = 600;
+    private final int TOWER3_PROJECTILE_STEP = 8;
+    private final int[] TOWER3_UPGRADE_COST = {0,1000,1000,1000};
+    private final int[] TOWER3_POWER_LIST = {3,4,5,6};
+    private final int[] TOWER3_RANGE_LIST = {3,4,5,6};
+    private final int[] TOWER3_ABILITY_LIST = {1,2,3,4};
+    private final Color TOWER3_PROJECTILE_COLOR = new Color(255,100,0);  // Orange ish 
+    
     
     // MILITARY BASE SHOOTER:
-    int TOWER4_COST = 20000; 
-    int TOWER4_RELOAD_TICKS = 10;
-    int[] TOWER4_UPGRADE_COST = {0,10000,10000,10000};
-    int[] TOWER4_POWER_LIST = {10,20,25,30};
-    int[] TOWER4_RANGE_LIST = {6,7,8,9};
-    int[] TOWER4_ABILITY_LIST = {1,2,3,4};
+    private final int TOWER4_COST = 20000; 
+    private final int TOWER4_RELOAD_TICKS = 300;
+    private final int[] TOWER4_UPGRADE_COST = {0,10000,10000,10000};
+    private final int[] TOWER4_POWER_LIST = {3,6,8,10};
+    private final int[] TOWER4_RANGE_LIST = {4,5,6,7};
+    private final int[] TOWER4_ABILITY_LIST = {1,2,3,4}; // Used in missle range, eletric hop, and shots made from regular shooter 
+    // NOTE: this tower does not need a color or speed, since its using above stats
     // ======================================================
     
     
-    String[] allDescriptions = {"<html>Regular Shooter: Shoots 1-4 shots at the enemy with greater speed than other towers!</html>", 
+    private final String[] allDescriptions = 
+                               {
+                                "<html>Regular Shooter: Shoots 1-4 shots at the enemy with greater speed than other towers!</html>", 
                                 "<html>Shocking Tower: This tower takes a little bit longer, but it delivers a blow to 2-5 enemies!</html>", 
                                 "<html>Missle Launcher: Missles are heavy! These make a lot of damage, but take forever to get another ready to shoot.</html>", 
-                                "<html>Military Base: Previously named the '!Superman!', this thing alone can win against almost anything!</html>"};
+                                "<html>Military Base: Previously named the '!Superman!', this thing alone can win against almost anything!</html>"
+                               };
     
     // Saving Colors (used for flashing a button red)
-    Color buttonColor = new Color(202,157,123);
-    Color redColor    = new Color(255,51,0);
+    private final Color buttonColor = new Color(202,157,123);
+    private final Color redColor    = new Color(255,51,0);
     
     
     // Holding Variables:
-    ArrayList<JLabel> allPlacements;      // This holds all the placements
-    ArrayList<Tower> allTowers;           // This holds all the towers
-    ArrayList<Enemy> allEnemies;          // This holds all the enemies
-    ArrayList<Projectile> allProjectiles; // This holds all proejectils
-    ArrayList<JPanel> allLines;           // This holds all the lines that are the path in the game
-    ArrayList<JLabel> activeLightningLines ; // This holds the lightnings that we make so that users can experience them visually
-    JButton buyTower1Button;
-    JButton buyTower2Button;
-    JButton buyTower3Button;
-    JButton buyTower4Button;
-    JPanel menu;
-    JButton menuButton;
-    JLabel tower1;
-    JLabel tower2;
-    JLabel tower3;
-    JLabel tower4;
-    JLabel cashText;
-    JProgressBar castleHealth;
-    JPanel upgradeMenu;
-    JButton cat1Button;
-    JButton cat2Button;
-    JButton cat3Button;
-    JProgressBar cat1Progress;
-    JProgressBar cat2Progress;
-    JProgressBar cat3Progress;
-    JLabel upgradeTower;
-    JLabel upgradeDescription;
-    JProgressBar enemiesLeftBar;
-    JLabel savingPlacement;
-    JButton nextRoundButton;
-    JLabel enemyExample;
-    JPanel gameBox;
-    JLabel castle;
-    JPanel bottomBar;
+    private ArrayList<JLabel> allPlacements;      // This holds all the placements
+    private ArrayList<Tower> allTowers;           // This holds all the towers
+    private ArrayList<Enemy> allEnemies;          // This holds all the enemies
+    private ArrayList<Projectile> allProjectiles; // This holds all proejectils
+    private ArrayList<JPanel> allLines;           // This holds all the lines that are the path in the game
+    private ArrayList<JLabel> activeLightningLines ; // This holds the lightnings that we make so that users can experience them visually
+    private JButton buyTower1Button;
+    private JButton buyTower2Button;
+    private JButton buyTower3Button;
+    private JButton buyTower4Button;
+    private JPanel menu;
+    private JButton menuButton;
+    private JLabel tower1;
+    private JLabel tower2;
+    private JLabel tower3;
+    private JLabel tower4;
+    private JLabel cashText;
+    private JProgressBar castleHealth;
+    private JPanel upgradeMenu;
+    private JButton cat1Button;
+    private JButton cat2Button;
+    private JButton cat3Button;
+    private JProgressBar cat1Progress;
+    private JProgressBar cat2Progress;
+    private JProgressBar cat3Progress;
+    private JLabel upgradeTower;
+    private JLabel upgradeDescription;
+    private JProgressBar enemiesLeftBar;
+    private JLabel savingPlacement;
+    private JButton nextRoundButton;
+    private JLabel enemyExample;
+    private JPanel gameBox;
+    private JLabel castle;
+    private JPanel bottomBar;
     
     
     // Dynamic Variables:
-    int cash;
-    boolean selectionMode = false;
-    JButton flashingButton;
-    int flashingCounter;
-    JButton savedButton;
-    int currentRound;
-    int lastSentEnemy;
+    private boolean selectionMode = false;
+    private int cash;
+    private JButton savedButton;
+    private int currentRound;
+    private int lastSentEnemy;
+    private JButton flashingButton;
+    private int flashingCounter;
     
     
     // Construction Function:
@@ -886,6 +942,10 @@ public class CastleDefense {
         nextRoundButton.setVisible(false); // Hiding the button until next round
         enemiesLeftBar.setMaximum(currentRound*ENEMIES_PER_ROUND); // Setting the max as the enemies left to kill
         enemiesLeftBar.setValue(currentRound*ENEMIES_PER_ROUND);   // Filling up the bar to the max!
+        
+        for(Tower currTower : allTowers) // Resetting the reload so that tower can shoot again
+            currTower.resetReload();
+        
         roundClock.start();                // Starting the game clock finally!!!
     }
     // ======================================================================================================
@@ -904,6 +964,7 @@ public class CastleDefense {
         if(castleHealth.getValue() <= 0){
             ((Timer)e.getSource()).stop();
             System.out.println("GAME HAS ENDED");
+            removeAllProjectiles();
             removeAllEnemies(); 
         }
        
@@ -911,6 +972,7 @@ public class CastleDefense {
         if(enemiesLeft() == 0){
             ((Timer)e.getSource()).stop();    // Stopping the timer
             removeAllEnemies(); 
+            removeAllProjectiles();
             nextRoundButton.setVisible(true); // Showing the next round button again
             enemiesLeftBar.setValue(0);       // Setting to no enemies left
         }
@@ -926,9 +988,15 @@ public class CastleDefense {
         
         // Checking if we need to start moving the next enemy (lastSentEnemy is still in array AND the last enemy is at location to allow ENEMY_SPACING)
         if((lastSentEnemy + 1 < allEnemies.size()) && 
-           (allEnemies.get(lastSentEnemy).getX() > ENEMY_SPACING)){
+           (allEnemies.get(lastSentEnemy).getX() > ENEMY_SPACING)){ // BUG FIX: checking if the last one is already dead, sent next one
             lastSentEnemy++;                             // Increasing the last sent enemy to show which is moving last and to send in next line
             allEnemies.get(lastSentEnemy).setIsMoving(); // Setting this new one to moving now
+        }
+        
+        // Double check that there are enemies on the board, if there are not AND there are enemies left then send next
+        else if(!enemiesWalking() && lastSentEnemy + 1 < allEnemies.size()){
+            lastSentEnemy++;
+            allEnemies.get(lastSentEnemy).setIsMoving();
         }
         
         
@@ -938,15 +1006,73 @@ public class CastleDefense {
             // If we can shoot, create a new projectile and set the start and stop of it for direction,
             // also put it on top of everything so that we can see it on the paths
             boolean canShoot = tower.update(allEnemies);
-            if (canShoot) {
-                Projectile sendingProjectile = new Projectile(tower, tower.getCurrentTarget(), tower.getPower(), PROJECTILE_STEP, 
-                                                              tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
-                allProjectiles.add(sendingProjectile);
-                gameBox.add(sendingProjectile.getSprite());
-                gameBox.setComponentZOrder(sendingProjectile.getSprite(), 0);
-                gameBox.setComponentZOrder(menu, 0);
-                gameBox.setComponentZOrder(upgradeMenu, 0);
-                gameBox.setComponentZOrder(bottomBar, 0);
+            int towerType = tower.getTowerType();
+            if (canShoot){
+                
+                
+                switch (towerType) {
+                    // Tower 1 shoots the <ability> amount of projectiles
+                    case 1 -> {
+                        Projectile currPro = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
+                                tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
+                        allProjectiles.add(currPro);
+                        gameBox.add(currPro.getSprite());
+                        gameBox.setComponentZOrder(currPro.getSprite(), 0);
+                        bringMenusUp();
+                        // Adding all the other ones slowly -> also checks if target is dead before making new ones so that we dont get a runtime crash, very very important lmao
+                        for(int i = 0; i < tower.getAbility()-1; i++){
+                            int spawnTime = i+1 * TOWER1_PROJECTILE_SPACING; // since i is 0 at first, set to 1, then multiply by the wait that we set in main variables
+                            Timer temp = new Timer(spawnTime, x->{
+                                ((Timer)x.getSource()).stop();
+                                if(tower.getCurrentTarget() != null){
+                                    Projectile timedProjectile = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
+                                            tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
+                                    allProjectiles.add(timedProjectile);
+                                    gameBox.add(timedProjectile.getSprite());
+                                    gameBox.setComponentZOrder(timedProjectile.getSprite(), 0);
+                                    bringMenusUp();
+                                }
+                            });
+                            temp.start();
+                        }
+                    }
+                    // Tower 2 and 3 shoot regular projectiles ONE time
+                    case 2, 3 -> {
+                        int projectileStep = (towerType == 2 || towerType == 4 ? TOWER2_PROJECTILE_STEP : TOWER3_PROJECTILE_STEP);
+                        Projectile newProjectile = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), projectileStep,
+                                tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
+                        allProjectiles.add(newProjectile);
+                        gameBox.add(newProjectile.getSprite());
+                        gameBox.setComponentZOrder(newProjectile.getSprite(), 0);
+                        bringMenusUp();
+                    }
+                    
+                    // Tower 4 shoots one of each projectile type
+                    case 4 -> {
+                        // Making projectile for regular (JSUT 1 FOR THIS TOWER)
+                        Projectile projectile1 = new Projectile(tower, 1, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
+                                TOWER1_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar);
+                        // Making the projectile for shocking tower
+                        Projectile projectile2 = new Projectile(tower, 2, tower.getCurrentTarget(), tower.getPower(), TOWER2_PROJECTILE_STEP,
+                                TOWER2_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar);
+                        // Making the projectile for the missle tower
+                        Projectile projectile3 = new Projectile(tower, 3, tower.getCurrentTarget(), tower.getPower(), TOWER3_PROJECTILE_STEP,
+                                TOWER3_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar);
+                        allProjectiles.add(projectile1);
+                        allProjectiles.add(projectile2);
+                        allProjectiles.add(projectile3);
+                        gameBox.add(projectile1.getSprite());
+                        gameBox.add(projectile2.getSprite());
+                        gameBox.add(projectile3.getSprite());
+                        gameBox.setComponentZOrder(projectile1.getSprite(), 0);
+                        gameBox.setComponentZOrder(projectile2.getSprite(), 0);
+                        gameBox.setComponentZOrder(projectile3.getSprite(), 0);
+                        bringMenusUp();
+                    }
+                    default -> {
+                    }
+                }
+                
             }
         }
 
@@ -995,34 +1121,33 @@ public class CastleDefense {
         // Checking if we have to hop the object from one line to the next
         int currentLineIndex = allLines.indexOf(targetEnemy.getLine());
         
-        
-        // If the current line is a horz, check if we need to hop to the next vert. one
-        if(currentLineIndex == 0 || currentLineIndex == 2 || currentLineIndex == 4){
-            if(targetEnemy.getX() == allLines.get(currentLineIndex+1).getX())
-                targetEnemy.setLine(allLines.get(currentLineIndex+1));
-        }
-        
-        // If the current line is a vert, check if we need to hop to the next horz. one
-        else if(currentLineIndex == 1 || currentLineIndex == 3){
-            if(targetEnemy.getY() == allLines.get(currentLineIndex+1).getY())
-                targetEnemy.setLine(allLines.get(currentLineIndex+1));
-        }
-        
-        // If the object is on the LAST LINE, check if it has hit the castle
-        else if(currentLineIndex == 5){
-            if(targetEnemy.getY()+ENEMY_SIZE >= castle.getY()){                          // If the object bottom is greater or equal to castle y, then it made impact
-               castleHealth.setValue(castleHealth.getValue() - targetEnemy.getDamage()); // Damaging the castle with this enemy health
-               targetEnemy.getHitBox().setVisible(false);                                // Hide it temp, we will remove it after this round ends
-               targetEnemy.kill();                                                       // Change the status to dead x.x
-               enemiesLeftBar.setValue(enemiesLeftBar.getValue() - 1);                   // Showing that there is one less enemy
-               return;                                                                   // Return since we are not moving this object later
+        switch (currentLineIndex) {
+            // If the current line is a horz, check if we need to hop to the next vert. one
+            case 0, 2, 4 -> {
+                if(targetEnemy.getX() == allLines.get(currentLineIndex+1).getX())
+                    targetEnemy.setLine(allLines.get(currentLineIndex+1));
             }
-        }
-        
-        // If it is out of bounds, then do nothing to prevent errors
-        else{
-            System.out.println("ERORR: Entered into error state of moveEnemy()");
-            return;
+            
+            // If the current line is a vert, check if we need to hop to the next horz. one
+            case 1, 3 -> {
+                if(targetEnemy.getY() == allLines.get(currentLineIndex+1).getY())
+                    targetEnemy.setLine(allLines.get(currentLineIndex+1));
+            }
+            
+            // If the object is on the LAST LINE, check if it has hit the castle
+            case 5 -> {
+                if(targetEnemy.getY()+ENEMY_SIZE >= castle.getY()){                          // If the object bottom is greater or equal to castle y, then it made impact
+                    castleHealth.setValue(castleHealth.getValue() - targetEnemy.getDamage()); // Damaging the castle with this enemy health
+                    targetEnemy.getHitBox().setVisible(false);                                // Hide it temp, we will remove it after this round ends
+                    targetEnemy.kill();                                                       // Change the status to dead x.x
+                    enemiesLeftBar.setValue(enemiesLeftBar.getValue() - 1);                   // Showing that there is one less enemy
+                    return;                                                                   // Return since we are not moving this object later
+                }
+            }
+            default -> {
+                System.out.println("ERORR: Entered into error state of moveEnemy()");
+                return;
+            }
         }
         
         
@@ -1110,6 +1235,20 @@ public class CastleDefense {
         return enemiesLeft;
     }
     
+    private boolean enemiesWalking(){
+        for(Enemy currEnemy : allEnemies){
+            if(currEnemy.isAlive() && currEnemy.getIsMoving())
+                return true;
+        }
+        return false;
+    }
+    
+    private void bringMenusUp(){
+        gameBox.setComponentZOrder(menu, 0);
+        gameBox.setComponentZOrder(upgradeMenu, 0);
+        gameBox.setComponentZOrder(bottomBar, 0);
+    }
+    
     private Tower getTower(JLabel targetPlacement){
         for(Tower currTower : allTowers){
             if(currTower.getPlacement() == targetPlacement)
@@ -1172,7 +1311,7 @@ public class CastleDefense {
             powerTEMP = TOWER4_POWER_LIST;
             rangeTEMP = TOWER4_RANGE_LIST;
             abilityTEMP = TOWER4_ABILITY_LIST;
-            projectileColor = TOWER4_PROJECTILE_COLOR;
+            projectileColor = TOWER3_PROJECTILE_COLOR; // This is never used because we actually ignore it for this tower
         }
         
         // JUSTTT IN CASE: we will cancel the transaction if something happened weird
@@ -1208,7 +1347,7 @@ public class CastleDefense {
         flashingButton.setBackground(redColor); // First flash to feel instant
         Timer tempTimer = new Timer(100, e->{
             flashingCounter++;                               // Increasing count
-            if(flashingCounter >= 6){                        // If >6, then stop and set back to normal
+            if(flashingCounter >= FLASH_AMOUNT){                        // If >6, then stop and set back to normal
                 ((Timer)e.getSource()).stop();
                 flashingButton.setBackground(buttonColor);
             }
@@ -1221,7 +1360,4 @@ public class CastleDefense {
         });
         tempTimer.start();
     }
-    
-    
-    
 }
