@@ -24,6 +24,7 @@ public class HighscoreManager {
         // THESE ARE THE GAMES THAT WE ARE KEEPING TRACK OF -- ADD GAMES HERE AS WE GO!
         gameSymbols.add("MG");
         gameSymbols.add("PP");
+        gameSymbols.add("CD");
         
         for (String gameSymbol : gameSymbols) { // Just add this AMOUNT of usernames and highscores, we don't actually NEED "gameSymbol"
             usernames.add("Not Set");

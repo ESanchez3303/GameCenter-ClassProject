@@ -73,12 +73,34 @@ class Tower{
         reloadCounter = 0;
     }
     
+    
+    
     // Helper Functions
     public int getCurrentUpgradeCost(int targetCategory){
         switch (targetCategory) {
             case 1  -> { return upgradeCosts[cat1Level]; }
             case 2  -> { return upgradeCosts[cat2Level]; }
             default -> { return upgradeCosts[cat3Level]; }
+        }
+    }
+    public int getNextUpgradeCost(int targetCategory){
+        // If this category + 1 is out of bounds then return -1, this mneans we are at the max level already 
+        switch (targetCategory) {
+            case 1  -> { 
+                if(cat1Level+1 >= 4)
+                    return -1;
+                return upgradeCosts[cat1Level+1]; 
+            }
+            case 2  -> { 
+                if(cat2Level+1 >= 4)
+                    return -1;
+                return upgradeCosts[cat2Level+1]; 
+            }
+            default -> { 
+                if(cat3Level+1 >= 4)
+                    return -1;
+                return upgradeCosts[cat3Level+1]; 
+            }
         }
     }
     
@@ -227,7 +249,6 @@ class Enemy{
     // Helper Functions:
     public boolean takeDamage(int dmg) {
         health -= dmg;
-        System.out.println();
         if (health <= 0 && isAlive) {
             kill();
             hitBox.setVisible(false);
@@ -291,12 +312,13 @@ class Projectile {
     public boolean isActive() { return active; }
     public boolean killedTarget() { return !target.isAlive(); }
 
-    public void update(ArrayList<Enemy> enemies) {
+    public int update(ArrayList<Enemy> enemies) {
+        int enemiesKilled = 0;
         // If target is already dead, then just remove this projectile
         if (target == null || !target.isAlive()) {
             active = false;
             sprite.setVisible(false);
-            return;
+            return enemiesKilled; // Enemy was not killed here, it was already dead before this was called
         }
 
         // Finding out the distance now
@@ -310,7 +332,8 @@ class Projectile {
         if (towerType == 2) {
             active = false;                                  // Signaling for removal since we are using lines instead of the projectile
             sprite.setVisible(false);                        // Removing the projectile since we are doing lines for this tower instead
-            target.takeDamage(damage);                       // Initial hit to the first enemy
+            if(target.takeDamage(damage))                    // Initial hit to the first enemy
+                enemiesKilled++;                             // Add that we killed this enemy
             int towerJumps = shootingTower.getAbility() - 1; // Finding out the remaining jumps
             int range = shootingTower.getRange();            // Finding the range that the shock can jump
             ArrayList<Enemy> alreadyShot = new ArrayList<>();// Holds the previously shot enemies 
@@ -351,9 +374,10 @@ class Projectile {
                     start = end;                   // Setting the start to the end of the last one so that the lines touch
                     endBox = nextTarget.getHitBox(); // Getting the box that we are going to hit, then calculating the middle to set as the end
                     end = new Point(endBox.getX() + (endBox.getWidth()/2), endBox.getY() + (endBox.getHeight()/2));
-                    nextTarget.takeDamage(damage); // Dealing damage to the next
-                    alreadyShot.add(nextTarget);   // Adding to the already shot
-                    target = nextTarget;           // Moving the current target to the nextTarget
+                    if(nextTarget.takeDamage(damage)) // Dealing damage to the next
+                        enemiesKilled++;              // If this killed the enemy increase count again
+                    alreadyShot.add(nextTarget);      // Adding to the already shot
+                    target = nextTarget;              // Moving the current target to the nextTarget
                     createLightningLine(start,end);
                 } 
                 else {
@@ -361,7 +385,7 @@ class Projectile {
                 }
             }
 
-            return; // done, no projectile movement needed for this case
+            return enemiesKilled; // Return the amount of enemies that were killed with this projectile
         }
 
         
@@ -372,9 +396,11 @@ class Projectile {
         if (distance <= step) {
             // If tower type is 1, then jsut take damage
             if(towerType == 1){ 
-                target.takeDamage(damage);
+                if(target.takeDamage(damage))
+                    enemiesKilled++;
                 active = false;
                 sprite.setVisible(false);
+                return enemiesKilled;
             }
             // If tower type is 3, then we need to make it explode and hurt around
             else if(towerType == 3){
@@ -391,9 +417,14 @@ class Projectile {
                     double dy_explosion = currEnemy.getY() - epicenter.y;
                     double distanceToEpicenter = Math.sqrt(dx_explosion*dx_explosion + dy_explosion*dy_explosion);
                     
-                    if(distanceToEpicenter <= explosionRadius)
-                        currEnemy.takeDamage(damage);
+                    
+                    if(distanceToEpicenter <= explosionRadius){
+                        if(currEnemy.takeDamage(damage))
+                            enemiesKilled++;
+                    }
                 }
+                
+                return enemiesKilled; // Return the amount of enemies that are killed
             }
         } else {
         // Regular chasing projectile 
@@ -401,7 +432,9 @@ class Projectile {
                 (int)(sprite.getX() + dx / distance * step),
                 (int)(sprite.getY() + dy / distance * step)
             );
+            return 0; // Show that no enemies were killed
         }
+        return 0; // We shouldn't ever reach here since we checked every tower, but just in case
     }
     
     // HELPER FUNCTIONS:
@@ -420,7 +453,6 @@ class Projectile {
 
         explosion.setBounds(center.x - radius, center.y - radius, radius * 2, radius * 2);
         explosion.setOpaque(false);
-        //explosion.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2));
 
         gameBox.add(explosion, 0);
         gameBox.setComponentZOrder(explosion, 0);
@@ -558,16 +590,14 @@ public class CastleDefense {
     // NOTE: this tower does not need a color or speed, since its using above stats
     // ======================================================
     
-    
-    private final String[] allDescriptions = 
+    // Other Final Variables:
+    private final String[] ALL_DESCRIPTIONS = 
                                {
                                 "<html>Regular Shooter: Shoots 1-4 shots at the enemy with greater speed than other towers!</html>", 
                                 "<html>Shocking Tower: This tower takes a little bit longer, but it delivers a blow to 2-5 enemies!</html>", 
                                 "<html>Missle Launcher: Missles are heavy! These make a lot of damage, but take forever to get another ready to shoot.</html>", 
                                 "<html>Military Base: Previously named the '!Superman!', this thing alone can win against almost anything!</html>"
                                };
-    
-    // Saving Colors (used for flashing a button red)
     private final Color buttonColor = new Color(202,157,123);
     private final Color redColor    = new Color(255,51,0);
     
@@ -607,16 +637,32 @@ public class CastleDefense {
     private JPanel gameBox;
     private JLabel castle;
     private JPanel bottomBar;
+    private JPanel gameEndedPanel;
+    private JLabel gameEndedPoints;
+    private JLabel gameEndedHighscoreIndicator;
+    private HighscoreManager scores_fromOutside;
+    private String currentUser_fromOutside;
+    
+    
+    // Stats Variables
+    private JLabel currentRoundStat;
+    private JLabel enemiesKilledStat;
+    private JLabel castleHealthStat;
+    private JLabel cashMadeStat;
+    private int currentRound;
+    private int enemiesKilled;
+    private int cashMade;
+    // we dont need a castle health since we already have the progressbar of it
     
     
     // Dynamic Variables:
     private boolean selectionMode = false;
     private int cash;
     private JButton savedButton;
-    private int currentRound;
     private int lastSentEnemy;
     private JButton flashingButton;
     private int flashingCounter;
+    
     
     
     // Construction Function:
@@ -625,7 +671,8 @@ public class CastleDefense {
                       JLabel cT, JProgressBar ch, JPanel um, JButton c1, JButton c2, JButton c3,
                       JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
                       JProgressBar elb, JButton nrb, JLabel ee, JPanel gb, JPanel[] l, JLabel cst,
-                      JPanel bb){
+                      JPanel bb, JLabel crs, JLabel eks, JLabel chs, JLabel cms, JPanel gep, 
+                      JLabel gepoints, JLabel hsi, JLabel gameDescription){
         allPlacements = new ArrayList<>();
         allProjectiles = new ArrayList<>();
         allTowers  = new ArrayList<>();
@@ -665,6 +712,22 @@ public class CastleDefense {
         gameBox = gb;
         castle = cst;
         bottomBar = bb;
+        currentRoundStat = crs;
+        enemiesKilledStat = eks;
+        castleHealthStat = chs;
+        cashMadeStat = cms;
+        gameEndedPanel = gep;
+        gameEndedPoints = gepoints;
+        gameEndedHighscoreIndicator = hsi;
+        gameDescription.setText(
+            "<html><div style='text-align: center; width: 400px;'>"
+          + "Defend the castle! Don't let the drones hit the tower!<br>"
+          + "Open the menu to buy a tower and place it. Press the tower to upgrade it.<br>"
+          + "Each tower can upgrade its power, range, and ability.<br>"
+          + "<b>Good luck!</b>"
+          + "</div></html>"
+        );
+        
         for(int i = 0; i < 4; i++){
             TOWER1_RANGE_LIST[i] *= RANGE_SCALE_FACTOR;
             TOWER2_RANGE_LIST[i] *= RANGE_SCALE_FACTOR;
@@ -675,6 +738,7 @@ public class CastleDefense {
             TOWER3_POWER_LIST[i] *= POWER_SCALE_FACTOR;
             TOWER4_POWER_LIST[i] *= POWER_SCALE_FACTOR;
         }
+        
     }
     
     
@@ -682,7 +746,7 @@ public class CastleDefense {
 
     // Get Functions
     public boolean getSelectionMode() { return selectionMode; }
-    public String[] getAllDescriptions() { return allDescriptions; }
+    public String[] getAllDescriptions() { return ALL_DESCRIPTIONS; }
     
     
     
@@ -722,7 +786,14 @@ public class CastleDefense {
         enemiesLeftBar.setMaximum(100);
         enemiesLeftBar.setValue(0);
         currentRound = 0; 
+        cashMade = 0;
+        enemiesKilled = 0;
+        currentRoundStat.setText("0");
+        enemiesKilledStat.setText("0");
+        castleHealthStat.setText(Integer.toString(CASTLE_HEALTH) + "/" + Integer.toString(CASTLE_HEALTH));
+        cashMadeStat.setText("0");
         nextRoundButton.setVisible(true);
+        gameEndedHighscoreIndicator.setVisible(false);
     }
     
     
@@ -807,16 +878,23 @@ public class CastleDefense {
             
             // Update the UPGRADE MENU
             upgradeTower.setIcon(placementClicked.getIcon());                        // Updating the chosen tower
-            upgradeDescription.setText(allDescriptions[targetTower.getTowerType()-1]); // Update the description
+            upgradeDescription.setText(ALL_DESCRIPTIONS[targetTower.getTowerType()-1]); // Update the description
             cat1Progress.setValue(targetTower.getcat1Level() * 33);                  // Updating cat 1 
             cat2Progress.setValue(targetTower.getcat2Level() * 33);                  // Updating cat 2 
             cat3Progress.setValue(targetTower.getcat3Level() * 33);                  // Updating cat 3 
             savingPlacement = placementClicked;                                      // Saving the placement here so that we can use later
             
             
+            // Showing the prices in the UPGRADE MENU with the value of the NEXT upgrade!! (I had to make another function for this) UPDATE: wow this is complicated, but it just changes between the two possible messages
+            cat1Progress.setString(targetTower.getNextUpgradeCost(1) == -1 ? "FULLY UPGRADED" : "COST: $ " + Integer.toString(targetTower.getNextUpgradeCost(1)));
+            cat2Progress.setString(targetTower.getNextUpgradeCost(2) == -1 ? "FULLY UPGRADED" : "COST: $ " + Integer.toString(targetTower.getNextUpgradeCost(2)));
+            cat3Progress.setString(targetTower.getNextUpgradeCost(3) == -1 ? "FULLY UPGRADED" : "COST: $ " + Integer.toString(targetTower.getNextUpgradeCost(3)));
+            
+            
             // Update the MENU BUTTON and hide the MENU
             menuButton.setText("Close Upgrades"); // Change button to be a close button
             menu.setLocation(0,535);              // Hide in case its not
+            
             
             // Show the UPGRADE MENU
             upgradeMenu.setVisible(true);         // Show the upgrade menu
@@ -866,14 +944,22 @@ public class CastleDefense {
     public void catButtonClicked(JButton catButtonClicked){
         // Find out what category we are looking to upgrade
         int targetCategory = 0;
-        if(catButtonClicked == cat1Button)
+        JProgressBar targetProgressBar = null;
+        if(catButtonClicked == cat1Button){
             targetCategory = 1;
-        else if(catButtonClicked == cat2Button)
+            targetProgressBar = cat1Progress;
+        }
+        else if(catButtonClicked == cat2Button){
             targetCategory = 2;
-        else if(catButtonClicked == cat3Button)
+            targetProgressBar = cat2Progress;
+        }
+        else if(catButtonClicked == cat3Button){
             targetCategory = 3;
+            targetProgressBar = cat3Progress;
+        }
         
-        if(targetCategory == 0) return;  // Making sure that targetCategory was set correctly
+        if(targetCategory == 0 || targetProgressBar == null) 
+            return;  // Making sure that targetCategory and targetProgressBar was set correctly
         
         // Getting the tower that we are going to use
         Tower targetTower = getTower(savingPlacement);
@@ -885,8 +971,14 @@ public class CastleDefense {
         }
         
         // Upgrade was a success -> take money away !!!
-        cash -= targetTower.getCurrentUpgradeCost(targetCategory);
+        int cost = targetTower.getCurrentUpgradeCost(targetCategory);
+        cash -= cost;
         cashText.setText(Integer.toString(cash));
+        
+        // Updating the target progressbar with the targets new upgrade cost of the current category .... tripyyyy i know 
+        int nextUpgradeCost = targetTower.getNextUpgradeCost(targetCategory);                                       // Collecting the next cost, but if its maxed out, then this is -1
+        String stringForBar = (nextUpgradeCost == -1 ? "FULLY UPGRADED" : "COST: $ " + Integer.toString(nextUpgradeCost)); // Make the message of next cost OR make it show "FULLY UPGRADE"
+        targetProgressBar.setString(stringForBar);                                                                  // Set the string of the bar to this
     }
     
     
@@ -942,6 +1034,8 @@ public class CastleDefense {
         nextRoundButton.setVisible(false); // Hiding the button until next round
         enemiesLeftBar.setMaximum(currentRound*ENEMIES_PER_ROUND); // Setting the max as the enemies left to kill
         enemiesLeftBar.setValue(currentRound*ENEMIES_PER_ROUND);   // Filling up the bar to the max!
+        currentRoundStat.setText(Integer.toString(currentRound));
+        
         
         for(Tower currTower : allTowers) // Resetting the reload so that tower can shoot again
             currTower.resetReload();
@@ -960,19 +1054,26 @@ public class CastleDefense {
     // =================================================================================================================================================
     Timer roundClock = new Timer(ROUND_TICK, e->{
         
-        // Checking if any previous tick move killed the castle
+        // GAME HAS ENDED!! 
         if(castleHealth.getValue() <= 0){
-            ((Timer)e.getSource()).stop();
-            System.out.println("GAME HAS ENDED");
-            removeAllProjectiles();
-            removeAllEnemies(); 
+            ((Timer)e.getSource()).stop();        // Stop the timer
+            removeAllProjectiles();               // Remove all projectiles for next game
+            removeAllEnemies();                   // Remove all enemies for next game
+            removeAllLightning();                 // Removes any left lightning 
+            gameEndedPoints.setText(Integer.toString(cashMade)); // Setting the points to the cash that was made
+            if(scores_fromOutside.reportScore("CD", currentUser_fromOutside, gameEndedPoints.getText())){ // Reporting the scores
+                gameEndedHighscoreIndicator.setVisible(true); // This was false originally, but if we set a high score, let the user know
+            }
+            gameBox.setVisible(false);            // Hiding the game
+            gameEndedPanel.setVisible(true);      // Showing the game ended panel
         }
        
-        // If all enemies are currently dead, clear the board and start the pause section
+        // If all enemies are currently dead, clear the board and start the pause section -> ROUND HAS ENDED
         if(enemiesLeft() == 0){
             ((Timer)e.getSource()).stop();    // Stopping the timer
             removeAllEnemies(); 
             removeAllProjectiles();
+            removeAllLightning();
             nextRoundButton.setVisible(true); // Showing the next round button again
             enemiesLeftBar.setValue(0);       // Setting to no enemies left
         }
@@ -1069,8 +1170,8 @@ public class CastleDefense {
                         gameBox.setComponentZOrder(projectile3.getSprite(), 0);
                         bringMenusUp();
                     }
-                    default -> {
-                    }
+                    
+                    default -> {}
                 }
                 
             }
@@ -1085,22 +1186,23 @@ public class CastleDefense {
             Projectile currentProjectile = allProjectiles.get(i);
             
             // Moves the projectile and also sets the isActive to false if it already made impact
-            currentProjectile.update(allEnemies);
+            int enemiesKilledWithProjectile = currentProjectile.update(allEnemies); // Saving if this update killed enemies and how many
+            if(enemiesKilledWithProjectile > 0){                      // If it kiled enemies
+                int cashMadeThisUpdate = CASH_PER_KILL * enemiesKilledWithProjectile; // Finding out how much cash is made this update
+                cash += cashMadeThisUpdate;                           // Give cash to the amount of enemies killed
+                cashText.setText(Integer.toString(cash));             // Update the text on bottom right of the cash
+                cashMade += cashMadeThisUpdate;                       // Updating the running count of the cash made
+                cashMadeStat.setText(Integer.toString(cashMade));     // Updating the running count visually
+                enemiesKilled += enemiesKilledWithProjectile;         // Update the amount of enemies that were killed
+                enemiesKilledStat.setText(Integer.toString(enemiesKilled)); // Updating the stat visual amount
+            }
                     
             // If last move made us hit, then remove the projectile
             if (!currentProjectile.isActive()) {
-                // Check if this impact killed the target (by checking if the target is still alive)
-                if(currentProjectile.killedTarget()){
-                    cash += CASH_PER_KILL;
-                    cashText.setText(Integer.toString(cash)); // Updating the cash if we did go up in cash
-                }
                 gameBox.remove(currentProjectile.getSprite());
                 allProjectiles.remove(i);
                 i--;
             }
-            
-            // Checking if some lighning lines were made
-            
         }
         
         // Repainting everything!! just in case something is tripping up
@@ -1138,6 +1240,7 @@ public class CastleDefense {
             case 5 -> {
                 if(targetEnemy.getY()+ENEMY_SIZE >= castle.getY()){                          // If the object bottom is greater or equal to castle y, then it made impact
                     castleHealth.setValue(castleHealth.getValue() - targetEnemy.getDamage()); // Damaging the castle with this enemy health
+                    castleHealthStat.setText(Integer.toString(castleHealth.getValue()) + "/" + CASTLE_HEALTH); // Updating the castle health visually in the stat
                     targetEnemy.getHitBox().setVisible(false);                                // Hide it temp, we will remove it after this round ends
                     targetEnemy.kill();                                                       // Change the status to dead x.x
                     enemiesLeftBar.setValue(enemiesLeftBar.getValue() - 1);                   // Showing that there is one less enemy
@@ -1359,5 +1462,11 @@ public class CastleDefense {
             }
         });
         tempTimer.start();
+    }
+    
+    // Used to set up the current user and high score manager for this game
+    public void setScore_fromOutside(HighscoreManager inputScores, String inputUser){
+        scores_fromOutside = inputScores;
+        currentUser_fromOutside = inputUser;
     }
 }
