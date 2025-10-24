@@ -9,7 +9,7 @@ import java.util.Arrays;
 // ========================     T O W E R   C L A S S ================================
 // ===================================================================================
 class Tower{
-    private final JLabel placement;
+    private JLabel placement;
     private int towerType = 0;
     private int cat1Level = 0;
     private int cat2Level = 0;
@@ -71,6 +71,10 @@ class Tower{
     // Set Functions
     public void resetReload(){
         reloadCounter = 0;
+    }
+    
+    public void moveTower(JLabel newPlacement){
+        placement = newPlacement;
     }
     
     
@@ -276,6 +280,7 @@ class Projectile {
     private final int damage;
     private boolean active;
     private final JPanel gameBox;
+    private final JPanel rangeVisual; // Needed to push back to the top
     private final JPanel menu;        // Needed to push back to the top
     private final JPanel upgradeMenu; // Needed to push back to the top
     private final JPanel bottomBar;   // Needed to push back to the top
@@ -284,7 +289,7 @@ class Projectile {
     
     public Projectile(Tower shootingTowerInput, int towerTypeInput, Enemy targetInput, int damageInput, 
                       int stepinput, Color spriteColorInput, JPanel gameBoxInput, JPanel menuInput, 
-                      JPanel upgradeMenuInput, JPanel bottomBarInput) {
+                      JPanel upgradeMenuInput, JPanel bottomBarInput, JPanel rv) {
         target = targetInput;
         damage = damageInput;
         step = stepinput;
@@ -297,6 +302,7 @@ class Projectile {
         bottomBar = bottomBarInput;
         spriteColor = spriteColorInput;
         towerType = towerTypeInput;
+        rangeVisual = rv;
         
         sprite = new JLabel();
         sprite.setBounds(
@@ -394,12 +400,12 @@ class Projectile {
 
         // ========== Tower Type 1 & 3 ==========
         // Finding out the distance now
-        int dx, dy;
-        if(towerType == 1){
+        int dx = 0, dy = 0;
+        if(towerType == 1){                        // If tower 1, then move toward the target
             dx = target.getX() - sprite.getX();
             dy = target.getY() - sprite.getY();
         }
-        else{
+        else if(towerType ==3){                   // If tower3, then move toward the misslteTarget
             dx = missleTarget.x - sprite.getX();
             dy = missleTarget.y - sprite.getY();
         }
@@ -471,6 +477,7 @@ class Projectile {
 
         gameBox.add(explosion, 0);
         gameBox.setComponentZOrder(explosion, 0);
+        gameBox.setComponentZOrder(rangeVisual, 0);
         gameBox.setComponentZOrder(menu, 0);
         gameBox.setComponentZOrder(upgradeMenu, 0);
         gameBox.setComponentZOrder(bottomBar, 0);
@@ -514,6 +521,7 @@ class Projectile {
         linePanel.setBounds(panelX, panelY, panelWidth, panelHeight);
         gameBox.add(linePanel);
         gameBox.setComponentZOrder(linePanel, 0);
+        gameBox.setComponentZOrder(rangeVisual, 0);
         gameBox.setComponentZOrder(menu, 0);
         gameBox.setComponentZOrder(upgradeMenu, 0);
         gameBox.setComponentZOrder(bottomBar, 0);
@@ -535,11 +543,13 @@ class Projectile {
 // ===================================================================================
 public class CastleDefense {
     // MAIN GAME VARIABLES:
-    private final int ROUND_TICK = 5;           // Tick for the round
-    private final int STARTING_CASH = 20000;      // Starting money
-    private final int CASH_PER_KILL = 100;      // Amount of cash you get per kill     
-    private final int CASTLE_HEALTH = 1000;     // Amount of health the castle has
-    private final int FLASH_AMOUNT = 6;         // Amount of times the flash happens for the buttons
+    private final int ROUND_TICK = 5;             // Tick for the round
+    private final int STARTING_CASH = 400;        // Starting money
+    private final int CASH_PER_KILL = 100;        // Amount of cash you get per kill     
+    private final int CASTLE_HEALTH = 1000;       // Amount of health the castle has
+    private final int FLASH_AMOUNT = 6;           // Amount of times the flash happens for the buttons
+    private final int MOVE_COST_FACTOR = 4; // Amount by which the cost of the tower is divided to move a tower
+    private final int TOWER_SELL_FACTOR      = 2; // Amount by which teh cost of the tower is divided to give as refund
     
     
     // ENEMY VARIABLES: =========================================
@@ -565,7 +575,7 @@ public class CastleDefense {
     
     // REGULAR SHOOTER:
     private final int TOWER1_COST = 200;
-    private final int TOWER1_RELOAD_TICKS = 150;
+    private final int TOWER1_RELOAD_TICKS = 130;
     private final int TOWER1_PROJECTILE_SPACING = 50;
     private final int TOWER1_PROJECTILE_STEP = 5;
     private final int[] TOWER1_UPGRADE_COST = {0,200,400,600};
@@ -578,7 +588,7 @@ public class CastleDefense {
     // ELECTRIC SHOOTER:
     private final int TOWER2_COST = 400;
     private final int TOWER2_RELOAD_TICKS = 180;
-    private final int TOWER2_PROJECTILE_STEP = 8;
+    private final int TOWER2_PROJECTILE_STEP = 8;  // Technically is not used for this shooter type
     private final int[] TOWER2_UPGRADE_COST = {0,400,800,1000};
     private final int[] TOWER2_POWER_LIST = {1,2,3,4};
     private final int[] TOWER2_RANGE_LIST = {1,2,3,4};
@@ -588,9 +598,9 @@ public class CastleDefense {
     // MISSLE SHOOTER:
     private final int TOWER3_COST = 1000;
     private final int TOWER3_RELOAD_TICKS = 600;
-    private final int TOWER3_PROJECTILE_STEP = 8;
+    private final int TOWER3_PROJECTILE_STEP = 3;
     private final int[] TOWER3_UPGRADE_COST = {0,1000,1000,1000};
-    private final int[] TOWER3_POWER_LIST = {3,4,5,6};
+    private final int[] TOWER3_POWER_LIST = {3,4,5,10};
     private final int[] TOWER3_RANGE_LIST = {3,4,5,6};
     private final int[] TOWER3_ABILITY_LIST = {1,2,3,4};
     private final Color TOWER3_PROJECTILE_COLOR = new Color(255,100,0);  // Orange ish 
@@ -598,24 +608,27 @@ public class CastleDefense {
     
     // MILITARY BASE SHOOTER:
     private final int TOWER4_COST = 20000; 
-    private final int TOWER4_RELOAD_TICKS = 300;
+    private final int TOWER4_RELOAD_TICKS = 280;
     private final int[] TOWER4_UPGRADE_COST = {0,10000,10000,10000};
-    private final int[] TOWER4_POWER_LIST = {3,6,8,10};
+    private final int[] TOWER4_POWER_LIST = {8,10,12,16};
     private final int[] TOWER4_RANGE_LIST = {4,5,6,7};
-    private final int[] TOWER4_ABILITY_LIST = {1,2,3,4}; // Used in missle range, eletric hop, and shots made from regular shooter 
+    private final int[] TOWER4_ABILITY_LIST = {3,4,5,6}; // Used in missle range, eletric hop, and shots made from regular shooter 
     // NOTE: this tower does not need a color or speed, since its using above stats
     // ======================================================
     
     // Other Final Variables:
     private final String[] ALL_DESCRIPTIONS = 
                                {
-                                "<html>Regular Shooter: Shoots 1-4 shots at the enemy with greater speed than other towers!</html>", 
+                                "<html>Regular Shooter: Shoots 1-4 following bullets at the enemy with greater speed than other towers!</html>", 
                                 "<html>Shocking Tower: This tower takes a little bit longer, but it delivers a blow to 2-5 enemies!</html>", 
-                                "<html>Missle Launcher: Missles are heavy! These make a lot of damage, but take forever to get another ready to shoot.</html>", 
-                                "<html>Military Base: Previously named the '!Superman!', this thing alone can win against almost anything!</html>"
+                                "<html>Missle Launcher: A lot of boom! More damage, but missle has to lock onto location, not an enemy!</html>", 
+                                "<html>Military Base: Previously named the '!Superman!', this thing has 1 of each tower on this base!</html>"
                                };
-    private final Color buttonColor = new Color(202,157,123);
-    private final Color redColor    = new Color(255,51,0);
+    private final Color CAT_BUTTON_COLOR = new Color(202,157,123);
+    private final Color RED_COLOR    = new Color(255,51,0);
+    private final Color RANGE_VISUAL_COLOR = new Color(153,204,255);
+    private final Color MOVE_BUTTON_COLOR = new Color(184,125,80);
+    private final int RANGE_VISUAL_OPACITY = 150;
     
     
     // Holding Variables:
@@ -641,6 +654,7 @@ public class CastleDefense {
     private JButton cat1Button;
     private JButton cat2Button;
     private JButton cat3Button;
+    private JButton moveButton;
     private JProgressBar cat1Progress;
     private JProgressBar cat2Progress;
     private JProgressBar cat3Progress;
@@ -658,6 +672,7 @@ public class CastleDefense {
     private JLabel gameEndedHighscoreIndicator;
     private HighscoreManager scores_fromOutside;
     private String currentUser_fromOutside;
+    private JPanel rangeVisual;
     
     
     // Stats Variables
@@ -673,13 +688,13 @@ public class CastleDefense {
     
     // Dynamic Variables:
     private boolean selectionMode = false;
+    private boolean movingTowerMode = false;
     private int cash;
     private JButton savedButton;
     private int lastSentEnemy;
     private JButton flashingButton;
     private int flashingCounter;
     private int spawningEnemyHealth;
-    
     
     
     // Construction Function:
@@ -689,7 +704,7 @@ public class CastleDefense {
                       JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
                       JProgressBar elb, JButton nrb, JLabel ee, JPanel gb, JPanel[] l, JLabel cst,
                       JPanel bb, JLabel crs, JLabel eks, JLabel chs, JLabel cms, JPanel gep, 
-                      JLabel gepoints, JLabel hsi, JLabel gameDescription){
+                      JLabel gepoints, JLabel hsi, JLabel gameDescription,JButton umb){
         allPlacements = new ArrayList<>();
         allProjectiles = new ArrayList<>();
         allTowers  = new ArrayList<>();
@@ -718,6 +733,7 @@ public class CastleDefense {
         cat1Button = c1;
         cat2Button = c2;
         cat3Button = c3;
+        moveButton = umb;
         cat1Progress = c1p;
         cat2Progress = c2p;
         cat3Progress = c3p;
@@ -727,6 +743,7 @@ public class CastleDefense {
         nextRoundButton = nrb;
         enemyExample = ee;
         gameBox = gb;
+        gameBox.setLayout(null);
         castle = cst;
         bottomBar = bb;
         currentRoundStat = crs;
@@ -738,10 +755,13 @@ public class CastleDefense {
         gameEndedHighscoreIndicator = hsi;
         gameDescription.setText(
             "<html><div style='text-align: center; width: 400px;'>"
-          + "Defend the castle! Don't let the drones hit the tower!<br>"
+          + "Defend the castle! Enemies will get harder as rounds go!<br>"
           + "Open the menu to buy a tower and place it. Press the tower to upgrade it.<br>"
           + "Each tower can upgrade its power, range, and ability.<br>"
-          + "<b>Good luck!</b>"
+          + "Sell Refund = Tower Price/" + TOWER_SELL_FACTOR + "  "
+          + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+          + " Move Price = Tower Price/" + MOVE_COST_FACTOR + "<br>"
+          + "<b>-- Good luck! --</b>"
           + "</div></html>"
         );
         
@@ -755,6 +775,30 @@ public class CastleDefense {
             TOWER3_POWER_LIST[i] *= POWER_SCALE_FACTOR;
             TOWER4_POWER_LIST[i] *= POWER_SCALE_FACTOR;
         }
+        
+        
+        rangeVisual = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                int x1 = RANGE_VISUAL_COLOR.getRed();
+                int x2 = RANGE_VISUAL_COLOR.getGreen();
+                int x3 = RANGE_VISUAL_COLOR.getBlue();
+                g.setColor(new Color(x1,x2,x3,RANGE_VISUAL_OPACITY));
+                g.fillOval(0, 0, getWidth(), getHeight());
+            }
+        };
+
+        
+        // Temporaly putting it in away, we will show it later when we need to
+        rangeVisual.setBounds(-10, -10, 10, 10);
+        rangeVisual.setOpaque(false);
+        rangeVisual.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        gameBox.add(rangeVisual, 0);
+        gameBox.setComponentZOrder(rangeVisual, 0);
+        bringMenusUp();
+        gameBox.repaint();
         
     }
     
@@ -786,12 +830,14 @@ public class CastleDefense {
         
         // Reseting Variables
         cash = STARTING_CASH; 
-        buyTower1Button.setBackground(buttonColor);
-        buyTower2Button.setBackground(buttonColor);
-        buyTower3Button.setBackground(buttonColor);
-        buyTower4Button.setBackground(buttonColor);
+        buyTower1Button.setBackground(CAT_BUTTON_COLOR);
+        buyTower2Button.setBackground(CAT_BUTTON_COLOR);
+        buyTower3Button.setBackground(CAT_BUTTON_COLOR);
+        buyTower4Button.setBackground(CAT_BUTTON_COLOR);
+        moveButton.setBackground(MOVE_BUTTON_COLOR);
         menu.setLocation(0,535); 
         selectionMode = false;
+        movingTowerMode = false;
         menuButton.setText("Open Menu");
         cashText.setText(Integer.toString(cash));
         castleHealth.setMaximum(CASTLE_HEALTH);
@@ -812,12 +858,20 @@ public class CastleDefense {
         nextRoundButton.setVisible(true);
         gameEndedHighscoreIndicator.setVisible(false);
         spawningEnemyHealth = ENEMY_STARTING_HEALTH;
+        rangeVisual.setBounds(-10,-10,10,10); // Moving the location we KNOW is outside
     }
     
     
     
     
+    
     public void menuButtonClicked(){
+        // Any time we click on this, we should get rid of the rangeVisual no matter what
+        rangeVisual.setBounds(-10,-10,10,10);
+        
+        
+        
+        // ===================== IF WE ARE IN SELECTION MODE ==============================
         // If we are currently in selection mode, then this click means cancel instead
         if(selectionMode){
             selectionMode = false;            // Canceling the selection mode
@@ -827,6 +881,18 @@ public class CastleDefense {
             return;                           // Getting out so user can go back into menu as needed
         }
         
+        // ===================== IF WE ARE IN MOVING TOWER MODE ============================
+        // If we arre currently in moving tower mode, this this means to cancel the move 
+        if(movingTowerMode){
+            movingTowerMode = false;
+            menuButton.setText("Close Upgrades");
+            upgradeMenu.setVisible(true);
+            highlightPlacement(null);
+            return;
+        }
+        
+        
+        // ===================== IF THE UPGRADE MENU IS SHOWING ==============================
         if(menuButton.getText().equals("Close Upgrades")){
             upgradeMenu.setVisible(false);
             menuButton.setText("Open Menu");
@@ -834,14 +900,15 @@ public class CastleDefense {
             return;
         }
         
+        
+        
+        // ===================== REGULAR MENU OPEN AND CLOSING =--=============================
         // If the menu is currently CLOSED, we are OPENING it now
         if(menuButton.getText().equals("Open Menu")){
             upgradeMenu.setVisible(false);       // Hhiding the upgrade menu in case its open
             menuButton.setText("Close Menu");    // Change the button text
             menu.setLocation(0, 40);
         }
-        
-        
         // If the menu is currently OPENED, we are now CLOSING
         else{
             menuButton.setText("Open Menu");     // Change the button text
@@ -862,34 +929,259 @@ public class CastleDefense {
             case 4 -> { cost = TOWER4_COST; }
         }
         
-        // If the user has enough money to buy this tower
-        if(cash >= cost){
-            selectionMode = true;             // Turning on the selection mode
-            savedButton = clickedButton;      // Saving this button so we know what tower was bought
-            menuButton.setText("Cancel Buy"); // Changing this button to be a cancel button
-            menu.setLocation(0,535);          // Hiding the menu from the user
+        // If user does not have enough cash to buy this, flash the button and return
+        if(cost > cash){
+            flashButton(clickedButton,CAT_BUTTON_COLOR);       
+            return;
         }
-        // The user does NOT have enough money to buy this tower, flash the button with red
-        else{
-            flashButton(clickedButton);       // FLashing the button to let user know they can't buy this
+        
+        
+        // User had enough money, go ahead and set the next steps up
+        selectionMode = true;             // Turning on the selection mode
+        savedButton = clickedButton;      // Saving this button so we know what tower was bought
+        menuButton.setText("Cancel Buy"); // Changing this button to be a cancel button
+        menu.setLocation(0,535);          // Hiding the menu from the user
+    }
+    
+    
+    public void upgradeMoveButtonClicked(){
+        if(!upgradeMenu.isVisible())
+            return;
+        
+        // First check if user has enough money to move this piece
+        Tower targetTower = getTower(savingPlacement);
+        int cost = getCostOfTower(targetTower)/MOVE_COST_FACTOR;   // To Move a tower, it cost this much
+       
+        
+        // If user does not have enough money, flash this button
+        if(cost > cash){
+            flashButton(moveButton, MOVE_BUTTON_COLOR);
+            return;
         }
+        
+        // Now set the mode to movingtowermode and hide the upgrade menu so we can see all spaces
+        upgradeMenu.setVisible(false);
+        menuButton.setText("Cancel Move");
+        movingTowerMode = true;
+    }
+    
+    
+    
+    public void upgradeSellButtonClicked(){
+        // Checking if the upgrade menu is visible
+        if(!upgradeMenu.isVisible())
+            return;
+        
+        Tower targetTower = getTower(savingPlacement);              // Getting the tower object
+        int refund = getCostOfTower(targetTower)/TOWER_SELL_FACTOR; // Getting the amount that is needed to be refunded
+        
+        
+        // If for some reason, the tower type was 0 or something else, then just return
+        if(refund == -1) return;
+        
+        
+        // Giving refund and showing in the amount had
+        cash += refund;
+        cashText.setText(Integer.toString(cash));
+        
+        
+        // Reseting the placement cursor and icon and removing from the list
+        savingPlacement.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));   // Resetting the cursor
+        savingPlacement.setIcon(null);                                  // Resetting the icon to nothing
+        allTowers.remove(allTowers.indexOf(getTower(savingPlacement))); // Removing the tower from the list of towers
+        
+        
+        // Hiding the upgrade panel -> this should automatically do all of the hiding
+        menuButtonClicked();
     }
     
     
     
     
+    
+    public void catButtonClicked(JButton catButtonClicked){
+        // Find out what category we are looking to upgrade
+        int targetCategory = 0;
+        JProgressBar targetProgressBar = null;
+        if(catButtonClicked == cat1Button){
+            targetCategory = 1;
+            targetProgressBar = cat1Progress;
+        }
+        else if(catButtonClicked == cat2Button){
+            targetCategory = 2;
+            targetProgressBar = cat2Progress;
+        }
+        else if(catButtonClicked == cat3Button){
+            targetCategory = 3;
+            targetProgressBar = cat3Progress;
+        }
+        
+        if(targetCategory == 0 || targetProgressBar == null) 
+            return;  // Making sure that targetCategory and targetProgressBar was set correctly
+        
+        // Getting the tower that we are going to use
+        Tower targetTower = getTower(savingPlacement);
+        
+        // Upgrading the tower -> if the statement is false, then user cannot afford it OR its already maxed out
+        if(!targetTower.upgradeCategory(targetCategory, cash)){
+            flashButton(catButtonClicked, CAT_BUTTON_COLOR); // Flash Button
+            return;                        // Leave Function
+        }
+        
+        // Upgrade was a success -> take money away !!!
+        int cost = targetTower.getCurrentUpgradeCost(targetCategory);
+        cash -= cost;
+        cashText.setText(Integer.toString(cash));
+        
+        // Updating the target progressbar with the targets new upgrade cost of the current category .... tripyyyy i know 
+        int nextUpgradeCost = targetTower.getNextUpgradeCost(targetCategory);                                       // Collecting the next cost, but if its maxed out, then this is -1
+        String stringForBar = (nextUpgradeCost == -1 ? "FULLY UPGRADED" : "COST: $ " + Integer.toString(nextUpgradeCost)); // Make the message of next cost OR make it show "FULLY UPGRADE"
+        targetProgressBar.setString(stringForBar);                                                                  // Set the string of the bar to this
+    }
+    
+    
+    
+    
+    public void highlightPlacement(JLabel targetPlacement){
+        
+        // ======================== IF "NULL" THEN JUST HIDE EVERYTHING ============================
+        // If what we wanted to do was reset and unhighlight everything
+        if(targetPlacement == null){
+            rangeVisual.setBounds(-10,-10,10,10);
+            for(JLabel placement: allPlacements)
+                placement.setBorder(null);
+            return;
+        }
+        
+        
+        // =============================== IN MOVING TOWER MODE ========================================
+        
+        if(movingTowerMode){
+            // If we are hovering over a tower, clear the visuals of everything
+            if(targetPlacement.getIcon() != null){
+                highlightPlacement(null);
+                return;
+            }
+            Point center;
+            int radius;
+            for(JLabel placement : allPlacements){
+                if(placement == targetPlacement && placement.getIcon() == null){
+                    placement.setBorder(BorderFactory.createSoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+                    // Saving the center of this placement to draw the range
+                    center = new Point(placement.getX()+placement.getWidth()/2,
+                                       placement.getY()+placement.getHeight()/2);
+
+                    // Saving the range of the tower we are buying to draw the range
+                    radius = getTower(savingPlacement).getRange();
+                    
+                    // Drawing the range now that we have everything we need
+                    rangeVisual.setBounds(center.x - radius, center.y-radius, radius*2, radius*2);
+                }
+                else{
+                    placement.setBorder(null);
+                }
+            }
+        }
+        
+        
+        
+        
+        // ================================== IN SELECTION MODE ====================================
+        
+        else if(selectionMode){
+            // If we are hovering over a tower, clear the visuals of everything
+            if(targetPlacement.getIcon() != null){
+                highlightPlacement(null);
+                return;
+            }
+            // Give selected panel the BORDER and the RANGE VISUAL, everything else set to NORMAL
+            Point center;
+            int radius;
+            for(JLabel placement : allPlacements){
+                if(placement == targetPlacement && placement.getIcon() == null){
+                    placement.setBorder(BorderFactory.createSoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+                    // Saving the center of this placement to draw the range
+                    center = new Point(placement.getX()+placement.getWidth()/2,
+                                       placement.getY()+placement.getHeight()/2);
+
+                    // Saving the range of the tower we are buying to draw the range
+                    if(savedButton == buyTower1Button) 
+                        radius = TOWER1_RANGE_LIST[0];
+                    else if(savedButton == buyTower2Button)
+                        radius = TOWER2_RANGE_LIST[0];
+                    else if(savedButton == buyTower3Button)
+                        radius = TOWER3_RANGE_LIST[0];
+                    else 
+                        radius = TOWER4_RANGE_LIST[0];
+
+                    // Drawing the range now that we have everything we need
+                    rangeVisual.setBounds(center.x - radius, center.y-radius, radius*2, radius*2);
+                }
+                else{
+                    placement.setBorder(null);
+                }
+            }
+        }
+        
+        
+        
+        // ================================ NOT IN SELECTION MODE ===============================
+        else{
+            // Hovering over a tower -> show the range of the tower
+            if(targetPlacement.getIcon() != null){
+                Point center = new Point(targetPlacement.getX() + targetPlacement.getWidth()/2,
+                                         targetPlacement.getY() + targetPlacement.getHeight()/2);
+                int towerRange = getTower(targetPlacement).getRange();
+                rangeVisual.setBounds(center.x-towerRange, center.y-towerRange, towerRange*2, towerRange*2);
+            }
+
+            // Hovering over a NON-TOWER placement, hide the range visual
+            else{
+               rangeVisual.setBounds(-10,-10,10,10);
+            }
+        }
+    }
+    
+    
     public void placementClicked(JLabel placementClicked){
-        // Check if we are in selection mode && the border is showing selected
-        // --> Then user wants to place a tower here
+        
+        // ================= VALID SELECTION MODE CHOICE ========================
         if(selectionMode && placementClicked.getBorder() != null){
             buyTowerOfficially(savedButton, placementClicked);
+            selectionMode = false;
             return;
-        }        
-
-        // Check if the placement already has an icon, if so, user is trying to open upgrade menu
-        // NOTE: also make sure that we are NOT in selection mode
-        // SHOW UPGRADE MENU!!!!
-        if(placementClicked.getIcon() != null && !selectionMode){
+        }    
+        
+        // ================= VALID MOVING TOWER MODE  CHOICE =======================
+        if(movingTowerMode && placementClicked.getBorder() != null){
+            // Collecting information with information we have
+            JLabel oldPlacement = savingPlacement;
+            JLabel newPlacement = placementClicked;
+            Tower movingTower = getTower(oldPlacement);
+            
+            
+            // Moving the tower
+            newPlacement.setIcon(oldPlacement.getIcon()); // Setting new placement with the icon of the old
+            oldPlacement.setIcon(null);                   // Setting the old placement with no icon
+            movingTower.moveTower(placementClicked);      // Change the placement we have saved inside tower
+            movingTowerMode = false;                      // Go back to regular mode
+            
+            // Showing again the upgrade menu of this tower
+            savingPlacement = newPlacement;               // Changing this to the new placement so that upgradeMenu can work
+            upgradeMenu.setVisible(true);                 // All data here should work now
+            menuButton.setText("Close Upgrades");
+            
+            // Charging the custoemr
+            int cost = getCostOfTower(movingTower);
+            cash -= cost;
+            cashText.setText(Integer.toString(cash));
+        }
+        
+        
+        // =================== TOWER CLICKCED --> OPENING UPGRADES MENU =====================================
+        else if(placementClicked.getIcon() != null && !selectionMode && !movingTowerMode){
             Tower targetTower = getTower(placementClicked);          // Getting the tower using the placementClicked
             if(targetTower == null) return;                          // If this is null, then we just return, better safe than sorry
             
@@ -919,99 +1211,6 @@ public class CastleDefense {
         }
     }
     
-    public void upgradeSellButtonClicked(){
-        // Checking if the upgrade menu is visible
-        if(!upgradeMenu.isVisible())
-            return;
-        
-        Tower targetTower = getTower(savingPlacement); // Getting the tower object
-        int towerType = targetTower.getTowerType();    // Getting the tower type to get the refund cost
-        int refund;
-        switch(towerType){
-            case 1 -> refund = TOWER1_COST/2;
-            case 2 -> refund = TOWER2_COST/2;
-            case 3 -> refund = TOWER3_COST/2;
-            case 4 -> refund = TOWER4_COST/2;
-            default -> refund = -1;
-        }
-        
-        
-        // If for some reason, the tower type was 0 or something else, then just return
-        if(refund == -1) return;
-        
-        
-        // Giving refund and showing in the amount had
-        cash += refund;
-        cashText.setText(Integer.toString(cash));
-        
-        
-        // Reseting the placement cursor and icon and removing from the list
-        savingPlacement.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));   // Resetting the cursor
-        savingPlacement.setIcon(null);                                  // Resetting the icon to nothing
-        allTowers.remove(allTowers.indexOf(getTower(savingPlacement))); // Removing the tower from the list of towers
-        
-        
-        // Hiding the upgrade panel -> this should automatically do all of the hiding
-        menuButtonClicked();
-    }
-    
-    
-
-    
-    
-    public void catButtonClicked(JButton catButtonClicked){
-        // Find out what category we are looking to upgrade
-        int targetCategory = 0;
-        JProgressBar targetProgressBar = null;
-        if(catButtonClicked == cat1Button){
-            targetCategory = 1;
-            targetProgressBar = cat1Progress;
-        }
-        else if(catButtonClicked == cat2Button){
-            targetCategory = 2;
-            targetProgressBar = cat2Progress;
-        }
-        else if(catButtonClicked == cat3Button){
-            targetCategory = 3;
-            targetProgressBar = cat3Progress;
-        }
-        
-        if(targetCategory == 0 || targetProgressBar == null) 
-            return;  // Making sure that targetCategory and targetProgressBar was set correctly
-        
-        // Getting the tower that we are going to use
-        Tower targetTower = getTower(savingPlacement);
-        
-        // Upgrading the tower -> if the statement is false, then user cannot afford it OR its already maxed out
-        if(!targetTower.upgradeCategory(targetCategory, cash)){
-            flashButton(catButtonClicked); // Flash Button
-            return;                        // Leave Function
-        }
-        
-        // Upgrade was a success -> take money away !!!
-        int cost = targetTower.getCurrentUpgradeCost(targetCategory);
-        cash -= cost;
-        cashText.setText(Integer.toString(cash));
-        
-        // Updating the target progressbar with the targets new upgrade cost of the current category .... tripyyyy i know 
-        int nextUpgradeCost = targetTower.getNextUpgradeCost(targetCategory);                                       // Collecting the next cost, but if its maxed out, then this is -1
-        String stringForBar = (nextUpgradeCost == -1 ? "FULLY UPGRADED" : "COST: $ " + Integer.toString(nextUpgradeCost)); // Make the message of next cost OR make it show "FULLY UPGRADE"
-        targetProgressBar.setString(stringForBar);                                                                  // Set the string of the bar to this
-    }
-    
-    
-    public void highlightPlacement(JLabel targetPlacement){
-    // Give the target the border and set the other borders to NULL
-    // (do not highlight the labels that already have a tower)
-    for(JLabel placement : allPlacements){
-        if(placement == targetPlacement && placement.getIcon() == null)
-            placement.setBorder(BorderFactory.createSoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        else
-            placement.setBorder(null);
-        }
-    }
-    
-    
     // NEXT ROUND BUTTON ===================================================================================
     // THE FUN PART!! well almost lmao, here is when the user starts the match!!
     // NOTE: This is also the first time that the user starts the game so keep watch at that on how this reacts 
@@ -1033,7 +1232,7 @@ public class CastleDefense {
             gameBox.repaint();                             // Repainting the gamebox
             
             // Making object
-            if((currentRound % 30 == 0) && currentRound != 0)
+            if((currentRound % 20 == 0) && currentRound != 0)
                 spawningEnemyHealth *= 2;
             Enemy sendingEnemy = new  Enemy(sendingHitBox, currentRound, 
                                             spawningEnemyHealth, ENEMY_HEALTH_INCREASE, 
@@ -1045,9 +1244,7 @@ public class CastleDefense {
         }
         
         // Moving up the menu and upgrade menu so taht we can see it above the enemies
-        gameBox.setComponentZOrder(menu, 0);
-        gameBox.setComponentZOrder(upgradeMenu, 0);
-        gameBox.setComponentZOrder(bottomBar, 0);
+        bringMenusUp();
         
         allEnemies.get(0).setIsMoving();   // Setting the first enemy to moving so it can go
         lastSentEnemy = 0;                 // Setting to 1 so that we can send the next one
@@ -1135,7 +1332,7 @@ public class CastleDefense {
                     // Tower 1 shoots the <ability> amount of projectiles
                     case 1 -> {
                         Projectile currPro = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
-                                tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
+                                tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
                         allProjectiles.add(currPro);
                         gameBox.add(currPro.getSprite());
                         gameBox.setComponentZOrder(currPro.getSprite(), 0);
@@ -1147,7 +1344,7 @@ public class CastleDefense {
                                 ((Timer)x.getSource()).stop();
                                 if(tower.getCurrentTarget() != null){
                                     Projectile timedProjectile = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
-                                            tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
+                                            tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
                                     allProjectiles.add(timedProjectile);
                                     gameBox.add(timedProjectile.getSprite());
                                     gameBox.setComponentZOrder(timedProjectile.getSprite(), 0);
@@ -1161,7 +1358,7 @@ public class CastleDefense {
                     case 2, 3 -> {
                         int projectileStep = (towerType == 2 || towerType == 4 ? TOWER2_PROJECTILE_STEP : TOWER3_PROJECTILE_STEP);
                         Projectile newProjectile = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), projectileStep,
-                                tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar);
+                                tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
                         allProjectiles.add(newProjectile);
                         gameBox.add(newProjectile.getSprite());
                         gameBox.setComponentZOrder(newProjectile.getSprite(), 0);
@@ -1172,22 +1369,22 @@ public class CastleDefense {
                     case 4 -> {
                         // Making projectile for regular (JSUT 1 FOR THIS TOWER)
                         Projectile projectile1 = new Projectile(tower, 1, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
-                                TOWER1_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar);
+                                TOWER1_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
                         // Making the projectile for shocking tower
                         Projectile projectile2 = new Projectile(tower, 2, tower.getCurrentTarget(), tower.getPower(), TOWER2_PROJECTILE_STEP,
-                                TOWER2_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar);
+                                TOWER2_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
                         // Making the projectile for the missle tower
                         Projectile projectile3 = new Projectile(tower, 3, tower.getCurrentTarget(), tower.getPower(), TOWER3_PROJECTILE_STEP,
-                                TOWER3_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar);
+                                TOWER3_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
                         allProjectiles.add(projectile1);
                         allProjectiles.add(projectile2);
                         allProjectiles.add(projectile3);
                         gameBox.add(projectile1.getSprite());
                         gameBox.add(projectile2.getSprite());
                         gameBox.add(projectile3.getSprite());
-                        gameBox.setComponentZOrder(projectile1.getSprite(), 0);
                         gameBox.setComponentZOrder(projectile2.getSprite(), 0);
                         gameBox.setComponentZOrder(projectile3.getSprite(), 0);
+                        gameBox.setComponentZOrder(projectile1.getSprite(), 0); // Addding this one last so that it can be the upmost one
                         bringMenusUp();
                     }
                     
@@ -1367,6 +1564,7 @@ public class CastleDefense {
     }
     
     private void bringMenusUp(){
+        gameBox.setComponentZOrder(rangeVisual, 0);
         gameBox.setComponentZOrder(menu, 0);
         gameBox.setComponentZOrder(upgradeMenu, 0);
         gameBox.setComponentZOrder(bottomBar, 0);
@@ -1380,7 +1578,23 @@ public class CastleDefense {
         return null; // Just in case
     }
     
+    private int getCostOfTower(Tower target){
+        switch(target.getTowerType()){
+            case 1 -> {return TOWER1_COST;}
+            case 2 -> {return TOWER2_COST;}
+            case 3 -> {return TOWER3_COST;}
+            case 4 -> {return TOWER4_COST;}
+            default ->{
+                System.out.println("ERROR AT: getCostOfTower():");
+                return -1;
+            }
+        }
+    }
+    
     private void buyTowerOfficially(JButton buttonOfTower, JLabel placementClicked){
+        // Remove the range visual that we made when we were hovering over things
+        rangeVisual.setBounds(-10,-10,10,10);
+        
         // Setting up data to send into new object to send into "allTowers"
         int cost = 0;
         int reloadTime = 0;
@@ -1453,7 +1667,6 @@ public class CastleDefense {
         placementClicked.setIcon(towerBought.getIcon());
         placementClicked.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Setting the hand cursor so use knows to click later
         placementClicked.setBorder(null);
-        selectionMode = false;
         
         // Closing the menu
         menuButton.setText("Open Menu");
@@ -1464,21 +1677,24 @@ public class CastleDefense {
     }
     
     
-    private void flashButton(JButton targetButton){
+    
+    
+    
+    private void flashButton(JButton targetButton, Color regularColor){
         flashingButton = targetButton;  // Saving the target button so lambda can use it 
         flashingCounter = 0;            // Resetting the counter to 0
-        flashingButton.setBackground(redColor); // First flash to feel instant
+        flashingButton.setBackground(RED_COLOR); // First flash to feel instant
         Timer tempTimer = new Timer(100, e->{
             flashingCounter++;                               // Increasing count
             if(flashingCounter >= FLASH_AMOUNT){                        // If >6, then stop and set back to normal
                 ((Timer)e.getSource()).stop();
-                flashingButton.setBackground(buttonColor);
+                flashingButton.setBackground(regularColor);
             }
             else{                                            // If not, then continue bouncing
                 if(flashingCounter % 2 != 0)
-                    flashingButton.setBackground(buttonColor);
+                    flashingButton.setBackground(regularColor);
                 else
-                    flashingButton.setBackground(redColor);
+                    flashingButton.setBackground(RED_COLOR);
             }
         });
         tempTimer.start();
