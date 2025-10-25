@@ -212,19 +212,17 @@ class Tower{
 class Enemy{
     private final JLabel hitBox; // This is the actual enemy itself
     private int health;          // Amount of health this object has 
-    private final int moneyDrop;       // Amount of money the obeject drops
-    private final int damage;          // Amount of damage the object can make
+    private final int damage;    // Amount of damage the object can make
     private boolean isMoving;    // This is used by the clock to know if we should be moving this object
     private JPanel line;         // The line that the enemy is currently on
     private boolean isAlive;     // To know if this enemy is alive, that way we can destroy after rounds intead of during rounds
     
     // Constructor:
-    public Enemy(JLabel hitBoxInput, int currentRound, int startingHealth, int healthIncrease, int startingDrop, int dropIncrese,
+    public Enemy(JLabel hitBoxInput, int currentRound, int startingHealth, int healthIncrease,
                  int startingDamage, int damageIncrease, JPanel lineInput){
         currentRound--; // Decreasing in case we are in round 1, we need to upgrade nothing
         hitBox = hitBoxInput;
         health = startingHealth + (healthIncrease * currentRound);
-        moneyDrop = startingDrop + (dropIncrese * currentRound);
         damage = startingDamage + (damageIncrease * currentRound);
         isMoving = false;
         line = lineInput;
@@ -235,7 +233,6 @@ class Enemy{
     public int getX(){ return hitBox.getX(); }
     public int getY(){ return hitBox.getY(); }
     public int getHealth() { return health; }
-    public int getMoneyDrop() { return moneyDrop; }
     public int getDamage() { return damage; }
     public boolean getIsMoving() { return isMoving; } 
     public JPanel getLine() { return line; } 
@@ -543,7 +540,8 @@ class Projectile {
 // ===================================================================================
 public class CastleDefense {
     // MAIN GAME VARIABLES:
-    private final int ROUND_TICK = 5;             // Tick for the round
+    private final int ROUND_TICK = 7;             // Tick for the round
+    private final int ROUND_FAST_TICK = 1;        // Tifk for the round if the fast foward button is on
     private final int STARTING_CASH = 400;        // Starting money
     private final int CASH_PER_KILL = 100;        // Amount of cash you get per kill     
     private final int CASTLE_HEALTH = 1000;       // Amount of health the castle has
@@ -555,8 +553,6 @@ public class CastleDefense {
     // ENEMY VARIABLES: =========================================
     private final int ENEMY_STARTING_HEALTH = 100;// Starting health of the enemy
     private final int ENEMY_HEALTH_INCREASE = 20; // Amount of more health per round
-    private final int ENEMY_STARTING_DROP = 100;  // Amount of money the enemy drops in beginning
-    private final int ENEMY_DROP_INCREASE = 100;  // Amount more money per round the enemy drops
     private final int ENEMY_STARTING_DAMAGE = 10; // Amount of damage the enemy does on round 1
     private final int ENEMY_DAMAGE_INCREASE = 1;  // Amount of damage the enemy does every round after
     private final int ENEMIES_PER_ROUND = 2;      // How many enemies are made per round -> Round=2 * enemies_per_round=2 = 4 enemies
@@ -609,10 +605,10 @@ public class CastleDefense {
     // MILITARY BASE SHOOTER:
     private final int TOWER4_COST = 20000; 
     private final int TOWER4_RELOAD_TICKS = 280;
-    private final int[] TOWER4_UPGRADE_COST = {0,10000,10000,10000};
+    private final int[] TOWER4_UPGRADE_COST = {0,10000,12000,20000};
     private final int[] TOWER4_POWER_LIST = {8,10,12,16};
-    private final int[] TOWER4_RANGE_LIST = {4,5,6,7};
-    private final int[] TOWER4_ABILITY_LIST = {3,4,5,6}; // Used in missle range, eletric hop, and shots made from regular shooter 
+    private final int[] TOWER4_RANGE_LIST = {4,5,6,9};
+    private final int[] TOWER4_ABILITY_LIST = {3,4,5,9}; // Used in missle range, eletric hop, and shots made from regular shooter 
     // NOTE: this tower does not need a color or speed, since its using above stats
     // ======================================================
     
@@ -669,10 +665,14 @@ public class CastleDefense {
     private JPanel bottomBar;
     private JPanel gameEndedPanel;
     private JLabel gameEndedPoints;
+    private JLabel totalEnemiesKilled;
+    private JLabel roundDiedAt;
+    private JLabel totalCashMade;
     private JLabel gameEndedHighscoreIndicator;
     private HighscoreManager scores_fromOutside;
     private String currentUser_fromOutside;
     private JPanel rangeVisual;
+    
     
     
     // Stats Variables
@@ -695,8 +695,7 @@ public class CastleDefense {
     private JButton flashingButton;
     private int flashingCounter;
     private int spawningEnemyHealth;
-    private boolean tickInProgress = false; // VERY IMPORTANT to prevent tick within tick (in case users computer is on the slower side)
-    
+    private boolean fastFoward = false;
     
     // Construction Function:
     public void setUp(JLabel[] aP, JButton bt1, JButton bt2, JButton bt3, JButton bt4, 
@@ -705,7 +704,9 @@ public class CastleDefense {
                       JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
                       JProgressBar elb, JButton nrb, JLabel ee, JPanel gb, JPanel[] l, JLabel cst,
                       JPanel bb, JLabel crs, JLabel eks, JLabel chs, JLabel cms, JPanel gep, 
-                      JLabel gepoints, JLabel hsi, JLabel gameDescription,JButton umb){
+                      JLabel gepoints, JLabel hsi, JLabel gameDescription,JButton umb,
+                      JLabel rda, JLabel tek, JLabel tcm){
+        
         allPlacements = new ArrayList<>();
         allProjectiles = new ArrayList<>();
         allTowers  = new ArrayList<>();
@@ -754,6 +755,9 @@ public class CastleDefense {
         gameEndedPanel = gep;
         gameEndedPoints = gepoints;
         gameEndedHighscoreIndicator = hsi;
+        roundDiedAt = rda;
+        totalEnemiesKilled = tek;
+        totalCashMade = tcm;
         gameDescription.setText(
             "<html><div style='text-align: center; width: 400px;'>"
           + "Defend the castle! Enemies will get harder as rounds go!<br>"
@@ -811,6 +815,8 @@ public class CastleDefense {
     public String[] getAllDescriptions() { return ALL_DESCRIPTIONS; }
     
     
+    // Set Functions
+    public void setFastFoward(boolean f) { fastFoward = f; }
     
     
     // Public Functions:
@@ -860,7 +866,7 @@ public class CastleDefense {
         gameEndedHighscoreIndicator.setVisible(false);
         spawningEnemyHealth = ENEMY_STARTING_HEALTH;
         rangeVisual.setBounds(-10,-10,10,10); // Moving the location we KNOW is outside
-        tickInProgress = false; // Setting back to no
+        fastFoward = false;
     }
     
     
@@ -1227,28 +1233,44 @@ public class CastleDefense {
         // Making the enemy harder by giving them more health
         if(currentRound == 15){
             spawningEnemyHealth = spawningEnemyHealth  * 2;
-            System.out.println("--------------- First Upgrade ---------------");
+            System.out.println("--------------- DOUBLE HEALHT ---------------");
+            System.out.println(" --------- Next Upgrade at Round 30 --------");
         }
         else if(currentRound >= 30 && currentRound < 50 && (currentRound % 5 == 0)){
             spawningEnemyHealth = spawningEnemyHealth  * 2;
-            System.out.println("--------------- Second Upgrade ---------------");
+            System.out.println("--------------- DOUBLE HEALHT ---------------");
+            String nextRound;
+            if     (currentRound < 35) nextRound = "35";
+            else if(currentRound < 40) nextRound = "40";
+            else if(currentRound < 45) nextRound = "45";
+            else                       nextRound = "50";
+            System.out.println(" --------- Next Upgrade at Round " + nextRound + " --------");
         }
         else if(currentRound >= 50 && currentRound < 65){
             spawningEnemyHealth = spawningEnemyHealth  * 2;
-            System.out.println("--------------- Third Upgrade ---------------");
+            System.out.println("--------------- DOUBLE HEALHT ---------------");
+            System.out.println(" --------- Next Upgrade at Round " + Integer.toString(currentRound+1) + " --------");
         }
         else if(currentRound >= 65){
             int multiple = currentRound - (60);
             spawningEnemyHealth = spawningEnemyHealth * multiple;
-            System.out.println("--------------- SUPER Upgrade ---------------");
+            System.out.println("------------ SUPER SUPER Upgrade ---------------");
+            System.out.println(" --------- Next Upgrade at Round " + Integer.toString(currentRound+1) + " --------");
+        
         }
+        
+        String spacing = "           ";
+        System.out.print("Round " + currentRound + " -> ");
+        System.out.println("Amount: " + Integer.toString(currentRound*ENEMIES_PER_ROUND));
+        System.out.println(spacing + "Health: " + Integer.toString(spawningEnemyHealth + (currentRound*ENEMY_HEALTH_INCREASE)));
+        System.out.println(spacing + "Damage: " + Integer.toString(ENEMY_STARTING_DAMAGE + (currentRound*ENEMY_DAMAGE_INCREASE)));
         
         // Adding the amount of needed enemies
         for(int i = 0; i < (currentRound*ENEMIES_PER_ROUND); i++){
-            JLabel sendingHitBox = new JLabel(); // ERROR: we need to set its parent to game box!!
+            JLabel sendingHitBox = new JLabel();                     // ERROR: we need to set its parent to game box!!
             sendingHitBox.setLocation(ENEMY_SPAWN_X, ENEMY_SPAWN_Y); // Moving the object to the spawn location
-            sendingHitBox.setSize(ENEMY_SIZE, ENEMY_SIZE);  // Setting the hit boxes to fit on in the size of the path 
-            sendingHitBox.setIcon(enemyExample.getIcon()); // Setting up the icon of this hitBox
+            sendingHitBox.setSize(ENEMY_SIZE, ENEMY_SIZE);           // Setting the hit boxes to fit on in the size of the path 
+            sendingHitBox.setIcon(enemyExample.getIcon());           // Setting up the icon of this hitBox
             
             
             // Adding this to the gameBox
@@ -1260,16 +1282,13 @@ public class CastleDefense {
             
                 
             Enemy sendingEnemy = new  Enemy(sendingHitBox, currentRound, 
-                                            spawningEnemyHealth, ENEMY_HEALTH_INCREASE, 
-                                            ENEMY_STARTING_DROP, ENEMY_DROP_INCREASE, 
+                                            spawningEnemyHealth, ENEMY_HEALTH_INCREASE,  
                                             ENEMY_STARTING_DAMAGE, ENEMY_DAMAGE_INCREASE, allLines.get(0));
             
             // Saving the object into the array that we have currently
             allEnemies.add(sendingEnemy);
         }
         
-        System.out.print("Round " + currentRound + " -> Starting Enemy Health: " + spawningEnemyHealth + " | Round Added:" + (ENEMY_HEALTH_INCREASE*currentRound) + " | ");
-        System.out.println("TOTAL: " + (spawningEnemyHealth + (ENEMY_HEALTH_INCREASE * currentRound)));
         
         // Moving up the menu and upgrade menu so taht we can see it above the enemies
         bringMenusUp();
@@ -1298,26 +1317,46 @@ public class CastleDefense {
     // MAIN CLOCK TIMER FOR THE ROUND ================================================================================================================
     // =================================================================================================================================================
     Timer roundClock = new Timer(ROUND_TICK, e->{
-        // If we have not finished the previous tick, DO NOT RUN ANOTHER
-        if(tickInProgress)
-            return;
-        tickInProgress = true; // Setting that we are in a tick right now
         
-        // GAME HAS ENDED!! 
+        // Checking if we need to change the tick speed
+        Timer thisTimer = ((Timer)e.getSource());
+        if(thisTimer.getDelay() == ROUND_TICK && fastFoward){
+            thisTimer.setDelay(ROUND_FAST_TICK);
+            thisTimer.restart();
+        }
+        else if(thisTimer.getDelay() == ROUND_FAST_TICK && !fastFoward){
+            thisTimer.setDelay(ROUND_TICK);
+            thisTimer.restart();
+        }
+        
+    
+        
+        // GAME HAS ENDED!! ======================
         if(castleHealth.getValue() <= 0){
+            // Stopping and Cleaning game
             ((Timer)e.getSource()).stop();        // Stop the timer
             removeAllProjectiles();               // Remove all projectiles for next game
             removeAllEnemies();                   // Remove all enemies for next game
             removeAllLightning();                 // Removes any left lightning 
-            gameEndedPoints.setText(Integer.toString(cashMade/2)); // Setting the points to the cash that was made
-            if(scores_fromOutside.reportScore("CD", currentUser_fromOutside, gameEndedPoints.getText())){ // Reporting the scores
+            
+            // Setting Game Ending Cover
+            int points = (cashMade/2) + currentRound;                    // Simple equation for calculting the points user earned
+            roundDiedAt.setText(Integer.toString(currentRound));         // Setting the round we died at
+            totalCashMade.setText(Integer.toString(cashMade));           // Setting the total cash we made
+            totalEnemiesKilled.setText(Integer.toString(enemiesKilled)); // Setting the total enemies killed
+            gameEndedPoints.setText(Integer.toString(points));           // Setting the points calculated into the panel
+            
+            // Reporting the scores and showing the game ended panel
+            if(scores_fromOutside.reportScore("CD", currentUser_fromOutside, gameEndedPoints.getText())){ 
                 gameEndedHighscoreIndicator.setVisible(true); // This was false originally, but if we set a high score, let the user know
             }
+            
+            // Switching to Game Ended Cover Frame
             gameBox.setVisible(false);            // Hiding the game
             gameEndedPanel.setVisible(true);      // Showing the game ended panel
         }
        
-        // If all enemies are currently dead, clear the board and start the pause section -> ROUND HAS ENDED
+        // ROUND HAS ENDED!! ======================
         if(enemiesLeft() == 0){
             ((Timer)e.getSource()).stop();    // Stopping the timer
             removeAllEnemies(); 
@@ -1457,9 +1496,6 @@ public class CastleDefense {
         // Repainting everything!! just in case something is tripping up
         gameBox.revalidate();
         gameBox.repaint();
-        
-        // Allowing another tick
-        tickInProgress = false; 
     });
     
     
