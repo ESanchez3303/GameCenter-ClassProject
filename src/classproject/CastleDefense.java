@@ -599,7 +599,7 @@ public class CastleDefense {
     private final int TOWER3_COST = 1000;
     private final int TOWER3_RELOAD_TICKS = 600;
     private final int TOWER3_PROJECTILE_STEP = 3;
-    private final int[] TOWER3_UPGRADE_COST = {0,1000,1000,1000};
+    private final int[] TOWER3_UPGRADE_COST = {0,1000,2500,3000};
     private final int[] TOWER3_POWER_LIST = {3,4,5,10};
     private final int[] TOWER3_RANGE_LIST = {3,4,5,6};
     private final int[] TOWER3_ABILITY_LIST = {1,2,3,4};
@@ -695,6 +695,7 @@ public class CastleDefense {
     private JButton flashingButton;
     private int flashingCounter;
     private int spawningEnemyHealth;
+    private boolean tickInProgress = false; // VERY IMPORTANT to prevent tick within tick (in case users computer is on the slower side)
     
     
     // Construction Function:
@@ -859,6 +860,7 @@ public class CastleDefense {
         gameEndedHighscoreIndicator.setVisible(false);
         spawningEnemyHealth = ENEMY_STARTING_HEALTH;
         rangeVisual.setBounds(-10,-10,10,10); // Moving the location we KNOW is outside
+        tickInProgress = false; // Setting back to no
     }
     
     
@@ -909,7 +911,7 @@ public class CastleDefense {
             menuButton.setText("Close Menu");    // Change the button text
             menu.setLocation(0, 40);
         }
-        // If the menu is currently OPENED, we are now CLOSING
+        // If the menu is currently OPENED, we are now CLOSING (currently it says "Close Menu")
         else{
             menuButton.setText("Open Menu");     // Change the button text
             menu.setLocation(0,535);
@@ -951,7 +953,6 @@ public class CastleDefense {
         // First check if user has enough money to move this piece
         Tower targetTower = getTower(savingPlacement);
         int cost = getCostOfTower(targetTower)/MOVE_COST_FACTOR;   // To Move a tower, it cost this much
-       
         
         // If user does not have enough money, flash this button
         if(cost > cash){
@@ -1129,6 +1130,9 @@ public class CastleDefense {
         
         // ================================ NOT IN SELECTION MODE ===============================
         else{
+            // If menu is open do not show the background range 
+            if(menu.getY() == 40 || upgradeMenu.isVisible())
+                return;
             // Hovering over a tower -> show the range of the tower
             if(targetPlacement.getIcon() != null){
                 Point center = new Point(targetPlacement.getX() + targetPlacement.getWidth()/2,
@@ -1151,10 +1155,12 @@ public class CastleDefense {
         if(selectionMode && placementClicked.getBorder() != null){
             buyTowerOfficially(savedButton, placementClicked);
             selectionMode = false;
+            menu.setLocation(0,40); // Open menu back up
+            menuButton.setText("Close Menu"); // Changing back to change menu
             return;
         }    
         
-        // ================= VALID MOVING TOWER MODE  CHOICE =======================
+        // ================= VALID MOVING TOWER MODE CHOICE =======================
         if(movingTowerMode && placementClicked.getBorder() != null){
             // Collecting information with information we have
             JLabel oldPlacement = savingPlacement;
@@ -1174,7 +1180,7 @@ public class CastleDefense {
             menuButton.setText("Close Upgrades");
             
             // Charging the custoemr
-            int cost = getCostOfTower(movingTower);
+            int cost = getCostOfTower(movingTower)/MOVE_COST_FACTOR;
             cash -= cost;
             cashText.setText(Integer.toString(cash));
         }
@@ -1218,6 +1224,25 @@ public class CastleDefense {
         // Increasing to next round
         currentRound++; 
         
+        // Making the enemy harder by giving them more health
+        if(currentRound == 15){
+            spawningEnemyHealth = spawningEnemyHealth  * 2;
+            System.out.println("--------------- First Upgrade ---------------");
+        }
+        else if(currentRound >= 30 && currentRound < 50 && (currentRound % 5 == 0)){
+            spawningEnemyHealth = spawningEnemyHealth  * 2;
+            System.out.println("--------------- Second Upgrade ---------------");
+        }
+        else if(currentRound >= 50 && currentRound < 65){
+            spawningEnemyHealth = spawningEnemyHealth  * 2;
+            System.out.println("--------------- Third Upgrade ---------------");
+        }
+        else if(currentRound >= 65){
+            int multiple = currentRound - (60);
+            spawningEnemyHealth = spawningEnemyHealth * multiple;
+            System.out.println("--------------- SUPER Upgrade ---------------");
+        }
+        
         // Adding the amount of needed enemies
         for(int i = 0; i < (currentRound*ENEMIES_PER_ROUND); i++){
             JLabel sendingHitBox = new JLabel(); // ERROR: we need to set its parent to game box!!
@@ -1231,9 +1256,9 @@ public class CastleDefense {
             gameBox.setComponentZOrder(sendingHitBox, 0);  // Moving it to the very top
             gameBox.repaint();                             // Repainting the gamebox
             
-            // Making object
-            if((currentRound % 20 == 0) && currentRound != 0)
-                spawningEnemyHealth *= 2;
+            
+            
+                
             Enemy sendingEnemy = new  Enemy(sendingHitBox, currentRound, 
                                             spawningEnemyHealth, ENEMY_HEALTH_INCREASE, 
                                             ENEMY_STARTING_DROP, ENEMY_DROP_INCREASE, 
@@ -1242,6 +1267,9 @@ public class CastleDefense {
             // Saving the object into the array that we have currently
             allEnemies.add(sendingEnemy);
         }
+        
+        System.out.print("Round " + currentRound + " -> Starting Enemy Health: " + spawningEnemyHealth + " | Round Added:" + (ENEMY_HEALTH_INCREASE*currentRound) + " | ");
+        System.out.println("TOTAL: " + (spawningEnemyHealth + (ENEMY_HEALTH_INCREASE * currentRound)));
         
         // Moving up the menu and upgrade menu so taht we can see it above the enemies
         bringMenusUp();
@@ -1270,6 +1298,10 @@ public class CastleDefense {
     // MAIN CLOCK TIMER FOR THE ROUND ================================================================================================================
     // =================================================================================================================================================
     Timer roundClock = new Timer(ROUND_TICK, e->{
+        // If we have not finished the previous tick, DO NOT RUN ANOTHER
+        if(tickInProgress)
+            return;
+        tickInProgress = true; // Setting that we are in a tick right now
         
         // GAME HAS ENDED!! 
         if(castleHealth.getValue() <= 0){
@@ -1277,7 +1309,7 @@ public class CastleDefense {
             removeAllProjectiles();               // Remove all projectiles for next game
             removeAllEnemies();                   // Remove all enemies for next game
             removeAllLightning();                 // Removes any left lightning 
-            gameEndedPoints.setText(Integer.toString(cashMade)); // Setting the points to the cash that was made
+            gameEndedPoints.setText(Integer.toString(cashMade/2)); // Setting the points to the cash that was made
             if(scores_fromOutside.reportScore("CD", currentUser_fromOutside, gameEndedPoints.getText())){ // Reporting the scores
                 gameEndedHighscoreIndicator.setVisible(true); // This was false originally, but if we set a high score, let the user know
             }
@@ -1425,6 +1457,9 @@ public class CastleDefense {
         // Repainting everything!! just in case something is tripping up
         gameBox.revalidate();
         gameBox.repaint();
+        
+        // Allowing another tick
+        tickInProgress = false; 
     });
     
     

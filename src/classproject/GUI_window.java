@@ -172,6 +172,19 @@ public class GUI_window extends javax.swing.JFrame {
         MM_logOutButton = new javax.swing.JButton();
         MM_backToMenuButton = new javax.swing.JButton();
         game6Frame = new javax.swing.JPanel();
+        CD_gameEndedPanel = new javax.swing.JPanel();
+        jLabel97 = new javax.swing.JLabel();
+        jPanel23 = new javax.swing.JPanel();
+        CD_gameEndedPoints = new javax.swing.JLabel();
+        CD_gameEndedHighscoreIndicator = new javax.swing.JLabel();
+        CD_restartGameButton = new javax.swing.JButton();
+        jLabel141 = new javax.swing.JLabel();
+        jLabel142 = new javax.swing.JLabel();
+        CD_gameEndedPoints1 = new javax.swing.JLabel();
+        jLabel143 = new javax.swing.JLabel();
+        CD_gameEndedPoints2 = new javax.swing.JLabel();
+        jLabel144 = new javax.swing.JLabel();
+        CD_gameEndedPoints3 = new javax.swing.JLabel();
         CD_gameBox = new javax.swing.JPanel();
         CD_bottomBar = new javax.swing.JPanel();
         CD_menuButton = new javax.swing.JButton();
@@ -379,13 +392,6 @@ public class GUI_window extends javax.swing.JFrame {
         CD_tower4 = new javax.swing.JLabel();
         CD_coverDes4 = new javax.swing.JLabel();
         CD_gameDescription = new javax.swing.JLabel();
-        CD_gameEndedPanel = new javax.swing.JPanel();
-        jLabel97 = new javax.swing.JLabel();
-        jPanel23 = new javax.swing.JPanel();
-        CD_gameEndedPoints = new javax.swing.JLabel();
-        CD_gameEndedHighscoreIndicator = new javax.swing.JLabel();
-        CD_restartGameButton = new javax.swing.JButton();
-        jLabel141 = new javax.swing.JLabel();
         mainMenuFrame = new javax.swing.JPanel();
         gamesScrollFrame = new javax.swing.JScrollPane();
         gamesPanel = new javax.swing.JPanel();
@@ -882,6 +888,93 @@ public class GUI_window extends javax.swing.JFrame {
             }
         });
         game6Frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_gameEndedPanel.setBackground(new java.awt.Color(214, 196, 172));
+        CD_gameEndedPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel97.setBackground(new java.awt.Color(153, 135, 108));
+        jLabel97.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel97.setForeground(java.awt.Color.white);
+        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel97.setText("[ Game Ended ]");
+        jLabel97.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel97.setOpaque(true);
+        CD_gameEndedPanel.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 640, 80));
+
+        jPanel23.setBackground(new java.awt.Color(153, 135, 108));
+        jPanel23.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CD_gameEndedPoints.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CD_gameEndedPoints.setForeground(new java.awt.Color(255, 255, 255));
+        CD_gameEndedPoints.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_gameEndedPoints.setText("9999999");
+        jPanel23.add(CD_gameEndedPoints, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 260, 40));
+
+        CD_gameEndedHighscoreIndicator.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CD_gameEndedHighscoreIndicator.setForeground(new java.awt.Color(0, 255, 51));
+        CD_gameEndedHighscoreIndicator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_gameEndedHighscoreIndicator.setText("!!! YOU SET THE NEW HIGH SCORE !!!");
+        jPanel23.add(CD_gameEndedHighscoreIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 470, -1));
+
+        CD_restartGameButton.setBackground(new java.awt.Color(200, 151, 115));
+        CD_restartGameButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CD_restartGameButton.setForeground(java.awt.Color.white);
+        CD_restartGameButton.setText("Restart Game");
+        CD_restartGameButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_restartGameButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CD_restartGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_restartGameButtonMouseClicked(evt);
+            }
+        });
+        jPanel23.add(CD_restartGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 580, 80));
+
+        jLabel141.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel141.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel141.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel141.setText("Level Died At:");
+        jPanel23.add(jLabel141, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 260, 40));
+
+        jLabel142.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel142.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel142.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel142.setText("(CashMade/2) Points Made:");
+        jPanel23.add(jLabel142, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 260, 40));
+
+        CD_gameEndedPoints1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CD_gameEndedPoints1.setForeground(new java.awt.Color(255, 255, 255));
+        CD_gameEndedPoints1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_gameEndedPoints1.setText("9999999");
+        jPanel23.add(CD_gameEndedPoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 260, 40));
+
+        jLabel143.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel143.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel143.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel143.setText("Enemies Killed:");
+        jPanel23.add(jLabel143, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 260, 40));
+
+        CD_gameEndedPoints2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CD_gameEndedPoints2.setForeground(new java.awt.Color(255, 255, 255));
+        CD_gameEndedPoints2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_gameEndedPoints2.setText("9999999");
+        jPanel23.add(CD_gameEndedPoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 260, 40));
+
+        jLabel144.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel144.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel144.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel144.setText("Enemies Killed:");
+        jPanel23.add(jLabel144, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 260, 40));
+
+        CD_gameEndedPoints3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CD_gameEndedPoints3.setForeground(new java.awt.Color(255, 255, 255));
+        CD_gameEndedPoints3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_gameEndedPoints3.setText("9999999");
+        jPanel23.add(CD_gameEndedPoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 260, 40));
+
+        CD_gameEndedPanel.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 640, 450));
+
+        game6Frame.add(CD_gameEndedPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
 
         CD_gameBox.setBackground(new java.awt.Color(239, 233, 224));
         CD_gameBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -2896,57 +2989,6 @@ public class GUI_window extends javax.swing.JFrame {
         CD_cover.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 95, 700, 395));
 
         game6Frame.add(CD_cover, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
-
-        CD_gameEndedPanel.setBackground(new java.awt.Color(214, 196, 172));
-        CD_gameEndedPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel97.setBackground(new java.awt.Color(153, 135, 108));
-        jLabel97.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel97.setForeground(java.awt.Color.white);
-        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel97.setText("[ Game Ended ]");
-        jLabel97.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel97.setOpaque(true);
-        CD_gameEndedPanel.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 640, 80));
-
-        jPanel23.setBackground(new java.awt.Color(153, 135, 108));
-        jPanel23.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CD_gameEndedPoints.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CD_gameEndedPoints.setForeground(new java.awt.Color(255, 255, 255));
-        CD_gameEndedPoints.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CD_gameEndedPoints.setText("9999999");
-        jPanel23.add(CD_gameEndedPoints, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 260, 40));
-
-        CD_gameEndedHighscoreIndicator.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CD_gameEndedHighscoreIndicator.setForeground(new java.awt.Color(255, 255, 255));
-        CD_gameEndedHighscoreIndicator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CD_gameEndedHighscoreIndicator.setText("YOU SET THE NEW HIGH SCORE!!");
-        jPanel23.add(CD_gameEndedHighscoreIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 470, -1));
-
-        CD_restartGameButton.setBackground(new java.awt.Color(200, 151, 115));
-        CD_restartGameButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CD_restartGameButton.setForeground(java.awt.Color.white);
-        CD_restartGameButton.setText("Restart Game");
-        CD_restartGameButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CD_restartGameButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_restartGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_restartGameButtonMouseClicked(evt);
-            }
-        });
-        jPanel23.add(CD_restartGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 470, 80));
-
-        jLabel141.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel141.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel141.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel141.setText("Points Made This Game:");
-        jPanel23.add(jLabel141, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 260, 40));
-
-        CD_gameEndedPanel.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 570, 190));
-
-        game6Frame.add(CD_gameEndedPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
 
         getContentPane().add(game6Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
@@ -6991,6 +7033,9 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_gameEndedHighscoreIndicator;
     private javax.swing.JPanel CD_gameEndedPanel;
     private javax.swing.JLabel CD_gameEndedPoints;
+    private javax.swing.JLabel CD_gameEndedPoints1;
+    private javax.swing.JLabel CD_gameEndedPoints2;
+    private javax.swing.JLabel CD_gameEndedPoints3;
     private javax.swing.JLabel CD_lake;
     private javax.swing.JPanel CD_menu;
     private javax.swing.JButton CD_menuButton;
@@ -7480,6 +7525,9 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel141;
+    private javax.swing.JLabel jLabel142;
+    private javax.swing.JLabel jLabel143;
+    private javax.swing.JLabel jLabel144;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
