@@ -543,11 +543,12 @@ public class CastleDefense {
     private final int ROUND_TICK = 7;             // Tick for the round
     private final int ROUND_FAST_TICK = 1;        // Tifk for the round if the fast foward button is on
     private final int STARTING_CASH = 400;        // Starting money
-    private final int CASH_PER_KILL = 100;        // Amount of cash you get per kill     
+    private final int CASH_PER_KILL = 150;        // Amount of cash you get per kill     
     private final int CASTLE_HEALTH = 1000;       // Amount of health the castle has
-    private final int FLASH_AMOUNT = 6;           // Amount of times the flash happens for the buttons
-    private final int MOVE_COST_FACTOR = 4; // Amount by which the cost of the tower is divided to move a tower
-    private final int TOWER_SELL_FACTOR      = 2; // Amount by which teh cost of the tower is divided to give as refund
+    private final int FLASH_AMOUNT      = 6;      // Amount of times the flash happens for the buttons
+    private final int MOVE_COST_FACTOR  = 4;      // Amount by which the cost of the tower is divided to move a tower
+    private final int TOWER_SELL_FACTOR = 2;      // Amount by which teh cost of the tower is divided to give as refund
+    private final int CASH_GIFT_TICK    = 200;      // Flashing tick for when a cash gift is given
     
     
     // ENEMY VARIABLES: =========================================
@@ -561,6 +562,13 @@ public class CastleDefense {
     private final int ENEMY_SPAWN_Y = 410;        // Location Y of where the enemies should spawn
     private final int ENEMY_SIZE = 40;            // The size of the enemy, this should match the size of the path we are following
     private final int ENEMY_SPACING = 10;         // Spacing between the enemies (where enemy 1 needs to be when we send out enemy 2)
+    
+    // Enemy difficulty boundaries
+    int ENEMY_DIF_BOUNDARY_1 = 15;  // (2x) the enemy starting health at this level
+    int ENEMY_DIF_BOUNDARY_2 = 30;  // (2x) the enemy starting health every 5 levels until next boundary
+    int ENEMY_DIF_BOUNDARY_3 = 50;  // (1.3x) the enmy starting health every level until next boundary
+    int ENEMY_DIF_BOUNDARY_4 = 65;  // (exponential on exponential on linear increase... yeah its crazy) but nobody should get past this here
+    int[] CASH_GIFT_LIST = {20000,50000,100000,500000}; // Amount of money you get on each of the boundary's lapse
     
     // ======================================================
     
@@ -620,10 +628,12 @@ public class CastleDefense {
                                 "<html>Missle Launcher: A lot of boom! More damage, but missle has to lock onto location, not an enemy!</html>", 
                                 "<html>Military Base: Previously named the '!Superman!', this thing has 1 of each tower on this base!</html>"
                                };
-    private final Color CAT_BUTTON_COLOR = new Color(202,157,123);
-    private final Color RED_COLOR    = new Color(255,51,0);
+    private final Color CAT_BUTTON_COLOR   = new Color(202,157,123);
+    private final Color RED_COLOR          = new Color(255,51,0);
+    private final Color GREEN_COLOR        = new Color(0,255,0);
+    private final Color WHITE_COLOR        = new Color(255,255,255);
     private final Color RANGE_VISUAL_COLOR = new Color(153,204,255);
-    private final Color MOVE_BUTTON_COLOR = new Color(184,125,80);
+    private final Color MOVE_BUTTON_COLOR  = new Color(184,125,80);
     private final int RANGE_VISUAL_OPACITY = 150;
     
     
@@ -672,6 +682,7 @@ public class CastleDefense {
     private HighscoreManager scores_fromOutside;
     private String currentUser_fromOutside;
     private JPanel rangeVisual;
+    private JPanel messagePanel;
     
     
     
@@ -696,6 +707,7 @@ public class CastleDefense {
     private int flashingCounter;
     private int spawningEnemyHealth;
     private boolean fastFoward = false;
+    private int cashGift;
     
     // Construction Function:
     public void setUp(JLabel[] aP, JButton bt1, JButton bt2, JButton bt3, JButton bt4, 
@@ -704,8 +716,8 @@ public class CastleDefense {
                       JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
                       JProgressBar elb, JButton nrb, JLabel ee, JPanel gb, JPanel[] l, JLabel cst,
                       JPanel bb, JLabel crs, JLabel eks, JLabel chs, JLabel cms, JPanel gep, 
-                      JLabel gepoints, JLabel hsi, JLabel gameDescription,JButton umb,
-                      JLabel rda, JLabel tek, JLabel tcm){
+                      JLabel gepoints, JLabel hsi, JLabel gameDescription, JButton umb,
+                      JLabel rda, JLabel tek, JLabel tcm, JPanel mp){
         
         allPlacements = new ArrayList<>();
         allProjectiles = new ArrayList<>();
@@ -758,6 +770,8 @@ public class CastleDefense {
         roundDiedAt = rda;
         totalEnemiesKilled = tek;
         totalCashMade = tcm;
+        messagePanel = mp;
+        
         gameDescription.setText(
             "<html><div style='text-align: center; width: 400px;'>"
           + "Defend the castle! Enemies will get harder as rounds go!<br>"
@@ -810,14 +824,6 @@ public class CastleDefense {
     
 
 
-    // Get Functions
-    public boolean getSelectionMode() { return selectionMode; }
-    public String[] getAllDescriptions() { return ALL_DESCRIPTIONS; }
-    
-    
-    // Set Functions
-    public void setFastFoward(boolean f) { fastFoward = f; }
-    
     
     // Public Functions:
     public void resetGame(){
@@ -867,13 +873,28 @@ public class CastleDefense {
         spawningEnemyHealth = ENEMY_STARTING_HEALTH;
         rangeVisual.setBounds(-10,-10,10,10); // Moving the location we KNOW is outside
         fastFoward = false;
+        cashGift = 0;
+        cashText.setForeground(WHITE_COLOR);
+        messagePanel.setVisible(false);
     }
     
+    
+    // Get Functions
+    public boolean getSelectionMode() { return selectionMode; }
+    public String[] getAllDescriptions() { return ALL_DESCRIPTIONS; }
+    
+    
+    // Set Functions
+    public void setFastFoward(boolean f) { fastFoward = f; }
     
     
     
     
     public void menuButtonClicked(){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
         // Any time we click on this, we should get rid of the rangeVisual no matter what
         rangeVisual.setBounds(-10,-10,10,10);
         
@@ -928,6 +949,10 @@ public class CastleDefense {
     
     
     public void buyTowerButtonClicked(int clickedTower, JButton clickedButton){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
         // Setting the amount that this tower would cost to buy and saving the clicked button
         int cost = 0;
         switch(clickedTower){
@@ -953,6 +978,11 @@ public class CastleDefense {
     
     
     public void upgradeMoveButtonClicked(){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
+        
         if(!upgradeMenu.isVisible())
             return;
         
@@ -975,6 +1005,10 @@ public class CastleDefense {
     
     
     public void upgradeSellButtonClicked(){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
         // Checking if the upgrade menu is visible
         if(!upgradeMenu.isVisible())
             return;
@@ -1007,6 +1041,10 @@ public class CastleDefense {
     
     
     public void catButtonClicked(JButton catButtonClicked){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
         // Find out what category we are looking to upgrade
         int targetCategory = 0;
         JProgressBar targetProgressBar = null;
@@ -1050,6 +1088,10 @@ public class CastleDefense {
     
     
     public void highlightPlacement(JLabel targetPlacement){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
         
         // ======================== IF "NULL" THEN JUST HIDE EVERYTHING ============================
         // If what we wanted to do was reset and unhighlight everything
@@ -1156,6 +1198,10 @@ public class CastleDefense {
     
     
     public void placementClicked(JLabel placementClicked){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
         
         // ================= VALID SELECTION MODE CHOICE ========================
         if(selectionMode && placementClicked.getBorder() != null){
@@ -1223,47 +1269,49 @@ public class CastleDefense {
         }
     }
     
+    public void messageContinueButtonClicked(){
+        // Hide message and start the cash timer 
+        messagePanel.setVisible(false); 
+        cashFlashTimer.start();
+    }
+    
     // NEXT ROUND BUTTON ===================================================================================
     // THE FUN PART!! well almost lmao, here is when the user starts the match!!
     // NOTE: This is also the first time that the user starts the game so keep watch at that on how this reacts 
     public void nextRoundButtonClicked(){
+        // Return if the message panel is showing, treating this as a pause section
+        if(messagePanel.isVisible())
+            return;
+        
+        // Personal prefrence, Do not allow the user to start another round until the gift animation finished
+        if(cashFlashTimer.isRunning())
+            return;
+        
         // Increasing to next round
         currentRound++; 
         
+        
+        
         // Making the enemy harder by giving them more health
-        if(currentRound == 15){
+        if(currentRound == ENEMY_DIF_BOUNDARY_1){
             spawningEnemyHealth = spawningEnemyHealth  * 2;
-            System.out.println("--------------- DOUBLE HEALHT ---------------");
-            System.out.println(" --------- Next Upgrade at Round 30 --------");
+            cashGift = CASH_GIFT_LIST[0]; // Giving money because game was "too hard" as my testers said
         }
-        else if(currentRound >= 30 && currentRound < 50 && (currentRound % 5 == 0)){
+        else if(currentRound >= ENEMY_DIF_BOUNDARY_2 && currentRound < ENEMY_DIF_BOUNDARY_3 && (currentRound % 5 == 0)){
             spawningEnemyHealth = spawningEnemyHealth  * 2;
-            System.out.println("--------------- DOUBLE HEALHT ---------------");
-            String nextRound;
-            if     (currentRound < 35) nextRound = "35";
-            else if(currentRound < 40) nextRound = "40";
-            else if(currentRound < 45) nextRound = "45";
-            else                       nextRound = "50";
-            System.out.println(" --------- Next Upgrade at Round " + nextRound + " --------");
+            cashGift = CASH_GIFT_LIST[1]; // Giving money because game was "too hard" as my testers said
         }
-        else if(currentRound >= 50 && currentRound < 65){
-            spawningEnemyHealth = spawningEnemyHealth  * 2;
-            System.out.println("--------------- DOUBLE HEALHT ---------------");
-            System.out.println(" --------- Next Upgrade at Round " + Integer.toString(currentRound+1) + " --------");
+        else if(currentRound >= ENEMY_DIF_BOUNDARY_3 && currentRound < ENEMY_DIF_BOUNDARY_4){ // TESTING PHASE SHOWS THAT NOBODY MAKES IT PAST HERE, but keep like this bc it ISSS possible (i think)
+            spawningEnemyHealth = (int)((double)spawningEnemyHealth  * 1.3); // Lowered down ratio because again testers said it was too hard
+            cashGift = CASH_GIFT_LIST[2]; // Giving money because game was "too hard" as my testers said
         }
-        else if(currentRound >= 65){
-            int multiple = currentRound - (60);
+        
+        // Yeah this is just unfair, but I need to end the game somehow, exponent on an exponent on a linear ... weirddddd
+        else if(currentRound >= ENEMY_DIF_BOUNDARY_4){
+            int multiple = currentRound - (ENEMY_DIF_BOUNDARY_4-5);
             spawningEnemyHealth = spawningEnemyHealth * multiple;
-            System.out.println("------------ SUPER SUPER Upgrade ---------------");
-            System.out.println(" --------- Next Upgrade at Round " + Integer.toString(currentRound+1) + " --------");
-        
+            cashGift = CASH_GIFT_LIST[3]; // Giving money because game was "too hard" as my testers said
         }
-        
-        String spacing = "           ";
-        System.out.print("Round " + currentRound + " -> ");
-        System.out.println("Amount: " + Integer.toString(currentRound*ENEMIES_PER_ROUND));
-        System.out.println(spacing + "Health: " + Integer.toString(spawningEnemyHealth + (currentRound*ENEMY_HEALTH_INCREASE)));
-        System.out.println(spacing + "Damage: " + Integer.toString(ENEMY_STARTING_DAMAGE + (currentRound*ENEMY_DAMAGE_INCREASE)));
         
         // Adding the amount of needed enemies
         for(int i = 0; i < (currentRound*ENEMIES_PER_ROUND); i++){
@@ -1309,13 +1357,40 @@ public class CastleDefense {
     // ======================================================================================================
     
     
+    
+    // =================================================================================================================================================
+    // MAIN CLOCK TIMERS FOR THE GAME ==================================================================================================================
+    // =================================================================================================================================================
+    
     // GAME CLOCK ===========================
     public void stopGame(){
         if(roundClock.isRunning()) roundClock.stop();
+        if(cashFlashTimer.isRunning()) cashFlashTimer.stop();
     }
-    // =================================================================================================================================================
-    // MAIN CLOCK TIMER FOR THE ROUND ================================================================================================================
-    // =================================================================================================================================================
+    
+    // Timer for the visual of flashing the cash when we are gifiting to player
+    Timer cashFlashTimer = new Timer(CASH_GIFT_TICK, x->{
+        // Ending the loop when we are done with the transfer
+        if(cashGift <= 0){
+            ((Timer)x.getSource()).stop();
+            cashText.setForeground(WHITE_COLOR);
+            cashGift = 0;
+            return;
+        }
+
+        // Moving money from the cashGift to the cash and showing
+        int interval = 5000;
+        cashGift -= interval;
+        cash += interval;
+        cashText.setText(Integer.toString(cash));
+
+        // Cycling the colors until we reach the top color
+        if(cashText.getForeground() == WHITE_COLOR)
+            cashText.setForeground(GREEN_COLOR);
+        else
+            cashText.setForeground(WHITE_COLOR);
+    });
+    
     Timer roundClock = new Timer(ROUND_TICK, e->{
         
         // Checking if we need to change the tick speed
@@ -1331,7 +1406,7 @@ public class CastleDefense {
         
     
         
-        // GAME HAS ENDED!! ======================
+        // GAME HAS ENDED!! =================================================================
         if(castleHealth.getValue() <= 0){
             // Stopping and Cleaning game
             ((Timer)e.getSource()).stop();        // Stop the timer
@@ -1339,12 +1414,15 @@ public class CastleDefense {
             removeAllEnemies();                   // Remove all enemies for next game
             removeAllLightning();                 // Removes any left lightning 
             
+            
+            
             // Setting Game Ending Cover
-            int points = (cashMade/2) + currentRound;                    // Simple equation for calculting the points user earned
+            int points = (int)(enemiesKilled/2) + currentRound;          // Simple equation for calculting the points user earned
             roundDiedAt.setText(Integer.toString(currentRound));         // Setting the round we died at
             totalCashMade.setText(Integer.toString(cashMade));           // Setting the total cash we made
             totalEnemiesKilled.setText(Integer.toString(enemiesKilled)); // Setting the total enemies killed
             gameEndedPoints.setText(Integer.toString(points));           // Setting the points calculated into the panel
+            
             
             // Reporting the scores and showing the game ended panel
             if(scores_fromOutside.reportScore("CD", currentUser_fromOutside, gameEndedPoints.getText())){ 
@@ -1356,7 +1434,7 @@ public class CastleDefense {
             gameEndedPanel.setVisible(true);      // Showing the game ended panel
         }
        
-        // ROUND HAS ENDED!! ======================
+        // ROUND HAS ENDED!! ===================================================================
         if(enemiesLeft() == 0){
             ((Timer)e.getSource()).stop();    // Stopping the timer
             removeAllEnemies(); 
@@ -1364,10 +1442,16 @@ public class CastleDefense {
             removeAllLightning();
             nextRoundButton.setVisible(true); // Showing the next round button again
             enemiesLeftBar.setValue(0);       // Setting to no enemies left
+            
+            // Check if we are giving user a cash gift for completing a set of rounds
+            if(cashGift != 0){
+                messagePanel.setVisible(true);
+            }
         }
         else{
             enemiesLeftBar.setValue(enemiesLeft());
         }
+        // ========================================================================================
         
         // Moving the enemies through the map if their isMoving is set to true AND they are still alive (duh lmao)
         for(Enemy currEnemy : allEnemies){
