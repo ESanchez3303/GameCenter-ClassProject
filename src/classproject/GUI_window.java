@@ -6530,7 +6530,6 @@ public class GUI_window extends javax.swing.JFrame {
     
     
 // GAME 3 FUNCTIONS ==================================================================== 
-    private boolean gamePaused = false;
     private void PP_gameAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PP_gameAreaKeyPressed
         // If player is pushing the "P", they want to pause the game
         if(evt.getKeyCode() == KeyEvent.VK_P){
@@ -6538,10 +6537,10 @@ public class GUI_window extends javax.swing.JFrame {
             if(PP_countDownTimer.isVisible() && 
                !PP_countDownTimer.getText().equals("Game Paused")) 
                 return;
-            gamePaused = !gamePaused;  // Toggle the pause button
-            if(gamePaused)             // Pause the Game 
+            PP.setPause(!PP.getPause()); // Toggle the pause button
+            if(PP.getPause())            // Pause the Game 
                 PP.pauseGame();
-            else                       // Continue the Game
+            else                         // Continue the Game
                 PP.continueGame();
         }
         
@@ -6764,12 +6763,11 @@ public class GUI_window extends javax.swing.JFrame {
     
     
 // GAME 5 FUNCTIONS ====================================================================
-    int startingPlayer = 0;
     private void TA_startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TA_startButtonMouseClicked
        
         // Choosing a random player to be the tagger and changing the text to show user
-        startingPlayer = (int)(Math.random() * 2) + 1; 
-        TA_startingPlayer.setText("Player " + (startingPlayer == 1 ? "1" : "2"));
+        String startingPlayer = ((((int)(Math.random() * 2) + 1) == 1) ? "1" : "2");  // Choose the starting player and setting to string for next line
+        TA_startingPlayer.setText("Player " + startingPlayer);
         
         // NOTE: We set up visuals here because we need them to be ready since
         //       player already sees the map at this point
@@ -6812,6 +6810,7 @@ public class GUI_window extends javax.swing.JFrame {
         
         
         // Starting the game once the player agrees with starting player
+        int startingPlayer = (TA_startingPlayer.getText().equals("Player 1") ? 1 : 2);
         TA.start(startingPlayer);
     }//GEN-LAST:event_TA_startingPlayerButtonMouseClicked
 
@@ -6902,35 +6901,20 @@ public class GUI_window extends javax.swing.JFrame {
         TA_startButton.setVisible(true);
     }//GEN-LAST:event_TA_saveSettingsButtonMousePressed
 
-    // ORIGINAL VARIABLES FOR GAME
-    int[] originalVariables = {30, 2, 3, 1, 2, 10, 4};
-    double originalGravity = 0.5;
     private void TA_resetButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TA_resetButtonClicked
+        String target;
         JButton buttonClicked = (JButton) evt.getSource();
         
-        if(buttonClicked == TA_resetMaxTaggerTime)
-            TA_maxTaggerTime.setValue(originalVariables[0]);
+        if     (buttonClicked == TA_resetMaxTaggerTime)    target = "GameMaxTime";
+        else if(buttonClicked == TA_resetRunnerSpeed)      target = "RunnerStep";
+        else if(buttonClicked == TA_resetTaggerSpeed)      target = "TagerStep";
+        else if(buttonClicked == TA_resetTimeFrozen)       target = "TimeFrozen";
+        else if(buttonClicked == TA_resetBoostedSpeed)     target = "BoostedStep";
+        else if(buttonClicked == TA_resetBoostRespawnTime) target = "BoostRespawnTime";
+        else if(buttonClicked == TA_resetBoostedTime)      target = "BoostedTime";
+        else                                               target = "Gravity";
         
-        else if(buttonClicked == TA_resetRunnerSpeed)
-            TA_runnerSpeed.setValue(originalVariables[1]);
-        
-        else if(buttonClicked == TA_resetTaggerSpeed)
-            TA_taggerSpeed.setValue(originalVariables[2]);
-        
-        else if(buttonClicked == TA_resetTimeFrozen)
-            TA_timeFrozen.setValue(originalVariables[3]);
-        
-        else if(buttonClicked == TA_resetBoostedSpeed)
-            TA_boostedSpeed.setValue(originalVariables[4]);
-        
-        else if(buttonClicked == TA_resetBoostRespawnTime)
-            TA_boostRespawnTime.setValue(originalVariables[5]);
-        
-        else if(buttonClicked == TA_resetBoostedTime)
-            TA_boostedTime.setValue(originalVariables[6]);
-        
-        else if(buttonClicked == TA_resetGravity)
-            TA_gravity.setValue(originalGravity);
+        TA.resetVariables(target);
     }//GEN-LAST:event_TA_resetButtonClicked
 
  // ========================================================================================
@@ -6951,52 +6935,55 @@ public class GUI_window extends javax.swing.JFrame {
 
     // Menu Button was clicked (open/close menu, cancel buy, close upgrade menu))
     private void CD_menuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_menuButtonMouseClicked
-        CD.menuButtonClicked();
+        if(!CD_messagePanel.isVisible())
+            CD.menuButtonClicked();
     }//GEN-LAST:event_CD_menuButtonMouseClicked
     
     // Hovering over a location, show the hover. NEW: now also shows the range circle
     private void CD_placement1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_placement1MouseEntered
         // Send this location to the class, it wll handle eveyrthing there 
         JLabel currentPlacement = (JLabel)evt.getSource();
-        CD.highlightPlacement(currentPlacement);
+        if(!CD_messagePanel.isVisible())
+            CD.highlightPlacement(currentPlacement);
     }//GEN-LAST:event_CD_placement1MouseEntered
 
-    
+    // The user wants to buy a tower, we find out which tower it is and call the class handler
     private void CD_buyTower1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_buyTower1ButtonMouseClicked
         JButton clickedButton = (JButton) evt.getSource();
         int clickedTower = 0;
-        if(clickedButton == CD_buyTower1Button)
-            clickedTower = 1;
-        else if(clickedButton == CD_buyTower2Button)
-            clickedTower = 2;
-        else if(clickedButton == CD_buyTower3Button)
-            clickedTower = 3;
-        else if(clickedButton == CD_buyTower4Button)
-            clickedTower = 4;
+        if(clickedButton == CD_buyTower1Button)      clickedTower = 1;
+        else if(clickedButton == CD_buyTower2Button) clickedTower = 2;
+        else if(clickedButton == CD_buyTower3Button) clickedTower = 3;
+        else if(clickedButton == CD_buyTower4Button) clickedTower = 4;
         
-        CD.buyTowerButtonClicked(clickedTower, clickedButton);
+        if(!CD_messagePanel.isVisible())
+            CD.buyTowerButtonClicked(clickedTower, clickedButton);
     }//GEN-LAST:event_CD_buyTower1ButtonMouseClicked
 
     // Location was clicked, either an empty to buy or a tower to open upgrade
     private void CD_placement1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_placement1MouseClicked
         JLabel placementClicked = (JLabel) evt.getSource();
-        CD.placementClicked(placementClicked);
+        if(!CD_messagePanel.isVisible())
+            CD.placementClicked(placementClicked);
     }//GEN-LAST:event_CD_placement1MouseClicked
 
     // Category button is clicked to upgrade it
     private void CD_cat2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_cat2ButtonMouseClicked
         JButton catButtonClicked = (JButton) evt.getSource();
-        CD.catButtonClicked(catButtonClicked);
+        if(!CD_messagePanel.isVisible())
+            CD.catButtonClicked(catButtonClicked);
     }//GEN-LAST:event_CD_cat2ButtonMouseClicked
 
     // Sell button was clicked in the upgrad emenu
     private void CD_upgradeSellButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_upgradeSellButtonMouseClicked
-        CD.upgradeSellButtonClicked();
+        if(!CD_messagePanel.isVisible())
+            CD.upgradeSellButtonClicked();
     }//GEN-LAST:event_CD_upgradeSellButtonMouseClicked
 
     // Next round was clicked 
     private void CD_nextRoundButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_nextRoundButtonMouseClicked
-        CD.nextRoundButtonClicked();
+        if(!CD_messagePanel.isVisible())
+            CD.nextRoundButtonClicked();
     }//GEN-LAST:event_CD_nextRoundButtonMouseClicked
 
     // Restart button was clicked -> just send back to this game frame, it will reset everything
@@ -7006,12 +6993,14 @@ public class GUI_window extends javax.swing.JFrame {
 
     // If user moved into a path, we want to hide the range thing and set all to not highlighted
     private void CD_path1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_path1MouseEntered
-        CD.highlightPlacement(null);
+        if(!CD_messagePanel.isVisible())
+            CD.highlightPlacement(null);
     }//GEN-LAST:event_CD_path1MouseEntered
 
     // If user clicked the move button, handle inside the class
     private void CD_upgradeMoveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_upgradeMoveButtonMouseClicked
-        CD.upgradeMoveButtonClicked();
+        if(!CD_messagePanel.isVisible())
+            CD.upgradeMoveButtonClicked();
     }//GEN-LAST:event_CD_upgradeMoveButtonMouseClicked
 
     // User clicked the fastFowardButton, setting the flag in the class
@@ -7022,8 +7011,7 @@ public class GUI_window extends javax.swing.JFrame {
 
     // User clicked continue on the message board that we are showing
     private void CD_messageContinueButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_messageContinueButtonMouseClicked
-        if(!CD_messagePanel.isVisible())
-            CD.messageContinueButtonClicked(); // Making sure that the messagepanel is not visible
+        CD.messageContinueButtonClicked(); // Making sure that the messagepanel is not visible
     }//GEN-LAST:event_CD_messageContinueButtonMouseClicked
 
     

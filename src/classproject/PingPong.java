@@ -70,6 +70,7 @@ public class PingPong {
     private int computerTick = 0;        // Keeps track of which tick we are in, this will cycle between 0-x (x being computerPlaysAtTick)
     private boolean betweenRounds = false;
     private int timePassed = 0;
+    private boolean paused = false;
     
     
     
@@ -93,10 +94,14 @@ public class PingPong {
         boostBall();
     }
     
+    // Set Functions:
+    public void setPause(boolean p) { paused = p; }
+    
     
     // Get Functions:
     public boolean isTwoPlayerMode(){return twoPlayerMode;}
     public int getGameTime(){return GAME_TIME;}
+    public boolean getPause() { return paused; }
     
     
     
@@ -127,6 +132,7 @@ public class PingPong {
         boostedBallCountKeeper = (int)(SECONDS_BEFORE_BOOSTING*1000)/GAME_TICK;
         boostedBallMultiply = 1;
         ball.setBackground(new Color(255,255,255)); // Setting the ball color to white again (for when we change color)
+        paused = false;
     }
     
     public void stopGame(){

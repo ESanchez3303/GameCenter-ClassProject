@@ -540,15 +540,15 @@ class Projectile {
 // ===================================================================================
 public class CastleDefense {
     // MAIN GAME VARIABLES:
-    private final int ROUND_TICK = 7;             // Tick for the round
-    private final int ROUND_FAST_TICK = 1;        // Tifk for the round if the fast foward button is on
-    private final int STARTING_CASH = 400;        // Starting money
-    private final int CASH_PER_KILL = 150;        // Amount of cash you get per kill     
-    private final int CASTLE_HEALTH = 1000;       // Amount of health the castle has
+    private final int ROUND_TICK       = 7;       // Tick for the round
+    private final int ROUND_FAST_TICK   = 1;      // Tifk for the round if the fast foward button is on
+    private final int STARTING_CASH     = 400;    // Starting money
+    private final int CASH_PER_KILL     = 150;    // Amount of cash you get per kill     
+    private final int CASTLE_HEALTH     = 1000;   // Amount of health the castle has
     private final int FLASH_AMOUNT      = 6;      // Amount of times the flash happens for the buttons
     private final int MOVE_COST_FACTOR  = 4;      // Amount by which the cost of the tower is divided to move a tower
     private final int TOWER_SELL_FACTOR = 2;      // Amount by which teh cost of the tower is divided to give as refund
-    private final int CASH_GIFT_TICK    = 200;      // Flashing tick for when a cash gift is given
+    private final int CASH_GIFT_TICK    = 200;    // Flashing tick for when a cash gift is given
     
     
     // ENEMY VARIABLES: =========================================
@@ -614,9 +614,9 @@ public class CastleDefense {
     private final int TOWER4_COST = 20000; 
     private final int TOWER4_RELOAD_TICKS = 280;
     private final int[] TOWER4_UPGRADE_COST = {0,10000,12000,20000};
-    private final int[] TOWER4_POWER_LIST = {8,10,12,16};
+    private final int[] TOWER4_POWER_LIST = {8,10,15,20};
     private final int[] TOWER4_RANGE_LIST = {4,5,6,9};
-    private final int[] TOWER4_ABILITY_LIST = {3,4,5,9}; // Used in missle range, eletric hop, and shots made from regular shooter 
+    private final int[] TOWER4_ABILITY_LIST = {3,4,7,9}; // Used in missle range, eletric hop, and shots made from regular shooter 
     // NOTE: this tower does not need a color or speed, since its using above stats
     // ======================================================
     
@@ -629,11 +629,11 @@ public class CastleDefense {
                                 "<html>Military Base: Previously named the '!Superman!', this thing has 1 of each tower on this base!</html>"
                                };
     private final Color CAT_BUTTON_COLOR   = new Color(202,157,123);
+    private final Color RANGE_VISUAL_COLOR = new Color(153,204,255);
+    private final Color MOVE_BUTTON_COLOR  = new Color(184,125,80);
     private final Color RED_COLOR          = new Color(255,51,0);
     private final Color GREEN_COLOR        = new Color(0,255,0);
     private final Color WHITE_COLOR        = new Color(255,255,255);
-    private final Color RANGE_VISUAL_COLOR = new Color(153,204,255);
-    private final Color MOVE_BUTTON_COLOR  = new Color(184,125,80);
     private final int RANGE_VISUAL_OPACITY = 150;
     
     
@@ -1445,6 +1445,9 @@ public class CastleDefense {
             
             // Check if we are giving user a cash gift for completing a set of rounds
             if(cashGift != 0){
+                menu.setLocation(0,535);
+                upgradeMenu.setVisible(false);
+                menuButton.setText("Open Menu");
                 messagePanel.setVisible(true);
             }
         }
@@ -1723,6 +1726,7 @@ public class CastleDefense {
         gameBox.setComponentZOrder(menu, 0);
         gameBox.setComponentZOrder(upgradeMenu, 0);
         gameBox.setComponentZOrder(bottomBar, 0);
+        gameBox.setComponentZOrder(messagePanel,0);
     }
     
     private Tower getTower(JLabel targetPlacement){

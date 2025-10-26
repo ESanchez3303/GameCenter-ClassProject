@@ -6,17 +6,19 @@ import java.awt.*;
 public class Tag {
     
     // Main Variables:
-    private int GAME_TICK = 15;          // General Game Tick
-    private int GAME_MAX_TIME = 30;      // Max time being tagged           <------------------(in seconds)
-    private int RUNNER_STEP = 2;         // The steps that the runner tages
-    private int TAGGER_STEP = 3;         // The steps that the tagger takes
-    private int TIME_FROZEN = 1;         // Time that frozen causes  <-------------------------(in seconds)
-    private int BOOST_STEP = 2;          // The extra steps for the boost that is grabbed
-    private int BOOST_RESPAWN_TIME = 10; // Time that the boost takes to respawn <-------------(in seconds)
-    private int BOOSTED_TIME       = 4;  // Time that the boost last in the player <-----------(in seconds)
-    private double GRAVITY = 0.5;        // Gravity 
-    private double JUMP_POWER = -11;     // Power going up (negative because its y)
-    private double MAX_FALL_SPEED = 10;  // Since gravity is accel., giving a max falling speed to cap 
+    private final int GAME_TICK    = 15;  // General Game Tick
+    private int GAME_MAX_TIME      = 30;  // Max time being tagged           <------------------(in seconds)
+    private int RUNNER_STEP        = 2;   // The steps that the runner tages
+    private int TAGGER_STEP        = 3;   // The steps that the tagger takes
+    private int TIME_FROZEN        = 1;   // Time that frozen causes  <-------------------------(in seconds)
+    private int BOOST_STEP         = 2;   // The extra steps for the boost that is grabbed
+    private int BOOST_RESPAWN_TIME = 10;  // Time that the boost takes to respawn <-------------(in seconds)
+    private int BOOSTED_TIME       = 4;   // Time that the boost last in the player <-----------(in seconds)
+    private double GRAVITY         = 0.5; // Gravity 
+    private final double JUMP_POWER= -11; // Power going up (negative because its y)
+    private double MAX_FALL_SPEED  = 10;  // Since gravity is accel., giving a max falling speed to cap 
+    private int[] ORIGINAL_VARIABLES;
+    private double ORIGINAL_GRAVITY;
     
     
     
@@ -98,6 +100,10 @@ public class Tag {
         TIME_FROZEN        = (int)(TIME_FROZEN * (1000.0 / GAME_TICK));
         BOOST_RESPAWN_TIME = (int)(BOOST_RESPAWN_TIME * (1000.0 / GAME_TICK));
         BOOSTED_TIME       = (int)(BOOSTED_TIME * (1000.0 / GAME_TICK));
+        
+        // Setting up the original variables so that user doesnt have to do that manully every time
+        ORIGINAL_VARIABLES = new int[] {GAME_MAX_TIME, RUNNER_STEP, TAGGER_STEP, TIME_FROZEN, BOOST_STEP, BOOST_RESPAWN_TIME, BOOSTED_TIME};
+        ORIGINAL_GRAVITY = GRAVITY;
     }
     
     
@@ -117,6 +123,20 @@ public class Tag {
         TIME_FROZEN        = (int)(TIME_FROZEN * (1000.0 / GAME_TICK));
         BOOST_RESPAWN_TIME = (int)(BOOST_RESPAWN_TIME * (1000.0 / GAME_TICK));
         BOOSTED_TIME       = (int)(BOOSTED_TIME * (1000.0 / GAME_TICK));
+    }
+    
+    // Set Functions:
+    public void resetVariables(String target){
+        switch(target){
+            case "GameMaxTime"      -> GAME_MAX_TIME      = ORIGINAL_VARIABLES[0];
+            case "RunnerStep"       -> RUNNER_STEP        = ORIGINAL_VARIABLES[1];
+            case "TaggerStep"       -> TAGGER_STEP        = ORIGINAL_VARIABLES[2];
+            case "TimeFrozen"       -> TIME_FROZEN        = ORIGINAL_VARIABLES[3];
+            case "BoostedStep"      -> BOOST_STEP         = ORIGINAL_VARIABLES[4];
+            case "BoostRespawnTime" -> BOOST_RESPAWN_TIME = ORIGINAL_VARIABLES[5];
+            case "BoostedTime"      -> BOOSTED_TIME       = ORIGINAL_VARIABLES[6];
+            case "Gravity"          -> GRAVITY            = ORIGINAL_GRAVITY;
+        }
     }
 
     // Get Functions
