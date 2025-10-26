@@ -1440,8 +1440,9 @@ public class CastleDefense {
             removeAllEnemies(); 
             removeAllProjectiles();
             removeAllLightning();
-            nextRoundButton.setVisible(true); // Showing the next round button again
-            enemiesLeftBar.setValue(0);       // Setting to no enemies left
+            nextRoundButton.setVisible(true);     // Showing the next round button again
+            enemiesLeftBar.setValue(0);           // Setting to no enemies left
+            rangeVisual.setBounds(-10,-10,10,10); // Moving away the range visual since it stays on top
             
             // Check if we are giving user a cash gift for completing a set of rounds
             if(cashGift != 0){
