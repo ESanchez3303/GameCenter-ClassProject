@@ -301,18 +301,94 @@ class Projectile {
         towerType = towerTypeInput;
         rangeVisual = rv;
         
-        sprite = new JLabel();
-        sprite.setBounds(
-            towerPlacement.getX() + towerPlacement.getWidth() / 2 - 5,
-            towerPlacement.getY() + towerPlacement.getHeight() / 2 - 5,
-            10, 10
-        );
         
-        sprite.setBackground(spriteColorInput);
-        sprite.setOpaque(true);
+        // If we are shooting a missle then make a visual of the missle
+        int startingX = towerPlacement.getX() + (towerPlacement.getWidth() / 2);
+        int startingY = towerPlacement.getY() + (towerPlacement.getHeight() / 2);
+        if(towerType == 3){
+            // Getting the center of the target
+            int targetX = target.getX() + (target.getHitBox().getWidth() / 2);
+            int targetY = target.getY() + (target.getHitBox().getHeight() / 2);
+            missleTarget = new Point(targetX,targetY); // Setting the target of the missle
+            
+            // Choosing the angle of the missle
+            double angle = Math.atan2(
+                missleTarget.y - startingY,
+                missleTarget.x - startingX
+            );
+            
+            // Drawing missle with found angle
+            sprite = new JLabel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+
+                    Graphics2D g2 = (Graphics2D) g;
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                                        RenderingHints.VALUE_ANTIALIAS_ON);
+
+                    int w = getWidth();  
+                    int h = getHeight(); 
+                    int cx = w / 2;
+                    int cy = h / 2;
+
+                    // Rotate around center to draw missle that way
+                    g2.rotate(angle, cx, cy);
+
+                    double scaleX = w / 16.0;
+                    double scaleY = h / 16.0;
+
+                    // --- BODY 
+                    g2.setColor(Color.BLACK);
+                    int bodyX = (int)(2 * scaleX);  
+                    int bodyY = (int)(6 * scaleY);
+                    int bodyWidth = (int)(10 * scaleX); 
+                    int bodyHeight = (int)(4 * scaleY);
+                    g2.fillRect(bodyX, bodyY, bodyWidth, bodyHeight);
+
+                    // --- BACK TRIANGLE 
+                    g2.setColor(Color.GRAY);
+                    Polygon back = new Polygon();
+                    back.addPoint((int)(0 * scaleX), (int)(4.5 * scaleY));  // top
+                    back.addPoint((int)(0 * scaleX), (int)(11.5 * scaleY)); // bottom
+                    back.addPoint((int)(4 * scaleX), (int)(8 * scaleY));    // tip
+                    g2.fillPolygon(back);
+
+                    // --- FRONT TRIANGLE 
+                    g2.setColor(Color.GRAY);
+                    Polygon front = new Polygon();
+                    front.addPoint((int)(12 * scaleX), (int)(6 * scaleY));  
+                    front.addPoint((int)(12 * scaleX), (int)(10 * scaleY)); 
+                    front.addPoint((int)(16 * scaleX), (int)(8 * scaleY));  
+                    g2.fillPolygon(front);
+                    
+                    // --- FLAME 
+                    g2.setColor(Color.RED);
+                    Polygon flame = new Polygon();
+                    flame.addPoint((int)(-5 * scaleX), (int)(7 * scaleY)); // tip further back
+                    flame.addPoint((int)(0 * scaleX), (int)(5 * scaleY));  // top of back triangle
+                    flame.addPoint((int)(0 * scaleX), (int)(11 * scaleY)); // bottom of back triangle
+                    g2.fillPolygon(flame);
+                    
+
+                    // Reset rotation for next draw to be at angle 
+                    g2.rotate(-angle, cx, cy);
+                }
+            };
+            
+            // Setting missle up
+            sprite.setOpaque(false);
+            int square = 20;
+            sprite.setBounds(startingX-(square/2), startingY-(square/2), square, square); // Moving and setting the size
+        }
         
-        // Changing the location where projectile is going if its a missle (will only be used it its tower3)
-        missleTarget = new Point(target.getX(), target.getY());
+        // If tower is something else then make as a regular square box for now
+        else{
+            sprite = new JLabel();
+            sprite.setBackground(spriteColorInput);
+            sprite.setOpaque(true);
+            sprite.setBounds(startingX-5, startingY-5, 10, 10); // Moving and setting the size
+        }
     }
 
     public JLabel getSprite() { return sprite; }
@@ -397,18 +473,23 @@ class Projectile {
 
         // ========== Tower Type 1 & 3 ==========
         // Finding out the distance now
+        int spriteCenterX = sprite.getX() + sprite.getWidth() / 2;
+        int spriteCenterY = sprite.getY() + sprite.getHeight() / 2;
+        int enemyCenterX = target.getHitBox().getX()  + target.getHitBox().getWidth()/2;
+        int enemyCenterY = target.getHitBox().getY()  + target.getHitBox().getHeight()/2;
         int dx = 0, dy = 0;
         if(towerType == 1){                        // If tower 1, then move toward the target
-            dx = target.getX() - sprite.getX();
-            dy = target.getY() - sprite.getY();
+            dx = enemyCenterX - spriteCenterX;
+            dy = enemyCenterY - spriteCenterY;
         }
-        else if(towerType ==3){                   // If tower3, then move toward the misslteTarget
-            dx = missleTarget.x - sprite.getX();
-            dy = missleTarget.y - sprite.getY();
+        else if(towerType == 3){                   // If tower3, then move toward the misslteTarget
+            dx = missleTarget.x - spriteCenterX;
+            dy = missleTarget.y - spriteCenterY;
         }
             
-        
+        // Distance to target enemy or missle target
         double distance = Math.sqrt(dx * dx + dy * dy);
+        
         // If we made impact
         if (distance <= step) {
             // If tower type is 1, then jsut take damage
@@ -443,18 +524,19 @@ class Projectile {
                 sprite.setVisible(false);
                 return enemiesKilled; // Return the amount of enemies that are killed
             }
-        } else {
-        // Regular chasing projectile 
-            sprite.setLocation(
-                (int)(sprite.getX() + dx / distance * step),
-                (int)(sprite.getY() + dy / distance * step)
-            );
+        } 
+        // If not impact, moving the projectile towards the enemytarget/missletarget
+        else {
+            int newX = (int) (sprite.getX() + dx / distance * step);
+            int newY = (int) (sprite.getY() + dy / distance * step);
+            sprite.setLocation(newX, newY);
+            
             return 0; // Show that no enemies were killed
         }
         return 0; // We shouldn't ever reach here since we checked every tower, but just in case
     }
     
-    // HELPER FUNCTIONS:
+    // HELPER FUNCTIONS: == VISUALS
     
    private void createExplosion(Point center, int radius){
         final JPanel explosion = new JPanel() {
@@ -540,9 +622,9 @@ class Projectile {
 // ===================================================================================
 public class CastleDefense {
     // MAIN GAME VARIABLES:
-    private final int ROUND_TICK       = 7;       // Tick for the round
+    private final int ROUND_TICK        = 7;      // Tick for the round
     private final int ROUND_FAST_TICK   = 1;      // Tifk for the round if the fast foward button is on
-    private final int STARTING_CASH     = 400;    // Starting money
+    private final int STARTING_CASH     = 1400;    // Starting money
     private final int CASH_PER_KILL     = 150;    // Amount of cash you get per kill     
     private final int CASTLE_HEALTH     = 1000;   // Amount of health the castle has
     private final int FLASH_AMOUNT      = 6;      // Amount of times the flash happens for the buttons
@@ -602,7 +684,7 @@ public class CastleDefense {
     // MISSLE SHOOTER:
     private final int TOWER3_COST = 1000;
     private final int TOWER3_RELOAD_TICKS = 600;
-    private final int TOWER3_PROJECTILE_STEP = 3;
+    private final int TOWER3_PROJECTILE_STEP = 3;//3
     private final int[] TOWER3_UPGRADE_COST = {0,1000,2500,3000};
     private final int[] TOWER3_POWER_LIST = {3,4,5,10};
     private final int[] TOWER3_RANGE_LIST = {3,4,5,6};
@@ -683,14 +765,18 @@ public class CastleDefense {
     private String currentUser_fromOutside;
     private JPanel rangeVisual;
     private JPanel messagePanel;
+    private JToggleButton fastFowardButton;
+    private JLabel cashSymbol;
     
     
     
     // Stats Variables
     private JLabel currentRoundStat;
     private JLabel enemiesKilledStat;
-    private JLabel castleHealthStat;
+    private JLabel pointsStat;
     private JLabel cashMadeStat;
+    private JLabel highscoreStat;
+    private int highscore;
     private int currentRound;
     private int enemiesKilled;
     private int cashMade;
@@ -706,7 +792,6 @@ public class CastleDefense {
     private JButton flashingButton;
     private int flashingCounter;
     private int spawningEnemyHealth;
-    private boolean fastFoward = false;
     private int cashGift;
     
     // Construction Function:
@@ -715,9 +800,10 @@ public class CastleDefense {
                       JLabel cT, JProgressBar ch, JPanel um, JButton c1, JButton c2, JButton c3,
                       JProgressBar c1p, JProgressBar c2p, JProgressBar c3p, JLabel ut, JLabel ud,
                       JProgressBar elb, JButton nrb, JLabel ee, JPanel gb, JPanel[] l, JLabel cst,
-                      JPanel bb, JLabel crs, JLabel eks, JLabel chs, JLabel cms, JPanel gep, 
+                      JPanel bb, JLabel crs, JLabel eks, JLabel ps, JLabel cms, JPanel gep, 
                       JLabel gepoints, JLabel hsi, JLabel gameDescription, JButton umb,
-                      JLabel rda, JLabel tek, JLabel tcm, JPanel mp){
+                      JLabel rda, JLabel tek, JLabel tcm, JPanel mp, JLabel hss, JToggleButton ffb,
+                      JLabel cs){
         
         allPlacements = new ArrayList<>();
         allProjectiles = new ArrayList<>();
@@ -762,7 +848,7 @@ public class CastleDefense {
         bottomBar = bb;
         currentRoundStat = crs;
         enemiesKilledStat = eks;
-        castleHealthStat = chs;
+        pointsStat = ps;
         cashMadeStat = cms;
         gameEndedPanel = gep;
         gameEndedPoints = gepoints;
@@ -771,6 +857,9 @@ public class CastleDefense {
         totalEnemiesKilled = tek;
         totalCashMade = tcm;
         messagePanel = mp;
+        highscoreStat = hss;
+        fastFowardButton = ffb;
+        cashSymbol = cs;
         
         gameDescription.setText(
             "<html><div style='text-align: center; width: 400px;'>"
@@ -818,7 +907,6 @@ public class CastleDefense {
         gameBox.setComponentZOrder(rangeVisual, 0);
         bringMenusUp();
         gameBox.repaint();
-        
     }
     
     
@@ -866,16 +954,25 @@ public class CastleDefense {
         enemiesKilled = 0;
         currentRoundStat.setText("0");
         enemiesKilledStat.setText("0");
-        castleHealthStat.setText(Integer.toString(CASTLE_HEALTH) + "/" + Integer.toString(CASTLE_HEALTH));
+        pointsStat.setText("0");
         cashMadeStat.setText("0");
         nextRoundButton.setVisible(true);
         gameEndedHighscoreIndicator.setVisible(false);
         spawningEnemyHealth = ENEMY_STARTING_HEALTH;
         rangeVisual.setBounds(-10,-10,10,10); // Moving the location we KNOW is outside
-        fastFoward = false;
         cashGift = 0;
         cashText.setForeground(WHITE_COLOR);
+        cashSymbol.setForeground(WHITE_COLOR);
         messagePanel.setVisible(false);
+        
+        // Setting the highscore
+        highscoreStat.setText(scores_fromOutside.getHighscore("CD"));
+        if(highscoreStat.getText().equals("Not Set"))
+            highscore = 0;
+        else    
+            highscore = Integer.parseInt(highscoreStat.getText());
+        
+        updateScoreBoard(); // Setting up the score board, for now will set to 0 and will set to white
     }
     
     
@@ -884,16 +981,9 @@ public class CastleDefense {
     public String[] getAllDescriptions() { return ALL_DESCRIPTIONS; }
     
     
-    // Set Functions
-    public void setFastFoward(boolean f) { fastFoward = f; }
-    
-    
     
     
     public void menuButtonClicked(){
-        // Return if the message panel is showing, treating this as a pause section
-        if(messagePanel.isVisible())
-            return;
         
         // Any time we click on this, we should get rid of the rangeVisual no matter what
         rangeVisual.setBounds(-10,-10,10,10);
@@ -947,25 +1037,19 @@ public class CastleDefense {
     
     
     
-    
-    public void buyTowerButtonClicked(int clickedTower, JButton clickedButton){
-        // Return if the message panel is showing, treating this as a pause section
-        if(messagePanel.isVisible())
-            return;
+    public boolean buyTowerButtonClicked(JButton clickedButton){
         
         // Setting the amount that this tower would cost to buy and saving the clicked button
         int cost = 0;
-        switch(clickedTower){
-            case 1 -> { cost = TOWER1_COST; }
-            case 2 -> { cost = TOWER2_COST; }
-            case 3 -> { cost = TOWER3_COST; }
-            case 4 -> { cost = TOWER4_COST; }
-        }
+        if(clickedButton == buyTower1Button) cost = TOWER1_COST;
+        if(clickedButton == buyTower2Button) cost = TOWER2_COST;
+        if(clickedButton == buyTower3Button) cost = TOWER3_COST;
+        if(clickedButton == buyTower4Button) cost = TOWER4_COST;
         
         // If user does not have enough cash to buy this, flash the button and return
         if(cost > cash){
             flashButton(clickedButton,CAT_BUTTON_COLOR);       
-            return;
+            return false;
         }
         
         
@@ -974,13 +1058,11 @@ public class CastleDefense {
         savedButton = clickedButton;      // Saving this button so we know what tower was bought
         menuButton.setText("Cancel Buy"); // Changing this button to be a cancel button
         menu.setLocation(0,535);          // Hiding the menu from the user
+        return true;
     }
     
     
     public void upgradeMoveButtonClicked(){
-        // Return if the message panel is showing, treating this as a pause section
-        if(messagePanel.isVisible())
-            return;
         
         
         if(!upgradeMenu.isVisible())
@@ -1005,9 +1087,6 @@ public class CastleDefense {
     
     
     public void upgradeSellButtonClicked(){
-        // Return if the message panel is showing, treating this as a pause section
-        if(messagePanel.isVisible())
-            return;
         
         // Checking if the upgrade menu is visible
         if(!upgradeMenu.isVisible())
@@ -1041,9 +1120,6 @@ public class CastleDefense {
     
     
     public void catButtonClicked(JButton catButtonClicked){
-        // Return if the message panel is showing, treating this as a pause section
-        if(messagePanel.isVisible())
-            return;
         
         // Find out what category we are looking to upgrade
         int targetCategory = 0;
@@ -1088,9 +1164,6 @@ public class CastleDefense {
     
     
     public void highlightPlacement(JLabel targetPlacement){
-        // Return if the message panel is showing, treating this as a pause section
-        if(messagePanel.isVisible())
-            return;
         
         
         // ======================== IF "NULL" THEN JUST HIDE EVERYTHING ============================
@@ -1198,17 +1271,21 @@ public class CastleDefense {
     
     
     public void placementClicked(JLabel placementClicked){
-        // Return if the message panel is showing, treating this as a pause section
-        if(messagePanel.isVisible())
-            return;
+        
         
         
         // ================= VALID SELECTION MODE CHOICE ========================
         if(selectionMode && placementClicked.getBorder() != null){
             buyTowerOfficially(savedButton, placementClicked);
-            selectionMode = false;
-            menu.setLocation(0,40); // Open menu back up
-            menuButton.setText("Close Menu"); // Changing back to change menu
+            
+            // If user cannot buy another one of this tower, then we move out of selection mode and go back to the menu
+            if(!buyTowerButtonClicked(savedButton)){
+                selectionMode = false;
+                menu.setLocation(0,40); // Open menu back up
+                menuButton.setText("Close Menu"); // Changing back to change menu
+            }
+            
+            // Return either way
             return;
         }    
         
@@ -1237,6 +1314,12 @@ public class CastleDefense {
             cashText.setText(Integer.toString(cash));
         }
         
+        // =========== EMPTY SPOT CLICKED -AND- NOT CLICKING ON A TOWER
+        else if(placementClicked.getIcon() == null && !selectionMode && !movingTowerMode){
+            
+            // If user's intention is to just exit out of the menu by clicking on an empty place, then hide both menus and reset button
+            closeAllMenus();
+        }
         
         // =================== TOWER CLICKCED --> OPENING UPGRADES MENU =====================================
         else if(placementClicked.getIcon() != null && !selectionMode && !movingTowerMode){
@@ -1275,6 +1358,12 @@ public class CastleDefense {
         cashFlashTimer.start();
     }
     
+    public void closeAllMenus(){
+        menu.setLocation(0,535);         // Hiding the menu
+        upgradeMenu.setVisible(false);   // Hiding the upgrade menu
+        menuButton.setText("Open Menu"); // Resetting the menu button
+    }
+    
     // NEXT ROUND BUTTON ===================================================================================
     // THE FUN PART!! well almost lmao, here is when the user starts the match!!
     // NOTE: This is also the first time that the user starts the game so keep watch at that on how this reacts 
@@ -1290,6 +1379,9 @@ public class CastleDefense {
         // Increasing to next round
         currentRound++; 
         
+        
+        // Updating the score board
+       updateScoreBoard();
         
         
         // Making the enemy harder by giving them more health
@@ -1374,6 +1466,7 @@ public class CastleDefense {
         if(cashGift <= 0){
             ((Timer)x.getSource()).stop();
             cashText.setForeground(WHITE_COLOR);
+            cashSymbol.setForeground(WHITE_COLOR);
             cashGift = 0;
             return;
         }
@@ -1385,21 +1478,25 @@ public class CastleDefense {
         cashText.setText(Integer.toString(cash));
 
         // Cycling the colors until we reach the top color
-        if(cashText.getForeground() == WHITE_COLOR)
+        if(cashText.getForeground() == WHITE_COLOR){
             cashText.setForeground(GREEN_COLOR);
-        else
+            cashSymbol.setForeground(GREEN_COLOR);
+        }
+        else{
             cashText.setForeground(WHITE_COLOR);
+            cashSymbol.setForeground(WHITE_COLOR);
+        }
     });
     
     Timer roundClock = new Timer(ROUND_TICK, e->{
         
         // Checking if we need to change the tick speed
         Timer thisTimer = ((Timer)e.getSource());
-        if(thisTimer.getDelay() == ROUND_TICK && fastFoward){
+        if(thisTimer.getDelay() == ROUND_TICK && fastFowardButton.isSelected()){
             thisTimer.setDelay(ROUND_FAST_TICK);
             thisTimer.restart();
         }
-        else if(thisTimer.getDelay() == ROUND_FAST_TICK && !fastFoward){
+        else if(thisTimer.getDelay() == ROUND_FAST_TICK && !fastFowardButton.isSelected()){
             thisTimer.setDelay(ROUND_TICK);
             thisTimer.restart();
         }
@@ -1443,6 +1540,7 @@ public class CastleDefense {
             nextRoundButton.setVisible(true);     // Showing the next round button again
             enemiesLeftBar.setValue(0);           // Setting to no enemies left
             rangeVisual.setBounds(-10,-10,10,10); // Moving away the range visual since it stays on top
+            updateScoreBoard();
             
             // Check if we are giving user a cash gift for completing a set of rounds
             if(cashGift != 0){
@@ -1571,6 +1669,9 @@ public class CastleDefense {
                 cashMadeStat.setText(Integer.toString(cashMade));     // Updating the running count visually
                 enemiesKilled += enemiesKilledWithProjectile;         // Update the amount of enemies that were killed
                 enemiesKilledStat.setText(Integer.toString(enemiesKilled)); // Updating the stat visual amount
+                
+                // Updating the scoreboard
+                updateScoreBoard();
             }
                     
             // If last move made us hit, then remove the projectile
@@ -1616,7 +1717,6 @@ public class CastleDefense {
             case 5 -> {
                 if(targetEnemy.getY()+ENEMY_SIZE >= castle.getY()){                          // If the object bottom is greater or equal to castle y, then it made impact
                     castleHealth.setValue(castleHealth.getValue() - targetEnemy.getDamage()); // Damaging the castle with this enemy health
-                    castleHealthStat.setText(Integer.toString(castleHealth.getValue()) + "/" + CASTLE_HEALTH); // Updating the castle health visually in the stat
                     targetEnemy.getHitBox().setVisible(false);                                // Hide it temp, we will remove it after this round ends
                     targetEnemy.kill();                                                       // Change the status to dead x.x
                     enemiesLeftBar.setValue(enemiesLeftBar.getValue() - 1);                   // Showing that there is one less enemy
@@ -1676,6 +1776,24 @@ public class CastleDefense {
         
         // Now finally moving!
         targetEnemy.setLocation(newX, newY);
+    }
+    
+    private void updateScoreBoard(){
+        if(currentRound == 0){ // If we have not started game then set to -1 so we can show white
+            pointsStat.setText("0");
+            pointsStat.setForeground(WHITE_COLOR);
+            return;
+        }
+        
+        // Setting points text
+        int points = (int)(enemiesKilled/2) + currentRound;
+        pointsStat.setText(Integer.toString(points));
+        
+        // Checking points over highscore and setting color if so
+        if(points > highscore)
+            pointsStat.setForeground(GREEN_COLOR);
+        else
+            pointsStat.setForeground(WHITE_COLOR);
     }
     
     private void removeAllEnemies(){

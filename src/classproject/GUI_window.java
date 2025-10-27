@@ -140,9 +140,10 @@ public class GUI_window extends javax.swing.JFrame {
                  CD_castleHealth, CD_upgradeMenu, CD_cat1Button, CD_cat2Button, CD_cat3Button, CD_cat1ProgressBar,
                  CD_cat2ProgressBar, CD_cat3ProgressBar, CD_upgradeTower, CD_upgradeDescription, CD_enemiesLeftBar, 
                  CD_nextRoundButton, CD_enemyExample, CD_gameBox, lines, CD_castle, CD_bottomBar, CD_currentRoundStat,
-                 CD_enemiesKilledStat, CD_castleHealthStat, CD_cashMadeStat, CD_gameEndedPanel, CD_gameEndedPoints,
+                 CD_enemiesKilledStat, CD_pointsStat, CD_cashMadeStat, CD_gameEndedPanel, CD_gameEndedPoints,
                  CD_gameEndedHighscoreIndicator, CD_gameDescription, CD_upgradeMoveButton, 
-                 CD_roundDiedAt, CD_totalEnemiesKilled, CD_cashMade, CD_messagePanel);
+                 CD_roundDiedAt, CD_totalEnemiesKilled, CD_cashMade, CD_messagePanel, CD_highscoreStat, 
+                 CD_fastFowardButton, CD_cashSymbol);
         CD_coverDes1.setText(CD.getAllDescriptions()[0]);
         CD_coverDes2.setText(CD.getAllDescriptions()[1]);
         CD_coverDes3.setText(CD.getAllDescriptions()[2]);
@@ -180,7 +181,7 @@ public class GUI_window extends javax.swing.JFrame {
         CD_messageContinueButton = new javax.swing.JButton();
         CD_bottomBar = new javax.swing.JPanel();
         CD_menuButton = new javax.swing.JButton();
-        jLabel131 = new javax.swing.JLabel();
+        CD_cashSymbol = new javax.swing.JLabel();
         CD_cash = new javax.swing.JLabel();
         CD_castleHealth = new javax.swing.JProgressBar();
         CD_enemiesLeftBar = new javax.swing.JProgressBar();
@@ -202,9 +203,10 @@ public class GUI_window extends javax.swing.JFrame {
         CD_enemiesKilledStat = new javax.swing.JLabel();
         CD_currentRoundStat = new javax.swing.JLabel();
         jLabel138 = new javax.swing.JLabel();
-        CD_castleHealthStat = new javax.swing.JLabel();
+        CD_highscoreStat = new javax.swing.JLabel();
         CD_cashMadeStat = new javax.swing.JLabel();
         jLabel139 = new javax.swing.JLabel();
+        CD_pointsStat = new javax.swing.JLabel();
         CD_upgradeMenu = new javax.swing.JPanel();
         CD_cat2Button = new javax.swing.JButton();
         CD_cat1Button = new javax.swing.JButton();
@@ -898,6 +900,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_gameBox.setBackground(new java.awt.Color(239, 233, 224));
         CD_gameBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         CD_gameBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -962,11 +967,11 @@ public class GUI_window extends javax.swing.JFrame {
         });
         CD_bottomBar.add(CD_menuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 300, 35));
 
-        jLabel131.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel131.setForeground(java.awt.Color.white);
-        jLabel131.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel131.setText("$");
-        CD_bottomBar.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 5, 30, 35));
+        CD_cashSymbol.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        CD_cashSymbol.setForeground(java.awt.Color.white);
+        CD_cashSymbol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_cashSymbol.setText("$");
+        CD_bottomBar.add(CD_cashSymbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 5, 30, 35));
 
         CD_cash.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         CD_cash.setForeground(new java.awt.Color(0, 255, 0));
@@ -1077,23 +1082,21 @@ public class GUI_window extends javax.swing.JFrame {
         jPanel22.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel113.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel113.setForeground(java.awt.Color.white);
         jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel113.setText("Current Round:");
         jPanel22.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
 
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel116.setForeground(java.awt.Color.white);
         jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel116.setText("Enemies Killed:");
-        jPanel22.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, 30));
+        jPanel22.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, 30));
 
         CD_enemiesKilledStat.setForeground(java.awt.Color.white);
         CD_enemiesKilledStat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CD_enemiesKilledStat.setText("99999");
         CD_enemiesKilledStat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel22.add(CD_enemiesKilledStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 150, 30));
+        jPanel22.add(CD_enemiesKilledStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 150, 30));
 
         CD_currentRoundStat.setForeground(java.awt.Color.white);
         CD_currentRoundStat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1101,33 +1104,37 @@ public class GUI_window extends javax.swing.JFrame {
         CD_currentRoundStat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel22.add(CD_currentRoundStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 150, 30));
 
-        jLabel138.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel138.setForeground(java.awt.Color.white);
         jLabel138.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel138.setText("Cash Made:");
-        jPanel22.add(jLabel138, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, 30));
+        jLabel138.setText("Total Cash Made:");
+        jPanel22.add(jLabel138, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, 30));
 
-        CD_castleHealthStat.setForeground(java.awt.Color.white);
-        CD_castleHealthStat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CD_castleHealthStat.setText("99999");
-        CD_castleHealthStat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel22.add(CD_castleHealthStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 150, 30));
+        CD_highscoreStat.setForeground(java.awt.Color.white);
+        CD_highscoreStat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_highscoreStat.setText("99999");
+        CD_highscoreStat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel22.add(CD_highscoreStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 70, 30));
 
         CD_cashMadeStat.setForeground(java.awt.Color.white);
         CD_cashMadeStat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CD_cashMadeStat.setText("99999");
         CD_cashMadeStat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel22.add(CD_cashMadeStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 150, 30));
+        jPanel22.add(CD_cashMadeStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 150, 30));
 
-        jLabel139.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel139.setForeground(java.awt.Color.white);
         jLabel139.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel139.setText("Castle Heatlh:");
-        jPanel22.add(jLabel139, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, 30));
+        jLabel139.setText("Points / High :");
+        jPanel22.add(jLabel139, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 130, 105, 30));
+
+        CD_pointsStat.setForeground(java.awt.Color.white);
+        CD_pointsStat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CD_pointsStat.setText("99999");
+        CD_pointsStat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel22.add(CD_pointsStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 70, 30));
 
         CD_menu.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 280, 170));
 
-        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 320, 500));
+        CD_gameBox.add(CD_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 535, 320, 500));
 
         CD_upgradeMenu.setBackground(new java.awt.Color(165, 149, 125));
         CD_upgradeMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1286,6 +1293,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_path1.setBackground(new java.awt.Color(204, 204, 204));
         CD_path1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -1295,6 +1305,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_path2.setBackground(new java.awt.Color(204, 204, 204));
         CD_path2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -1304,6 +1317,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_path3.setBackground(new java.awt.Color(204, 204, 204));
         CD_path3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -1313,6 +1329,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_path4.setBackground(new java.awt.Color(204, 204, 204));
         CD_path4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -1322,6 +1341,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_path5.setBackground(new java.awt.Color(204, 204, 204));
         CD_path5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -1331,6 +1353,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_path6.setBackground(new java.awt.Color(204, 204, 204));
         CD_path6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -1340,6 +1365,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_lake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/CastleDefense_lake.png"))); // NOI18N
         CD_lake.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -1348,6 +1376,9 @@ public class GUI_window extends javax.swing.JFrame {
 
         CD_castle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/classproject/CastleDefense_castle.png"))); // NOI18N
         CD_castle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CD_path1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CD_path1MouseEntered(evt);
             }
@@ -2868,11 +2899,6 @@ public class GUI_window extends javax.swing.JFrame {
         CD_fastFowardButton.setText(">>");
         CD_fastFowardButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         CD_fastFowardButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_fastFowardButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_fastFowardButtonMouseClicked(evt);
-            }
-        });
         CD_gameBox.add(CD_fastFowardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 500, 50, 30));
 
         game6Frame.add(CD_gameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 580));
@@ -6147,7 +6173,6 @@ public class GUI_window extends javax.swing.JFrame {
             
             CD_menu.setLocation(0,535);            // Hiding the menu 
             CD_menuButton.setText("Open Menu");    // Resetting the menu button text
-            CD.resetGame();                        // Resetting everything inside the game for a new game
             CD_nextRoundButton.setVisible(true);   // Showing the start next roudn button so player can click
             CD_fastFowardButton.setSelected(false);// Resetting the fast foward button
             
@@ -6156,6 +6181,8 @@ public class GUI_window extends javax.swing.JFrame {
             CD_gameBox.setVisible(false);          // Hiding the game box
             CD_gameEndedPanel.setVisible(false);   // Hiding the game ended panel 
             CD_gameBox.setLayout(null);            // This is needed for some reason, we saw last time
+            CD.setScore_fromOutside(scores, currentUser); // Giving access to highscores since we need it at first
+            CD.resetGame();                        // Resetting everything inside the game for a new game
         }
     }
 
@@ -6947,17 +6974,12 @@ public class GUI_window extends javax.swing.JFrame {
             CD.highlightPlacement(currentPlacement);
     }//GEN-LAST:event_CD_placement1MouseEntered
 
-    // The user wants to buy a tower, we find out which tower it is and call the class handler
+    // The user wants to buy a tower, we find let the handler inside find out cost w the button
     private void CD_buyTower1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_buyTower1ButtonMouseClicked
+        // Sending in which tower buy button was clicked, we will find out later what the cost it
         JButton clickedButton = (JButton) evt.getSource();
-        int clickedTower = 0;
-        if(clickedButton == CD_buyTower1Button)      clickedTower = 1;
-        else if(clickedButton == CD_buyTower2Button) clickedTower = 2;
-        else if(clickedButton == CD_buyTower3Button) clickedTower = 3;
-        else if(clickedButton == CD_buyTower4Button) clickedTower = 4;
-        
         if(!CD_messagePanel.isVisible())
-            CD.buyTowerButtonClicked(clickedTower, clickedButton);
+            CD.buyTowerButtonClicked(clickedButton);
     }//GEN-LAST:event_CD_buyTower1ButtonMouseClicked
 
     // Location was clicked, either an empty to buy or a tower to open upgrade
@@ -6995,6 +7017,8 @@ public class GUI_window extends javax.swing.JFrame {
     private void CD_path1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_path1MouseEntered
         if(!CD_messagePanel.isVisible())
             CD.highlightPlacement(null);
+        
+            
     }//GEN-LAST:event_CD_path1MouseEntered
 
     // If user clicked the move button, handle inside the class
@@ -7003,16 +7027,16 @@ public class GUI_window extends javax.swing.JFrame {
             CD.upgradeMoveButtonClicked();
     }//GEN-LAST:event_CD_upgradeMoveButtonMouseClicked
 
-    // User clicked the fastFowardButton, setting the flag in the class
-    private void CD_fastFowardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_fastFowardButtonMouseClicked
-        if(!CD_messagePanel.isVisible())
-            CD.setFastFoward(CD_fastFowardButton.isSelected());  // Making sure that the messagepanel is not visible
-    }//GEN-LAST:event_CD_fastFowardButtonMouseClicked
-
     // User clicked continue on the message board that we are showing
     private void CD_messageContinueButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_messageContinueButtonMouseClicked
         CD.messageContinueButtonClicked(); // Making sure that the messagepanel is not visible
     }//GEN-LAST:event_CD_messageContinueButtonMouseClicked
+    
+    // User clicked out of the menu
+    private void CD_path1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_path1MouseClicked
+        if(!CD_messagePanel.isVisible())
+            CD.closeAllMenus();
+    }//GEN-LAST:event_CD_path1MouseClicked
 
     
 
@@ -7080,9 +7104,9 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_cash;
     private javax.swing.JLabel CD_cashMade;
     private javax.swing.JLabel CD_cashMadeStat;
+    private javax.swing.JLabel CD_cashSymbol;
     private javax.swing.JLabel CD_castle;
     private javax.swing.JProgressBar CD_castleHealth;
-    private javax.swing.JLabel CD_castleHealthStat;
     private javax.swing.JButton CD_cat1Button;
     private javax.swing.JProgressBar CD_cat1ProgressBar;
     private javax.swing.JButton CD_cat2Button;
@@ -7104,6 +7128,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_gameEndedHighscoreIndicator;
     private javax.swing.JPanel CD_gameEndedPanel;
     private javax.swing.JLabel CD_gameEndedPoints;
+    private javax.swing.JLabel CD_highscoreStat;
     private javax.swing.JLabel CD_lake;
     private javax.swing.JPanel CD_menu;
     private javax.swing.JButton CD_menuButton;
@@ -7252,6 +7277,7 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel CD_placement97;
     private javax.swing.JLabel CD_placement98;
     private javax.swing.JLabel CD_placement99;
+    private javax.swing.JLabel CD_pointsStat;
     private javax.swing.JButton CD_restartGameButton;
     private javax.swing.JLabel CD_roundDiedAt;
     private javax.swing.JButton CD_startButton;
@@ -7589,7 +7615,6 @@ public class GUI_window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel128;
     private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel131;
     private javax.swing.JLabel jLabel132;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
