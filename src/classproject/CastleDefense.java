@@ -624,7 +624,7 @@ public class CastleDefense {
     // MAIN GAME VARIABLES:
     private final int ROUND_TICK        = 7;      // Tick for the round
     private final int ROUND_FAST_TICK   = 1;      // Tifk for the round if the fast foward button is on
-    private final int STARTING_CASH     = 1400;    // Starting money
+    private final int STARTING_CASH     = 400;    // Starting money
     private final int CASH_PER_KILL     = 150;    // Amount of cash you get per kill     
     private final int CASTLE_HEALTH     = 1000;   // Amount of health the castle has
     private final int FLASH_AMOUNT      = 6;      // Amount of times the flash happens for the buttons
