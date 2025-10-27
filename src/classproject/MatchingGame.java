@@ -88,17 +88,17 @@ public class MatchingGame {
         if(card < 0 || card >= values.size()) return false;  // Shouldn't ever be this case, but just in case
         if (busy) return false;                             // If busy, don't enter
         
+        
+        images.get(card).setVisible(false); // Hide the card back
+        values.get(card).setVisible(true);  // Show the value (star, etc)
+        
         // This is the first card being selected if selection1 is -1
         if(selection == -1){
             selection = card; // Save this selection for comparing later
-            images.get(card).setVisible(false); // Hide the card back
-            values.get(card).setVisible(true);  // Show the value (star, etc)
             return false;
         }
         
-        // If selection1 has value, then we now have selected two
-        images.get(card).setVisible(false); // Hide the card back
-        values.get(card).setVisible(true);  // Show the value (star, etc)
+        // Now we ahve two cards 
         
         // If values are NOT equal, then show cards for 1 second then hide them and leave
         if(!values.get(selection).getText().equals(values.get(card).getText())){
