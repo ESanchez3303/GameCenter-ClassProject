@@ -432,7 +432,7 @@ class Projectile {
 
                 // Finding the next target
                 for (Enemy currentEnemy : enemies) {
-                    if (alreadyShot.contains(currentEnemy) || !currentEnemy.isAlive()) // If enemy is already shot or dead, continue
+                    if (alreadyShot.contains(currentEnemy) || !currentEnemy.isAlive() || currentEnemy.getX() < 0) // If enemy is already shot or dead, continue
                         continue;
 
                     // Calculating the distance between current "target" and potential enemy jump-to
@@ -1583,8 +1583,6 @@ public class CastleDefense {
             boolean canShoot = tower.update(allEnemies);
             int towerType = tower.getTowerType();
             if (canShoot){
-                
-                
                 switch (towerType) {
                     // Tower 1 shoots the <ability> amount of projectiles
                     case 1 -> {
