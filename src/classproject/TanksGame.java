@@ -203,12 +203,13 @@ public class TanksGame {
        
         // Drawing the map using the given blocks (limited to 3 for this program)
         switch ( chosenMap ){
-            case 1 -> {
+            case 1:
                 mapItem1.setLocation(337,215);           // Moving the block
                 mapItem1.setSize(80,250);                // Resizing the block
                 mapItem1.setVisible(true);               // Making visible this block
-            }
-            case 2 -> {
+                break;
+                
+            case 2:
                 mapItem1.setLocation(337,385);    
                 mapItem1.setSize(80,80);
                 mapItem1.setVisible(true);  
@@ -220,8 +221,9 @@ public class TanksGame {
                 mapItem3.setLocation(585,320);    
                 mapItem3.setSize(150,40);
                 mapItem3.setVisible(true);  
-            }
-            case 3 -> {
+                break;
+                
+            case 3:
                 mapItem1.setLocation(330,350);    
                 mapItem1.setSize(100,100);
                 mapItem1.setVisible(true);  
@@ -233,7 +235,7 @@ public class TanksGame {
                 mapItem3.setLocation(110,110);    
                 mapItem3.setSize(550,40);
                 mapItem3.setVisible(true);  
-            }
+                break;
         }
         
         // Resetting other visuals

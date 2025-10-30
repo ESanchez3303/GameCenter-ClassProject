@@ -128,14 +128,14 @@ public class Tag {
     // Set Functions:
     public void resetVariables(String target){
         switch(target){
-            case "GameMaxTime"      -> GAME_MAX_TIME      = ORIGINAL_VARIABLES[0];
-            case "RunnerStep"       -> RUNNER_STEP        = ORIGINAL_VARIABLES[1];
-            case "TaggerStep"       -> TAGGER_STEP        = ORIGINAL_VARIABLES[2];
-            case "TimeFrozen"       -> TIME_FROZEN        = ORIGINAL_VARIABLES[3];
-            case "BoostedStep"      -> BOOST_STEP         = ORIGINAL_VARIABLES[4];
-            case "BoostRespawnTime" -> BOOST_RESPAWN_TIME = ORIGINAL_VARIABLES[5];
-            case "BoostedTime"      -> BOOSTED_TIME       = ORIGINAL_VARIABLES[6];
-            case "Gravity"          -> GRAVITY            = ORIGINAL_GRAVITY;
+            case "GameMaxTime"      : GAME_MAX_TIME      = ORIGINAL_VARIABLES[0]; break;
+            case "RunnerStep"       : RUNNER_STEP        = ORIGINAL_VARIABLES[1]; break;
+            case "TaggerStep"       : TAGGER_STEP        = ORIGINAL_VARIABLES[2]; break;
+            case "TimeFrozen"       : TIME_FROZEN        = ORIGINAL_VARIABLES[3]; break;
+            case "BoostedStep"      : BOOST_STEP         = ORIGINAL_VARIABLES[4]; break; 
+            case "BoostRespawnTime" : BOOST_RESPAWN_TIME = ORIGINAL_VARIABLES[5]; break;
+            case "BoostedTime"      : BOOSTED_TIME       = ORIGINAL_VARIABLES[6]; break;
+            case "Gravity"          : GRAVITY            = ORIGINAL_GRAVITY;      break;
         }
     }
 

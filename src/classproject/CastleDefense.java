@@ -82,29 +82,26 @@ class Tower{
     // Helper Functions
     public int getCurrentUpgradeCost(int targetCategory){
         switch (targetCategory) {
-            case 1  -> { return upgradeCosts[cat1Level]; }
-            case 2  -> { return upgradeCosts[cat2Level]; }
-            default -> { return upgradeCosts[cat3Level]; }
+            case 1:   return upgradeCosts[cat1Level]; 
+            case 2:   return upgradeCosts[cat2Level]; 
+            default:  return upgradeCosts[cat3Level]; 
         }
     }
     public int getNextUpgradeCost(int targetCategory){
         // If this category + 1 is out of bounds then return -1, this mneans we are at the max level already 
         switch (targetCategory) {
-            case 1  -> { 
+            case 1: 
                 if(cat1Level+1 >= 4)
                     return -1;
                 return upgradeCosts[cat1Level+1]; 
-            }
-            case 2  -> { 
+            case 2:
                 if(cat2Level+1 >= 4)
                     return -1;
                 return upgradeCosts[cat2Level+1]; 
-            }
-            default -> { 
+            default:
                 if(cat3Level+1 >= 4)
                     return -1;
                 return upgradeCosts[cat3Level+1]; 
-            }
         }
     }
     
@@ -115,7 +112,7 @@ class Tower{
         switch (targetCategory) {
             
             // If category is cat1: power
-            case 1 -> {
+            case 1:
                 if(cat1Level >= 3)                   // If category level is maxed out, return false
                     return false;
                 if(cash < upgradeCosts[cat1Level+1]) // If we have less cash than next upgrade cost, return false
@@ -125,10 +122,11 @@ class Tower{
                 cat1Level++;
                 power = powerList[cat1Level];
                 cat1ProgressBar.setValue(cat1ProgressBar.getValue() + 33);
-            }
+                break;
+            
             
             // If category is cat2: range
-            case 2 -> {
+            case 2:
                 if(cat2Level >= 3)                   // If category level is maxed out, return false
                     return false;
                 if(cash < upgradeCosts[cat2Level+1]) // If we have less cash than next upgrade cost, return false
@@ -138,10 +136,10 @@ class Tower{
                 cat2Level++;
                 range = rangeList[cat2Level];
                 cat2ProgressBar.setValue(cat2ProgressBar.getValue() + 33);
-            }
+                break;
             
             // If category is cat3: ability
-            default -> {
+            default:
                 if(cat3Level >= 3)                   // If category level is maxed out, return false
                     return false;
                 if(cash < upgradeCosts[cat3Level+1]) // If we have less cash than next upgrade cost, return false
@@ -151,7 +149,7 @@ class Tower{
                 cat3Level++;
                 ability = abilityList[cat3Level];
                 cat3ProgressBar.setValue(cat3ProgressBar.getValue() + 33);
-            }
+                break;
         }
         // FINALLLL! Return true so that it does not flash 
         return true;
@@ -1062,6 +1060,8 @@ public class CastleDefense {
     }
     
     
+    
+    
     public void upgradeMoveButtonClicked(){
         
         
@@ -1270,6 +1270,8 @@ public class CastleDefense {
     }
     
     
+    
+    
     public void placementClicked(JLabel placementClicked){
         
         
@@ -1352,11 +1354,17 @@ public class CastleDefense {
         }
     }
     
+    
+    
+    
     public void messageContinueButtonClicked(){
         // Hide message and start the cash timer 
         messagePanel.setVisible(false); 
         cashFlashTimer.start();
     }
+    
+    
+    
     
     public void closeAllMenus(){
         menu.setLocation(0,535);         // Hiding the menu
@@ -1585,7 +1593,7 @@ public class CastleDefense {
             if (canShoot){
                 switch (towerType) {
                     // Tower 1 shoots the <ability> amount of projectiles
-                    case 1 -> {
+                    case 1:
                         Projectile currPro = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
                                 tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
                         allProjectiles.add(currPro);
@@ -1607,10 +1615,12 @@ public class CastleDefense {
                                 }
                             });
                             temp.start();
-                        }
+                        break;
                     }
+                        
                     // Tower 2 and 3 shoot regular projectiles ONE time
-                    case 2, 3 -> {
+                    case 2:
+                    case 3:
                         int projectileStep = (towerType == 2 || towerType == 4 ? TOWER2_PROJECTILE_STEP : TOWER3_PROJECTILE_STEP);
                         Projectile newProjectile = new Projectile(tower, towerType, tower.getCurrentTarget(), tower.getPower(), projectileStep,
                                 tower.getProjectileColor(), gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
@@ -1618,10 +1628,10 @@ public class CastleDefense {
                         gameBox.add(newProjectile.getSprite());
                         gameBox.setComponentZOrder(newProjectile.getSprite(), 0);
                         bringMenusUp();
-                    }
+                        break;
                     
                     // Tower 4 shoots one of each projectile type
-                    case 4 -> {
+                    case 4:
                         // Making projectile for regular (JSUT 1 FOR THIS TOWER)
                         Projectile projectile1 = new Projectile(tower, 1, tower.getCurrentTarget(), tower.getPower(), TOWER1_PROJECTILE_STEP,
                                 TOWER1_PROJECTILE_COLOR, gameBox, menu, upgradeMenu, bottomBar, rangeVisual);
@@ -1641,9 +1651,10 @@ public class CastleDefense {
                         gameBox.setComponentZOrder(projectile3.getSprite(), 0);
                         gameBox.setComponentZOrder(projectile1.getSprite(), 0); // Addding this one last so that it can be the upmost one
                         bringMenusUp();
-                    }
+                        break;
                     
-                    default -> {}
+                    default: 
+                        break;
                 }
                 
             }
@@ -1700,19 +1711,23 @@ public class CastleDefense {
         
         switch (currentLineIndex) {
             // If the current line is a horz, check if we need to hop to the next vert. one
-            case 0, 2, 4 -> {
+            case 0:
+            case 2:
+            case 4:
                 if(targetEnemy.getX() == allLines.get(currentLineIndex+1).getX())
                     targetEnemy.setLine(allLines.get(currentLineIndex+1));
-            }
+                break;
+            
             
             // If the current line is a vert, check if we need to hop to the next horz. one
-            case 1, 3 -> {
+            case 1:
+            case 3: 
                 if(targetEnemy.getY() == allLines.get(currentLineIndex+1).getY())
                     targetEnemy.setLine(allLines.get(currentLineIndex+1));
-            }
+                break;
             
             // If the object is on the LAST LINE, check if it has hit the castle
-            case 5 -> {
+            case 5:
                 if(targetEnemy.getY()+ENEMY_SIZE >= castle.getY()){                          // If the object bottom is greater or equal to castle y, then it made impact
                     castleHealth.setValue(castleHealth.getValue() - targetEnemy.getDamage()); // Damaging the castle with this enemy health
                     targetEnemy.getHitBox().setVisible(false);                                // Hide it temp, we will remove it after this round ends
@@ -1720,11 +1735,12 @@ public class CastleDefense {
                     enemiesLeftBar.setValue(enemiesLeftBar.getValue() - 1);                   // Showing that there is one less enemy
                     return;                                                                   // Return since we are not moving this object later
                 }
-            }
-            default -> {
+                break;
+                
+            default:
                 System.out.println("ERORR: Entered into error state of moveEnemy()");
                 return;
-            }
+            
         }
         
         
@@ -1734,42 +1750,47 @@ public class CastleDefense {
         int newX = 0;
         int newY = 0;
         switch(currentLineIndex){
-            case 0 -> {
+            case 0:
                 newX = targetEnemy.getX() + ENEMY_STEP;
                 newY = targetEnemy.getY();
                 if(newX > allLines.get(1).getX())
                     newX = allLines.get(1).getX();
-            }
-            case 1 -> {
+                break;
+                
+            case 1:
                 newX = targetEnemy.getX();
                 newY = targetEnemy.getY() - ENEMY_STEP;
                 if(newY < allLines.get(2).getY())
                     newY = allLines.get(2).getY();
-            }
-            case 2 -> {
+                break;
+                
+            case 2:
                 newX = targetEnemy.getX() + ENEMY_STEP;
                 newY = targetEnemy.getY();
                 if(newX > allLines.get(3).getX())
                     newX = allLines.get(3).getX();
-            }
-            case 3 -> {
+                break;
+                
+            case 3:
                 newX = targetEnemy.getX();
                 newY = targetEnemy.getY() + ENEMY_STEP;
                 if(newY > allLines.get(4).getY())
                     newY = allLines.get(4).getY();
-            }
-            case 4 -> {
+                break;
+                
+            case 4:
                 newX = targetEnemy.getX() - ENEMY_STEP;
                 newY = targetEnemy.getY();
                 if(newX < allLines.get(5).getX())
                     newX = allLines.get(5).getX();
-            }
-            case 5 -> { 
+                break;
+                
+            case 5:
                 newX = targetEnemy.getX();
                 newY = targetEnemy.getY() + ENEMY_STEP;
                 if(newY > (castle.getY() - ENEMY_SIZE))
                     newY = (castle.getY() - ENEMY_SIZE);
-            }
+                break;
         }
         
         // Now finally moving!
@@ -1856,14 +1877,13 @@ public class CastleDefense {
     
     private int getCostOfTower(Tower target){
         switch(target.getTowerType()){
-            case 1 -> {return TOWER1_COST;}
-            case 2 -> {return TOWER2_COST;}
-            case 3 -> {return TOWER3_COST;}
-            case 4 -> {return TOWER4_COST;}
-            default ->{
+            case 1: return TOWER1_COST; 
+            case 2: return TOWER2_COST;
+            case 3: return TOWER3_COST;
+            case 4: return TOWER4_COST;
+            default:
                 System.out.println("ERROR AT: getCostOfTower():");
                 return -1;
-            }
         }
     }
     
