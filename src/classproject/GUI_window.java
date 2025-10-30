@@ -6016,6 +6016,7 @@ public class GUI_window extends javax.swing.JFrame {
 
     
 
+    MG.stopGame(); // Stops the timers inside the matching game class
     PP.stopGame(); // Stops the timers inside the ping pong game class
     T.stopGame();  // Stops the timers inside the tank game class
     TA.stopGame(); // Stops the timers inside the tag game class

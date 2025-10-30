@@ -27,7 +27,6 @@ public class MatchingGame {
     private JLabel score;
     private HighscoreManager scores_fromOutside;
     private String currentUser_fromOutside;
-    private Timer gameTimer;
    
     // Dynamic Variables:
     private int timePassed = 0;
@@ -59,29 +58,35 @@ public class MatchingGame {
     
     // Public Functions:
     public void stopGame(){
-        gameTimer.stop();
+        if(gameTimer.isRunning()) 
+            gameTimer.stop();
     }
     public void startGame(){
-        timePassed = 0;                      // Resettinig the timePassed to 0 so that it can start at this amount
+        timePassed = 0;                  // Resettinig the timePassed to 0 so that it can start at this amount
         timerBar.setMaximum(GAME_TIME);  // Setting the max to that amount so each tick is that much
-        timerBar.setValue(0);             // Setting the bar to 0, as time goes, it will grow
+        timerBar.setValue(0);            // Setting the bar to 0, as time goes, it will grow
         
-        gameTimer = new Timer(1000,e->{  // Function for each tick of the timer (every 1 second)
-           timePassed++;                       // Up the amount by 1
-           timerBar.setValue(timePassed);      // Set the bar to this amount
-           
-           if(timePassed >= GAME_TIME){        // When the timer reaches Full Time:
-               ((Timer)e.getSource()).stop();  // Stop the timer
-               disableCover.setVisible(true);  // Disable the game using the cover
-               timerBar.setVisible(false);     // Hide the timer bar 
-               startButton.setVisible(true);   // Show the start button which now says "play again!"
-               
-               gameFinishedMessage("Times Up!", score.getText(), "0"); // Calls function to show the end of the game message
-           }
-        });
-        
-        gameTimer.start();                   // Start the timer 
+        gameTimer.start();               // Start the timer 
     } 
+    
+    
+    
+    Timer gameTimer = new Timer(1000, e->{
+        timePassed++;                       // Up the amount by 1
+        timerBar.setValue(timePassed);      // Set the bar to this amount
+
+        if(timePassed >= GAME_TIME){        // When the timer reaches Full Time:
+            ((Timer)e.getSource()).stop();  // Stop the timer
+            disableCover.setVisible(true);  // Disable the game using the cover
+            timerBar.setVisible(false);     // Hide the timer bar 
+            startButton.setVisible(true);   // Show the start button which now says "play again!"
+
+            gameFinishedMessage("Times Up!", score.getText(), "0"); // Calls function to show the end of the game message
+        }
+    });
+    
+    
+    
     
     // When calling selectCard, T: all matches have been found, F: There are still matches not made
     public boolean selectCard(int card){

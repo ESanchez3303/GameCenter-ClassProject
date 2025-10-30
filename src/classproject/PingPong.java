@@ -136,8 +136,16 @@ public class PingPong {
     }
     
     public void stopGame(){
-        clock.stop();
-        countDownTimer.stop();
+        
+        // Always checking first if they exist
+        if(clock != null){
+            if(clock.isRunning())
+                clock.stop();
+        }
+        if(countDownTimer != null){
+            if(countDownTimer.isRunning())
+                countDownTimer.stop();
+        }
     }
     
     public void pauseGame(){
