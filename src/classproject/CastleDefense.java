@@ -765,6 +765,7 @@ public class CastleDefense {
     private JPanel messagePanel;
     private JToggleButton fastFowardButton;
     private JLabel cashSymbol;
+    private JToggleButton quickPlacementButton;
     
     
     
@@ -801,7 +802,7 @@ public class CastleDefense {
                       JPanel bb, JLabel crs, JLabel eks, JLabel ps, JLabel cms, JPanel gep, 
                       JLabel gepoints, JLabel hsi, JLabel gameDescription, JButton umb,
                       JLabel rda, JLabel tek, JLabel tcm, JPanel mp, JLabel hss, JToggleButton ffb,
-                      JLabel cs){
+                      JLabel cs, JToggleButton qpb){
         
         allPlacements = new ArrayList<>();
         allProjectiles = new ArrayList<>();
@@ -858,6 +859,7 @@ public class CastleDefense {
         highscoreStat = hss;
         fastFowardButton = ffb;
         cashSymbol = cs;
+        quickPlacementButton = qpb;
         
         gameDescription.setText(
             "<html><div style='text-align: center; width: 400px;'>"
@@ -962,6 +964,8 @@ public class CastleDefense {
         cashText.setForeground(WHITE_COLOR);
         cashSymbol.setForeground(WHITE_COLOR);
         messagePanel.setVisible(false);
+        fastFowardButton.setSelected(false);
+        quickPlacementButton.setSelected(false);
         
         // Setting the highscore
         highscoreStat.setText(scores_fromOutside.getHighscore("CD"));
@@ -1281,10 +1285,14 @@ public class CastleDefense {
             buyTowerOfficially(savedButton, placementClicked);
             
             // If user cannot buy another one of this tower, then we move out of selection mode and go back to the menu
-            if(!buyTowerButtonClicked(savedButton)){
+            if(quickPlacementButton.isSelected()){        // First check if the quick placement is checked, if so then user wants to place multiple
+                if(!buyTowerButtonClicked(savedButton)){
+                    selectionMode = false;
+                    menu.setLocation(0,40);           // Open menu back up
+                    menuButton.setText("Close Menu"); // Changing back to change menu
+                }
+            }else{
                 selectionMode = false;
-                menu.setLocation(0,40); // Open menu back up
-                menuButton.setText("Close Menu"); // Changing back to change menu
             }
             
             // Return either way
