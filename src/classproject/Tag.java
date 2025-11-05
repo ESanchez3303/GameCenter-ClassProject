@@ -286,6 +286,7 @@ public class Tag {
                 player1.setLocation(newX, player1.getY());
             }
         }
+        
         if(p1Frozen){
             p1FrozenTime++;
             if (p1FrozenTime >= TIME_FROZEN) {
@@ -489,7 +490,10 @@ public class Tag {
             }
         }
         
-        // Checking if boost of player should be removed
+        
+        
+        
+        // Checking if boost of player 1 should be removed
         if(p1Boost == BOOST_STEP){
             p1BoostedTime++;       // Increasing the boosted tick
             
@@ -500,7 +504,7 @@ public class Tag {
             }
         }
         
-        // Checking if boost of player should be removed
+        // Checking if boost of player 2 should be removed
         if(p2Boost == BOOST_STEP){
             p2BoostedTime++;       // Increasing the boosted tick
             
