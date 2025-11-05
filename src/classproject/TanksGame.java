@@ -620,7 +620,7 @@ class TurretPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        // smoother lines
+        // smoother lines apperantly
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         
@@ -644,7 +644,7 @@ class TurretPanel extends JPanel {
 
         // Drawing the turret
         g2.drawLine(baseX, baseY, endX, endY);   // Actual line based on calculations above
-        g2.fillOval(baseX - 4, baseY - 4, 8, 8); // Ball at the bottom to make more natural
+        g2.fillOval(baseX - 4, baseY - 4, 8, 8); // Ball at the bottom to make more "natural"
     }
 }
 

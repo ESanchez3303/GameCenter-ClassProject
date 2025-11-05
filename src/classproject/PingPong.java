@@ -22,7 +22,7 @@ public class PingPong {
     private final int SECONDS_BEFORE_BOOSTING = 5;
     private final int GAME_TICK = 10;
     private final int PLAYER_STEP = 4;
-    private int COMPUTER_STEP = 1;         // Not final because this is changed when computer gets "better"
+    private int COMPUTER_STEP = 1;         
     private final int SCORE_FOR_GOOD_GOAL = 100;
     private final int SCORE_FOR_BAD_GOAL = -50;
     private final List<Integer> deltaEdges = new ArrayList<>(Arrays.asList(18,36,54,72,90,108,126,144,162,180,198,216,234,252,270,288,306,324,342,360));
@@ -127,6 +127,7 @@ public class PingPong {
         upPressed = downPressed = playerBusy = false;
         upPressed2 = downPressed2 = playerBusy2 = false;
         computerTick = 0;
+        COMPUTER_STEP = 1;
         delta = getLaunchDegree();
         
         boostedBallCountKeeper = (int)(SECONDS_BEFORE_BOOSTING*1000)/GAME_TICK;
