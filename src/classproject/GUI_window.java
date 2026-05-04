@@ -18,10 +18,175 @@ import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+import java.awt.event.ActionEvent;
 public class GUI_window extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI_window.class.getName());
     public GUI_window() {
         initComponents();
+        
+        // --- GEMINI: Add Tag Theme Button ---
+        javax.swing.JButton TA_themeButton = new javax.swing.JButton("Theme: Default");
+        TA_themeButton.setBackground(new java.awt.Color(255, 255, 255));
+        
+        // Expand jPanel18's height and move it up to make room for the theme button
+        TA_settingsPanel.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 75, 730, 330));
+        
+        jPanel18.add(TA_themeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 200, 40));
+        
+        final int[] TA_themeState = {0};
+        TA_themeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_themeState[0] = (TA_themeState[0] + 1) % 3;
+                javax.swing.JPanel[] floors = {TA_floor0,TA_floor1,TA_floor2,TA_floor3,TA_floor4,TA_floor5,TA_floor6,
+                                               TA_floor7,TA_floor8,TA_floor9,TA_floor10,TA_floor11,TA_floor12, TA_floor13};
+                if (TA_themeState[0] == 0) {
+                    TA_themeButton.setText("Theme: Default");
+                    TA_gameBox.setBackground(new java.awt.Color(186, 173, 155));
+                    for (javax.swing.JPanel floor : floors) {
+                        floor.setBackground(new java.awt.Color(204, 204, 204));
+                    }
+                    TA_gravity.setValue(0.5);
+                } else if (TA_themeState[0] == 1) {
+                    TA_themeButton.setText("Theme: Night Time");
+                    TA_gameBox.setBackground(new java.awt.Color(20, 20, 40));
+                    for (javax.swing.JPanel floor : floors) {
+                        floor.setBackground(new java.awt.Color(50, 50, 50));
+                    }
+                    TA_gravity.setValue(0.5);
+                } else if (TA_themeState[0] == 2) {
+                    TA_themeButton.setText("Theme: Moon Space");
+                    TA_gameBox.setBackground(java.awt.Color.BLACK);
+                    for (javax.swing.JPanel floor : floors) {
+                        floor.setBackground(java.awt.Color.LIGHT_GRAY);
+                    }
+                    TA_gravity.setValue(0.1);
+                }
+            }
+        });
+        // ------------------------------------
+        // --- GEMINI FIX START ---
+        MM_logOutButton.setContentAreaFilled(false);
+        MM_logOutButton.setOpaque(true);
+        MM_logOutButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_resetBoostRespawnTime.setContentAreaFilled(false);
+        TA_resetBoostRespawnTime.setOpaque(true);
+        TA_resetBoostRespawnTime.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MM_game2StartButton.setContentAreaFilled(false);
+        MM_game2StartButton.setOpaque(true);
+        MM_game2StartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_resetMaxTaggerTime.setContentAreaFilled(false);
+        TA_resetMaxTaggerTime.setOpaque(true);
+        TA_resetMaxTaggerTime.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MM_game1StartButton.setContentAreaFilled(false);
+        MM_game1StartButton.setOpaque(true);
+        MM_game1StartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MM_backToMenuButton.setContentAreaFilled(false);
+        MM_backToMenuButton.setOpaque(true);
+        MM_backToMenuButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        T_matchCoverButton.setContentAreaFilled(false);
+        T_matchCoverButton.setOpaque(true);
+        T_matchCoverButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MM_userSettingsButton.setContentAreaFilled(false);
+        MM_userSettingsButton.setOpaque(true);
+        MM_userSettingsButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_buyTower2Button.setContentAreaFilled(false);
+        CD_buyTower2Button.setOpaque(true);
+        CD_cat3Button.setContentAreaFilled(false);
+        CD_cat3Button.setOpaque(true);
+        CD_menuButton.setContentAreaFilled(false);
+        CD_menuButton.setOpaque(true);
+        CD_cat1Button.setContentAreaFilled(false);
+        CD_cat1Button.setOpaque(true);
+        CD_buyTower1Button.setContentAreaFilled(false);
+        CD_buyTower1Button.setOpaque(true);
+        MM_game3StartButton.setContentAreaFilled(false);
+        MM_game3StartButton.setOpaque(true);
+        MM_game3StartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_nextRoundButton.setContentAreaFilled(false);
+        CD_nextRoundButton.setOpaque(true);
+        CD_upgradeSellButton.setContentAreaFilled(false);
+        CD_upgradeSellButton.setOpaque(true);
+        MM_game5StartButton.setContentAreaFilled(false);
+        MM_game5StartButton.setOpaque(true);
+        MM_game5StartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_saveSettingsButton.setContentAreaFilled(false);
+        TA_saveSettingsButton.setOpaque(true);
+        TA_saveSettingsButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_startingPlayerButton.setContentAreaFilled(false);
+        TA_startingPlayerButton.setOpaque(true);
+        TA_startingPlayerButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountConfirmButton.setContentAreaFilled(false);
+        createAccountConfirmButton.setOpaque(true);
+        CD_buyTower3Button.setContentAreaFilled(false);
+        CD_buyTower3Button.setOpaque(true);
+        MG_startButton.setContentAreaFilled(false);
+        MG_startButton.setOpaque(true);
+        MG_startButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DB_resetButton.setContentAreaFilled(false);
+        DB_resetButton.setOpaque(true);
+        DB_resetButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_resetButton.setContentAreaFilled(false);
+        PP_resetButton.setOpaque(true);
+        TA_resetBoostedTime.setContentAreaFilled(false);
+        TA_resetBoostedTime.setOpaque(true);
+        TA_resetBoostedTime.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PP_startButton.setContentAreaFilled(false);
+        PP_startButton.setOpaque(true);
+        T_restartGameButton.setContentAreaFilled(false);
+        T_restartGameButton.setOpaque(true);
+        T_restartGameButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_startButton.setContentAreaFilled(false);
+        TA_startButton.setOpaque(true);
+        TA_startButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_resetGravity.setContentAreaFilled(false);
+        TA_resetGravity.setOpaque(true);
+        TA_resetGravity.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginButton.setContentAreaFilled(false);
+        loginButton.setOpaque(true);
+        MM_game6StartButton.setContentAreaFilled(false);
+        MM_game6StartButton.setOpaque(true);
+        MM_game6StartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MM_userSettingsCancelButton.setContentAreaFilled(false);
+        MM_userSettingsCancelButton.setOpaque(true);
+        TA_resetRunnerSpeed.setContentAreaFilled(false);
+        TA_resetRunnerSpeed.setOpaque(true);
+        TA_resetRunnerSpeed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_resetTaggerSpeed.setContentAreaFilled(false);
+        TA_resetTaggerSpeed.setOpaque(true);
+        TA_resetTaggerSpeed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createAccountButton.setContentAreaFilled(false);
+        createAccountButton.setOpaque(true);
+        CD_restartGameButton.setContentAreaFilled(false);
+        CD_restartGameButton.setOpaque(true);
+        CD_upgradeMoveButton.setContentAreaFilled(false);
+        CD_upgradeMoveButton.setOpaque(true);
+        CD_messageContinueButton.setContentAreaFilled(false);
+        CD_messageContinueButton.setOpaque(true);
+        CD_messageContinueButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_resetBoostedSpeed.setContentAreaFilled(false);
+        TA_resetBoostedSpeed.setOpaque(true);
+        TA_resetBoostedSpeed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MM_game4StartButton.setContentAreaFilled(false);
+        MM_game4StartButton.setOpaque(true);
+        MM_game4StartButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TA_resetTimeFrozen.setContentAreaFilled(false);
+        TA_resetTimeFrozen.setOpaque(true);
+        TA_resetTimeFrozen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MM_saveSettingsButton.setContentAreaFilled(false);
+        MM_saveSettingsButton.setOpaque(true);
+        MM_saveSettingsButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CD_buyTower4Button.setContentAreaFilled(false);
+        CD_buyTower4Button.setOpaque(true);
+        PP_twoPlayerButton.setContentAreaFilled(false);
+        PP_twoPlayerButton.setOpaque(true);
+        createAccountCancelButton.setContentAreaFilled(false);
+        createAccountCancelButton.setOpaque(true);
+        CD_cat2Button.setContentAreaFilled(false);
+        CD_cat2Button.setOpaque(true);
+        CD_startButton.setContentAreaFilled(false);
+        CD_startButton.setOpaque(true);
+        // --- GEMINI FIX END ---
+
         
         passwordInput.addActionListener(e -> {
             loginButtonPressed();
@@ -154,6 +319,76 @@ public class GUI_window extends javax.swing.JFrame {
         
         
         // Switching into frame once everything is finished:
+        
+        // --- GEMINI FILTER START ---
+        // Create combo boxes
+        javax.swing.JComboBox<String> playerCountFilter = new javax.swing.JComboBox<>(new String[]{"All", "1 Player", "2 Players"});
+        javax.swing.JComboBox<String> categoryFilter = new javax.swing.JComboBox<>(new String[]{"All", "Action/Arcade", "Strategy", "Puzzle"});
+        
+        // Add to MM_topBar
+        MM_topBar.add(playerCountFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
+        MM_topBar.add(categoryFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 120, 30));
+        
+        // Adjust MM_username so it doesn't overlap
+        MM_topBar.remove(MM_username);
+        MM_topBar.add(MM_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 300, 30));
+        
+        // Game panels array
+        JPanel[] gamePanels = {game1, game2, game3, game4, game5, game6};
+        
+        java.awt.event.ActionListener filterAction = new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                String pCount = (String) playerCountFilter.getSelectedItem();
+                String cat = (String) categoryFilter.getSelectedItem();
+                
+                boolean[] pMatch = new boolean[6];
+                boolean[] cMatch = new boolean[6];
+                
+                // Player Count check
+                pMatch[0] = pCount.equals("All") || pCount.equals("1 Player");
+                pMatch[1] = pCount.equals("All") || pCount.equals("2 Players");
+                pMatch[2] = pCount.equals("All") || pCount.equals("1 Player") || pCount.equals("2 Players");
+                pMatch[3] = pCount.equals("All") || pCount.equals("2 Players");
+                pMatch[4] = pCount.equals("All") || pCount.equals("2 Players");
+                pMatch[5] = pCount.equals("All") || pCount.equals("1 Player");
+                
+                // Category check
+                cMatch[0] = cat.equals("All") || cat.equals("Puzzle");
+                cMatch[1] = cat.equals("All") || cat.equals("Strategy");
+                cMatch[2] = cat.equals("All") || cat.equals("Action/Arcade");
+                cMatch[3] = cat.equals("All") || cat.equals("Action/Arcade");
+                cMatch[4] = cat.equals("All") || cat.equals("Action/Arcade");
+                cMatch[5] = cat.equals("All") || cat.equals("Strategy");
+                
+                // Apply visibility and layout
+                gamesPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
+                for (JPanel g : gamePanels) {
+                    g.setPreferredSize(new java.awt.Dimension(730, 160));
+                }
+                
+                int visibleCount = 0;
+                for (int i = 0; i < 6; i++) {
+                    boolean visible = pMatch[i] && cMatch[i];
+                    gamePanels[i].setVisible(visible);
+                    if (visible) {
+                        visibleCount++;
+                    }
+                }
+                
+                gamesPanel.setPreferredSize(new java.awt.Dimension(750, visibleCount * 170 + 10));
+                gamesPanel.revalidate();
+                gamesPanel.repaint();
+            }
+        };
+        
+        playerCountFilter.addActionListener(filterAction);
+        categoryFilter.addActionListener(filterAction);
+        
+        // Initial layout application
+        filterAction.actionPerformed(null);
+        // --- GEMINI FILTER END ---
+        
         switchFrame(loginFrame);
         
  
@@ -858,10 +1093,10 @@ public class GUI_window extends javax.swing.JFrame {
         MM_userSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MM_userSettingsButton.setForeground(java.awt.Color.white);
         MM_userSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_userSettingsButton.setLabel("User Settings");
-        MM_userSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_userSettingsButtonMousePressed(evt);
+        MM_userSettingsButton.setText("User Settings");
+        MM_userSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_userSettingsButtonActionPerformed(evt);
             }
         });
         MM_topBar.add(MM_userSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 5, -1, 40));
@@ -870,10 +1105,10 @@ public class GUI_window extends javax.swing.JFrame {
         MM_logOutButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MM_logOutButton.setForeground(java.awt.Color.white);
         MM_logOutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_logOutButton.setLabel("Log Out");
-        MM_logOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_logOutButtonMousePressed(evt);
+        MM_logOutButton.setText("Log Out");
+        MM_logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_logOutButtonActionPerformed(evt);
             }
         });
         MM_topBar.add(MM_logOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 5, -1, 40));
@@ -883,9 +1118,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_backToMenuButton.setForeground(java.awt.Color.white);
         MM_backToMenuButton.setText("Go Back To Menu");
         MM_backToMenuButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_backToMenuButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_backToMenuButtonMousePressed(evt);
+        MM_backToMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_backToMenuButtonActionPerformed(evt);
             }
         });
         MM_topBar.add(MM_backToMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 5, 200, 40));
@@ -903,10 +1138,10 @@ public class GUI_window extends javax.swing.JFrame {
         DB_resetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         DB_resetButton.setForeground(java.awt.Color.white);
         DB_resetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DB_resetButton.setLabel("Reset Game");
-        DB_resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DB_resetButtonMousePressed(evt);
+        DB_resetButton.setText("Reset Game");
+        DB_resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DB_resetButtonActionPerformed(evt);
             }
         });
         G2_resetBar.add(DB_resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 710, 30));
@@ -1704,9 +1939,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_messageContinueButton.setForeground(java.awt.Color.white);
         CD_messageContinueButton.setText("Continue!");
         CD_messageContinueButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_messageContinueButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_messageContinueButtonMouseClicked(evt);
+        CD_messageContinueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_messageContinueButtonActionPerformed(evt);
             }
         });
         CD_messagePanel.add(CD_messageContinueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 480, 50));
@@ -1728,9 +1963,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_menuButton.setText("Open Menu");
         CD_menuButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         CD_menuButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_menuButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_menuButtonMouseClicked(evt);
+        CD_menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_menuButtonActionPerformed(evt);
             }
         });
         CD_bottomBar.add(CD_menuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 300, 35));
@@ -1789,9 +2024,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_buyTower1Button.setText("Buy Tower");
         CD_buyTower1Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_buyTower1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_buyTower1Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_buyTower1ButtonMouseClicked(evt);
+        CD_buyTower1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_buyTower1ButtonActionPerformed(evt);
             }
         });
         jPanel19.add(CD_buyTower1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 190, 40));
@@ -1801,9 +2036,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_buyTower2Button.setText("Buy Tower");
         CD_buyTower2Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_buyTower2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_buyTower2Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_buyTower1ButtonMouseClicked(evt);
+        CD_buyTower2Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_buyTower1ButtonActionPerformed(evt);
             }
         });
         jPanel19.add(CD_buyTower2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 190, 40));
@@ -1813,9 +2048,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_buyTower3Button.setText("Buy Tower");
         CD_buyTower3Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_buyTower3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_buyTower3Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_buyTower1ButtonMouseClicked(evt);
+        CD_buyTower3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_buyTower1ButtonActionPerformed(evt);
             }
         });
         jPanel19.add(CD_buyTower3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 190, 40));
@@ -1825,9 +2060,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_buyTower4Button.setText("Buy Tower");
         CD_buyTower4Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_buyTower4Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_buyTower4Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_buyTower1ButtonMouseClicked(evt);
+        CD_buyTower4Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_buyTower1ButtonActionPerformed(evt);
             }
         });
         jPanel19.add(CD_buyTower4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 190, 40));
@@ -1927,9 +2162,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_cat2Button.setText("Upgrade");
         CD_cat2Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_cat2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_cat2Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_cat2ButtonMouseClicked(evt);
+        CD_cat2Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_cat2ButtonActionPerformed(evt);
             }
         });
         CD_upgradeMenu.add(CD_cat2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 65, 40));
@@ -1941,9 +2176,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_cat1Button.setToolTipText("");
         CD_cat1Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_cat1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_cat1Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_cat2ButtonMouseClicked(evt);
+        CD_cat1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_cat2ButtonActionPerformed(evt);
             }
         });
         CD_upgradeMenu.add(CD_cat1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 65, 40));
@@ -1955,9 +2190,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_cat3Button.setToolTipText("");
         CD_cat3Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_cat3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_cat3Button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_cat2ButtonMouseClicked(evt);
+        CD_cat3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_cat2ButtonActionPerformed(evt);
             }
         });
         CD_upgradeMenu.add(CD_cat3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 65, 40));
@@ -1969,9 +2204,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_upgradeSellButton.setToolTipText("");
         CD_upgradeSellButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_upgradeSellButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_upgradeSellButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_upgradeSellButtonMouseClicked(evt);
+        CD_upgradeSellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_upgradeSellButtonActionPerformed(evt);
             }
         });
         CD_upgradeMenu.add(CD_upgradeSellButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 10, 65, 40));
@@ -2063,9 +2298,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_upgradeMoveButton.setText("Move");
         CD_upgradeMoveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_upgradeMoveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_upgradeMoveButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_upgradeMoveButtonMouseClicked(evt);
+        CD_upgradeMoveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_upgradeMoveButtonActionPerformed(evt);
             }
         });
         CD_upgradeMenu.add(CD_upgradeMoveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 65, 40));
@@ -3663,9 +3898,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_nextRoundButton.setText("Start Next Round");
         CD_nextRoundButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         CD_nextRoundButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_nextRoundButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_nextRoundButtonMouseClicked(evt);
+        CD_nextRoundButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_nextRoundButtonActionPerformed(evt);
             }
         });
         CD_gameBox.add(CD_nextRoundButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 500, 150, 30));
@@ -3721,9 +3956,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_restartGameButton.setText("Restart Game");
         CD_restartGameButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_restartGameButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_restartGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_restartGameButtonMouseClicked(evt);
+        CD_restartGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_restartGameButtonActionPerformed(evt);
             }
         });
         jPanel23.add(CD_restartGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 580, 80));
@@ -3793,9 +4028,9 @@ public class GUI_window extends javax.swing.JFrame {
         CD_startButton.setText("Start Defending!");
         CD_startButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CD_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CD_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CD_startButtonMouseClicked(evt);
+        CD_startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CD_startButtonActionPerformed(evt);
             }
         });
         CD_cover.add(CD_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 506, 720, 60));
@@ -3886,9 +4121,9 @@ public class GUI_window extends javax.swing.JFrame {
         loginButton.setText("Log In");
         loginButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                loginButtonMousePressed(evt);
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
             }
         });
         loginButtonsFrame.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 348, 35));
@@ -3900,9 +4135,9 @@ public class GUI_window extends javax.swing.JFrame {
         createAccountButton.setToolTipText("");
         createAccountButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createAccountButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                createAccountButtonMousePressed(evt);
+        createAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createAccountButtonActionPerformed(evt);
             }
         });
         loginButtonsFrame.add(createAccountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 348, 35));
@@ -3943,10 +4178,10 @@ public class GUI_window extends javax.swing.JFrame {
         createAccountCancelButton.setToolTipText("");
         createAccountCancelButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createAccountCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccountCancelButton.setLabel("X");
-        createAccountCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                createAccountCancelButtonClicked(evt);
+        createAccountCancelButton.setText("X");
+        createAccountCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createAccountCancelButtonActionPerformed(evt);
             }
         });
         loginFrame.add(createAccountCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 150, 50, 35));
@@ -3957,10 +4192,10 @@ public class GUI_window extends javax.swing.JFrame {
         createAccountConfirmButton.setToolTipText("");
         createAccountConfirmButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createAccountConfirmButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createAccountConfirmButton.setLabel("Register Account");
-        createAccountConfirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                createAccountConfirmButtonClicked(evt);
+        createAccountConfirmButton.setText("Register Account");
+        createAccountConfirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createAccountConfirmButtonActionPerformed(evt);
             }
         });
         loginFrame.add(createAccountConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 150, 294, 35));
@@ -4364,9 +4599,9 @@ public class GUI_window extends javax.swing.JFrame {
         MG_startButton.setForeground(java.awt.Color.white);
         MG_startButton.setText("Start Game");
         MG_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MG_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MG_startButtonMousePressed(evt);
+        MG_startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MG_startButtonActionPerformed(evt);
             }
         });
         MG_timeBoard.add(MG_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 430, 30));
@@ -4413,9 +4648,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_game1StartButton.setForeground(java.awt.Color.white);
         MM_game1StartButton.setText("Start Game!");
         MM_game1StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game1StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game1StartButtonMousePressed(evt);
+        MM_game1StartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_game1StartButtonActionPerformed(evt);
             }
         });
         game1.add(MM_game1StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
@@ -4488,9 +4723,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_game2StartButton.setForeground(java.awt.Color.white);
         MM_game2StartButton.setText("Start Game!");
         MM_game2StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game2StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game2StartButtonMousePressed(evt);
+        MM_game2StartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_game2StartButtonActionPerformed(evt);
             }
         });
         game2.add(MM_game2StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
@@ -4563,9 +4798,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_game3StartButton.setForeground(java.awt.Color.white);
         MM_game3StartButton.setText("Start Game!");
         MM_game3StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game3StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game3StartButtonMousePressed(evt);
+        MM_game3StartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_game3StartButtonActionPerformed(evt);
             }
         });
         game3.add(MM_game3StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
@@ -4638,9 +4873,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_game4StartButton.setForeground(java.awt.Color.white);
         MM_game4StartButton.setText("Start Game!");
         MM_game4StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game4StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game4StartButtonMousePressed(evt);
+        MM_game4StartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_game4StartButtonActionPerformed(evt);
             }
         });
         game4.add(MM_game4StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
@@ -4713,9 +4948,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_game5StartButton.setForeground(java.awt.Color.white);
         MM_game5StartButton.setText("Start Game!");
         MM_game5StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game5StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game5StartButtonMousePressed(evt);
+        MM_game5StartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_game5StartButtonActionPerformed(evt);
             }
         });
         game5.add(MM_game5StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
@@ -4788,9 +5023,9 @@ public class GUI_window extends javax.swing.JFrame {
         MM_game6StartButton.setForeground(java.awt.Color.white);
         MM_game6StartButton.setText("Start Game!");
         MM_game6StartButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_game6StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_game6StartButtonMousePressed(evt);
+        MM_game6StartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_game6StartButtonActionPerformed(evt);
             }
         });
         game6.add(MM_game6StartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 40));
@@ -4866,10 +5101,10 @@ public class GUI_window extends javax.swing.JFrame {
         MM_userSettingsCancelButton.setForeground(java.awt.Color.white);
         MM_userSettingsCancelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         MM_userSettingsCancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_userSettingsCancelButton.setLabel("X");
-        MM_userSettingsCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_userSettingsCancelButtonMousePressed(evt);
+        MM_userSettingsCancelButton.setText("X");
+        MM_userSettingsCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_userSettingsCancelButtonActionPerformed(evt);
             }
         });
         MM_userSettingsPanel.add(MM_userSettingsCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 30));
@@ -4919,10 +5154,10 @@ public class GUI_window extends javax.swing.JFrame {
         MM_saveSettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         MM_saveSettingsButton.setForeground(java.awt.Color.white);
         MM_saveSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MM_saveSettingsButton.setLabel("Save Settings");
-        MM_saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MM_saveSettingsButtonMousePressed(evt);
+        MM_saveSettingsButton.setText("Save Settings");
+        MM_saveSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MM_saveSettingsButtonActionPerformed(evt);
             }
         });
         MM_userSettingsPanel.add(MM_saveSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, 40));
@@ -4955,9 +5190,9 @@ public class GUI_window extends javax.swing.JFrame {
         PP_startButton.setText("Start Game!");
         PP_startButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PP_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        PP_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PP_startButtonMousePressed(evt);
+        PP_startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PP_startButtonActionPerformed(evt);
             }
         });
         PP_cover.add(PP_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 370, 50));
@@ -4974,9 +5209,9 @@ public class GUI_window extends javax.swing.JFrame {
         PP_twoPlayerButton.setText("Two Player Mode");
         PP_twoPlayerButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PP_twoPlayerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        PP_twoPlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PP_twoPlayerButtonMousePressed(evt);
+        PP_twoPlayerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PP_twoPlayerButtonActionPerformed(evt);
             }
         });
         PP_cover.add(PP_twoPlayerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 245, 370, 45));
@@ -5093,9 +5328,9 @@ public class GUI_window extends javax.swing.JFrame {
         PP_resetButton.setText("Reset Game!");
         PP_resetButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PP_resetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        PP_resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PP_resetButtonMousePressed(evt);
+        PP_resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PP_resetButtonActionPerformed(evt);
             }
         });
         PP_resetCover.add(PP_resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 370, 90));
@@ -5214,9 +5449,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_saveSettingsButton.setForeground(java.awt.Color.white);
         TA_saveSettingsButton.setText("Save and Close");
         TA_saveSettingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                TA_saveSettingsButtonMousePressed(evt);
+        TA_saveSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_saveSettingsButtonActionPerformed(evt);
             }
         });
         TA_settingsPanel.add(TA_saveSettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 640, 80));
@@ -5254,9 +5489,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetRunnerSpeed.setForeground(java.awt.Color.white);
         TA_resetRunnerSpeed.setText("Reset");
         TA_resetRunnerSpeed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetRunnerSpeed.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetRunnerSpeed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetRunnerSpeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 70, 40));
@@ -5266,9 +5501,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetMaxTaggerTime.setForeground(java.awt.Color.white);
         TA_resetMaxTaggerTime.setText("Reset");
         TA_resetMaxTaggerTime.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetMaxTaggerTime.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetMaxTaggerTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetMaxTaggerTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 70, 40));
@@ -5278,9 +5513,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetTaggerSpeed.setForeground(java.awt.Color.white);
         TA_resetTaggerSpeed.setText("Reset");
         TA_resetTaggerSpeed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetTaggerSpeed.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetTaggerSpeed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetTaggerSpeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 154, 70, 40));
@@ -5295,9 +5530,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetTimeFrozen.setForeground(java.awt.Color.white);
         TA_resetTimeFrozen.setText("Reset");
         TA_resetTimeFrozen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetTimeFrozen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetTimeFrozen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetTimeFrozen, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 70, 40));
@@ -5312,9 +5547,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetBoostedSpeed.setForeground(java.awt.Color.white);
         TA_resetBoostedSpeed.setText("Reset");
         TA_resetBoostedSpeed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetBoostedSpeed.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetBoostedSpeed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetBoostedSpeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 70, 40));
@@ -5329,9 +5564,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetBoostRespawnTime.setForeground(java.awt.Color.white);
         TA_resetBoostRespawnTime.setText("Reset");
         TA_resetBoostRespawnTime.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetBoostRespawnTime.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetBoostRespawnTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetBoostRespawnTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 70, 40));
@@ -5346,9 +5581,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetBoostedTime.setForeground(java.awt.Color.white);
         TA_resetBoostedTime.setText("Reset");
         TA_resetBoostedTime.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetBoostedTime.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetBoostedTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetBoostedTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 154, 70, 40));
@@ -5363,9 +5598,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_resetGravity.setForeground(java.awt.Color.white);
         TA_resetGravity.setText("Reset");
         TA_resetGravity.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_resetGravity.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_resetButtonClicked(evt);
+        TA_resetGravity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_resetButtonActionPerformed(evt);
             }
         });
         jPanel18.add(TA_resetGravity, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 70, 40));
@@ -5490,9 +5725,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_startButton.setForeground(java.awt.Color.white);
         TA_startButton.setText("[ Press To Start ]");
         TA_startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_startButtonMouseClicked(evt);
+        TA_startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_startButtonActionPerformed(evt);
             }
         });
         jPanel13.add(TA_startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 710, 40));
@@ -5537,9 +5772,9 @@ public class GUI_window extends javax.swing.JFrame {
         TA_startingPlayerButton.setForeground(java.awt.Color.white);
         TA_startingPlayerButton.setText("Start Game");
         TA_startingPlayerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TA_startingPlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TA_startingPlayerButtonMouseClicked(evt);
+        TA_startingPlayerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TA_startingPlayerButtonActionPerformed(evt);
             }
         });
         TA_choosePlayerPanel.add(TA_startingPlayerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 310, 60));
@@ -5716,9 +5951,9 @@ public class GUI_window extends javax.swing.JFrame {
         T_matchCoverButton.setForeground(java.awt.Color.white);
         T_matchCoverButton.setText("Continue");
         T_matchCoverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        T_matchCoverButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                T_matchCoverButtonMouseClicked(evt);
+        T_matchCoverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                T_matchCoverButtonActionPerformed(evt);
             }
         });
         T_matchCover.add(T_matchCoverButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 370, 40));
@@ -5839,9 +6074,9 @@ public class GUI_window extends javax.swing.JFrame {
         T_restartGameButton.setForeground(java.awt.Color.white);
         T_restartGameButton.setText("Restart Game");
         T_restartGameButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        T_restartGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                T_restartGameButtonMouseClicked(evt);
+        T_restartGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                T_restartGameButtonActionPerformed(evt);
             }
         });
         T_gameOverCover.add(T_restartGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 590, 80));
@@ -6166,7 +6401,7 @@ public class GUI_window extends javax.swing.JFrame {
     
     
 // LOGIN FUNCTIONS ========================================================================
-    private void loginButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMousePressed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonMousePressed
         loginButtonPressed(); // Had to move it to another function so that we can use the code in constructor to add action listener
     }//GEN-LAST:event_loginButtonMousePressed
 
@@ -6189,7 +6424,7 @@ public class GUI_window extends javax.swing.JFrame {
         switchFrame(mainMenuFrame);
     }
     
-    private void createAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountButtonMousePressed
+    private void createAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountButtonMousePressed
         loginButtonsFrame.setVisible(false);                    // Hide the login buttons to show confirm buttons
         
         passwordConfirmInput.setVisible(true);                 // Making password confirm input and section visible 
@@ -6197,7 +6432,7 @@ public class GUI_window extends javax.swing.JFrame {
         createAccountConfirmButton.setVisible(true);           
     }//GEN-LAST:event_createAccountButtonMousePressed
 
-    private void createAccountConfirmButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountConfirmButtonClicked
+    private void createAccountConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountConfirmButtonClicked
         // Grabbing all the inputs
         String tempUsername = usernameInput.getText();
         String tempPassword = passwordInput.getText();
@@ -6255,7 +6490,7 @@ public class GUI_window extends javax.swing.JFrame {
         switchFrame(mainMenuFrame);
     }//GEN-LAST:event_createAccountConfirmButtonClicked
 
-    private void createAccountCancelButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountCancelButtonClicked
+    private void createAccountCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountCancelButtonClicked
         switchFrame(loginFrame);
     }//GEN-LAST:event_createAccountCancelButtonClicked
     
@@ -6292,12 +6527,12 @@ public class GUI_window extends javax.swing.JFrame {
         game6Username.setText(scores.getUsername("CD"));
     }
     
-    private void MM_logOutButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_logOutButtonMousePressed
+    private void MM_logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_logOutButtonMousePressed
         currentUser = "";
         switchFrame(loginFrame);
     }//GEN-LAST:event_MM_logOutButtonMousePressed
 
-    private void MM_userSettingsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_userSettingsButtonMousePressed
+    private void MM_userSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_userSettingsButtonMousePressed
         // Show the user settings panel and hide games panel
         gamesScrollFrame.setVisible(false);
         MM_userSettingsPanel.setVisible(true);
@@ -6308,13 +6543,13 @@ public class GUI_window extends javax.swing.JFrame {
         MM_passwordConfirmInput.setText("");
     }//GEN-LAST:event_MM_userSettingsButtonMousePressed
 
-    private void MM_userSettingsCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_userSettingsCancelButtonMousePressed
+    private void MM_userSettingsCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_userSettingsCancelButtonMousePressed
         // Hide the user settings panel and showing games panel
         MM_userSettingsPanel.setVisible(false);
         gamesScrollFrame.setVisible(true);
     }//GEN-LAST:event_MM_userSettingsCancelButtonMousePressed
 
-    private void MM_saveSettingsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_saveSettingsButtonMousePressed
+    private void MM_saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_saveSettingsButtonMousePressed
         // Check instance:
         // -> no change wanted
         // ----> C: everythig is empty 
@@ -6404,31 +6639,31 @@ public class GUI_window extends javax.swing.JFrame {
         
     }//GEN-LAST:event_MM_saveSettingsButtonMousePressed
 
-    private void MM_backToMenuButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_backToMenuButtonMousePressed
+    private void MM_backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_backToMenuButtonMousePressed
         switchFrame(mainMenuFrame); // Simply goes back to main menu
     }//GEN-LAST:event_MM_backToMenuButtonMousePressed
 
-    private void MM_game1StartButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_game1StartButtonMousePressed
+    private void MM_game1StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_game1StartButtonMousePressed
         switchFrame(game1Frame); // Switch into game 1 Frame
     }//GEN-LAST:event_MM_game1StartButtonMousePressed
 
-    private void MM_game2StartButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_game2StartButtonMousePressed
+    private void MM_game2StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_game2StartButtonMousePressed
         switchFrame(game2Frame); // Switch into game 2 Frame
     }//GEN-LAST:event_MM_game2StartButtonMousePressed
 
-    private void MM_game3StartButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_game3StartButtonMousePressed
+    private void MM_game3StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_game3StartButtonMousePressed
         switchFrame(game3Frame); // Switch into game 3 Frame
     }//GEN-LAST:event_MM_game3StartButtonMousePressed
 
-    private void MM_game4StartButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_game4StartButtonMousePressed
+    private void MM_game4StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_game4StartButtonMousePressed
         switchFrame(game4Frame); // Switch into game 4 Frame
     }//GEN-LAST:event_MM_game4StartButtonMousePressed
 
-    private void MM_game5StartButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_game5StartButtonMousePressed
+    private void MM_game5StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_game5StartButtonMousePressed
         switchFrame(game5Frame); // Switch into game 5 Frame
     }//GEN-LAST:event_MM_game5StartButtonMousePressed
 
-    private void MM_game6StartButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MM_game6StartButtonMousePressed
+    private void MM_game6StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MM_game6StartButtonMousePressed
         switchFrame(game6Frame);
     }//GEN-LAST:event_MM_game6StartButtonMousePressed
 
@@ -6446,7 +6681,7 @@ public class GUI_window extends javax.swing.JFrame {
     
     
 // GAME 1 FUNCTIONS ==================================================================== 
-    private void MG_startButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MG_startButtonMousePressed
+    private void MG_startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MG_startButtonMousePressed
         // Resetting game by sending back into game 1 if user finished previous game
         if(MG_startButton.getText().equals("Play Again!")){
             switchFrame(game1Frame);
@@ -6500,7 +6735,7 @@ public class GUI_window extends javax.swing.JFrame {
     
     
  // GAME 2 FUNCTIONS ==================================================================== 
-    private void DB_resetButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DB_resetButtonMousePressed
+    private void DB_resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DB_resetButtonMousePressed
         switchFrame(game2Frame);
     }//GEN-LAST:event_DB_resetButtonMousePressed
 
@@ -6602,18 +6837,18 @@ public class GUI_window extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PP_gameAreaKeyReleased
 
-    private void PP_startButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PP_startButtonMousePressed
+    private void PP_startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PP_startButtonMousePressed
         PP_cover.setVisible(false);         // Hide the cover 
         PP.startGame();                     // Start the game
         PP.setScores_fromOutside(scores,currentUser); // Send in again the scores from here
         PP_gameArea.requestFocusInWindow(); // Sends focus to the game window
     }//GEN-LAST:event_PP_startButtonMousePressed
 
-    private void PP_resetButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PP_resetButtonMousePressed
+    private void PP_resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PP_resetButtonMousePressed
         switchFrame(game3Frame);
     }//GEN-LAST:event_PP_resetButtonMousePressed
 
-    private void PP_twoPlayerButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PP_twoPlayerButtonMousePressed
+    private void PP_twoPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PP_twoPlayerButtonMousePressed
         if(!PP.isTwoPlayerMode()){ // Going into Two Player Mode
             PP_twoPlayerButton.setBackground(new Color(204,255,204));
             PP_twoPlayerModeCover.setVisible(true);
@@ -6708,7 +6943,7 @@ public class GUI_window extends javax.swing.JFrame {
         
     }//GEN-LAST:event_T_gameBoxKeyReleased
 
-    private void T_matchCoverButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_matchCoverButtonMouseClicked
+    private void T_matchCoverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T_matchCoverButtonMouseClicked
         // Saving who won the match so we can show that in the next screen
         switch(T.getMap()){
             case 1 : map1WonBy = T.getMatchWonBy(); break;
@@ -6752,7 +6987,7 @@ public class GUI_window extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_T_matchCoverButtonMouseClicked
 
-    private void T_restartGameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_T_restartGameButtonMouseClicked
+    private void T_restartGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T_restartGameButtonMouseClicked
         switchFrame(game4Frame);
     }//GEN-LAST:event_T_restartGameButtonMouseClicked
 
@@ -6763,7 +6998,7 @@ public class GUI_window extends javax.swing.JFrame {
     
     
 // GAME 5 FUNCTIONS ====================================================================
-    private void TA_startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TA_startButtonMouseClicked
+    private void TA_startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TA_startButtonMouseClicked
        
         // Choosing a random player to be the tagger and changing the text to show user
         String startingPlayer = ((((int)(Math.random() * 2) + 1) == 1) ? "1" : "2");  // Choose the starting player and setting to string for next line
@@ -6789,7 +7024,7 @@ public class GUI_window extends javax.swing.JFrame {
         TA_gameBox.setVisible(true);           // Showing the game box
     }//GEN-LAST:event_TA_startButtonMouseClicked
 
-    private void TA_startingPlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TA_startingPlayerButtonMouseClicked
+    private void TA_startingPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TA_startingPlayerButtonMouseClicked
         // If the panel showing with the replay button, then we are resetting
         if(TA_startingPlayerButton.getText().equals("Replay Game")){
             switchFrame(game5Frame);
@@ -6860,7 +7095,7 @@ public class GUI_window extends javax.swing.JFrame {
         TA_startButton.setVisible(false);
     }//GEN-LAST:event_TA_settingsMouseClicked
 
-    private void TA_saveSettingsButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TA_saveSettingsButtonMousePressed
+    private void TA_saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TA_saveSettingsButtonMousePressed
         // Make the list
         JSpinner[] TA_spinners = {
             TA_maxTaggerTime, TA_runnerSpeed, TA_taggerSpeed, TA_timeFrozen,
@@ -6901,7 +7136,7 @@ public class GUI_window extends javax.swing.JFrame {
         TA_startButton.setVisible(true);
     }//GEN-LAST:event_TA_saveSettingsButtonMousePressed
 
-    private void TA_resetButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TA_resetButtonClicked
+    private void TA_resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TA_resetButtonClicked
         String target;
         JButton buttonClicked = (JButton) evt.getSource();
         
@@ -6924,7 +7159,7 @@ public class GUI_window extends javax.swing.JFrame {
     
       
 // GAME 6 FUNCTIONS ====================================================================   
-    private void CD_startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_startButtonMouseClicked
+    private void CD_startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_startButtonMouseClicked
         CD_gameBox.setVisible(true); // Showing the game box
         CD_cover.setVisible(false);  // Hiding the game cover
         CD_gameBox.setLayout(null);  // Setting the layout to null just in case
@@ -6935,7 +7170,7 @@ public class GUI_window extends javax.swing.JFrame {
     }//GEN-LAST:event_CD_startButtonMouseClicked
 
     // Menu Button was clicked (open/close menu, cancel buy, close upgrade menu))
-    private void CD_menuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_menuButtonMouseClicked
+    private void CD_menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_menuButtonMouseClicked
         if(!CD_messagePanel.isVisible())
             CD.menuButtonClicked();
     }//GEN-LAST:event_CD_menuButtonMouseClicked
@@ -6949,7 +7184,7 @@ public class GUI_window extends javax.swing.JFrame {
     }//GEN-LAST:event_CD_placement1MouseEntered
 
     // The user wants to buy a tower, we find let the handler inside find out cost w the button
-    private void CD_buyTower1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_buyTower1ButtonMouseClicked
+    private void CD_buyTower1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_buyTower1ButtonMouseClicked
         // Sending in which tower buy button was clicked, we will find out later what the cost it
         JButton clickedButton = (JButton) evt.getSource();
         if(!CD_messagePanel.isVisible())
@@ -6964,26 +7199,26 @@ public class GUI_window extends javax.swing.JFrame {
     }//GEN-LAST:event_CD_placement1MouseClicked
 
     // Category button is clicked to upgrade it
-    private void CD_cat2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_cat2ButtonMouseClicked
+    private void CD_cat2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_cat2ButtonMouseClicked
         JButton catButtonClicked = (JButton) evt.getSource();
         if(!CD_messagePanel.isVisible())
             CD.catButtonClicked(catButtonClicked);
     }//GEN-LAST:event_CD_cat2ButtonMouseClicked
 
     // Sell button was clicked in the upgrad emenu
-    private void CD_upgradeSellButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_upgradeSellButtonMouseClicked
+    private void CD_upgradeSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_upgradeSellButtonMouseClicked
         if(!CD_messagePanel.isVisible())
             CD.upgradeSellButtonClicked();
     }//GEN-LAST:event_CD_upgradeSellButtonMouseClicked
 
     // Next round was clicked 
-    private void CD_nextRoundButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_nextRoundButtonMouseClicked
+    private void CD_nextRoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_nextRoundButtonMouseClicked
         if(!CD_messagePanel.isVisible())
             CD.nextRoundButtonClicked();
     }//GEN-LAST:event_CD_nextRoundButtonMouseClicked
 
     // Restart button was clicked -> just send back to this game frame, it will reset everything
-    private void CD_restartGameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_restartGameButtonMouseClicked
+    private void CD_restartGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_restartGameButtonMouseClicked
         switchFrame(game6Frame);
     }//GEN-LAST:event_CD_restartGameButtonMouseClicked
 
@@ -6996,13 +7231,13 @@ public class GUI_window extends javax.swing.JFrame {
     }//GEN-LAST:event_CD_path1MouseEntered
 
     // If user clicked the move button, handle inside the class
-    private void CD_upgradeMoveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_upgradeMoveButtonMouseClicked
+    private void CD_upgradeMoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_upgradeMoveButtonMouseClicked
         if(!CD_messagePanel.isVisible())
             CD.upgradeMoveButtonClicked();
     }//GEN-LAST:event_CD_upgradeMoveButtonMouseClicked
 
     // User clicked continue on the message board that we are showing
-    private void CD_messageContinueButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CD_messageContinueButtonMouseClicked
+    private void CD_messageContinueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CD_messageContinueButtonMouseClicked
         CD.messageContinueButtonClicked(); // Making sure that the messagepanel is not visible
     }//GEN-LAST:event_CD_messageContinueButtonMouseClicked
     
